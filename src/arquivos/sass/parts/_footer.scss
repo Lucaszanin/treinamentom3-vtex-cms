@@ -1,0 +1,358 @@
+/***************************************************************/
+/**-- Footer  ------------------------------********************/
+/*-------------------------------------------------------------*/
+
+.footer{
+	background-color: $color-black2;
+
+	.institucional-info{
+		color: $color-white;
+		font-size: 14px;
+		margin: auto;
+		max-width: 950px;
+		padding: 0 15px 25px;
+
+		@include mq(md, max){
+			font-size: 16px;
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.titulo{
+			font-size: 16px;
+			margin: 27px 0 17px;
+
+			@include mq(md, max){
+				font-size: 22px;
+				text-align: center;
+			}
+		}
+
+		ul{
+			margin: 0;
+
+			@include mq(md, max){
+				max-width: 310px;
+				margin: auto;
+				padding: 0 10px;
+			}
+
+			&:hover li a{
+				opacity: 0.7;
+			}
+
+			li a{
+				transition: all 0.15s linear;
+
+				&:hover{
+					opacity: 1;
+				}
+			}
+		}
+
+		a{
+			color: $color-white;
+		}
+
+		.institucional-links{
+			font-size: 16px;
+		}
+
+		.contato-sac{
+			font-size: 12px;
+			@include mq(md, max){
+				border-bottom: 1px solid $color-black3;
+				padding:10px 0 20px;
+			}
+
+			@include mq(md, max){
+				font-size: 16px;
+			}
+
+			li{
+				margin-bottom: 8px;
+
+				&:last-child(){
+					font-size: 10px;
+					text-transform: uppercase;
+
+					@include mq(md, max){
+						font-size: 14px;
+					}
+
+					strong{
+						display: block;
+					}
+				}
+			}
+
+			p{
+				margin: 0;
+				span{
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.redes-sociais{
+			h3{
+				@include mq(md, max){
+					display: none;
+				}
+			}
+
+			ul{
+				@include mq(md, max){
+					margin-top: 25px;
+					text-align: center;
+				}
+			}
+
+			li{
+				display: inline-block;
+				margin-right: 6px;
+			}
+
+			i{
+				@include mq(md, min){
+					transform: scale(0.8);
+				}
+			}
+		}
+	}
+
+	.selos{
+		border-top: 1px solid $color-black3;;
+		padding: 5px 0;
+		text-align: center;
+
+		@include mq(md, min){
+			border-bottom: 1px solid $color-black3;
+		}
+
+		.col-12{
+			@include mq(md, max){
+				padding: 0;
+			}
+		}
+
+		ul{
+			display: inline-block;
+			@include mq(md, max){
+				width: 100%;
+			}
+
+			&.pagamento{
+				padding-top: 10px;
+				padding-bottom: 10px;
+
+				@include mq(md, max){
+					border-bottom: 1px solid $color-black3;
+					padding-bottom: 25px;
+				}
+
+				@include mq(md, min){
+					border-right: 1px solid $color-gray;
+					margin-right: 20px;
+					padding-right: 20px;
+				}
+
+				li{
+					&:not(:last-child){
+						@include mq(md, min){
+							padding-right: 5px;
+						}
+					}
+				}
+			}
+
+			&.certificados{
+				li{
+					&:not(:last-child){
+						padding-right: 10px;
+					}
+				}
+			}
+
+			li{
+				display: inline-block;
+
+			}
+		}
+	}
+
+	.razao{
+		font-size: 10px;
+		max-width: 1500px;
+		margin: auto;
+		padding: 15px;
+
+		@include mq(md, max){
+			padding-top: 10px;
+		}
+
+		p{
+			color: $color-gray2;
+			margin: 0;
+
+			@include mq(md, max){
+				text-align: center;
+			}
+
+			span{
+				@include mq(md, max){
+					display: block;
+				}
+			}
+		}
+
+		a{
+			color: $color-gray2;
+			display: inline-block;
+		}
+
+		.cnpj{
+			@include mq(md, max){
+				padding: 20px 15px;
+			}
+		}
+
+		.desenvolvimento{
+			text-align: right;
+
+			@include mq(md, max){
+				text-align: center;
+				padding:20px 15px 0;
+			}
+
+			a:nth-child(2){
+				@include mq(md, max){
+					border-left: 1px solid $color-gray;
+					border-right: 1px solid $color-gray;
+					margin-right: 20px;
+					margin-left: 20px;
+					padding-right:15px;
+					padding-left:15px;
+				}
+			}
+
+			span{
+				display: inline-block;
+			}
+		}
+	}
+}
+
+.mobile-bottom-options{
+	background-color: $color-white;
+	border-top: 1px solid $color-gray;
+	bottom: 0;
+	left: 0;
+	margin-bottom: -65px;
+	opacity: 0;
+	position: fixed;
+	right: 0;
+	transition: all 0.2s ease-in-out;
+	visibility: hidden;
+	z-index: 6;
+
+	&.active{
+		margin-bottom: 0;
+		opacity: 1;
+		visibility: visible;
+	}
+
+	ul{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0;
+	}
+
+	li{
+		display: inline-block;
+		width: 33%;
+	}
+
+	.option{
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		display: block;
+		height: 66px;
+		outline: none;
+		padding: 10px;
+		width: 100%;
+
+		&::before{
+			content: '';
+			display: block;
+			margin: auto;
+
+			@extend .sprite;
+		}
+	}
+
+
+	.show-search{
+		.option:before{
+			@extend .sprite-lupa;
+		}
+	}
+
+	.show-carrinho{
+		li:not(.amount-items), strong, .title{
+			display: none;
+		}
+
+		.AmountItemsInCart{
+			line-height: 0;
+			text-align: center;
+		}
+
+		.portal-totalizers-ref{
+			display: inline-block;
+			vertical-align: top;
+			position: relative;
+
+			.cartInfoWrapper{
+				@extend .sprite;
+				@extend .sprite-sacola;
+
+				@include mq(md, max){
+					margin-right: 5px;
+				}
+			}
+
+			.amount-items{
+				background-color: $color-black2;
+				border-radius: 50%;
+				bottom: 2px;
+				color: $color-white;
+				font-size: 10px;
+				line-height: 1.3;
+				min-width: 19px;
+				text-align: center;
+				padding: 3px 4px;
+				position: absolute;
+				right: -8px;
+
+				@include mq(md, max){
+					right: -3px;
+				}
+
+				em{
+					font-style: normal;
+				}
+			}
+		}
+	}
+
+	.show-menu{
+		margin-top: -2px;
+
+		.option:before{
+			@extend .sprite-menu-bottom;
+		}
+	}
+}

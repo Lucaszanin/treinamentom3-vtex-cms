@@ -1,0 +1,74 @@
+#set($id = $product.Id)
+#set($idSku = $product.productVariantId)
+#set($uri = $product.Uri)
+#set($escapedName = $product.HtmlEscapedName)
+
+
+<div class="produto-na-prateleira">
+	<div class="flags-product">
+		<span class="HightLight">
+			$product.HightLight
+		</span>
+		<span class="DiscountHightLight">
+			 $product.DiscountHightLight
+		</span>
+	</div>
+	<div class="product-image ">
+		<a href="$uri" title=$escapedName>
+
+			<div class="foto-principal" >
+				$product.GetImageTag(2)
+			</div>
+			<div class="foto-secundaria" >
+				$product.GetImageTag(2,"ultima")
+			</div>
+		</a>
+	</div>
+	<div class="informacoes">
+		<div class="avaliacao"></div>
+		<div class="nome">
+			$escapedName
+		</div>
+	</div>
+	 #if ($product.IsInStock)
+	<div class="disponivel">
+		<div class="price">
+			<div class="antigo">
+			#if ($product.HasBestPrice)
+				<span class="value">
+					$product.ListPrice
+				</span>
+			#end
+			</div>
+			<div class="principal">
+				<span class="value">
+				$product.BestPrice
+				</span>
+			</div>
+			#if($product.NumbersOfInstallment > 1)
+			<div class="parcelado">
+				<span class="desconto-parcelado">
+					ou
+					<strong>
+						<span class="numero-de-parcelas">$product.NumbersOfInstallment</span>X de
+						<span class="value">
+							$product.InstallmentValue
+						</span>
+					</strong>
+					no cartão
+				</span>
+			</div>
+			#end
+		</div>
+		<div class="compra">
+			<span class="btn-compra">
+				<a title="Compre agora" href="$uri">Compre agora</a>
+			</span>
+		</div>
+	</div>
+	#else
+	<div class="indisponivel">
+		<span class="erro">Produto indisponível</span>
+	</div>
+	#end
+</div>

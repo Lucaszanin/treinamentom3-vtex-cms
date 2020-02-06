@@ -1,0 +1,199 @@
+/***************************************************************/
+/**-- Newslettter --------------------------********************/
+/*-------------------------------------------------------------*/
+
+.captacao-emails-newsletter{
+	background-color: $color-pink;
+	background-image: url('/arquivos/loja-teste-background-newsletter.png');
+	margin-top: 104px;
+	padding: 12px 15px 24px;
+
+	@include mq(md, max){
+		background-image: url('/arquivos/loja-teste-mobile-background-newsletter.png');
+		background-size: cover;
+		padding: 52px 15px 42px;
+	}
+
+	.row{
+		align-items: center;
+	}
+
+	>.row >div{
+		max-width: 960px;
+		margin: auto;
+		padding: 0 3.5%;
+	}
+
+	h3{
+		color: $color-white;
+		font-size: 18px;
+		font-weight: normal;
+		line-height: 26px;
+		margin: 0 0 8px;
+
+		@include mq(md, max){
+			margin-bottom: 24px;
+		}
+
+		span{
+			display: block;
+			font-size: 26px;
+		}
+	}
+
+	p{
+		font-size: 15px;
+		margin: 0;
+	}
+}
+
+.m3-custom-newsletter-form{
+	position: relative;
+
+	label{
+		display: none;
+	}
+
+	fieldset{
+		display: inline-block;
+		padding: 0;
+		margin-right: 16px;
+		max-width: 270px;
+		width: 36%;
+
+		@include mq(md, max){
+			margin-bottom: 8px;
+			max-width: 100%;
+			width: 100%;
+		}
+
+		&.m3-cn-button-ok-container{
+			max-width: 126px;
+			margin: 0;
+			width: 100%;
+
+			@include mq(md, max){
+				max-width: 100%;
+			}
+		}
+	}
+
+	input{
+		border: none;
+		font-size: 14px;
+		outline: none;
+		padding: 9px 16px;
+		width: 100%;
+
+		@include mq(md, max){
+			font-size: 24px;
+			padding: 18.5px 24px;
+		}
+
+		&::placeholder{
+			color: $color-black2;
+		}
+
+		&#m3-cn-button-ok{
+			background-color: $color-black2;
+			color: $color-white;
+			cursor: pointer;
+			font-weight: 700;
+			font-size: 14px;
+			text-transform: lowercase;
+			transition: all 0.15s linear;
+
+			@include mq(md, max){
+				font-size: 24px;
+				margin-top: 8px;
+			}
+
+			&:hover{
+				background-color: lighten($color-black2, 5);
+			}
+
+			&:active{
+				background-color: darken($color-black2, 5);
+			}
+		}
+	}
+
+	.m3-cn-msg{
+		font-weight: 700;
+		text-align: center;
+
+		.m3-cn-error{
+			background-color: $color-white;
+			border-radius: 2px;
+			bottom: -28px;
+			color: $color-pink3;
+			display: table;
+			left: 40%;
+			margin: auto;
+			padding: 3px 6px;
+			position: absolute;
+			right: 0;
+		}
+
+		.m3-cn-success{
+			color: $color-white;
+			display: inline-block;
+			font-size: 16px;
+			margin-right: 20px;
+			text-transform: lowercase;
+		}
+
+		.btn-voltar{
+			background-color: $color-white;
+			border-radius: 2px;
+			color: $color-pink;
+			display: inline-block;
+			font-size: 14px;
+			line-height: 1;
+			padding: 4px 8px;
+			text-transform: lowercase;
+		}
+	}
+}
+
+/* pop-up-newsletter */
+
+.pop-up-newsletter{
+	display: none;
+	position: fixed;
+	z-index:10;
+	width:100%;
+	top: 20%;
+
+	.newsletter{
+		text-align:center;
+		background-color:#FFF;
+		padding:20px;
+		display:table;
+		margin:0 auto;
+		position: relative;
+
+		.close-popup{
+			font-size: 35px;
+			color: #000;
+			padding: 5px;
+			cursor: pointer;
+			position:absolute;
+			top:0;
+			right:0;
+			line-height: 0.5;
+		}
+
+		input{
+			border-bottom:solid 1px #333;
+		}
+	}
+
+	.m3-custom-newsletter-form .btn-voltar{
+		color:#333;
+		border-color:#333
+	}
+}
+
+
+

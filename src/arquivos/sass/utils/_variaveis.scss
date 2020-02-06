@@ -1,0 +1,61 @@
+// fonts
+
+$font-family: 'Roboto', sans-serif;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-heavy: 700;
+$font-height: 1.5;
+
+// colors
+$color-black: #000;
+$color-black2: #142032;
+$color-black3: #19273D;
+$color-black4: #151728;
+
+$color-gray: hsla(0, 0%, 90%, 1);
+$color-gray2: hsla(220, 1%, 43%, 1);
+$color-gray3: hsl(0, 0%, 77%);
+$color-gray4: #eee;
+$color-gray5: #6D6E70;
+$color-gray6: #e5e5e5;
+
+$color-white: #fff;
+$color-white2: #f5f5f5;
+
+$color-pink: #F71963;
+$color-pink2: hsla(348, 83%, 72%, 1);
+$color-pink3: hsla(348, 83%, 58%, 1);
+
+$color-purple: hsla(266, 70%, 52%, 1);
+
+$color-green: #2FAB61;
+$color-green2: hsla(138, 66%, 41%, 1);
+$color-green3: hsla(138, 50%, 41%, 1);
+$color-green4: hsla(138, 59%, 34%, 1);
+
+// universal
+
+
+
+// Grid breakpoints
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+
+$z-index: (
+	menu:15,
+	popup-add-cart:10,
+	dropdown: 10,
+	flag-prateleira:5,
+	comprar-flutuante: 5,
+	avise-me:5,
+	scroll-top:7,
+	header-fixo:10,
+	popup-user:15
+) !default;

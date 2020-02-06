@@ -1,0 +1,36 @@
+.container-order-form{
+
+    #orderform-to-cart{
+        color: $color-pink;
+        text-decoration: underline;
+    }
+
+    .pre-email{
+        #client-pre-email{
+            border-radius: 0;
+        }
+
+        #btn-client-pre-email{
+            background-color: $color-pink;
+            background-image: none;
+            border: none;
+            border-radius: 0;
+            font-size: 14px;
+            font-weight: 700;
+            height: 54px;
+            right: 0;
+            text-shadow: none;
+            text-transform: uppercase;
+            transition: all 0.15s ease-in-out;
+            top: 0;
+
+            &:hover{
+                background-color: lighten($color-pink, 5);
+            }
+
+            &:active{
+                background-color: darken($color-pink, 5);
+            }
+        }
+    }
+}

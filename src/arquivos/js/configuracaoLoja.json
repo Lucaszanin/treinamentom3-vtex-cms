@@ -1,0 +1,9 @@
+{
+	"accontuName":"template",
+	"entityNewletter":"CN",
+	"price": {
+		"numeroDeParcelas": 4,
+		"percentualBoleto":5
+	},
+	"percentualDeDecontoMinimoParaFlag": 5
+}

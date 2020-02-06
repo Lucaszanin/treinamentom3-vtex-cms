@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
+xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
+<head>
+	<meta name="page" content="minhaConta" page-id="minha-conta" />
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<vtex:contentPlaceHolder id="htmlSeo" />
+	<title>Template</title>
+
+	<vtex:template id="loja-teste-loads-header" />
+	<link rel="stylesheet" href="/arquivos/loja-teste--user-pages.css" type="text/css" />
+
+</head>
+<body class="minha-conta">
+
+	<vtex:template id="loja-teste-header" />
+
+	<section id="account-content" class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Minha Conta</h1>
+			</div>
+			<div class="col-12 accountUserProfile">
+				<vtex.cmc:accountUserProfile />
+			</div>
+		</div>
+	</section><!-- #content -->
+
+	<footer>
+		<vtex:template id="loja-teste-footer-newletter" />
+		<vtex:template id="loja-teste-footer-links" />
+		<vtex:template id="loja-teste-footer" />
+	</footer>
+	<script src="/arquivos/bootstrap.min.js"></script>
+	<vtex:template id="loja-teste-loads-footer" />
+</body>
+</html>
