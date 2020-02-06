@@ -11,7 +11,7 @@ trim_trailing_whitespace = true
 
 # Matches multiple files with brace expansion notation
 # Set default charset
-[*.{js,css,less,html}]
+[*.{js,css,less,html,scss}]
 charset = utf-8
 
 # Indentação via TAB, para pug e html
@@ -20,7 +20,7 @@ indent_style = tab
 indent_size = 3
 
 # Arquivos JS e CSS
-[*.{js,css,less}]
+[*.{js,css,less,scss}]
 indent_style = tab
 indent_size = 4
 

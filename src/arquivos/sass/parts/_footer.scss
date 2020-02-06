@@ -296,7 +296,7 @@
 
 	.show-search{
 		.option:before{
-			@extend .sprite-lupa;
+			@include sprite($sprite-lupa);
 		}
 	}
 
@@ -316,8 +316,7 @@
 			position: relative;
 
 			.cartInfoWrapper{
-				@extend .sprite;
-				@extend .sprite-sacola;
+				@include sprite($sprite-sacola);
 
 				@include mq(md, max){
 					margin-right: 5px;
@@ -352,7 +351,7 @@
 		margin-top: -2px;
 
 		.option:before{
-			@extend .sprite-menu-bottom;
+			@include sprite($sprite-menu-bottom);
 		}
 	}
 }

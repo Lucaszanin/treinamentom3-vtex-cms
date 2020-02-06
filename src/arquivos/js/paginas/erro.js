@@ -1,5 +1,9 @@
-var erro = {
-	buscaVazia: function() {
+export default class Erro {
+	constructor() {
+		this.init();
+	}
+
+	buscaVazia() {
 		try {
 			var word = decodeURI(window.location.search);
 			word = word.replace("?ft=", "");
@@ -8,10 +12,9 @@ var erro = {
 		} catch (error) {
 			console.log(error);
 		}
-	},
-	'init': function(){
+	}
+
+	init() {
 		this.buscaVazia();
 	}
-};
-
-module.exports = erro;
+}

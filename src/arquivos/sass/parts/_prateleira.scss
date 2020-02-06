@@ -23,7 +23,7 @@
 	}
 
 	.slick-next{
-		@extend .sprite-circled-arrow-right;
+		@include sprite($sprite-circled-arrow-right);
 		left: auto;
 		right: -60px;
 
@@ -37,7 +37,7 @@
 	}
 
 	.slick-prev {
-		@extend .sprite-circled-arrow-left;
+		@include sprite($sprite-circled-arrow-left);
 		right: auto;
 		left: -60px;
 

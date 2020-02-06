@@ -210,9 +210,7 @@
 
 				&:before{
 					@include pseudo(block,relative);
-
-					@extend .sprite;
-					@extend .sprite-arrow-right-gray;
+					@include sprite($sprite-arrow-right-gray);
 				}
 
 				@include mq(lg, min){
@@ -235,9 +233,7 @@
 				left: -20.5px;
 				position: absolute;
 				top: -2px;
-
-				@extend .sprite;
-				@extend .sprite-pinrinpinpin;
+				@include sprite($sprite-pinrinpinpin);
 
 				@include mq(lg, max){
 					top: 13px;

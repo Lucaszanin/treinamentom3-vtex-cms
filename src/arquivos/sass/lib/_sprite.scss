@@ -1,196 +1,486 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$sprite-arrow-down-pink-name: 'sprite_arrow-down-pink';
+$sprite-arrow-down-pink-x: 547px;
+$sprite-arrow-down-pink-y: 444px;
+$sprite-arrow-down-pink-offset-x: -547px;
+$sprite-arrow-down-pink-offset-y: -444px;
+$sprite-arrow-down-pink-width: 32px;
+$sprite-arrow-down-pink-height: 16px;
+$sprite-arrow-down-pink-total-width: 627px;
+$sprite-arrow-down-pink-total-height: 622px;
+$sprite-arrow-down-pink-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-arrow-down-pink: (547px, 444px, -547px, -444px, 32px, 16px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_arrow-down-pink', );
+$sprite-arrow-left-name: 'sprite_arrow-left';
+$sprite-arrow-left-x: 0px;
+$sprite-arrow-left-y: 565px;
+$sprite-arrow-left-offset-x: 0px;
+$sprite-arrow-left-offset-y: -565px;
+$sprite-arrow-left-width: 32px;
+$sprite-arrow-left-height: 57px;
+$sprite-arrow-left-total-width: 627px;
+$sprite-arrow-left-total-height: 622px;
+$sprite-arrow-left-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-arrow-left: (0px, 565px, 0px, -565px, 32px, 57px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_arrow-left', );
+$sprite-arrow-right-gray-name: 'sprite_arrow-right-gray';
+$sprite-arrow-right-gray-x: 114px;
+$sprite-arrow-right-gray-y: 565px;
+$sprite-arrow-right-gray-offset-x: -114px;
+$sprite-arrow-right-gray-offset-y: -565px;
+$sprite-arrow-right-gray-width: 18px;
+$sprite-arrow-right-gray-height: 32px;
+$sprite-arrow-right-gray-total-width: 627px;
+$sprite-arrow-right-gray-total-height: 622px;
+$sprite-arrow-right-gray-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-arrow-right-gray: (114px, 565px, -114px, -565px, 18px, 32px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_arrow-right-gray', );
+$sprite-arrow-right-name: 'sprite_arrow-right';
+$sprite-arrow-right-x: 57px;
+$sprite-arrow-right-y: 565px;
+$sprite-arrow-right-offset-x: -57px;
+$sprite-arrow-right-offset-y: -565px;
+$sprite-arrow-right-width: 32px;
+$sprite-arrow-right-height: 57px;
+$sprite-arrow-right-total-width: 627px;
+$sprite-arrow-right-total-height: 622px;
+$sprite-arrow-right-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-arrow-right: (57px, 565px, -57px, -565px, 32px, 57px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_arrow-right', );
+$sprite-boleto-name: 'sprite_boleto';
+$sprite-boleto-x: 432px;
+$sprite-boleto-y: 420px;
+$sprite-boleto-offset-x: -432px;
+$sprite-boleto-offset-y: -420px;
+$sprite-boleto-width: 82px;
+$sprite-boleto-height: 46px;
+$sprite-boleto-total-width: 627px;
+$sprite-boleto-total-height: 622px;
+$sprite-boleto-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-boleto: (432px, 420px, -432px, -420px, 82px, 46px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_boleto', );
+$sprite-cadeado-name: 'sprite_cadeado';
+$sprite-cadeado-x: 132px;
+$sprite-cadeado-y: 491px;
+$sprite-cadeado-offset-x: -132px;
+$sprite-cadeado-offset-y: -491px;
+$sprite-cadeado-width: 24px;
+$sprite-cadeado-height: 30px;
+$sprite-cadeado-total-width: 627px;
+$sprite-cadeado-total-height: 622px;
+$sprite-cadeado-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-cadeado: (132px, 491px, -132px, -491px, 24px, 30px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_cadeado', );
+$sprite-circled-arrow-left-name: 'sprite_circled-arrow-left';
+$sprite-circled-arrow-left-x: 305px;
+$sprite-circled-arrow-left-y: 105px;
+$sprite-circled-arrow-left-offset-x: -305px;
+$sprite-circled-arrow-left-offset-y: -105px;
+$sprite-circled-arrow-left-width: 100px;
+$sprite-circled-arrow-left-height: 100px;
+$sprite-circled-arrow-left-total-width: 627px;
+$sprite-circled-arrow-left-total-height: 622px;
+$sprite-circled-arrow-left-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-circled-arrow-left: (305px, 105px, -305px, -105px, 100px, 100px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_circled-arrow-left', );
+$sprite-circled-arrow-right-name: 'sprite_circled-arrow-right';
+$sprite-circled-arrow-right-x: 161px;
+$sprite-circled-arrow-right-y: 83px;
+$sprite-circled-arrow-right-offset-x: -161px;
+$sprite-circled-arrow-right-offset-y: -83px;
+$sprite-circled-arrow-right-width: 100px;
+$sprite-circled-arrow-right-height: 100px;
+$sprite-circled-arrow-right-total-width: 627px;
+$sprite-circled-arrow-right-total-height: 622px;
+$sprite-circled-arrow-right-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-circled-arrow-right: (161px, 83px, -161px, -83px, 100px, 100px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_circled-arrow-right', );
+$sprite-credit-card-name: 'sprite_credit-card';
+$sprite-credit-card-x: 337px;
+$sprite-credit-card-y: 299px;
+$sprite-credit-card-offset-x: -337px;
+$sprite-credit-card-offset-y: -299px;
+$sprite-credit-card-width: 64px;
+$sprite-credit-card-height: 64px;
+$sprite-credit-card-total-width: 627px;
+$sprite-credit-card-total-height: 622px;
+$sprite-credit-card-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-credit-card: (337px, 299px, -337px, -299px, 64px, 64px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_credit-card', );
+$sprite-diners-name: 'sprite_diners';
+$sprite-diners-x: 547px;
+$sprite-diners-y: 142px;
+$sprite-diners-offset-x: -547px;
+$sprite-diners-offset-y: -142px;
+$sprite-diners-width: 80px;
+$sprite-diners-height: 46px;
+$sprite-diners-total-width: 627px;
+$sprite-diners-total-height: 622px;
+$sprite-diners-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-diners: (547px, 142px, -547px, -142px, 80px, 46px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_diners', );
+$sprite-discount-tag-name: 'sprite_discount-tag';
+$sprite-discount-tag-x: 236px;
+$sprite-discount-tag-y: 299px;
+$sprite-discount-tag-offset-x: -236px;
+$sprite-discount-tag-offset-y: -299px;
+$sprite-discount-tag-width: 76px;
+$sprite-discount-tag-height: 76px;
+$sprite-discount-tag-total-width: 627px;
+$sprite-discount-tag-total-height: 622px;
+$sprite-discount-tag-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-discount-tag: (236px, 299px, -236px, -299px, 76px, 76px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_discount-tag', );
+$sprite-elo-name: 'sprite_elo';
+$sprite-elo-x: 0px;
+$sprite-elo-y: 420px;
+$sprite-elo-offset-x: 0px;
+$sprite-elo-offset-y: -420px;
+$sprite-elo-width: 84px;
+$sprite-elo-height: 46px;
+$sprite-elo-total-width: 627px;
+$sprite-elo-total-height: 622px;
+$sprite-elo-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-elo: (0px, 420px, 0px, -420px, 84px, 46px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_elo', );
+$sprite-facebook-white-name: 'sprite_facebook-white';
+$sprite-facebook-white-x: 458px;
+$sprite-facebook-white-y: 0px;
+$sprite-facebook-white-offset-x: -458px;
+$sprite-facebook-white-offset-y: 0px;
+$sprite-facebook-white-width: 64px;
+$sprite-facebook-white-height: 64px;
+$sprite-facebook-white-total-width: 627px;
+$sprite-facebook-white-total-height: 622px;
+$sprite-facebook-white-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-facebook-white: (458px, 0px, -458px, 0px, 64px, 64px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_facebook-white', );
+$sprite-fechar-white-name: 'sprite_fechar--white';
+$sprite-fechar-white-x: 458px;
+$sprite-fechar-white-y: 178px;
+$sprite-fechar-white-offset-x: -458px;
+$sprite-fechar-white-offset-y: -178px;
+$sprite-fechar-white-width: 48px;
+$sprite-fechar-white-height: 48px;
+$sprite-fechar-white-total-width: 627px;
+$sprite-fechar-white-total-height: 622px;
+$sprite-fechar-white-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-fechar-white: (458px, 178px, -458px, -178px, 48px, 48px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_fechar--white', );
+$sprite-fechar-name: 'sprite_fechar';
+$sprite-fechar-x: 374px;
+$sprite-fechar-y: 230px;
+$sprite-fechar-offset-x: -374px;
+$sprite-fechar-offset-y: -230px;
+$sprite-fechar-width: 37px;
+$sprite-fechar-height: 37px;
+$sprite-fechar-total-width: 627px;
+$sprite-fechar-total-height: 622px;
+$sprite-fechar-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-fechar: (374px, 230px, -374px, -230px, 37px, 37px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_fechar', );
+$sprite-fita-metrica-name: 'sprite_fita-metrica';
+$sprite-fita-metrica-x: 547px;
+$sprite-fita-metrica-y: 294px;
+$sprite-fita-metrica-offset-x: -547px;
+$sprite-fita-metrica-offset-y: -294px;
+$sprite-fita-metrica-width: 52px;
+$sprite-fita-metrica-height: 52px;
+$sprite-fita-metrica-total-width: 627px;
+$sprite-fita-metrica-total-height: 622px;
+$sprite-fita-metrica-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-fita-metrica: (547px, 294px, -547px, -294px, 52px, 52px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_fita-metrica', );
+$sprite-google-safe-browser-name: 'sprite_google-safe-browser';
+$sprite-google-safe-browser-x: 0px;
+$sprite-google-safe-browser-y: 0px;
+$sprite-google-safe-browser-offset-x: 0px;
+$sprite-google-safe-browser-offset-y: 0px;
+$sprite-google-safe-browser-width: 280px;
+$sprite-google-safe-browser-height: 58px;
+$sprite-google-safe-browser-total-width: 627px;
+$sprite-google-safe-browser-total-height: 622px;
+$sprite-google-safe-browser-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-google-safe-browser: (0px, 0px, 0px, 0px, 280px, 58px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_google-safe-browser', );
+$sprite-hiper-name: 'sprite_hiper';
+$sprite-hiper-x: 547px;
+$sprite-hiper-y: 0px;
+$sprite-hiper-offset-x: -547px;
+$sprite-hiper-offset-y: 0px;
+$sprite-hiper-width: 80px;
+$sprite-hiper-height: 46px;
+$sprite-hiper-total-width: 627px;
+$sprite-hiper-total-height: 622px;
+$sprite-hiper-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-hiper: (547px, 0px, -547px, 0px, 80px, 46px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_hiper', );
+$sprite-instagram-black-name: 'sprite_instagram-black';
+$sprite-instagram-black-x: 183px;
+$sprite-instagram-black-y: 210px;
+$sprite-instagram-black-offset-x: -183px;
+$sprite-instagram-black-offset-y: -210px;
+$sprite-instagram-black-width: 64px;
+$sprite-instagram-black-height: 64px;
+$sprite-instagram-black-total-width: 627px;
+$sprite-instagram-black-total-height: 622px;
+$sprite-instagram-black-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-instagram-black: (183px, 210px, -183px, -210px, 64px, 64px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_instagram-black', );
+$sprite-instagram-white-name: 'sprite_instagram-white';
+$sprite-instagram-white-x: 458px;
+$sprite-instagram-white-y: 89px;
+$sprite-instagram-white-offset-x: -458px;
+$sprite-instagram-white-offset-y: -89px;
+$sprite-instagram-white-width: 63px;
+$sprite-instagram-white-height: 64px;
+$sprite-instagram-white-total-width: 627px;
+$sprite-instagram-white-total-height: 622px;
+$sprite-instagram-white-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-instagram-white: (458px, 89px, -458px, -89px, 63px, 64px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_instagram-white', );
+$sprite-lupa-name: 'sprite_lupa';
+$sprite-lupa-x: 458px;
+$sprite-lupa-y: 251px;
+$sprite-lupa-offset-x: -458px;
+$sprite-lupa-offset-y: -251px;
+$sprite-lupa-width: 48px;
+$sprite-lupa-height: 48px;
+$sprite-lupa-total-width: 627px;
+$sprite-lupa-total-height: 622px;
+$sprite-lupa-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-lupa: (458px, 251px, -458px, -251px, 48px, 48px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_lupa', );
+$sprite-m3-name: 'sprite_m3';
+$sprite-m3-x: 109px;
+$sprite-m3-y: 420px;
+$sprite-m3-offset-x: -109px;
+$sprite-m3-offset-y: -420px;
+$sprite-m3-width: 84px;
+$sprite-m3-height: 46px;
+$sprite-m3-total-width: 627px;
+$sprite-m3-total-height: 622px;
+$sprite-m3-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-m3: (109px, 420px, -109px, -420px, 84px, 46px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_m3', );
+$sprite-map-pointer-white-name: 'sprite_map-pointer-white';
+$sprite-map-pointer-white-x: 181px;
+$sprite-map-pointer-white-y: 491px;
+$sprite-map-pointer-white-offset-x: -181px;
+$sprite-map-pointer-white-offset-y: -491px;
+$sprite-map-pointer-white-width: 20px;
+$sprite-map-pointer-white-height: 20px;
+$sprite-map-pointer-white-total-width: 627px;
+$sprite-map-pointer-white-total-height: 622px;
+$sprite-map-pointer-white-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-map-pointer-white: (181px, 491px, -181px, -491px, 20px, 20px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_map-pointer-white', );
+$sprite-master-name: 'sprite_master';
+$sprite-master-x: 325px;
+$sprite-master-y: 420px;
+$sprite-master-offset-x: -325px;
+$sprite-master-offset-y: -420px;
+$sprite-master-width: 82px;
+$sprite-master-height: 46px;
+$sprite-master-total-width: 627px;
+$sprite-master-total-height: 622px;
+$sprite-master-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-master: (325px, 420px, -325px, -420px, 82px, 46px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_master', );
+$sprite-menu-bottom-name: 'sprite_menu-bottom';
+$sprite-menu-bottom-x: 458px;
+$sprite-menu-bottom-y: 324px;
+$sprite-menu-bottom-offset-x: -458px;
+$sprite-menu-bottom-offset-y: -324px;
+$sprite-menu-bottom-width: 64px;
+$sprite-menu-bottom-height: 32px;
+$sprite-menu-bottom-total-width: 627px;
+$sprite-menu-bottom-total-height: 622px;
+$sprite-menu-bottom-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-menu-bottom: (458px, 324px, -458px, -324px, 64px, 32px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_menu-bottom', );
+$sprite-menu-name: 'sprite_menu';
+$sprite-menu-x: 547px;
+$sprite-menu-y: 213px;
+$sprite-menu-offset-x: -547px;
+$sprite-menu-offset-y: -213px;
+$sprite-menu-width: 64px;
+$sprite-menu-height: 56px;
+$sprite-menu-total-width: 627px;
+$sprite-menu-total-height: 622px;
+$sprite-menu-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-menu: (547px, 213px, -547px, -213px, 64px, 56px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_menu', );
+$sprite-pagseguro-name: 'sprite_pagseguro';
+$sprite-pagseguro-x: 218px;
+$sprite-pagseguro-y: 420px;
+$sprite-pagseguro-offset-x: -218px;
+$sprite-pagseguro-offset-y: -420px;
+$sprite-pagseguro-width: 82px;
+$sprite-pagseguro-height: 46px;
+$sprite-pagseguro-total-width: 627px;
+$sprite-pagseguro-total-height: 622px;
+$sprite-pagseguro-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-pagseguro: (218px, 420px, -218px, -420px, 82px, 46px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_pagseguro', );
+$sprite-pinrinpinpin-name: 'sprite_pinrinpinpin';
+$sprite-pinrinpinpin-x: 305px;
+$sprite-pinrinpinpin-y: 230px;
+$sprite-pinrinpinpin-offset-x: -305px;
+$sprite-pinrinpinpin-offset-y: -230px;
+$sprite-pinrinpinpin-width: 44px;
+$sprite-pinrinpinpin-height: 44px;
+$sprite-pinrinpinpin-total-width: 627px;
+$sprite-pinrinpinpin-total-height: 622px;
+$sprite-pinrinpinpin-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-pinrinpinpin: (305px, 230px, -305px, -230px, 44px, 44px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_pinrinpinpin', );
+$sprite-sacola-name: 'sprite_sacola';
+$sprite-sacola-x: 547px;
+$sprite-sacola-y: 371px;
+$sprite-sacola-offset-x: -547px;
+$sprite-sacola-offset-y: -371px;
+$sprite-sacola-width: 48px;
+$sprite-sacola-height: 48px;
+$sprite-sacola-total-width: 627px;
+$sprite-sacola-total-height: 622px;
+$sprite-sacola-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-sacola: (547px, 371px, -547px, -371px, 48px, 48px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_sacola', );
+$sprite-top-name: 'sprite_top';
+$sprite-top-x: 0px;
+$sprite-top-y: 299px;
+$sprite-top-offset-x: 0px;
+$sprite-top-offset-y: -299px;
+$sprite-top-width: 96px;
+$sprite-top-height: 96px;
+$sprite-top-total-width: 627px;
+$sprite-top-total-height: 622px;
+$sprite-top-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-top: (0px, 299px, 0px, -299px, 96px, 96px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_top', );
+$sprite-truck-name: 'sprite_truck';
+$sprite-truck-x: 121px;
+$sprite-truck-y: 299px;
+$sprite-truck-offset-x: -121px;
+$sprite-truck-offset-y: -299px;
+$sprite-truck-width: 90px;
+$sprite-truck-height: 90px;
+$sprite-truck-total-width: 627px;
+$sprite-truck-total-height: 622px;
+$sprite-truck-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-truck: (121px, 299px, -121px, -299px, 90px, 90px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_truck', );
+$sprite-user-white-name: 'sprite_user-white';
+$sprite-user-white-x: 67px;
+$sprite-user-white-y: 491px;
+$sprite-user-white-offset-x: -67px;
+$sprite-user-white-offset-y: -491px;
+$sprite-user-white-width: 40px;
+$sprite-user-white-height: 48px;
+$sprite-user-white-total-width: 627px;
+$sprite-user-white-total-height: 622px;
+$sprite-user-white-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-user-white: (67px, 491px, -67px, -491px, 40px, 48px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_user-white', );
+$sprite-user-name: 'sprite_user';
+$sprite-user-x: 0px;
+$sprite-user-y: 491px;
+$sprite-user-offset-x: 0px;
+$sprite-user-offset-y: -491px;
+$sprite-user-width: 42px;
+$sprite-user-height: 49px;
+$sprite-user-total-width: 627px;
+$sprite-user-total-height: 622px;
+$sprite-user-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-user: (0px, 491px, 0px, -491px, 42px, 49px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_user', );
+$sprite-varejo-tech-name: 'sprite_varejo-tech';
+$sprite-varejo-tech-x: 0px;
+$sprite-varejo-tech-y: 83px;
+$sprite-varejo-tech-offset-x: 0px;
+$sprite-varejo-tech-offset-y: -83px;
+$sprite-varejo-tech-width: 136px;
+$sprite-varejo-tech-height: 102px;
+$sprite-varejo-tech-total-width: 627px;
+$sprite-varejo-tech-total-height: 622px;
+$sprite-varejo-tech-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-varejo-tech: (0px, 83px, 0px, -83px, 136px, 102px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_varejo-tech', );
+$sprite-visa-name: 'sprite_visa';
+$sprite-visa-x: 547px;
+$sprite-visa-y: 71px;
+$sprite-visa-offset-x: -547px;
+$sprite-visa-offset-y: -71px;
+$sprite-visa-width: 80px;
+$sprite-visa-height: 46px;
+$sprite-visa-total-width: 627px;
+$sprite-visa-total-height: 622px;
+$sprite-visa-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-visa: (547px, 71px, -547px, -71px, 80px, 46px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_visa', );
+$sprite-vtex-pci-name: 'sprite_vtex-pci';
+$sprite-vtex-pci-x: 305px;
+$sprite-vtex-pci-y: 0px;
+$sprite-vtex-pci-offset-x: -305px;
+$sprite-vtex-pci-offset-y: 0px;
+$sprite-vtex-pci-width: 128px;
+$sprite-vtex-pci-height: 80px;
+$sprite-vtex-pci-total-width: 627px;
+$sprite-vtex-pci-total-height: 622px;
+$sprite-vtex-pci-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-vtex-pci: (305px, 0px, -305px, 0px, 128px, 80px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_vtex-pci', );
+$sprite-vtex-name: 'sprite_vtex';
+$sprite-vtex-x: 0px;
+$sprite-vtex-y: 210px;
+$sprite-vtex-offset-x: 0px;
+$sprite-vtex-offset-y: -210px;
+$sprite-vtex-width: 158px;
+$sprite-vtex-height: 64px;
+$sprite-vtex-total-width: 627px;
+$sprite-vtex-total-height: 622px;
+$sprite-vtex-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$sprite-vtex: (0px, 210px, 0px, -210px, 158px, 64px, 627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', 'sprite_vtex', );
+$spritesheet-width: 627px;
+$spritesheet-height: 622px;
+$spritesheet-image: '/arquivos/loja-vtex--sprite-1441a7909c.png';
+$spritesheet-sprites: ($sprite-arrow-down-pink, $sprite-arrow-left, $sprite-arrow-right-gray, $sprite-arrow-right, $sprite-boleto, $sprite-cadeado, $sprite-circled-arrow-left, $sprite-circled-arrow-right, $sprite-credit-card, $sprite-diners, $sprite-discount-tag, $sprite-elo, $sprite-facebook-white, $sprite-fechar-white, $sprite-fechar, $sprite-fita-metrica, $sprite-google-safe-browser, $sprite-hiper, $sprite-instagram-black, $sprite-instagram-white, $sprite-lupa, $sprite-m3, $sprite-map-pointer-white, $sprite-master, $sprite-menu-bottom, $sprite-menu, $sprite-pagseguro, $sprite-pinrinpinpin, $sprite-sacola, $sprite-top, $sprite-truck, $sprite-user-white, $sprite-user, $sprite-varejo-tech, $sprite-visa, $sprite-vtex-pci, $sprite-vtex, );
+$spritesheet: (627px, 622px, '/arquivos/loja-vtex--sprite-1441a7909c.png', $spritesheet-sprites, );
 
-.sprite {
-  background-image: url('/arquivos/loja-teste--sprite.png?3f700f6612b67cfed829a495d089c4088fddcb1f');
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
 }
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .sprite {
-    background-image: url('/arquivos/loja-teste--sprite@2x.png?4a09becb05231667734a21c3695f9fad3c2d488e');
-    background-size: 145px 1217px;
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
   }
-}
-
-.sprite-arrow-down-pink {
-  background-position: -0px -0px;
-  width: 21px;
-  height: 13px;
-}
-.sprite-map-pointer-white {
-  background-position: -0px -13px;
-  width: 15px;
-  height: 15px;
-}
-.sprite-cadeado {
-  background-position: -0px -28px;
-  width: 17px;
-  height: 20px;
-}
-.sprite-arrow-right-gray {
-  background-position: -0px -48px;
-  width: 14px;
-  height: 21px;
-}
-.sprite-menu-bottom {
-  background-position: -0px -69px;
-  width: 37px;
-  height: 21px;
-}
-.sprite-fechar {
-  background-position: -0px -90px;
-  width: 24px;
-  height: 24px;
-}
-.sprite-pinrinpinpin {
-  background-position: -0px -114px;
-  width: 27px;
-  height: 27px;
-}
-.sprite-boleto {
-  background-position: -0px -141px;
-  width: 46px;
-  height: 28px;
-}
-.sprite-visa {
-  background-position: -0px -169px;
-  width: 45px;
-  height: 28px;
-}
-.sprite-pagseguro {
-  background-position: -0px -197px;
-  width: 46px;
-  height: 28px;
-}
-.sprite-diners {
-  background-position: -0px -225px;
-  width: 45px;
-  height: 28px;
-}
-.sprite-hiper {
-  background-position: -0px -253px;
-  width: 45px;
-  height: 28px;
-}
-.sprite-master {
-  background-position: -0px -281px;
-  width: 46px;
-  height: 28px;
-}
-.sprite-m3 {
-  background-position: -0px -309px;
-  width: 47px;
-  height: 28px;
-}
-.sprite-elo {
-  background-position: -0px -337px;
-  width: 47px;
-  height: 28px;
-}
-.sprite-sacola {
-  background-position: -0px -365px;
-  width: 29px;
-  height: 29px;
-}
-.sprite-lupa {
-  background-position: -0px -394px;
-  width: 29px;
-  height: 29px;
-}
-.sprite-fechar--white {
-  background-position: -0px -423px;
-  width: 29px;
-  height: 29px;
-}
-.sprite-user-white {
-  background-position: -0px -452px;
-  width: 25px;
-  height: 29px;
-}
-.sprite-user {
-  background-position: -0px -481px;
-  width: 26px;
-  height: 30px;
-}
-.sprite-fita-metrica {
-  background-position: -0px -510px;
-  width: 31px;
-  height: 31px;
-}
-.sprite-menu {
-  background-position: -0px -541px;
-  width: 37px;
-  height: 33px;
-}
-.sprite-arrow-left {
-  background-position: -0px -574px;
-  width: 21px;
-  height: 34px;
-}
-.sprite-arrow-right {
-  background-position: -0px -608px;
-  width: 21px;
-  height: 34px;
-}
-.sprite-google-safe-browser {
-  background-position: -0px -641px;
-  width: 145px;
-  height: 34px;
-}
-.sprite-vtex {
-  background-position: -0px -675px;
-  width: 84px;
-  height: 37px;
-}
-.sprite-facebook-white {
-  background-position: -0px -712px;
-  width: 37px;
-  height: 37px;
-}
-.sprite-instagram-white {
-  background-position: -0px -749px;
-  width: 37px;
-  height: 37px;
-}
-.sprite-credit-card {
-  background-position: -0px -786px;
-  width: 37px;
-  height: 37px;
-}
-.sprite-instagram-black {
-  background-position: -0px -823px;
-  width: 37px;
-  height: 37px;
-}
-.sprite-discount-tag {
-  background-position: -0px -860px;
-  width: 43px;
-  height: 43px;
-}
-.sprite-vtex-pci {
-  background-position: -0px -903px;
-  width: 69px;
-  height: 45px;
-}
-.sprite-truck {
-  background-position: -0px -948px;
-  width: 50px;
-  height: 50px;
-}
-.sprite-top {
-  background-position: -0px -998px;
-  width: 53px;
-  height: 53px;
-}
-.sprite-circled-arrow-right {
-  background-position: -0px -1051px;
-  width: 55px;
-  height: 55px;
-}
-.sprite-circled-arrow-left {
-  background-position: -0px -1106px;
-  width: 55px;
-  height: 55px;
-}
-.sprite-varejo-tech {
-  background-position: -0px -1161px;
-  width: 73px;
-  height: 56px;
 }
