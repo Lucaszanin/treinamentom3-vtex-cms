@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
-xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
+	xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
+
 <head>
 	<meta name="page" content="home" page-id="homepage" />
 	<meta charset="utf-8" />
@@ -12,7 +13,8 @@ xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
 	<vtex:template id="loja-teste-loads-header" />
 
 </head>
-<body >
+
+<body>
 
 	<vtex:template id="loja-teste-header" />
 
@@ -20,10 +22,10 @@ xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
 
 		<section class="main-gallery">
 			<div class="desktop">
-				<vtex:contentPlaceHolder id="slide-principal"/>
+				<vtex:contentPlaceHolder id="slide-principal" type="banner"  />
 			</div>
 			<div class="mobile">
-				<vtex:contentPlaceHolder id="slide-principal-mobile"/>
+				<vtex:contentPlaceHolder id="slide-principal-mobile" type="banner"  />
 			</div>
 		</section>
 
@@ -66,17 +68,17 @@ xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
 		<section class="container mosaico-home">
 			<div class="row">
 				<div class="banners-left banner col-12 col-md-4">
-					<vtex:contentPlaceHolder id="banner-01"/>
+					<vtex:contentPlaceHolder id="banner-01" type="banner" />
 				</div>
 				<div class="banners-right col-12 col-md-8 row">
 					<div class="banner col-12 col-md-6">
-						<vtex:contentPlaceHolder id="banner-02"/>
+						<vtex:contentPlaceHolder id="banner-02" type="banner" />
 					</div>
 					<div class="banner col-12 col-md-6">
-						<vtex:contentPlaceHolder id="banner-03"/>
+						<vtex:contentPlaceHolder id="banner-03" type="banner" />
 					</div>
 					<div class="banner col-12">
-						<vtex:contentPlaceHolder id="banner-04"/>
+						<vtex:contentPlaceHolder id="banner-04" type="banner" />
 					</div>
 				</div>
 			</div>
@@ -86,7 +88,7 @@ xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
 			<div class="row">
 				<div class="col-12 col-md-8">
 					<div class="categorias">
-						<vtex:contentPlaceHolder id="categorias"/>
+						<vtex:contentPlaceHolder id="categorias" />
 					</div>
 				</div>
 				<div class="col-12 col-md-4">
@@ -103,20 +105,21 @@ xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
 
 		<section class="container mosaico-home-footer">
 			<div class="banner desktop">
-				<vtex:contentPlaceHolder id="banner-05"/>
+				<vtex:contentPlaceHolder id="banner-05" type="banner"/>
 			</div>
 			<div class="banner mobile">
-				<vtex:contentPlaceHolder id="mobile-banner-05"/>
+				<vtex:contentPlaceHolder id="mobile-banner-05" type="banner" />
 			</div>
 		</section>
 
 	</main>
 
-	<footer >
+	<footer>
 		<vtex:template id="loja-teste-footer-newletter" />
 		<vtex:template id="loja-teste-footer-links" />
 		<vtex:template id="loja-teste-footer" />
 	</footer>
 	<vtex:template id="loja-teste-loads-footer" />
 </body>
+
 </html>

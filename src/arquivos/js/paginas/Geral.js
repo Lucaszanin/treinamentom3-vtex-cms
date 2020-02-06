@@ -1,8 +1,19 @@
-import utils from "../parts/utils";
 import slide from "../parts/slide";
 import atualizarPromocao from "../parts/promocao";
+import { isSmallerThen768 } from "../helpers/MediasMatch";
 
 export default class Geral {
+	constructor() {
+		if (isSmallerThen768) {
+			this.fixedHeader();
+		} else {
+			this.bottomOptions();
+		}
+		this.scrollTop();
+		this.correcaoAutocomplete();
+		atualizarPromocao();
+	}
+
 	scrollTop() {
 		var offset = 200;
 		var duration = 500;
@@ -93,16 +104,4 @@ export default class Geral {
 			$(".busca-mobile .fulltext-search-box").focus();
 		});
 	}
-
-	init() {
-		if (!utils.isMobile) {
-			this.fixedHeader();
-		} else {
-			this.bottomOptions();
-		}
-		this.scrollTop();
-		this.correcaoAutocomplete();
-		atualizarPromocao();
-	}
 }
-

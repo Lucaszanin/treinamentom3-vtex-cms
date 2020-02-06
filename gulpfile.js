@@ -143,7 +143,7 @@ function sprites() {
 				// retinaImgName: pacote.shopName + "--sprite@2x.png",
 				cssName: "_sprite.scss",
 				cssVarMap: function(sprite) {
-					sprite.name = "sprite_" + sprite.name;
+					sprite.name = "sprite-" + sprite.name;
 				},
 				padding: 25,
 				imgPath: "/arquivos/" + pacote.shopName + "--sprite.png"

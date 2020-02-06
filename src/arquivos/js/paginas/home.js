@@ -1,9 +1,10 @@
-import utils from "../parts/utils";
 import slide from "../parts/slide";
 
 export default class Home {
 	constructor() {
-		this.init();
+		slide.bannerHome(".main-gallery");
+		slide.barraDeVantagens(".tipbar ul");
+		slide.naveguePorCategorias(".categorias-home .categorias");
 	}
 
 	naveguePorCategorias() {
@@ -21,11 +22,5 @@ export default class Home {
 			$banner.find("img").after($titulo);
 		});
 		slide.naveguePorCategorias($container);
-	}
-
-	init() {
-		slide.bannerHome(".main-gallery");
-		slide.barraDeVantagens(".tipbar ul");
-		slide.naveguePorCategorias(".categorias-home .categorias");
 	}
 }

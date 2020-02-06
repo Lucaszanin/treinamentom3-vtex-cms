@@ -1,19 +1,36 @@
 import "slick-carousel";
+import Container from "./core/Container";
 import Erro from "./paginas/erro";
 import Home from "./paginas/home";
+import Categoria from "./paginas/categoria";
+import Produto from "./paginas/produto";
 
+import Menu from "./parts/menu";
+import Institucional from "./paginas/institucional";
 
 const app = new Container({
 	appName: "lojaVtex",
-	components: [],
+	components: [Menu],
 	pages: [
 		{
 			bodyClass: "home",
 			components: [Home]
 		},
 		{
+			bodyClass: "categoria",
+			components: [Categoria]
+		},
+		{
+			bodyClass: "produto",
+			components: [Produto]
+		},
+		{
 			bodyClass: "erro",
 			components: [Erro]
+		},
+		{
+			bodyClass: "institucional",
+			components: [Institucional]
 		}
 	]
 });
@@ -21,9 +38,6 @@ const app = new Container({
 app.bind("Cart", cartConfig);
 
 app.start();
-
-
-// import utils from "./parts/utils";
 
 // import menu from "./parts/menu";
 // import geral from "./paginas/principal";

@@ -1,14 +1,13 @@
-var institucional = {
-	'identifyPage': function(){
-		var pathName = window.location.pathname;
-
-		if(pathName){
-			$('.navegacao a[href="'+pathName+'"]').addClass('ativo');
-		}
-	},
-	'init': function(){
+export default class Institucional {
+	constructor() {
 		this.identifyPage();
 	}
-};
 
-module.exports = institucional;
+	identifyPage() {
+		var pathName = window.location.pathname;
+
+		if (pathName) {
+			$('.navegacao a[href="' + pathName + '"]').addClass("ativo");
+		}
+	}
+}

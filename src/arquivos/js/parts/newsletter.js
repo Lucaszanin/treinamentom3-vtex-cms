@@ -1,6 +1,6 @@
 
 import "../lib/custom-newsletter-form";
-import loja from '../configuracaoLoja.json';
+import loja from '';
 
 var newletter ={
 	init:function (elemento,textButtom){
