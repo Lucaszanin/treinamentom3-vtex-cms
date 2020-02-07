@@ -270,4 +270,3 @@ var minicart = {
 	}
 }
 
-module.exports = minicart;

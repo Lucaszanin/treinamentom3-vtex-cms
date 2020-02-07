@@ -7,19 +7,19 @@
 
     &.busca-vazia{
         h1::before{
-            background-image: url('/arquivos/loja-teste-vtex-error-empty-search.png');
+            background-image: url('/arquivos/template-vtex-error-empty-search.png');
         }
     }
 
     &.erro-404{
         h1::before{
-            background-image: url('/arquivos/loja-teste-vtex-error-404.png');
+            background-image: url('/arquivos/template-vtex-error-404.png');
         }
     }
 
     &.erro-500{
         h1::before{
-            background-image: url('/arquivos/loja-teste-vtex-error-500.png');
+            background-image: url('/arquivos/template-vtex-error-500.png');
         }
     }
 

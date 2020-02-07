@@ -1,6 +1,10 @@
+import { isSmallerThen768 } from "../helpers/MediasMatch";
+
 export default class MenuContents {
 	constructor() {
-		this.init();
+		if (isSmallerThen768) {
+			this.getContent();
+		}
 	}
 
 	getContent() {
@@ -67,12 +71,6 @@ export default class MenuContents {
 					$(bannerMenuContainer).addClass("have-banner");
 				}
 			}
-		}
-	}
-
-	init() {
-		if (isSmallerThen768) {
-			this.getContent();
 		}
 	}
 }

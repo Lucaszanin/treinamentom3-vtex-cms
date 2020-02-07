@@ -1,6 +1,6 @@
 import "../lib/smartResearch";
 import prateleira from "../parts/prateleira";
-import utils from "../parts/utils";
+import { isSmallerThen768 } from "../helpers/mediasMatch";
 
 /*
  * paginaDeCategoria
@@ -10,7 +10,7 @@ export default class Categoria {
 	constructor() {
 		this.reposicionarSelectDeOrdenacao();
 
-		if (utils.isMobile) {
+		if (isSmallerThen768) {
 			this.toggleFiltersMobile();
 			this.filterMobileExtraInfo();
 		}
@@ -85,7 +85,7 @@ export default class Categoria {
 	}
 
 	smartResearch() {
-		if (utils.isMobile) {
+		if (isSmallerThen768) {
 			$(".navigation-tabs input[type='checkbox']").vtexSmartResearch({
 				menuDepartament: ".menu-departamento",
 				loadContent: ".produtos-da-categoria [id^=ResultItems]",

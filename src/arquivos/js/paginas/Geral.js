@@ -1,5 +1,5 @@
 import slide from "../parts/slide";
-import atualizarPromocao from "../parts/promocao";
+import atualizarPromocao from "../parts/Promocao";
 import { isSmallerThen768 } from "../helpers/MediasMatch";
 
 export default class Geral {

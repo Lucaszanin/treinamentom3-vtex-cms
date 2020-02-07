@@ -1,18 +1,17 @@
-
 import "../lib/custom-newsletter-form";
-import loja from '';
+import loja from "../config/loja";
 
-var newletter ={
-	init:function (elemento,textButtom){
-		let $elemento = (typeof elemento !== "undefined")?$(elemento):$('.news-form');
-		textButtom = (typeof textButtom !== "undefined")?textButtom:'Cadastre-se';
+export default class Newletter {
+	constructor(elemento, textButtom) {
+		let $elemento =
+			typeof elemento !== "undefined" ? $(elemento) : $(".news-form");
+		textButtom =
+			typeof textButtom !== "undefined" ? textButtom : "Cadastre-se";
 
 		$elemento.CustomNewsletter({
-			'shop':loja.accontuName,
-			'acronymEntity':loja.entityNewletter,
-			'textButtom':textButtom
+			shop: loja.accontuName,
+			acronymEntity: loja.entityNewletter,
+			textButtom: textButtom
 		});
 	}
 }
-
-module.exports = newletter;

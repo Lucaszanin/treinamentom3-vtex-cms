@@ -4,12 +4,12 @@
 
 .captacao-emails-newsletter{
 	background-color: $color-pink;
-	background-image: url('/arquivos/loja-teste-background-newsletter.png');
+	background-image: url('/arquivos/template-background-newsletter.png');
 	margin-top: 104px;
 	padding: 12px 15px 24px;
 
 	@include mq(md, max){
-		background-image: url('/arquivos/loja-teste-mobile-background-newsletter.png');
+		background-image: url('/arquivos/template-mobile-background-newsletter.png');
 		background-size: cover;
 		padding: 52px 15px 42px;
 	}

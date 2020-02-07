@@ -1,11 +1,11 @@
-import loja from "../configuracaoLoja.json";
-import utils from "../parts/utils";
+import loja from "../config/loja";
+import { alterarTamanhoImagemSrcVtex } from "../helpers/vtexUtils";
+import { isSmallerThen768 } from "../helpers/mediasMatch";
 import Components from "../lib/ComponentesProduto/main";
 import "../lib/elevateZoom";
 
 export default class Produto {
-
-	constructor () {
+	constructor() {
 		this.mapearSkus();
 		let skuJsonAdultered = this.ordenarEspecificacoes(window.skuJson);
 		this.imagensDasVariacoes();
@@ -173,7 +173,7 @@ export default class Produto {
 	}
 
 	zoomImagemPrincipal() {
-		if (!utils.isMobile) {
+		if (!isSmallerThen768) {
 			$(".product-image .apresentacao #include").on(
 				"mouseover",
 				function() {
@@ -181,7 +181,7 @@ export default class Produto {
 
 					$(".sku-rich-image-main").attr(
 						"src",
-						utils.alterarTamanhoImagemSrcVtex(srcImg, 1000, 1000)
+						alterarTamanhoImagemSrcVtex(srcImg, 1000, 1000)
 					);
 					// ativa o zoom
 					$(".sku-rich-image-main").elevateZoom({
@@ -265,7 +265,7 @@ export default class Produto {
 
 				for (let i = 0; i < images.length; i++) {
 					let imageUrl = $(images[i]).attr("src");
-					let newUrl = utils.alterarTamanhoImagemSrcVtex(
+					let newUrl = alterarTamanhoImagemSrcVtex(
 						imageUrl,
 						250,
 						250
@@ -275,9 +275,7 @@ export default class Produto {
 			}, 1500);
 		};
 	}
-
 }
-
 
 /**
  * Função para mapear skus sem especificações no skuJson
