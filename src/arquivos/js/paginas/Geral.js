@@ -4,7 +4,7 @@ import prateleira from "../parts/prateleira";
 // @TODO: Ratorar essa classe, dividar em classes menores para cada funcionalidade
 export default class Geral {
 	constructor() {
-		if (isSmallerThen768) {
+		if (!isSmallerThen768) {
 			this.fixedHeader();
 		} else {
 			this.bottomOptions();

@@ -9,8 +9,6 @@ const gulp = require("gulp"),
 	rename = require("gulp-rename"),
 	replace = require("gulp-replace"),
 	htmlReplace = require("gulp-html-replace"),
-	iconfont = require("gulp-iconfont"),
-	iconfontCss = require("gulp-iconfont-css"),
 	apiMocker = require("connect-api-mocker"),
 	sprity = require("sprity"),
 	crypto = require("crypto"),
@@ -20,8 +18,6 @@ const VtexEmulation = require("./dev/VtexEmulation.js");
 const webpack = require("webpack");
 const pacote = require("./package.json");
 
-const fontName = pacote.shopName + "-icones";
-
 const isProduction = process.env.NODE_ENV === "production";
 
 const paths = {
@@ -29,13 +25,6 @@ const paths = {
 		src: "src/arquivos/sass/*.{scss,css,sass}",
 		lib: "src/arquivos/sass/lib",
 		watch: "src/arquivos/sass/**/*.scss"
-	},
-	fonts: {
-		src: "src/arquivos/font/**/*",
-		lib: "src/arquivos/font/"
-	},
-	svgFont: {
-		src: "src/arquivos/icons/*.svg"
 	},
 	scripts: {
 		watch: "src/arquivos/js/**/*.js"
@@ -70,8 +59,7 @@ function styles() {
 		.pipe(gulpif(!isProduction, sourcemaps.init()))
 		.pipe(
 			sass({
-				outputStyle: "compressed",
-				includePaths: ["./node_modules"]
+				outputStyle: "compressed"
 			}).on("error", sass.logError)
 		)
 		.pipe(
@@ -149,68 +137,27 @@ function sprites(done) {
 				cachebuster: false
 			},
 			() => {
-				gulp.src(".temp/*").pipe(
-					gulpif(
-						"*.png",
-						gulp.dest("dist/arquivos/"),
-						gulp.dest("src/arquivos/sass/lib")
+				gulp.src(".temp/*")
+					.pipe(
+						gulpif(
+							"*.png",
+							gulp.dest("dist/arquivos/"),
+							gulp.dest("src/arquivos/sass/lib")
+						)
 					)
-				);
+					.pipe(connect.reload());
 				done();
 			}
 		);
 	});
 }
 
-function fonticons() {
-	return gulp
-		.src([paths.svgFont.src])
-		.pipe(
-			iconfontCss({
-				fontName: fontName,
-				// path:'icones.scss',
-				targetPath: "icones.scss",
-				fontPath: "/arquivos/",
-				cssClass: "icone",
-				suffix: ".css"
-			})
-		)
-		.pipe(
-			iconfont({
-				fontName: fontName,
-				prependUnicode: true,
-				formats: ["svg", "ttf", "eot", "woff", "woff2"],
-				normalize: true,
-				fontHeight: 1024,
-				timestamp: Math.round(Date.now() / 1000)
-			})
-		)
-		.pipe(
-			gulpif(
-				"!*.{css,scss,sass}",
-				rename(function(path) {
-					path.extname += ".css";
-				})
-			)
-		)
-		.pipe(gulp.dest(paths.fonts.lib + fontName));
-}
-
-function fonts() {
-	gulp.series(fonticons);
-	gulp.src(paths.fonts.src).pipe(gulp.dest(paths.outputStatic));
-	return gulp
-		.src(`src/arquivos/font/${fontName}/*`)
-		.pipe(gulp.dest(paths.outputStatic));
-}
-
-const icones = gulp.series(sprites, fonticons);
-
 function img() {
 	return gulp
 		.src(paths.img.src)
 		.pipe(imagemin())
-		.pipe(gulp.dest(paths.outputStatic));
+		.pipe(gulp.dest(paths.outputStatic))
+		.pipe(connect.reload());
 }
 
 function html() {
@@ -262,9 +209,8 @@ function html() {
 
 function watch() {
 	devServer();
-	gulp.watch(paths.svgFont.src, { ignoreInitial: false }, icones);
-	gulp.watch(paths.sprites.src, { ignoreInitial: false }, icones);
 	gulp.watch(paths.scripts.watch, { ignoreInitial: false }, scripts);
+	gulp.watch(paths.sprites.src, { ignoreInitial: false }, sprites);
 	gulp.watch(paths.styles.watch, { ignoreInitial: false }, styles);
 	gulp.watch(paths.img.watch, { ignoreInitial: false }, img);
 	gulp.watch(paths.html.watch, { ignoreInitial: false }, html);
@@ -310,7 +256,8 @@ function devServer() {
 
 const build = gulp.series(
 	clean,
-	gulp.parallel(html, icones, scripts, styles, img, fonts)
+	sprites,
+	gulp.parallel(html, scripts, styles, img)
 );
 
 exports.build = build;
@@ -319,9 +266,6 @@ exports.scripts = scripts;
 exports.styles = styles;
 exports.img = img;
 exports.html = html;
-exports.icones = icones;
-exports.fonticons = fonticons;
 exports.devServer = devServer;
 exports.watch = gulp.series(build, watch);
-exports.fonts = fonts;
 exports.sprites = sprites;

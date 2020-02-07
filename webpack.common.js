@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 var shopName = require("./package.json").shopName;
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 /**
  * Configuração do webpack
  * @tutorial https://github.com/webpack/webpack.js.org/tree/v3.11.0/src/content
@@ -8,11 +9,11 @@ var shopName = require("./package.json").shopName;
  */
 module.exports = {
 	entry: {
-		main:'./src/arquivos/js/main.js',
-		checkout:'./src/arquivos/js/checkout.js'
+		main: "./src/arquivos/js/main.js",
+		checkout: "./src/arquivos/js/checkout.js"
 	},
 	output: {
-		path: path.resolve(__dirname, 'dist/arquivos'),
+		path: path.resolve(__dirname, "dist/arquivos"),
 		filename: shopName + "--[name]-bundle.js"
 	},
 	module: {
@@ -31,8 +32,14 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.ProvidePlugin({
-			'$':'jquery',
-			'jQuery':'jquery',
+			$: "jquery",
+			jQuery: "jquery"
 		})
-	]
+	],
+	resolve: {
+		plugins: [PnpWebpackPlugin]
+	},
+	resolveLoader: {
+		plugins: [PnpWebpackPlugin.moduleLoader(module)]
+	}
 };
