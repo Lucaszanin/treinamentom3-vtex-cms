@@ -1,6 +1,6 @@
-const { Modulo } = require("../Modulo");
+import { Modulo } from "../Modulo";
 
-var ModuloSelect = function () {
+export var ModuloSelect = function () {
 	Modulo.call(this);
 	this.elemento('.qtd-selector');
 	this._opcoes = {
@@ -9,7 +9,6 @@ var ModuloSelect = function () {
 		'opcaoIndisponivel': "Indisponivel"
 	};
 };
-exports.ModuloSelect = ModuloSelect;
 // subclasse extende superclasse
 ModuloSelect.prototype = Object.create(Modulo.prototype);
 ModuloSelect.prototype.constructor = ModuloSelect;

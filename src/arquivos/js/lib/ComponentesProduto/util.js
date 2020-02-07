@@ -1,7 +1,7 @@
 /** Util */
 
 
-function textoParaNomeCss(texto) {
+export function textoParaNomeCss(texto) {
 
 	if (typeof texto == 'undefined') {
 		return '';
@@ -23,7 +23,7 @@ function textoParaNomeCss(texto) {
 		.replace(/[^A-Za-z0-9_-]/g, '');
 	return texto;
 }
-exports.textoParaNomeCss = textoParaNomeCss;
+
 /**
  * Obtem Preco
  * caso o preco recebido seja um Float ou int,
@@ -33,7 +33,7 @@ exports.textoParaNomeCss = textoParaNomeCss;
  * @param  {FloatZstring} price preço
  * @return {[type]}       [description]
  */
-function getPrice(price) {
+export function getPrice(price) {
 	if (isNaN(price)) {
 		price = parseFloat(price.replace('R$', '').replace('.', '').replace(',', '.'));
 		return parseFloat(price);
@@ -43,7 +43,7 @@ function getPrice(price) {
 		return price.toFixed(2).replace('.', ',');
 	}
 }
-exports.getPrice = getPrice;
+
 if (!Array.prototype.forEach) {
 	Array.prototype.forEach = function (fn, scope) {
 		for (var i = 0, len = this.length; i < len; ++i) {
@@ -104,7 +104,7 @@ if (!Array.prototype.find) {
  * @param {int} height
  * @return {string} url da imagem com o tamanho alterado
  */
-function alterarTamanhoImagemSrcVtex(src, width, height){
+export function alterarTamanhoImagemSrcVtex(src, width, height){
 	if( typeof src == "undefined" ) {
 		console.warn( "Parametro 'src' não recebido.");
 		return;
@@ -115,4 +115,3 @@ function alterarTamanhoImagemSrcVtex(src, width, height){
 	src = src.replace( /\/(\d+)(-(\d+-\d+)|(_\d+))\//g, '/$1-' + width + '-' + height + '/' );
 	return  src;
 }
-exports.alterarTamanhoImagemSrcVtex = alterarTamanhoImagemSrcVtex;

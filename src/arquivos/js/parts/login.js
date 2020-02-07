@@ -30,21 +30,21 @@ export default class Login {
 	}
 
 	linkUSerHEader() {
-		$(document).on("vtex-user-identification", function(event, data) {
+		$(document).on("vtex-user-identification", (event, data) => {
 			if (data.IsUserDefined) {
 				$("header .links-usuario a.destaque")
 					.text("Sair")
-					.prop("href", login.urlLogout());
+					.prop("href", this.urlLogout());
 			} else {
 				$("header .links-usuario a.destaque")
 					.text("Entrar")
-					.prop("href", login.urlLogin());
+					.prop("href", this.urlLogin());
 			}
 		});
 	}
 
 	linkUserMenuMobile() {
-		$(document).on("vtex-user-identification", function(event, data) {
+		$(document).on("vtex-user-identification", (event, data) => {
 			var texto;
 			if (data.IsUserDefined) {
 				texto = "Ola,";
@@ -52,22 +52,22 @@ export default class Login {
 					"<a href='/account' title=" +
 					data.Email +
 					"> " +
-					login.identificacaoDoUsuario(data) +
+					this.identificacaoDoUsuario(data) +
 					" </a> ";
 				texto +=
 					"<br>não é você?  <a href=" +
-					login.urlLogout() +
+					this.urlLogout() +
 					">sair</a>";
 			} else {
 				texto = "Faça";
-				texto += "<a href=" + login.urlLogin() + " > login </a> ou ";
-				texto += "<a href=" + login.urlLogin() + ">cadastre-se</a>";
+				texto += "<a href=" + this.urlLogin() + " > login </a> ou ";
+				texto += "<a href=" + this.urlLogin() + ">cadastre-se</a>";
 			}
 			$(".menu-principal .login .area-login span").html(texto);
 		});
 	}
 
-	getUSerDatan() {
+	getUSerData() {
 		$.getJSON("/no-cache/profileSystem/getProfile").done(function(data) {
 			$(document).trigger("vtex-user-identification", data);
 		});

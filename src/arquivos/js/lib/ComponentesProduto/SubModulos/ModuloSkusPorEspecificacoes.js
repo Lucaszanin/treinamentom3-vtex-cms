@@ -1,108 +1,136 @@
-const { ModuloSkus } = require("../ModuloSkus");
-const { textoParaNomeCss,alterarTamanhoImagemSrcVtex } = require("../util");
+import { ModuloSkus } from "../ModuloSkus";
+import { textoParaNomeCss, alterarTamanhoImagemSrcVtex } from "../util";
 /**
  * modulo de seleção dos skus
  * Permite escolher o Sku desejado
  */
-var ModuloSkusPorEspecificacoes = function (skuJson,elemento) {
-	ModuloSkus.call(this,skuJson,elemento);
-	sessionStorage.removeItem('sku-selecionado');
+export var ModuloSkusPorEspecificacoes = function(skuJson, elemento) {
+	ModuloSkus.call(this, skuJson, elemento);
+	sessionStorage.removeItem("sku-selecionado");
 	var _this = this;
 
 	this._opcoes = {
-		"especificacaoComImagem":''
+		especificacaoComImagem: ""
 	};
 
+	this.prefix = {
+		cor: "",
+		tamanho: ""
+	};
 
 	/**
 	 * Escolhe os primeiros skus de cada variação
 	 * @return {object} this
 	 */
-	this.setDefauls = function (setBestSkuWhenThereMultiple = false) {
+	this.setDefauls = function() {
 		let bestSku = getBestSku();
-
 		this.escolherSkuReferencia(bestSku);
 
-		if(_this._skuJson.skus.length === 1 || setBestSkuWhenThereMultiple){
-			this.escolherSku(bestSku);
-			// forçar escolha do unico sku
-			for (const especificacao in bestSku.dimensions) {
-				if (bestSku.dimensions.hasOwnProperty(especificacao)) {
-					const valorEspecificacao = bestSku.dimensions[especificacao];
-					let $especificacao = producraInputNtmlParaEspecificacao(
-						especificacao,
-						valorEspecificacao
-					);
-					$especificacao.prop('checked', true).trigger('change');
-				}
+		// if(_this._skuJson.skus.length === 1){
+
+		// forçar escolha do unico sku
+		for (const especificacao in bestSku.dimensions) {
+			if (bestSku.dimensions.hasOwnProperty(especificacao)) {
+				const valorEspecificacao = bestSku.dimensions[especificacao];
+				let $especificacao = producraInputNtmlParaEspecificacao(
+					especificacao,
+					valorEspecificacao
+				);
+				$especificacao.prop("checked", true);
 			}
 		}
+		this.escolherSku(bestSku);
+		// }
 
 		return this;
 	};
+
+	/* Prefixa o nome da especificação de acordo com a dimensão passada */
+	this.prefixDimensionName = function(dimension) {
+		var value = dimension.toLowerCase();
+
+		if (_this.prefix[value]) {
+			return `${_this.prefix[value]} ${value}:`;
+		} else {
+			return `${dimension}:`;
+		}
+	};
+
 	/**
 	 * Cria e insere o html com as variações dos skus
 	 * @param  {Object} mapaEspecificacoes Mapa das especificações do produto
 	 * @return {object} this
 	 */
-	this.desenhar = function () {
-
-		if (!_this._skuJson.dimensionsMap || _this._skuJson.dimensionsMap.length === 0) {
+	this.desenhar = function() {
+		if (
+			!_this._skuJson.dimensionsMap ||
+			_this._skuJson.dimensionsMap.length === 0
+		) {
 			console.warn("Erro! para de especificações não identificado.");
 			return this;
 		}
-		var $especificacao, $especificacoes = $('<div />', {
-			class: 'skus-selection'
-		}).appendTo(this.elemento());
+		// var $especificacao = $('<div />', {
+		// 	class: 'skus-selection'
+		// }).appendTo(this.elemento());
 
 		for (var indice in _this._skuJson.dimensions) {
 			if (_this._skuJson.dimensions.hasOwnProperty(indice)) {
-				let nomeEspecificacaqo = _this._skuJson.dimensions[indice];
-				var values = _this._skuJson.dimensionsMap[nomeEspecificacaqo];
+				let nomeEspecificacao = _this._skuJson.dimensions[indice];
+				var values = _this._skuJson.dimensionsMap[nomeEspecificacao];
 
-				$especificacao = $('<div />', {
-					class: 'especificaco ' + textoParaNomeCss(nomeEspecificacaqo),
-					"data-especificacao": textoParaNomeCss(nomeEspecificacaqo)
-				}).appendTo($especificacoes);
+				var $especificacao = $("<div />", {
+					class:
+						"especificacao " + textoParaNomeCss(nomeEspecificacao),
+					"data-especificacao": textoParaNomeCss(nomeEspecificacao)
+				}).appendTo(_this.elemento());
 
-				$('<div />', {
-					class: 'titulo',
-					text: nomeEspecificacaqo
+				$("<div />", {
+					class: "titulo",
+					text: _this.prefixDimensionName(nomeEspecificacao)
 				}).appendTo($especificacao);
-				var $lista = $('<ul />', {
-					class: 'sku'
+				var $lista = $("<ul />", {
+					class: "skus"
 				}).appendTo($especificacao);
-				var nameCampo = textoParaNomeCss(nomeEspecificacaqo + '_' + i);
+				var nameCampo = textoParaNomeCss(nomeEspecificacao + "_" + i);
 				if (values.length < 2) {
-					$($especificacao).addClass('single-option');
+					$($especificacao).addClass("single-option");
 				}
 
 				for (var i = 0; i < values.length; i++) {
-					var item = $('<li />', {
-						class: 'skus'
+					var item = $("<li />", {
+						class: "sku"
 					}).appendTo($lista);
-					var idText = textoParaNomeCss(nomeEspecificacaqo + '_' + values[i] + '_' + i);
-					$('<input />', {
-						'data-especificacao': values[i],
-						'data-especificacao-title': nomeEspecificacaqo,
+					var idText = textoParaNomeCss(
+						nomeEspecificacao + "_" + values[i] + "_" + i
+					);
+					$("<input />", {
+						"data-especificacao": values[i],
+						"data-especificacao-title": nomeEspecificacao,
 						val: values[i],
 						id: idText,
-						type: 'radio',
+						type: "radio",
 						name: nameCampo
 					}).appendTo(item);
 
-					let $label = $('<label />', {
+					let $label = $("<label />", {
 						for: idText
 					}).appendTo(item);
 
-					if(nomeEspecificacaqo === _this._opcoes.especificacaoComImagem){
-						$label.addClass('image')
-						let src = obtemImagemParaEspecificacao(nomeEspecificacaqo,values[i]);
-						$('<img />',{
-							'src':alterarTamanhoImagemSrcVtex(src,55,55),
-							'title':  nomeEspecificacaqo + ': ' +values[i]
+					if (
+						nomeEspecificacao ===
+						_this._opcoes.especificacaoComImagem
+					) {
+						$label.addClass("image");
+						let src = obtemImagemParaEspecificacao(
+							nomeEspecificacao,
+							values[i]
+						);
+
+						$("<img />", {
+							src: alterarTamanhoImagemSrcVtex(src, 72, 100),
+							title: nomeEspecificacao + ": " + values[i]
 						}).appendTo($label);
-					}else{
+					} else {
 						$label.text(values[i]);
 					}
 				}
@@ -114,14 +142,18 @@ var ModuloSkusPorEspecificacoes = function (skuJson,elemento) {
 	 * Configura os eventos de atualizacao
 	 * @return {object} this
 	 */
-	this.configurar = function () {
-
-		$(".skus-selection input").on("change", function () {
-			var especificacoesDoSku = {}, sku;
+	this.configurar = function() {
+		$(".especificacao input").on("change", function() {
+			var especificacoesDoSku = {},
+				sku;
 			var nomeEspecificacao = "";
-			$(".skus-selection input:checked").each(function () {
-				nomeEspecificacao = this.getAttribute('data-especificacao-title');
-				especificacoesDoSku[nomeEspecificacao] = this.getAttribute('data-especificacao');
+			$(".especificacao input:checked").each(function() {
+				nomeEspecificacao = this.getAttribute(
+					"data-especificacao-title"
+				);
+				especificacoesDoSku[nomeEspecificacao] = this.getAttribute(
+					"data-especificacao"
+				);
 			});
 			sku = getSkuPorEspecificacoes(especificacoesDoSku);
 			_this.escolherSku(sku);
@@ -129,7 +161,7 @@ var ModuloSkusPorEspecificacoes = function (skuJson,elemento) {
 		return this;
 	};
 	function getSkuPorEspecificacoes(especificacoes) {
-		return _this._skuJson.skus.find(function (sku) {
+		return _this._skuJson.skus.find(function(sku) {
 			return isEquivalent(sku.dimensions, especificacoes);
 		});
 	}
@@ -150,52 +182,67 @@ var ModuloSkusPorEspecificacoes = function (skuJson,elemento) {
 		}
 		return true;
 	}
-	function getBestSku(){
+	function getBestSku() {
 		var bestSku;
 		for (const i in _this._skuJson.skus) {
 			if (_this._skuJson.skus.hasOwnProperty(i)) {
 				const sku = _this._skuJson.skus[i];
-				if(sku.available){
+				if (sku.available) {
 					bestSku = sku;
 					break;
 				}
 			}
 		}
-		if(typeof bestSku === "undefined"){
+		if (typeof bestSku === "undefined") {
 			bestSku = _this._skuJson.skus[0];
 		}
 		return bestSku;
 	}
-	function producraInputNtmlParaEspecificacao(especificacao,valor){
+	function producraInputNtmlParaEspecificacao(especificacao, valor) {
 		especificacao = textoParaNomeCss(especificacao);
-		let  $lista = _this.elemento().find('.especificaco[data-especificacao="'+especificacao+'"]');
-		return $lista.find('li input[data-especificacao="'+valor+'"]');
+		let $lista = _this
+			.elemento()
+			.find('.especificacao[data-especificacao="' + especificacao + '"]');
+		return $lista.find('li input[data-especificacao="' + valor + '"]');
 	}
-	function obtemImagemParaEspecificacao(especificacao,valor){
-
+	function obtemImagemParaEspecificacao(especificacao, valor) {
 		for (const i in _this._skuJson.skus) {
 			if (_this._skuJson.skus.hasOwnProperty(i)) {
 				const sku = _this._skuJson.skus[i];
 
 				for (const tituloEspecificacao in sku.dimensions) {
 					if (sku.dimensions.hasOwnProperty(tituloEspecificacao)) {
+						if (tituloEspecificacao === especificacao) {
+							if (sku.dimensions[tituloEspecificacao] === valor) {
+								var urlSku = "/produto/sku/" + sku.sku;
+								let skuData;
+								var jqXHR = $.ajax({
+									url: urlSku,
+									type: "GET",
+									success: function(value) {
+										const images = value[0].Images;
+										const thumbsCor =
+											images[images.length - 1];
+										skuData =
+											thumbsCor[thumbsCor.length - 1]
+												.Path;
+									},
+									async: false
+								});
 
-						if(tituloEspecificacao === especificacao ){
-							if(sku.dimensions[tituloEspecificacao] === valor){
+								if (skuData) {
+									return skuData;
+								}
 								return sku.image;
-
 							}
 						}
 					}
 				}
 			}
 		}
-		return ''
+		return "";
 	}
-
 };
 // subclasse extende superclasse
 ModuloSkusPorEspecificacoes.prototype = Object.create(ModuloSkus.prototype);
 ModuloSkusPorEspecificacoes.prototype.constructor = ModuloSkusPorEspecificacoes;
-
-exports.ModuloSkusPorEspecificacoes = ModuloSkusPorEspecificacoes;

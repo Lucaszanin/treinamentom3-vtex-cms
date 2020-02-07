@@ -2,248 +2,247 @@
 /**-- Footer  ------------------------------********************/
 /*-------------------------------------------------------------*/
 
-.footer{
+.footer {
 	background-color: $color-black2;
 
-	.institucional-info{
+	.institucional-info {
 		color: $color-white;
 		font-size: 14px;
 		margin: auto;
 		max-width: 950px;
 		padding: 0 15px 25px;
 
-		@include mq(md, max){
+		@include mq(md, max) {
 			font-size: 16px;
 			padding-left: 0;
 			padding-right: 0;
 		}
 
-		.titulo{
+		.titulo {
 			font-size: 16px;
 			margin: 27px 0 17px;
 
-			@include mq(md, max){
+			@include mq(md, max) {
 				font-size: 22px;
 				text-align: center;
 			}
 		}
 
-		ul{
+		ul {
 			margin: 0;
 
-			@include mq(md, max){
+			@include mq(md, max) {
 				max-width: 310px;
 				margin: auto;
 				padding: 0 10px;
 			}
 
-			&:hover li a{
+			&:hover li a {
 				opacity: 0.7;
 			}
 
-			li a{
+			li a {
 				transition: all 0.15s linear;
 
-				&:hover{
+				&:hover {
 					opacity: 1;
 				}
 			}
 		}
 
-		a{
+		a {
 			color: $color-white;
 		}
 
-		.institucional-links{
+		.institucional-links {
 			font-size: 16px;
 		}
 
-		.contato-sac{
+		.contato-sac {
 			font-size: 12px;
-			@include mq(md, max){
+			@include mq(md, max) {
 				border-bottom: 1px solid $color-black3;
-				padding:10px 0 20px;
+				padding: 10px 0 20px;
 			}
 
-			@include mq(md, max){
+			@include mq(md, max) {
 				font-size: 16px;
 			}
 
-			li{
+			li {
 				margin-bottom: 8px;
 
-				&:last-child(){
+				&:last-child() {
 					font-size: 10px;
 					text-transform: uppercase;
 
-					@include mq(md, max){
+					@include mq(md, max) {
 						font-size: 14px;
 					}
 
-					strong{
+					strong {
 						display: block;
 					}
 				}
 			}
 
-			p{
+			p {
 				margin: 0;
-				span{
+				span {
 					text-decoration: underline;
 				}
 			}
 		}
 
-		.redes-sociais{
-			h3{
-				@include mq(md, max){
+		.redes-sociais {
+			h3 {
+				@include mq(md, max) {
 					display: none;
 				}
 			}
 
-			ul{
-				@include mq(md, max){
+			ul {
+				@include mq(md, max) {
 					margin-top: 25px;
 					text-align: center;
 				}
 			}
 
-			li{
+			li {
 				display: inline-block;
 				margin-right: 6px;
 			}
 
-			i{
-				@include mq(md, min){
+			i {
+				@include mq(md, min) {
 					transform: scale(0.8);
 				}
 			}
 		}
 	}
 
-	.selos{
-		border-top: 1px solid $color-black3;;
+	.selos {
+		border-top: 1px solid $color-black3;
 		padding: 5px 0;
 		text-align: center;
 
-		@include mq(md, min){
+		@include mq(md, min) {
 			border-bottom: 1px solid $color-black3;
 		}
 
-		.col-12{
-			@include mq(md, max){
+		.col-12 {
+			@include mq(md, max) {
 				padding: 0;
 			}
 		}
 
-		ul{
+		ul {
 			display: inline-block;
-			@include mq(md, max){
+			@include mq(md, max) {
 				width: 100%;
 			}
 
-			&.pagamento{
+			&.pagamento {
 				padding-top: 10px;
 				padding-bottom: 10px;
 
-				@include mq(md, max){
+				@include mq(md, max) {
 					border-bottom: 1px solid $color-black3;
 					padding-bottom: 25px;
 				}
 
-				@include mq(md, min){
+				@include mq(md, min) {
 					border-right: 1px solid $color-gray;
 					margin-right: 20px;
 					padding-right: 20px;
 				}
 
-				li{
-					&:not(:last-child){
-						@include mq(md, min){
+				li {
+					&:not(:last-child) {
+						@include mq(md, min) {
 							padding-right: 5px;
 						}
 					}
 				}
 			}
 
-			&.certificados{
-				li{
-					&:not(:last-child){
+			&.certificados {
+				li {
+					&:not(:last-child) {
 						padding-right: 10px;
 					}
 				}
 			}
 
-			li{
+			li {
 				display: inline-block;
-
 			}
 		}
 	}
 
-	.razao{
+	.razao {
 		font-size: 10px;
 		max-width: 1500px;
 		margin: auto;
 		padding: 15px;
 
-		@include mq(md, max){
+		@include mq(md, max) {
 			padding-top: 10px;
 		}
 
-		p{
+		p {
 			color: $color-gray2;
 			margin: 0;
 
-			@include mq(md, max){
+			@include mq(md, max) {
 				text-align: center;
 			}
 
-			span{
-				@include mq(md, max){
+			span {
+				@include mq(md, max) {
 					display: block;
 				}
 			}
 		}
 
-		a{
+		a {
 			color: $color-gray2;
 			display: inline-block;
 		}
 
-		.cnpj{
-			@include mq(md, max){
+		.cnpj {
+			@include mq(md, max) {
 				padding: 20px 15px;
 			}
 		}
 
-		.desenvolvimento{
+		.desenvolvimento {
 			text-align: right;
 
-			@include mq(md, max){
+			@include mq(md, max) {
 				text-align: center;
-				padding:20px 15px 0;
+				padding: 20px 15px 0;
 			}
 
-			a:nth-child(2){
-				@include mq(md, max){
+			a:nth-child(2) {
+				@include mq(md, max) {
 					border-left: 1px solid $color-gray;
 					border-right: 1px solid $color-gray;
 					margin-right: 20px;
 					margin-left: 20px;
-					padding-right:15px;
-					padding-left:15px;
+					padding-right: 15px;
+					padding-left: 15px;
 				}
 			}
 
-			span{
+			span {
 				display: inline-block;
 			}
 		}
 	}
 }
 
-.mobile-bottom-options{
+.mobile-bottom-options {
 	background-color: $color-white;
 	border-top: 1px solid $color-gray;
 	bottom: 0;
@@ -256,25 +255,25 @@
 	visibility: hidden;
 	z-index: 6;
 
-	&.active{
+	&.active {
 		margin-bottom: 0;
 		opacity: 1;
 		visibility: visible;
 	}
 
-	ul{
+	ul {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		margin: 0;
 	}
 
-	li{
+	li {
 		display: inline-block;
 		width: 33%;
 	}
 
-	.option{
+	.option {
 		background-color: transparent;
 		border: none;
 		cursor: pointer;
@@ -284,8 +283,8 @@
 		padding: 10px;
 		width: 100%;
 
-		&::before{
-			content: '';
+		&::before {
+			content: "";
 			display: block;
 			margin: auto;
 
@@ -293,37 +292,40 @@
 		}
 	}
 
-
-	.show-search{
-		.option:before{
-			@include sprite($sprite-lupa);
+	.show-search {
+		.option:before {
+			@extend .sprite;
+			@extend .sprite-lupa;
 		}
 	}
 
-	.show-carrinho{
-		li:not(.amount-items), strong, .title{
+	.show-carrinho {
+		li:not(.amount-items),
+		strong,
+		.title {
 			display: none;
 		}
 
-		.AmountItemsInCart{
+		.AmountItemsInCart {
 			line-height: 0;
 			text-align: center;
 		}
 
-		.portal-totalizers-ref{
+		.portal-totalizers-ref {
 			display: inline-block;
 			vertical-align: top;
 			position: relative;
 
-			.cartInfoWrapper{
-				@include sprite($sprite-sacola);
+			.cartInfoWrapper {
+				@extend .sprite;
+				@extend .sprite-sacola;
 
-				@include mq(md, max){
+				@include mq(md, max) {
 					margin-right: 5px;
 				}
 			}
 
-			.amount-items{
+			.amount-items {
 				background-color: $color-black2;
 				border-radius: 50%;
 				bottom: 2px;
@@ -336,22 +338,23 @@
 				position: absolute;
 				right: -8px;
 
-				@include mq(md, max){
+				@include mq(md, max) {
 					right: -3px;
 				}
 
-				em{
+				em {
 					font-style: normal;
 				}
 			}
 		}
 	}
 
-	.show-menu{
+	.show-menu {
 		margin-top: -2px;
 
-		.option:before{
-			@include sprite($sprite-menu-bottom);
+		.option:before {
+			@extend .sprite;
+			@extend .sprite-menu-bottom;
 		}
 	}
 }

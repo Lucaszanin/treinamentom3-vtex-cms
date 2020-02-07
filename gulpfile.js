@@ -9,14 +9,12 @@ const gulp = require("gulp"),
 	rename = require("gulp-rename"),
 	replace = require("gulp-replace"),
 	htmlReplace = require("gulp-html-replace"),
-	spritesmith = require("gulp.spritesmith"),
 	iconfont = require("gulp-iconfont"),
 	iconfontCss = require("gulp-iconfont-css"),
 	apiMocker = require("connect-api-mocker"),
-	imageResize = require("gulp-image-resize"),
-	spritesmash = require("gulp-spritesmash"),
-	buffer = require("gulp-buffer"),
-	crypto = require("crypto");
+	sprity = require("sprity"),
+	crypto = require("crypto"),
+	glob = require("glob");
 
 const VtexEmulation = require("./dev/VtexEmulation.js");
 const webpack = require("webpack");
@@ -37,13 +35,13 @@ const paths = {
 		lib: "src/arquivos/font/"
 	},
 	svgFont: {
-		src: "src/arquivos/icones/*.svg"
+		src: "src/arquivos/icons/*.svg"
 	},
 	scripts: {
 		watch: "src/arquivos/js/**/*.js"
 	},
 	sprites: {
-		dir: "src/arquivos/sprite/"
+		src: "src/arquivos/sprite/**/*.{png,jpg}"
 	},
 	img: {
 		src: "src/arquivos/img/*.{png,gif,jpg}",
@@ -58,11 +56,12 @@ const paths = {
 		prateleiras: "src/template-prateleira/"
 	},
 	output: "dist",
-	outputStatic: "dist/arquivos"
+	outputStatic: "dist/arquivos",
+	tmp: ".temp"
 };
 
 function clean() {
-	return del([paths.output]);
+	return del([paths.output, paths.tmp]);
 }
 
 function styles() {
@@ -125,41 +124,43 @@ function scripts() {
 	);
 }
 
-// function resizeSprites() {
-// 	return gulp
-// 		.src(paths.sprites.dir + "2x/*.{png,jpg}")
-// 		.pipe(imageResize({ width: "50%", height: "50%" }))
-// 		.pipe(gulp.dest(paths.sprites.dir + "1x"));
-// }
+function sprites(done) {
+	glob(paths.sprites.src, function(er, files) {
+		const hash = crypto
+			.createHash("md5")
+			.update(files.join(""))
+			.digest("hex");
 
-// @TODO: implementar retina
-function sprites() {
-	return gulp
-		.src(paths.sprites.dir + "**/*.{png,jpg}")
-		.pipe(
-			spritesmith({
-				// retinaSrcFilter: paths.sprites.dir + "*@2x.{png,jpg}",
-				imgName: pacote.shopName + "--sprite.png",
-				// retinaImgName: pacote.shopName + "--sprite@2x.png",
-				cssName: "_sprite.scss",
-				cssVarMap: function(sprite) {
-					sprite.name = "sprite-" + sprite.name;
-				},
-				padding: 25,
-				imgPath: "/arquivos/" + pacote.shopName + "--sprite.png"
-			})
-		)
-		.pipe(spritesmash())
-		.pipe(
-			gulpif(
-				"*.png",
-				gulp.dest(paths.outputStatic),
-				gulp.dest(paths.styles.lib)
-			)
+		sprity.create(
+			{
+				engine: "sprity-jimp",
+				src: paths.sprites.src,
+				style: "./_sprite.scss",
+				margin: 5,
+				prefix: "sprite",
+				processor: "css", // make sure you have installed sprity-sass
+				cssPath: "/arquivos/",
+				out: ".temp",
+				name: pacote.shopName + "-sprite-" + hash,
+				dimension: [
+					{ ratio: 1, dpi: 72 },
+					{ ratio: 2, dpi: 192 }
+				],
+				cachebuster: false
+			},
+			() => {
+				gulp.src(".temp/*").pipe(
+					gulpif(
+						"*.png",
+						gulp.dest("dist/arquivos/"),
+						gulp.dest("src/arquivos/sass/lib")
+					)
+				);
+				done();
+			}
 		);
+	});
 }
-
-// const sprites = gulp.series([resizeSprites, buildSprites]);
 
 function fonticons() {
 	return gulp
@@ -262,11 +263,7 @@ function html() {
 function watch() {
 	devServer();
 	gulp.watch(paths.svgFont.src, { ignoreInitial: false }, icones);
-	gulp.watch(
-		paths.sprites.src + "**/*.{png,jpg}",
-		{ ignoreInitial: false },
-		icones
-	);
+	gulp.watch(paths.sprites.src, { ignoreInitial: false }, icones);
 	gulp.watch(paths.scripts.watch, { ignoreInitial: false }, scripts);
 	gulp.watch(paths.styles.watch, { ignoreInitial: false }, styles);
 	gulp.watch(paths.img.watch, { ignoreInitial: false }, img);

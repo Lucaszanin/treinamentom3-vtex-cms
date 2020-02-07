@@ -1,39 +1,40 @@
-const {  ModuloPrecoBoleto, ModuloPrecoDe, ModuloPrecoParcelado, ModuloPrecoPor } = require("./SubModulos/ModulosTiposDePreco");
+import {
+	ModuloPrecoBoleto,
+	ModuloPrecoDe,
+	ModuloPrecoParcelado,
+	ModuloPrecoPor
+} from "./SubModulos/ModulosTiposDePreco";
 
-const { ModuloBtnQtd } = require("./SubModulos/ModuloBtnQtd");
+import { ModuloBtnQtd } from "./SubModulos/ModuloBtnQtd";
 
-const { ModuloSelect } = require("./SubModulos/ModuloSelect");
+import { ModuloSelect } from "./SubModulos/ModuloSelect";
 
-const { ModuloSkusPorNome } = require("./SubModulos/ModuloSkusPorNome");
+import { ModuloSkusPorNome } from "./SubModulos/ModuloSkusPorNome";
 
-const { ModuloSkusPorEspecificacoes } = require("./SubModulos/ModuloSkusPorEspecificacoes");
+import { ModuloSkusPorEspecificacoes } from "./SubModulos/ModuloSkusPorEspecificacoes";
 
-const { ModuloQuantidade } = require("./ModuloQuantidade");
+import { ModuloQuantidade } from "./ModuloQuantidade";
 
-const { ModuloPreco } = require("./ModuloPreco");
+import { ModuloPreco } from "./ModuloPreco";
 
-const { ModuloCompreJunto } = require("./ModuloCompreJunto");
+import { ModuloCompreJunto } from "./ModuloCompreJunto";
 
-const { ModuloBotaoDeCompra } = require("./ModuloBotaoDeCompra");
+import { ModuloBotaoDeCompra } from "./ModuloBotaoDeCompra";
 
-const { ModuloAviseMe } = require("./ModuloAviseMe");
+import { ModuloAviseMe } from "./ModuloAviseMe";
 
-
-var modulosDeProduto = {
-	"ModuloAviseMe": ModuloAviseMe,
-	"ModuloBotaoDeCompra": ModuloBotaoDeCompra,
-	"ModuloCompreJunto": ModuloCompreJunto,
-	"ModuloPreco": ModuloPreco,
-	"ModuloQuantidade": ModuloQuantidade,
-	"ModuloSkusPorNome": ModuloSkusPorNome,
-	"ModuloSkusPorEspecificacoes": ModuloSkusPorEspecificacoes,
-	"ModuloBtnQtd": ModuloBtnQtd,
-	"ModuloPrecoBoleto": ModuloPrecoBoleto,
-	"ModuloPrecoDe": ModuloPrecoDe,
-	"ModuloPrecoParcelado": ModuloPrecoParcelado,
-	"ModuloPrecoPor": ModuloPrecoPor,
-	"ModuloSelect": ModuloSelect
+export default {
+	ModuloAviseMe: ModuloAviseMe,
+	ModuloBotaoDeCompra: ModuloBotaoDeCompra,
+	ModuloCompreJunto: ModuloCompreJunto,
+	ModuloPreco: ModuloPreco,
+	ModuloQuantidade: ModuloQuantidade,
+	ModuloSkusPorNome: ModuloSkusPorNome,
+	ModuloSkusPorEspecificacoes: ModuloSkusPorEspecificacoes,
+	ModuloBtnQtd: ModuloBtnQtd,
+	ModuloPrecoBoleto: ModuloPrecoBoleto,
+	ModuloPrecoDe: ModuloPrecoDe,
+	ModuloPrecoParcelado: ModuloPrecoParcelado,
+	ModuloPrecoPor: ModuloPrecoPor,
+	ModuloSelect: ModuloSelect
 };
-
-
-module.exports = modulosDeProduto;

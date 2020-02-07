@@ -213,7 +213,8 @@ header {
 				font-size: 0;
 				padding: 8px;
 
-				@include sprite($sprite-lupa);
+				@extend .sprite;
+				@extend .sprite-lupa;
 			}
 		}
 	}
@@ -289,7 +290,8 @@ header {
 			position: relative;
 
 			.cartInfoWrapper {
-				@include sprite($sprite-sacola);
+				@extend .sprite;
+				@extend .sprite-sacola;
 
 				@include mq(md, max) {
 					margin-right: 5px;

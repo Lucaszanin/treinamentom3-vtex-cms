@@ -1,13 +1,15 @@
+import "../lib/elevateZoom";
+
 import loja from "../config/loja";
 import { alterarTamanhoImagemSrcVtex } from "../helpers/vtexUtils";
 import { isSmallerThen768 } from "../helpers/mediasMatch";
 import Components from "../lib/ComponentesProduto/main";
-import "../lib/elevateZoom";
+import { slideResponsivo } from "../helpers/slide";
 
 export default class Produto {
 	constructor() {
 		this.mapearSkus();
-		let skuJsonAdultered = this.ordenarEspecificacoes(window.skuJson);
+		let skuJsonAdultered = ordenarEspecificacoes(window.skuJson);
 		this.imagensDasVariacoes();
 		this.preco(".moduloPreco");
 		this.quantidade(".moduloQuantidade");
@@ -21,6 +23,7 @@ export default class Produto {
 		this.zoomImagemPrincipal();
 		this.productSlides();
 		this.exibirVariacaoDeCores();
+		slideResponsivo(".prateleira-de-produtos", 4, 3, 1, 1, false, true);
 	}
 
 	/*

@@ -1,9 +1,9 @@
-const { Modulo } = require("./Modulo");
+import { Modulo } from "./Modulo";
 /**
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
-var ModuloQuantidade = function (elemento = '.qtd-selector-content:first-child') {
+export var ModuloQuantidade = function (elemento = '.qtd-selector-content:first-child') {
 	Modulo.call(this,elemento);
 	this._opcoes = {
 		"maxEstoque": 50
@@ -51,7 +51,6 @@ var ModuloQuantidade = function (elemento = '.qtd-selector-content:first-child')
 		}
 		else {
 			this.moduloExibicao().atualizar(0);
-			console.log('Sku indisponivel');
 		}
 		return this;
 	};
@@ -84,4 +83,3 @@ var ModuloQuantidade = function (elemento = '.qtd-selector-content:first-child')
 ModuloQuantidade.prototype = Object.create(Modulo.prototype);
 ModuloQuantidade.prototype.constructor = ModuloQuantidade;
 
-exports.ModuloQuantidade = ModuloQuantidade;

@@ -1,8 +1,8 @@
-import { isSmallerThen768 } from "../helpers/MediasMatch";
+import { isSmallerThen768 } from "../helpers/mediasMatch";
 
 export default class MenuContents {
 	constructor() {
-		if (isSmallerThen768) {
+		if (!isSmallerThen768) {
 			this.getContent();
 		}
 	}

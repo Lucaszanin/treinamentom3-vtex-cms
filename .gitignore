@@ -6,7 +6,6 @@
 # Para arquivos de desenvolvimnto
 public/
 
-
 # gulp
 dist/
 .temp/

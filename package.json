@@ -56,12 +56,16 @@
 	"dependencies": {
 		"body-scroll-lock": "^2.6.4",
 		"bootstrap": "^4.4.1",
+		"glob": "^7.1.6",
 		"gulp-buffer": "0.0.2",
 		"gulp-gm": "0.0.9",
 		"gulp-image-resize": "^0.13.1",
 		"gulp-spritesmash": "^1.1.1",
+		"gulp.spritesmith-multi": "^3.1.0",
 		"remove": "^0.1.5",
-		"slick-carousel": "~1.7.1"
+		"slick-carousel": "~1.7.1",
+		"sprity": "^1.0.8",
+		"sprity-jimp": "0.0.1"
 	},
 	"browserslist": [
 		"defaults",

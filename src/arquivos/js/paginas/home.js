@@ -1,10 +1,14 @@
-import slide from "../parts/slide";
+import {
+	bannerHome,
+	barraDeVantagens,
+	naveguePorCategorias
+} from "../helpers/slide";
 
 export default class Home {
 	constructor() {
-		slide.bannerHome(".main-gallery");
-		slide.barraDeVantagens(".tipbar ul");
-		slide.naveguePorCategorias(".categorias-home .categorias");
+		bannerHome(".main-gallery");
+		barraDeVantagens(".tipbar ul");
+		naveguePorCategorias(".categorias-home .categorias");
 	}
 
 	naveguePorCategorias() {

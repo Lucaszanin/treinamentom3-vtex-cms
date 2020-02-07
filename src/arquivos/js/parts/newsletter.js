@@ -1,8 +1,8 @@
 import "../lib/custom-newsletter-form";
 import loja from "../config/loja";
 
-export default class Newletter {
-	constructor(elemento, textButtom) {
+export default class Newsletter {
+	constructor({ elemento, textButtom }) {
 		let $elemento =
 			typeof elemento !== "undefined" ? $(elemento) : $(".news-form");
 		textButtom =

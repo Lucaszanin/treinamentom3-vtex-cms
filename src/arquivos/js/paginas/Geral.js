@@ -1,7 +1,7 @@
-import slide from "../parts/slide";
-import atualizarPromocao from "../parts/Promocao";
-import { isSmallerThen768 } from "../helpers/MediasMatch";
+import { isSmallerThen768 } from "../helpers/mediasMatch";
+import prateleira from "../parts/prateleira";
 
+// @TODO: Ratorar essa classe, dividar em classes menores para cada funcionalidade
 export default class Geral {
 	constructor() {
 		if (isSmallerThen768) {
@@ -11,7 +11,7 @@ export default class Geral {
 		}
 		this.scrollTop();
 		this.correcaoAutocomplete();
-		atualizarPromocao();
+		prateleira.atualziar();
 	}
 
 	scrollTop() {

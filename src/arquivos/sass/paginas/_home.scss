@@ -46,13 +46,15 @@
 		}
 
 		.slick-next{
-			@include sprite($sprite-circled-arrow-right);
+			@extend .sprite;
+			@extend .sprite-circled-arrow-right;
 			left: auto;
 			right: 8px;
 		}
 
 		.slick-prev {
-			@include sprite($sprite-circled-arrow-left);
+			@extend .sprite;
+			@extend .sprite-circled-arrow-left;
 			right: auto;
 			left: 8px;
 		}

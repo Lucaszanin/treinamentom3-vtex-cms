@@ -16,7 +16,7 @@ export default class Menu {
 		});
 	}
 
-	ggleSubCategories() {
+	toggleSubCategories() {
 		$(".m3-dropdown > button").on("click", function(event) {
 			event.preventDefault();
 

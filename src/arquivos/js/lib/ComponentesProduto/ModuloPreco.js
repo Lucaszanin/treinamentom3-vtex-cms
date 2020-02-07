@@ -1,26 +1,31 @@
-const { Modulo } = require("./Modulo");
-const { ModuloPrecoDe, ModuloPrecoPor, ModuloPrecoParcelado, ModuloPrecoBoleto } = require("./SubModulos/ModulosTiposDePreco");
+import { Modulo } from "./Modulo";
+import {
+	ModuloPrecoDe,
+	ModuloPrecoPor,
+	ModuloPrecoParcelado,
+	ModuloPrecoBoleto
+} from "./SubModulos/ModulosTiposDePreco";
 /**
  * modulo preco
  * Mantem o preço de exibição atualizado
  */
-var ModuloPreco = function (elemento = '.preco-produto') {
-	Modulo.call(this,elemento);
+export var ModuloPreco = function(elemento = ".preco-produto") {
+	Modulo.call(this, elemento);
 	this.opcoes({
-		"precoDe": {
-			"ativo": true
+		precoDe: {
+			ativo: true
 		},
-		"precoPor": {
-			"ativo": true
+		precoPor: {
+			ativo: true
 		},
-		"parcelado": {
-			"auto": false,
-			"ativo": false,
-			"parcelas": 6
+		parcelado: {
+			auto: false,
+			ativo: false,
+			parcelas: 6
 		},
-		"boleto": {
-			"ativo": true,
-			"percentual": 5
+		boleto: {
+			ativo: true,
+			percentual: 5
 		}
 	});
 	this.precos = [];
@@ -29,14 +34,14 @@ var ModuloPreco = function (elemento = '.preco-produto') {
 	 * Configura os eventos js que serão diparados pelo html do desenhar()
 	 * @return {object} this
 	 */
-	this.configurar = function (opcoes) {
+	this.configurar = function(opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
-		$(document).one('sku-referencial', function(){
-			var novoSku = JSON.parse(sessionStorage.getItem('sku-referencial'));
+		$(document).one("sku-referencial", function() {
+			var novoSku = JSON.parse(sessionStorage.getItem("sku-referencial"));
 			_this.atualizar(novoSku);
 		});
-		$(document).on('change-sku', function(){
-			var novoSku = JSON.parse(sessionStorage.getItem('sku-selecionado'));
+		$(document).on("change-sku", function() {
+			var novoSku = JSON.parse(sessionStorage.getItem("sku-selecionado"));
 			_this.atualizar(novoSku);
 		});
 		return this;
@@ -45,10 +50,10 @@ var ModuloPreco = function (elemento = '.preco-produto') {
 	 * Cria e insere o html com as formas de pagamento
 	 * @return {object} this
 	 */
-	this.desenhar = function () {
-		var container = $('<div />', {
-			class: 'container-precos',
-			css: 'display:none'
+	this.desenhar = function() {
+		var container = $("<div />", {
+			class: "container-precos",
+			css: "display:none"
 		}).appendTo(this.elemento());
 		if (this.opcoes().precoDe) {
 			var moduloPrecoDe = new ModuloPrecoDe();
@@ -82,7 +87,7 @@ var ModuloPreco = function (elemento = '.preco-produto') {
 	 * @param  {Object} novoSku objeto do sku selecionado
 	 * @return {Object} this
 	 */
-	this.atualizar = function (novoSku) {
+	this.atualizar = function(novoSku) {
 		if (!novoSku) {
 			novoSku = {
 				available: false
@@ -94,10 +99,9 @@ var ModuloPreco = function (elemento = '.preco-produto') {
 					this.precos[tiposPreco].atualizar(novoSku);
 				}
 			}
-			this.elemento().css('display', 'block');
-		}
-		else {
-			this.elemento().css('display', 'none');
+			this.elemento().css("display", "block");
+		} else {
+			// this.elemento().css('display', 'none');
 		}
 		return this;
 	};
@@ -106,7 +110,7 @@ var ModuloPreco = function (elemento = '.preco-produto') {
 	 * @param  {Object} tipo um objeto contendo informações das formas de pagamento
 	 * @return {Object} 	objeto de configuracao
 	 */
-	this.tiposPreco = function (tipo) {
+	this.tiposPreco = function(tipo) {
 		if (tipo) {
 			this._tiposPreco = $.extend({}, this._tiposPreco, tipo);
 		}
@@ -116,5 +120,3 @@ var ModuloPreco = function (elemento = '.preco-produto') {
 // subclasse extende superclasse
 ModuloPreco.prototype = Object.create(Modulo.prototype);
 ModuloPreco.prototype.constructor = ModuloPreco;
-
-exports.ModuloPreco = ModuloPreco;

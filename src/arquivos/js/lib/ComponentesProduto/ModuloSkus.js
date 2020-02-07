@@ -1,10 +1,9 @@
-const { Modulo } = require("./Modulo");
-const { textoParaNomeCss } = require("./util");
+import  { Modulo } from "./Modulo";
 /**
  * modulo de seleção dos skus
  * Permite escolher o Sku desejado
  */
-var ModuloSkus = function (skuJson,elemento='.skuSelection') {
+export var ModuloSkus = function (skuJson,elemento='.skuSelection') {
 	Modulo.call(this,elemento);
 	sessionStorage.removeItem('sku-selecionado');
 	this._skuJson = skuJson;
@@ -64,6 +63,7 @@ var ModuloSkus = function (skuJson,elemento='.skuSelection') {
 			 * para capturar o evento
 			 * $(document).on( 'change-sku' , function(event, novoSku){} );
 			 */
+
 			sessionStorage.setItem('sku-referencial', JSON.stringify(sku));
 			$(document).trigger('sku-referencial', sku);
 			// console.log(sku);
@@ -75,4 +75,3 @@ var ModuloSkus = function (skuJson,elemento='.skuSelection') {
 ModuloSkus.prototype = Object.create(Modulo.prototype);
 ModuloSkus.prototype.constructor = ModuloSkus;
 
-exports.ModuloSkus = ModuloSkus;
