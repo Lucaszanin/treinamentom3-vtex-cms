@@ -9,7 +9,6 @@ import { slideResponsivo } from "../functions/slide";
 export default class Produto {
 	constructor() {
 		this.mapearSkus();
-		let skuJsonAdultered = ordenarEspecificacoes(window.skuJson);
 		this.imagensDasVariacoes();
 		this.preco(".moduloPreco");
 		this.quantidade(".moduloQuantidade");
@@ -17,7 +16,7 @@ export default class Produto {
 		this.aviseme(".moduloAviseMe");
 		this.imagensCompreJunto();
 
-		this.selecaoSkus(".moduloSkus", skuJsonAdultered);
+		this.selecaoSkus(".moduloSkus", window.skuJson);
 
 		this.shortDescription();
 		this.zoomImagemPrincipal();
@@ -54,8 +53,8 @@ export default class Produto {
 	}
 
 	selecaoSkus(elemento, skuJsonAdultered) {
-		let moduloAdequado = obterModuloDeSkusPara(skuJsonAdultered);
-		var ModuloSkus = new moduloAdequado(skuJsonAdultered, elemento);
+
+		var ModuloSkus = new Components.ModuloSkusPorEspecificacoes(skuJsonAdultered, elemento);
 		// ModuloSkus.elemento();
 		ModuloSkus.opcoes({
 			especificacaoComImagem: "Cores"
@@ -238,28 +237,7 @@ export default class Produto {
 		window.skuJson = mapearSkus(window.skuJson);
 	}
 
-	ordenarEspecificacoes(skuJson) {
-		let skuJsonAdultered = skuJson;
 
-		skuJsonAdultered.dimensions = ordenarEspecificacoes(
-			skuJsonAdultered.dimensions,
-			["Tamanhos", "Cores"]
-		);
-		skuJsonAdultered.dimensionsMap["Cores"] = ordenarEspecificacoes(
-			skuJsonAdultered.dimensionsMap["Cores"]
-		);
-		skuJsonAdultered.dimensionsMap[
-			"Tamanhos"
-		] = ordenarEspecificacoes(skuJsonAdultered.dimensionsMap["Tamanhos"], [
-			"PP",
-			"P",
-			"M",
-			"G",
-			"GG"
-		]);
-
-		return skuJsonAdultered;
-	}
 
 	imagensCompreJunto() {
 		window.onload = function() {
@@ -307,35 +285,4 @@ function mapearSkus(skuJson) {
 		skuJsonAdultered._scriptMapVariations = true;
 	}
 	return skuJsonAdultered;
-}
-/**
- * Retorna a instancia adequada para o cenário de produtos
- * @param {object} skuJson Objeto de produto com suas variações
- */
-function obterModuloDeSkusPara(_skuJson) {
-	if (_skuJson.dimensions.length > 1) {
-		return Components.ModuloSkusPorEspecificacoes;
-	}
-	return Components.ModuloSkusPorNome;
-}
-/**
- *
- * @param {array} especificacoes lista com os valores das especificações
- * @param {array|function} ordem lista ordenada ou funcao de ordenacao
- */
-function ordenarEspecificacoes(especificacoes, ordem) {
-	var ordenado = [];
-	ordenado = especificacoes;
-	if (Array.isArray(ordem)) {
-		ordenado.sort(function(a, b) {
-			return ordem.indexOf(a) - ordem.indexOf(b);
-		});
-	} else {
-		if (ordem instanceof Function) {
-			ordenado.sort(ordem);
-		} else {
-			ordenado.sort();
-		}
-	}
-	return ordenado;
 }

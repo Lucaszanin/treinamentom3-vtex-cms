@@ -134,7 +134,7 @@
 
 		.lazyload__sibling {
 			padding-bottom: 100%;
-			width: 340px;
+			width: 249px;
 		}
 
 		.lazyloaded {
@@ -148,19 +148,7 @@
 			max-width: initial;
 			position: relative;
 			transform: translateX(-50%);
-			width: 350px;
-
-			@media only screen and (min-width: 400px) {
-				width: 360px;
-			}
-
-			@include mq(md, min) {
-				width: 290px;
-			}
-
-			@include mq(xl, min) {
-				width: 340px;
-			}
+			width: 100%;
 		}
 
 		.foto-principal,
