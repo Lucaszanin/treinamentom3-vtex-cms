@@ -1,0 +1,271 @@
+/***************************************************************/
+/**-- Prateleiras --------------------------********************/
+/*-------------------------------------------------------------*/
+
+.prateleira-de-produtos {
+	position: relative;
+
+	.slick-next,
+	.slick-prev {
+		@extend .sprite;
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		font-size: 0;
+		outline: none;
+		padding: 0;
+		position: absolute;
+		top: 30%;
+		z-index: 1;
+
+		@include mq(md, max) {
+			transform: scale(0.8);
+		}
+	}
+
+	.slick-next {
+		@extend .sprite;
+		@extend .sprite-circled-arrow-right;
+		left: auto;
+		right: -60px;
+
+		@include mq(md, max) {
+			right: -35px;
+		}
+
+		@include mq_range(md, xl) {
+			right: -45px;
+		}
+	}
+
+	.slick-prev {
+		@extend .sprite;
+		@extend .sprite-circled-arrow-left;
+		right: auto;
+		left: -60px;
+
+		@include mq(md, max) {
+			left: -35px;
+		}
+
+		@include mq_range(md, xl) {
+			left: -45px;
+		}
+	}
+
+	.slick-dots {
+		bottom: 20px;
+		height: 17px;
+		position: absolute;
+		pointer-events: none;
+		text-align: center;
+		width: 100%;
+
+		@include mq(md, max) {
+			margin-top: 16px;
+			position: initial;
+		}
+
+		&,
+		li {
+			align-items: center;
+			display: flex !important;
+			justify-content: center;
+		}
+
+		li {
+			display: inline-block;
+			margin: 0 4px;
+		}
+
+		button {
+			background-color: $color-black2;
+			border: none;
+			cursor: pointer;
+			height: 10px;
+			outline: none;
+			padding: 0;
+			pointer-events: all;
+			transition: all 0.15s ease-in-out;
+			width: 10px;
+		}
+
+		.slick-active {
+			button {
+				background-color: $color-pink;
+				height: 16px;
+				width: 16px;
+			}
+		}
+	}
+
+	h2 {
+		color: $color-pink;
+		font-size: 24px;
+		margin: 0 0 24px;
+		text-align: center;
+		text-transform: lowercase;
+	}
+
+	ul {
+		max-width: 95%;
+		margin: auto;
+
+		@include mq(md, max) {
+			max-width: 300px;
+		}
+	}
+
+	li {
+		display: inline-block;
+		vertical-align: top;
+		padding: 0 2.5px;
+	}
+}
+
+.produto-na-prateleira {
+	padding: 0 5px;
+	position: relative;
+	text-align: center;
+
+	.product-image {
+		overflow: hidden;
+		position: relative;
+
+		.lazyload__sibling {
+			padding-bottom: 100%;
+			width: 340px;
+		}
+
+		.lazyloaded {
+			top: 0;
+			left: 0;
+			position: absolute;
+		}
+
+		img {
+			left: 50%;
+			max-width: initial;
+			position: relative;
+			transform: translateX(-50%);
+			width: 350px;
+
+			@media only screen and (min-width: 400px) {
+				width: 360px;
+			}
+
+			@include mq(md, min) {
+				width: 290px;
+			}
+
+			@include mq(xl, min) {
+				width: 340px;
+			}
+		}
+
+		.foto-principal,
+		.foto-secundaria {
+			transition: all 0.25s linear;
+		}
+
+		&:hover .foto-secundaria,
+		.foto-principal {
+			visibility: visible;
+			opacity: 1;
+			z-index: 1;
+		}
+
+		.foto-secundaria {
+			position: absolute;
+			width: 100%;
+			top: 0;
+			z-index: -1;
+			visibility: hidden;
+			opacity: 0;
+		}
+	}
+
+	.informacoes .nome {
+		font-size: 14px;
+		line-height: 16px;
+		margin-top: 16px;
+		min-height: 34px;
+		text-transform: capitalize;
+	}
+
+	.price {
+		margin: 8px 0 17px;
+
+		> div {
+			line-height: 1.3;
+		}
+		.antigo {
+			color: $color-gray2;
+			font-size: 14px;
+			min-height: 18px;
+			text-decoration: line-through;
+		}
+
+		.principal {
+			font-size: 18px;
+			font-weight: 700;
+		}
+
+		.parcelado {
+			color: $color-gray2;
+			font-size: 12px;
+
+			strong {
+				font-weight: normal;
+			}
+		}
+
+		.boleto {
+			display: none;
+		}
+	}
+
+	.compra {
+		.btn-compra {
+			margin: 0;
+			display: block;
+			transition: all 0.25s linear 0.25s;
+
+			@include mq(md, min) {
+				visibility: hidden;
+				opacity: 0;
+			}
+
+			a {
+				background-color: $color-green;
+				color: $color-white;
+				display: block;
+				font-size: 14px;
+				letter-spacing: 1px;
+				padding: 15px 0;
+				text-transform: uppercase;
+				transition: all 0.15s linear;
+
+				&:hover {
+					background-color: $color-green2;
+				}
+
+				&:active {
+					background-color: $color-green3;
+				}
+			}
+		}
+	}
+
+	&:hover .compra .btn-compra {
+		visibility: visible;
+		opacity: 1;
+		z-index: 1;
+	}
+
+	.indisponivel {
+		color: $color-pink;
+		font-weight: bold;
+		margin: 5px 0;
+	}
+}

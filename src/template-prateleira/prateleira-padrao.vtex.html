@@ -17,10 +17,18 @@
 		<a href="$uri" title=$escapedName>
 
 			<div class="foto-principal" >
-				$product.GetImageTag(2)
+				<div class="lazyload" data-noscript="">
+					<noscript>
+						$product.GetImageTag(2)
+					</noscript>
+				</div>
 			</div>
 			<div class="foto-secundaria" >
-				$product.GetImageTag(2,"ultima")
+				<div class="lazyload" data-noscript="">
+					<noscript>
+						$product.GetImageTag(2,"ultima")
+					</noscript>
+				</div>
 			</div>
 		</a>
 	</div>

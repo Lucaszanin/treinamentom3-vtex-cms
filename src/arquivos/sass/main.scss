@@ -1,24 +1,24 @@
 @import "./lib/bootstrap-grid";
 @import "./lib/sprite";
 @import "./lib/slick";
+@import "./lib/lazyload";
 
 @import "./utils/all";
 
-@import "./paginas/home";
-@import "./paginas/categoria";
-@import "./paginas/produto";
-@import "./paginas/institucional";
-@import "./paginas/erro";
-@import "./paginas/login";
+@import "./pages/home";
+@import "./pages/categoria";
+@import "./pages/produto";
+@import "./pages/institucional";
+@import "./pages/erro";
+@import "./pages/login";
 
-@import "./parts/header";
-@import "./parts/mini-cart";
-@import "./parts/menu";
-@import "./parts/barraDeVantagens";
-@import "./parts/footer";
-@import "./parts/breadcrumb";
-@import "./parts/prateleira";
-@import "./parts/newsletter";
-@import "./parts/ajustes";
-@import "./parts/flags";
-
+@import "./components/header";
+@import "./components/mini-cart";
+@import "./components/menu";
+@import "./components/barraDeVantagens";
+@import "./components/footer";
+@import "./components/breadcrumb";
+@import "./components/prateleira";
+@import "./components/newsletter";
+@import "./components/ajustes";
+@import "./components/flags";

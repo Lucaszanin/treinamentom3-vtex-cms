@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
 var shopName = require("./package.json").shopName;
-const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 /**
  * Configuração do webpack
  * @tutorial https://github.com/webpack/webpack.js.org/tree/v3.11.0/src/content
@@ -35,11 +34,5 @@ module.exports = {
 			$: "jquery",
 			jQuery: "jquery"
 		})
-	],
-	resolve: {
-		plugins: [PnpWebpackPlugin]
-	},
-	resolveLoader: {
-		plugins: [PnpWebpackPlugin.moduleLoader(module)]
-	}
+	]
 };

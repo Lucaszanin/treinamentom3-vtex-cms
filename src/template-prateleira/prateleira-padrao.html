@@ -18,14 +18,24 @@
 	</div>
 	<div class="product-image ">
 		<a href="produto.html" title="Titulo do produto">
-		<!-- title=$product.EscapedName -->
-			<div class="foto-principal" >
-				<!-- $product.GetImageTag(2) -->
-				<img src="/arquivos/produto-frente.png" >
+			<!-- title=$product.EscapedName -->
+			<div class="foto-principal">]
+				<div class="lazyload__sibling"></div>
+				<div class="lazyload" data-noscript="">
+					<!-- $product.GetImageTag(2) -->
+					<noscript>
+						<img src="/arquivos/produto-frente.png">
+					</noscript>
+				</div>
 			</div>
-			<div class="foto-secundaria" >
-				<!-- $product.GetImageTag(2) -->
-				<img src="/arquivos/produto-costas.png" >
+			<div class="foto-secundaria">
+				<div class="lazyload__sibling"></div>
+				<div class="lazyload" data-noscript="">
+					<!-- $product.GetImageTag(2) -->
+					<noscript>
+						<img src="/arquivos/produto-costas.png">
+					</noscript>
+				</div>
 			</div>
 		</a>
 	</div>
@@ -40,17 +50,17 @@
 	<div class="disponivel">
 		<div class="price">
 			<div class="antigo">
-			<!-- #if ($product.HasBestPrice) -->
+				<!-- #if ($product.HasBestPrice) -->
 				<span class="value">
 					R$ 1500000,00
 					<!-- $product.ListPrice -->
 				</span>
-			<!-- #end -->
+				<!-- #end -->
 			</div>
 			<div class="principal">
 				<span class="value">
 					R$ 1000000,00
-				<!-- $product.BestPrice -->
+					<!-- $product.BestPrice -->
 				</span>
 			</div>
 			<div class="parcelado">
