@@ -12,13 +12,14 @@
 @import "./pages/erro";
 @import "./pages/login";
 
-@import "./components/header";
 @import "./components/mini-cart";
-@import "./components/menu";
-@import "./components/barraDeVantagens";
-@import "./components/footer";
-@import "./components/breadcrumb";
-@import "./components/prateleira";
 @import "./components/newsletter";
-@import "./components/ajustes";
-@import "./components/flags";
+
+@import "./partials/header";
+@import "./partials/menu";
+@import "./partials/barraDeVantagens";
+@import "./partials/footer";
+@import "./partials/breadcrumb";
+@import "./partials/prateleira";
+@import "./partials/ajustes";
+@import "./partials/flags";
