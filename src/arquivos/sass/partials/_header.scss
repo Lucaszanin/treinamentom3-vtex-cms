@@ -1,0 +1,411 @@
+/***************************************************************/
+/**-- Header  ------------------------------********************/
+/*-------------------------------------------------------------*/
+#ajaxBusy {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #fff;
+	z-index: 15;
+	padding: 0px 16px;
+	line-height: 0.1;
+	opacity: 0.75;
+
+	&::after {
+		@include pseudo(inline-block);
+		border: solid 1px;
+		padding: 4px;
+		line-height: 0;
+		position: absolute;
+		right: 2px;
+		top: 35%;
+		border-color: $color-pink3 $color-gray4 $color-gray4 $color-gray4;
+		animation: spin 0.5s linear infinite;
+		border-radius: 50%;
+	}
+}
+header {
+	background: rgba(255, 255, 255, 0.95);
+	top: 0;
+	transition: all 0.2s ease-in-out;
+
+	&.fixed {
+		box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+		position: fixed;
+		top: -30px;
+		left: 0;
+		right: 0;
+		z-index: 10;
+
+		@include mq(md, max) {
+			position: absolute;
+		}
+
+		.pink-bar {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+
+	&.fixed-hide:not(.menu-mobile-open):not(.mini-cart-open):not(:hover) {
+		top: -130px;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+
+	.pink-bar {
+		background-color: $color-pink;
+		opacity: 1;
+		overflow: hidden;
+		transition: all 0.2s ease-in-out;
+
+		ul {
+			margin: 6px 0;
+		}
+
+		li {
+			display: inline-block;
+
+			&:not(:last-child) {
+				margin-right: 8px;
+				padding-right: 8px;
+				position: relative;
+
+				&::after {
+					border-right: 1px solid $color-white;
+					content: "";
+					height: 9px;
+					position: absolute;
+					right: 0;
+					top: 23%;
+				}
+			}
+		}
+
+		a {
+			color: $color-white;
+			font-size: 12px;
+			text-transform: uppercase;
+
+			i {
+				vertical-align: sub;
+			}
+		}
+	}
+
+	.row {
+		align-items: center;
+	}
+
+	.principal {
+		border-bottom: 1px solid $color-gray;
+		padding: 20px 0;
+		position: relative;
+
+		@include mq(md, max) {
+			padding-bottom: 0;
+		}
+
+		> .container {
+			@include mq(md, max) {
+				max-width: 100%;
+			}
+
+			@include mq_range(md, xl) {
+				max-width: 98%;
+			}
+		}
+	}
+
+	.menu-mobile-abrir {
+		@include mq(lg, min) {
+			display: none;
+		}
+
+		button {
+			border: none;
+			background-color: transparent;
+			cursor: pointer;
+			outline: none;
+		}
+	}
+
+	.logo {
+		text-align: center;
+		@include mq(md, max) {
+			padding: 0;
+		}
+
+		img {
+			width: auto;
+			max-width: 100%;
+
+			@include mq(md, max) {
+				max-width: 100px;
+			}
+		}
+	}
+
+	.busca-desktop {
+		@include mq(md, max) {
+			display: none;
+		}
+	}
+
+	.busca-mobile {
+		margin-top: 20px;
+		padding: 0;
+
+		@include mq(md, min) {
+			display: none;
+		}
+
+		.busca {
+			border-top: 1px solid $color-gray4;
+			border-bottom-color: $color-gray4;
+			padding: 5px 0;
+		}
+	}
+
+	.busca {
+		border-bottom: 1px solid $color-black2;
+		color: $color-black2;
+		font-size: 14px;
+		max-width: 330px;
+		margin: auto;
+		padding: 0;
+		text-align: center;
+
+		@include mq(md, max) {
+			max-width: 100%;
+		}
+
+		legend,
+		label,
+		select {
+			display: none;
+		}
+
+		input {
+			border: none;
+			outline: none;
+			padding: 8px 8px 8px 0;
+
+			&.fulltext-search-box {
+				background-color: transparent;
+				max-width: 300px;
+				margin-right: -5px;
+				width: 85%;
+
+				@include mq(md, max) {
+					max-width: 100%;
+				}
+
+				@include mq_range(md, lg) {
+					width: 80%;
+				}
+			}
+
+			&.btn-buscar {
+				background-color: transparent;
+				cursor: pointer;
+				font-size: 0;
+				padding: 8px;
+
+				@extend .sprite;
+				@extend .sprite-lupa;
+			}
+		}
+	}
+
+	.util-links {
+		align-items: center;
+		display: flex;
+		justify-content: flex-end;
+		text-align: right;
+
+		@include mq(md, max) {
+			padding-left: 0;
+		}
+	}
+
+	.links-usuario {
+		display: inline-block;
+		margin: 0 24px;
+		padding: 0 24px;
+		position: relative;
+
+		@include mq(md, max) {
+			margin: 0 14px;
+			padding: 0 14px;
+		}
+
+		@include mq_range(md, lg) {
+			margin: 0 16px;
+			padding: 0 16px;
+		}
+
+		&::before,
+		&::after {
+			border-right: 1px solid $color-black;
+			content: "";
+			height: 19px;
+			position: absolute;
+			top: 5px;
+		}
+
+		&::before {
+			left: 0;
+
+			@include mq(md, max) {
+				display: none;
+			}
+		}
+
+		&::after {
+			right: 0;
+		}
+	}
+
+	.carrinho {
+		display: inline-block;
+		position: relative;
+
+		a {
+			li:not(.amount-items),
+			strong,
+			.title {
+				display: none;
+			}
+		}
+
+		.AmountItemsInCart {
+			line-height: 0;
+		}
+
+		.portal-totalizers-ref {
+			display: inline-block;
+			vertical-align: top;
+			position: relative;
+
+			.cartInfoWrapper {
+				@extend .sprite;
+				@extend .sprite-sacola;
+
+				@include mq(md, max) {
+					margin-right: 5px;
+				}
+			}
+
+			.amount-items {
+				background-color: $color-black2;
+				border-radius: 50%;
+				bottom: 2px;
+				color: $color-white;
+				font-size: 10px;
+				line-height: 1.3;
+				min-width: 19px;
+				text-align: center;
+				padding: 3px 4px;
+				position: absolute;
+				right: -8px;
+
+				@include mq(md, max) {
+					right: -3px;
+				}
+
+				em {
+					font-style: normal;
+				}
+			}
+		}
+	}
+}
+
+.header-simples {
+	border-bottom: 1px solid $color-gray;
+	padding: 18px 0;
+	a {
+		color: #333;
+	}
+	.compra-segura {
+		font-weight: 600;
+		font-size: 17px;
+		text-align: right;
+	}
+
+	.header,
+	.compra-segura {
+		@include mq("sm", max) {
+			text-align: center;
+			padding: 4px 0;
+			font-size: 12px;
+		}
+	}
+}
+
+.ui-autocomplete {
+	&.autocompleteopen {
+		display: table !important;
+	}
+
+	background: white;
+	padding: 0;
+	z-index: 999 !important;
+	width: auto !important;
+	border: solid 1px #ccc;
+	box-shadow: 0px 1px 5px -4.5px rgba(0, 0, 0, 0.95);
+
+	li {
+		padding: 12px 32px 12px 16px;
+		overflow: hidden;
+		font-size: 0.9em !important;
+
+		&:nth-child(2n) {
+			background-color: $color-gray4;
+		}
+		a {
+			font-size: 14px;
+			cursor: pointer;
+		}
+		img {
+			margin-right: 10px;
+			width: auto;
+			vertical-align: middle;
+		}
+	}
+}
+
+.ui-autocomplete {
+	background: white;
+	border: solid 1px #ccc;
+	box-shadow: 0px 1px 5px -4.5px rgba(0, 0, 0, 0.95);
+	max-width: 260px;
+	padding: 0;
+	width: auto !important;
+	z-index: 999 !important;
+
+	&.autocompleteopen {
+		display: table !important;
+	}
+
+	li {
+		padding: 12px 32px 12px 16px;
+		overflow: hidden;
+		font-size: 0.9em !important;
+
+		&:nth-child(2n) {
+			background-color: $color-gray4;
+		}
+		a {
+			font-size: 14px;
+			cursor: pointer;
+		}
+		img {
+			margin-right: 10px;
+			width: auto;
+			vertical-align: middle;
+		}
+	}
+}

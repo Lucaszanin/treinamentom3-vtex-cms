@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
+xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
+<head>
+	<meta name="page" content="categoria" page-id="categoria" />
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<vtex:contentPlaceHolder id="htmlSeo" />
+	<title>Template</title>
+
+	<vtex:template id="template-loads-header" />
+</head>
+<body >
+
+	<vtex:template id="template-header" />
+	<vtex:template id="template-menu" />
+
+	<main class="categoria">
+		<section class="site-linha">
+			<div class="container">
+				<div class="row">
+					<div class="breadcrumb col-12">
+						<vtex.cmc:breadCrumb />
+					</div>
+					<div class="col-12 col-md-4 col-lg-3">
+						<div class="filtros-categoria ">
+							<div class="topo-filtros">
+								<h3>
+									Filtrar busca
+								</h3>
+								<button aria-label="Fechar Filtros" id="close-filter-button">
+									<span></span>
+								</button>
+							</div>
+							<vtex.cmc:searchNavigator/>
+							<button class="clear-filter-btn">
+								Remover filtros
+							</button>
+							<button class="aply-filter-btn">
+								Aplicar filtros
+							</button>
+						</div>
+					</div>
+					<div class="col-12 col-md-8 col-lg-9">
+						<div class="topo-resultado">
+							<vtex.cmc:searchTitle />
+							<div class="opcoes-resultado">
+								<button aria-label="Abrir Filtros" id="open-filter-button">
+									Filtrar
+								</button>
+							</div>
+							<button class="clear-filter-btn">
+								Remover filtros
+							</button>
+						</div>
+						<div class="produtos-da-categoria">
+							<vtex.cmc:searchResult layout="46b0e7f2-15ee-4789-a75e-280e389d2b8f" itemCount="12" columnCount="12" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+
+	<footer >
+		<vtex:template id="template-footer-newletter" />
+		<vtex:template id="template-footer-links" />
+		<vtex:template id="template-footer" />
+	</footer>
+	<vtex:template id="template-loads-footer" />
+</body>
+</html>

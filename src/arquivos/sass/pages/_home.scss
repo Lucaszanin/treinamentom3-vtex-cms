@@ -1,0 +1,260 @@
+/***************************************************************/
+/**-- Home ---------------------------------********************/
+/*-------------------------------------------------------------*/
+
+.home{
+
+	.main-gallery{
+		>div{
+			&:not(.slick-initialized){
+				.box-banner{
+					&:not(:first-child){
+						display: none;
+					}
+				}
+			}
+
+			&.desktop{
+				@include mq(md, max){
+					display: none;
+				}
+			}
+
+			&.mobile{
+				@include mq(md, min){
+					display: none;
+				}
+			}
+		}
+
+		img{
+			width: 100%;
+		}
+
+		.slick-next,.slick-prev{
+			@extend .sprite;
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+			font-size: 0;
+			outline: none;
+			padding:0;
+			position: absolute;
+			top: 40%;
+			transform: scale(0.7);
+			z-index: 1;
+		}
+
+		.slick-next{
+			@extend .sprite;
+			@extend .sprite-circled-arrow-right;
+			left: auto;
+			right: 8px;
+		}
+
+		.slick-prev {
+			@extend .sprite;
+			@extend .sprite-circled-arrow-left;
+			right: auto;
+			left: 8px;
+		}
+
+		.slick-dots{
+			bottom: 20px;
+			position: absolute;
+			pointer-events: none;
+			text-align: center;
+			width: 100%;
+
+			&, li{
+				align-items: center;
+				display: flex!important;
+				justify-content: center;
+			}
+
+			li{
+				display: inline-block;
+				margin: 0 4px;
+			}
+
+			button{
+				background-color: $color-black2;
+				border: none;
+				cursor: pointer;
+				height: 10px;
+				outline: none;
+				padding: 0;
+				pointer-events: all;
+				transition: all 0.15s ease-in-out;
+				width: 10px;
+			}
+
+			.slick-active{
+				button{
+					background-color: $color-pink;
+					height: 16px;
+					width: 16px;
+				}
+			}
+		}
+	}
+
+	.banner{
+		&.desktop{
+			@include mq(md, max){
+				display: none;
+			}
+		}
+
+		&.mobile{
+			@include mq(md, min){
+				display: none;
+			}
+		}
+
+		img{
+			width: 100%;
+		}
+	}
+
+	.mosaico-home, .mosaico-home-footer{
+		@include mq(md, max){
+			padding: 0;
+		}
+
+		@include mq_range(md, xl){
+			max-width: 100%;
+		}
+
+		.row{
+			@include mq(md, max){
+				margin: 0;
+			}
+		}
+	}
+
+	.mosaico-home{
+		>.row{
+			@include mq(md, min){
+				margin-left: 0;
+			}
+		}
+
+		.banner{
+			padding: 0 0 40px;
+
+			@include mq(md, min){
+				padding: 0 10px;
+			}
+
+			img{
+				width: 100%;
+			}
+		}
+
+		.banners-left{
+			@include mq(md, min){
+				padding-left: 0px;
+				padding-right: 12px;
+			}
+		}
+
+		.banners-right{
+			padding: 0;
+
+			.banner{
+				padding-right: 0;
+
+				&:nth-child(2){
+					@include mq(md, min){
+						padding-left: 8px;
+					}
+				}
+			}
+		}
+	}
+
+	.categorias-home{
+		margin: 104px auto;
+
+		@include mq(md, max){
+			margin: 27px auto 70px;
+		}
+
+		.row{
+			@include mq(md, max){
+				flex-direction: column-reverse;
+			}
+
+			>div{
+				overflow: hidden;
+			}
+		}
+
+		.categorias{
+			max-width: 650px;
+			margin-left: auto;
+			margin-right: 0;
+			text-align: center;
+
+			@include mq(sm, max){
+				margin-right: 7%;
+			}
+
+			@include mq_range(sm, lg){
+				margin-right: 15%;
+			}
+
+			@include mq(lg, max){
+				max-width: 380px;
+				width: 90%;
+			}
+
+			.slick-list{
+				overflow: visible;
+			}
+		}
+
+		.box-banner{
+			display: inline-block;
+
+			img{
+				border-radius: 50%;
+				max-width: 124px;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+		}
+
+		.instagram{
+			font-size: 24px;
+			text-align: center;
+
+			@include mq(md, max){
+				margin-bottom: 40px;
+			}
+
+			@include mq(md, min){
+				max-width: 260px;
+			}
+
+			p{
+				line-height: 28px;
+				margin: 8px auto 0;
+			}
+
+			a{
+				color: $color-pink;
+				display: table;
+				font-weight: 700;
+				font-size: 16px;
+				margin: auto;
+
+				i{
+					transform: scale(0.35);
+				}
+			}
+		}
+	}
+}
+

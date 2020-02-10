@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
+	xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
+
+<head>
+	<meta name="page" content="home" page-id="homepage" />
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<vtex:contentPlaceHolder id="htmlSeo" />
+	<title>Template</title>
+
+	<vtex:template id="template-loads-header" />
+
+</head>
+
+<body>
+
+	<vtex:template id="template-header" />
+
+	<main class="home">
+
+		<section class="main-gallery">
+			<div class="desktop">
+				<vtex:contentPlaceHolder id="slide-principal" type="banner"  />
+			</div>
+			<div class="mobile">
+				<vtex:contentPlaceHolder id="slide-principal-mobile" type="banner"  />
+			</div>
+		</section>
+
+		<section class="container tipbar">
+			<div class="row">
+				<div class="col-12">
+					<ul>
+						<li>
+							<i class="sprite sprite-credit-card"></i>
+							<p>
+								parcelamento
+								<span>
+									até <strong>10x sem juros</strong>
+								</span>
+							</p>
+						</li>
+						<li>
+							<i class="sprite sprite-truck"></i>
+							<p>
+								frete grátis
+								<span>
+									acima de <strong>R$399,00</strong>
+								</span>
+							</p>
+						</li>
+						<li>
+							<i class="sprite sprite-discount-tag"></i>
+							<p>
+								desconto de
+								<span>
+									<strong>10%off</strong> no boleto
+								</span>
+							</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="container mosaico-home">
+			<div class="row">
+				<div class="banners-left banner col-12 col-md-4">
+					<vtex:contentPlaceHolder id="banner-01" type="banner" />
+				</div>
+				<div class="banners-right col-12 col-md-8 row">
+					<div class="banner col-12 col-md-6">
+						<vtex:contentPlaceHolder id="banner-02" type="banner" />
+					</div>
+					<div class="banner col-12 col-md-6">
+						<vtex:contentPlaceHolder id="banner-03" type="banner" />
+					</div>
+					<div class="banner col-12">
+						<vtex:contentPlaceHolder id="banner-04" type="banner" />
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="container categorias-home">
+			<div class="row">
+				<div class="col-12 col-md-8">
+					<div class="categorias">
+						<vtex:contentPlaceHolder id="categorias" />
+					</div>
+				</div>
+				<div class="col-12 col-md-4">
+					<div class="instagram">
+						<i class="sprite sprite-instagram-black"></i>
+						<p>
+							<i>#</i>osqueridinhos
+							<a href="#" target="_blank">ver todos <i class="sprite sprite-arrow-right"></i></a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="container mosaico-home-footer">
+			<div class="banner desktop">
+				<vtex:contentPlaceHolder id="banner-05" type="banner"/>
+			</div>
+			<div class="banner mobile">
+				<vtex:contentPlaceHolder id="mobile-banner-05" type="banner" />
+			</div>
+		</section>
+
+	</main>
+
+	<footer>
+		<vtex:template id="template-footer-newletter" />
+		<vtex:template id="template-footer-links" />
+		<vtex:template id="template-footer" />
+	</footer>
+	<vtex:template id="template-loads-footer" />
+</body>
+
+</html>
