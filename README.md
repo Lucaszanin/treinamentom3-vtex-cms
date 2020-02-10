@@ -1,11 +1,10 @@
 # template ecommerce M3
 
-data: 20/02/2019
+data: 10/02/2020
 
 ## Requisitos
 
--   Nodejs >= 10.13.0
--   yarn >= 2
+-   Nodejs >= 10.13.0 - recomendo usar o nvm para gerenciar suas versões do nodejs (NVM)[https://github.com/coreybutler/nvm-windows/releases]
 
 ## Tarefas Gulp
 
