@@ -17,9 +17,9 @@ export default class MenuContents {
 				".menu-principal .itens >li .container"
 			);
 
-			// menuContents.insertProduct($conteudo);
-			menuContents.insertBanners($conteudo);
-		});
+			// this.insertProduct($conteudo);
+			this.insertBanners($conteudo);
+		}.bind(this));
 	}
 
 	insertProduct($conteudo) {
