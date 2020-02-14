@@ -10,9 +10,14 @@ module.exports = merge(common, {
 	},
 	mode: "production",
 	optimization: {
-		minimizer: [new TerserPlugin({
-			extractComments: true,
-		})]
+		minimizer: [
+			new TerserPlugin({
+				extractComments: true,
+				terserOptions: {
+					keep_classnames: true
+				}
+			})
+		]
 	},
 	plugins: [new webpack.HashedModuleIdsPlugin()]
 });

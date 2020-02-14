@@ -219,9 +219,9 @@ export default class Minicart {
 		}
 	}
 	addOneToCart() {
-		$(".mini-cart-container .add-to-cart").click(() => {
-			var qtd = $(this).siblings(".value");
-			var productId = $(this)
+		$(".mini-cart-container .add-to-cart").click(e => {
+			var qtd = $(e.target).siblings(".value");
+			var productId = $(e.target)
 				.parents(".product")
 				.attr("id");
 
@@ -237,8 +237,8 @@ export default class Minicart {
 	}
 	removeOneFromCart() {
 		$(".mini-cart-container .remove-from-cart").click(() => {
-			var qtd = $(this).siblings(".value");
-			var productId = $(this)
+			var qtd = $(e.target).siblings(".value");
+			var productId = $(e.target)
 				.parents(".product")
 				.attr("id");
 
@@ -255,7 +255,7 @@ export default class Minicart {
 	}
 	removeFromCart() {
 		$(".mini-cart-container .product-remove .remove").click(() => {
-			var productId = $(this)
+			var productId = $(e.target)
 				.parents(".product")
 				.attr("id");
 			this.updateOrderForm(productId, 0);
