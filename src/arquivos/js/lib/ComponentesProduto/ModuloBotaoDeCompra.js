@@ -24,7 +24,8 @@ export var ModuloBotaoDeCompra = function(elemento = ".btnBuy") {
 		msgAddCarrinhoSucesso:
 			"<p>Seu produto foi adicionado ao carrinho com sucesso!</p><p>O que deseja fazer agora?</p>",
 		botaoContinuarComrpando: "Continuar comprando",
-		botaoFinalizarCompra: "Finalizar compra"
+		botaoFinalizarCompra: "Finalizar compra",
+		icone: ""
 	};
 	/**
 	 * Atualiza a quantidade de acordo com o novo sku

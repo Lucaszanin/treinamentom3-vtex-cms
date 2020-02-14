@@ -55,25 +55,25 @@ export var ModuloPreco = function(elemento = ".preco-produto") {
 			class: "container-precos",
 			css: "display:none"
 		}).appendTo(this.elemento());
-		if (this.opcoes().precoDe) {
+		if (this.opcoes().precoDe.ativo) {
 			var moduloPrecoDe = new ModuloPrecoDe();
 			moduloPrecoDe.configurar(this.opcoes().precoDe);
 			this.elemento().append(moduloPrecoDe.desenhar());
 			this.precos.push(moduloPrecoDe);
 		}
-		if (this.opcoes().precoPor) {
+		if (this.opcoes().precoPor.ativo) {
 			var moduloPrecoPor = new ModuloPrecoPor();
 			moduloPrecoPor.configurar(this.opcoes().precoPor);
 			this.elemento().append(moduloPrecoPor.desenhar());
 			this.precos.push(moduloPrecoPor);
 		}
-		if (this.opcoes().parcelado) {
+		if (this.opcoes().parcelado.ativo) {
 			var moduloPrecoParcelado = new ModuloPrecoParcelado();
 			moduloPrecoParcelado.configurar(this.opcoes().parcelado);
 			this.elemento().append(moduloPrecoParcelado.desenhar());
 			this.precos.push(moduloPrecoParcelado);
 		}
-		if (this.opcoes().boleto) {
+		if (this.opcoes().boleto.ativo) {
 			var moduloPrecoBoleto = new ModuloPrecoBoleto();
 			moduloPrecoBoleto.configurar(this.opcoes().boleto);
 			this.elemento().append(moduloPrecoBoleto.desenhar());
