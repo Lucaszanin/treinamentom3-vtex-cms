@@ -1,4 +1,5 @@
-import Container from "./core/Container";
+import "url-polyfill";
+import Container from "../core/Container";
 import Erro from "./pages/erro";
 import Home from "./pages/home";
 import Categoria from "./pages/categoria";

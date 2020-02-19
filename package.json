@@ -54,7 +54,8 @@
 		"bootstrap": "^4.4.1",
 		"eslint": "^6.8.0",
 		"lazysizes": "^5.2.0",
-		"slick-carousel": "~1.7.1"
+		"slick-carousel": "~1.7.1",
+		"url-polyfill": "^1.1.8"
 	},
 	"browserslist": [
 		"defaults",

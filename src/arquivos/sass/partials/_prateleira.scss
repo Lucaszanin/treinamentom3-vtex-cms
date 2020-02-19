@@ -134,15 +134,16 @@
 
 		.lazyload__sibling {
 			padding-bottom: 100%;
+
+			+ div {
+				top: 0;
+				left: 0;
+				position: absolute;
+				width: 100%;
+			}
 		}
 
-		.lazyloaded {
-			top: 0;
-			left: 0;
-			position: absolute;
-		}
-
-		img {
+		.lazyload__sibling img {
 			left: 50%;
 			max-width: initial;
 			position: relative;
