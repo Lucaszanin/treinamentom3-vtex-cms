@@ -5,6 +5,7 @@
 
 # Para arquivos de desenvolvimnto
 public/
+src\arquivos\sass\lib\_sprite.scss
 
 # gulp
 dist/
