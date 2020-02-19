@@ -12,7 +12,9 @@ const gulp = require("gulp"),
 	apiMocker = require("connect-api-mocker"),
 	sprity = require("sprity"),
 	crypto = require("crypto"),
-	glob = require("glob");
+	glob = require("glob"),
+	path = require("path"),
+	inlinesource = require("gulp-inline-source");
 
 const VtexEmulation = require("./dev/VtexEmulation.js");
 const webpack = require("webpack");
@@ -203,8 +205,29 @@ function html() {
 				keepBlockTags: false
 			})
 		)
-		.pipe(gulp.dest("dist"))
+		.pipe(
+			inlinesource({
+				compress: true,
+				rootpath: path.resolve("src/arquivos")
+			})
+		)
+		.pipe(gulp.dest(paths.output))
 		.pipe(connect.reload());
+}
+
+function htmlProd() {
+	return gulp
+		.src([
+			paths.html.prateleiras + "**/*.html",
+			paths.html.template + "**/*.html"
+		])
+		.pipe(
+			inlinesource({
+				compress: true,
+				rootpath: path.resolve("src/arquivos")
+			})
+		)
+		.pipe(gulp.dest(paths.output));
 }
 
 function watch() {
@@ -257,7 +280,7 @@ function devServer() {
 const build = gulp.series(
 	clean,
 	sprites,
-	gulp.parallel(html, scripts, styles, img)
+	gulp.parallel(htmlProd, scripts, styles, img)
 );
 
 exports.build = build;
