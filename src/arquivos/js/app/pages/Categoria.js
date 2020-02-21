@@ -18,17 +18,17 @@ export default class Categoria {
 	}
 
 	toggleFiltersMobile() {
-		$("#open-filter-button").on("click", function() {
+		$("#open-filter-button").on("click", function () {
 			$(".filtros-categoria").addClass("mobile-open");
 		});
 
-		$("#close-filter-button, .aply-filter-btn").on("click", function() {
+		$("#close-filter-button, .aply-filter-btn").on("click", function () {
 			$(".filtros-categoria").removeClass("mobile-open");
 		});
 	}
 
 	filterMobileExtraInfo() {
-		var atualizarContagemDeFiltrosAtivos = function() {
+		var atualizarContagemDeFiltrosAtivos = function () {
 			var opcoesFiltro = $(
 				".search-multiple-navigator .multi-search-checkbox"
 			);
@@ -57,16 +57,16 @@ export default class Categoria {
 		//Para browsers que mantém os checkboxes selecionados ao atualizar a página
 		atualizarContagemDeFiltrosAtivos();
 
-		$(".aply-filter-btn").on("click", function() {
+		$(".aply-filter-btn").on("click", function () {
 			atualizarContagemDeFiltrosAtivos();
 		});
 
-		$(".topo-resultado .clear-filter-btn").on("click", function() {
+		$(".topo-resultado .clear-filter-btn").on("click", function () {
 			$("#open-filter-button")
 				.find("span")
 				.remove();
 
-			$(".multi-search-checkbox").each(function() {
+			$(".multi-search-checkbox").each(function () {
 				if ($(this).is(":checked")) {
 					$(this)
 						.attr("checked", false)
@@ -84,6 +84,36 @@ export default class Categoria {
 			.appendTo(".topo-resultado .opcoes-resultado");
 	}
 
+	createCategoryFilter() {
+		let departmentFilter = $("<fieldset />", {
+			"class": "refino links-departamento"
+		});
+		let list = $("<div />");
+		let navSingle = $(".search-single-navigator");
+		let subcategories = navSingle.find("h4,h3,h5");
+
+		subcategories.each(function (i, li) {
+			let item = $("<label />", {
+				class: "item"
+			});
+
+			if ($(li).find("a").length > 0) {
+				let link = $(li).find("a");
+				link.text(link.attr("title"));
+				item.html(link);
+				item.appendTo(list);
+			}
+		});
+
+		$("<h5 />", {
+			text: "Categoria"
+		}).appendTo(departmentFilter);
+
+		list.appendTo(departmentFilter);
+
+		return departmentFilter;
+	}
+
 	smartResearch() {
 		if (isSmallerThen768) {
 			$(".navigation-tabs input[type='checkbox']").vtexSmartResearch({
@@ -91,10 +121,10 @@ export default class Categoria {
 				loadContent: ".produtos-da-categoria [id^=ResultItems]",
 				shelfClass: "[class$=colunas]",
 				mergeMenu: false,
-				authorizeScroll: function() {
+				authorizeScroll: function () {
 					return false;
 				},
-				authorizeUpdate: function() {
+				authorizeUpdate: function () {
 					return true;
 				},
 				emptySearchMsg:
@@ -103,7 +133,16 @@ export default class Categoria {
 				infinitScroll: false,
 				loadMoreText: "Ver mais",
 				filterOnChange: false,
-				filterButtonClass: ".aply-filter-btn"
+				filterButtonClass: ".aply-filter-btn",
+				callback: () => {
+					try {
+						var navMultiple = $(".search-multiple-navigator");
+						var categoryFilter = this.createCategoryFilter();
+						categoryFilter.insertBefore(navMultiple.find("fieldset:first"));
+					} catch (error) {
+						console.log(error);
+					}
+				}
 			});
 		} else {
 			$(".navigation-tabs input[type='checkbox']").vtexSmartResearch({
@@ -111,17 +150,26 @@ export default class Categoria {
 				loadContent: ".produtos-da-categoria [id^=ResultItems]",
 				shelfClass: "[class$=colunas]",
 				mergeMenu: false,
-				authorizeScroll: function() {
+				authorizeScroll: function () {
 					return false;
 				},
-				authorizeUpdate: function() {
+				authorizeUpdate: function () {
 					return true;
 				},
 				emptySearchMsg:
 					"<h3>Não encontramos nenhum resultado para seu filtro!</h3>",
 				clearButtonClass: ".clear-filter-btn",
 				infinitScroll: false,
-				loadMoreText: "Ver mais"
+				loadMoreText: "Ver mais",
+				callback: () => {
+					try {
+						var navMultiple = $(".search-multiple-navigator");
+						var categoryFilter = this.createCategoryFilter();
+						categoryFilter.insertBefore(navMultiple.find("fieldset:first"));
+					} catch (error) {
+						console.log(error);
+					}
+				}
 			});
 		}
 
