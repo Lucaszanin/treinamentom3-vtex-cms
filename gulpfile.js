@@ -230,6 +230,20 @@ function htmlProd() {
 		.pipe(gulp.dest(paths.output));
 }
 
+function customFonts() {
+	return gulp
+		.src(paths.fonts.src)
+		.pipe(
+			rename(path => ({
+				dirname: "",
+				basename: path.basename,
+				extname: path.extname + ".css"
+			}))
+		)
+		.pipe(gulp.dest(paths.outputStatic))
+		.pipe(connect.reload());
+}
+
 function watch() {
 	devServer();
 	gulp.watch(paths.scripts.watch, { ignoreInitial: false }, scripts);
@@ -237,6 +251,7 @@ function watch() {
 	gulp.watch(paths.styles.watch, { ignoreInitial: false }, styles);
 	gulp.watch(paths.img.watch, { ignoreInitial: false }, img);
 	gulp.watch(paths.html.watch, { ignoreInitial: false }, html);
+	gulp.watch(paths.fonts.src, { ignoreInitial: false }, customFonts);
 }
 
 function devServer() {
@@ -280,7 +295,7 @@ function devServer() {
 const build = gulp.series(
 	clean,
 	sprites,
-	gulp.parallel(htmlProd, scripts, styles, img)
+	gulp.parallel(htmlProd, scripts, styles, img, customFonts)
 );
 
 exports.build = build;
