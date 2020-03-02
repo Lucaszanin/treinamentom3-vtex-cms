@@ -13,6 +13,7 @@ import Menu from "./partials/menu";
 import Promocao from "./partials/Promocao";
 import MenuContents from "./partials/MenuContents";
 import Login from "./partials/Login";
+import ProductModules from "./partials/ProductModules";
 
 const app = new Container({
 	appName: "template",
@@ -36,7 +37,7 @@ const app = new Container({
 		},
 		{
 			bodyClass: "produto",
-			components: [Produto]
+			components: [Produto, ProductModules]
 		},
 		{
 			bodyClass: "erro",
