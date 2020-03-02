@@ -38,6 +38,9 @@ const paths = {
 		src: "src/arquivos/img/*.{png,gif,jpg}",
 		watch: "src/arquivos/img/**/*.{png,gif,jpg}"
 	},
+	fonts: {
+		src: "src/arquivos/fonts/**.*"
+	},
 	html: {
 		watch: "src/**/*.html",
 		template: "src/template-pagina/",
