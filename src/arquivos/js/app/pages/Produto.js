@@ -3,20 +3,12 @@ import "../../lib/elevateZoom";
 import loja from "../../config/loja";
 import { alterarTamanhoImagemSrcVtex } from "../../helpers/vtexUtils";
 import { isSmallerThen768 } from "../../helpers/mediasMatch";
-import Components from "../../lib/ComponentesProduto/main";
 import { slideResponsivo } from "../functions/slide";
 
 export default class Produto {
 	constructor() {
-		this.mapearSkus();
 		this.imagensDasVariacoes();
-		this.preco(".moduloPreco");
-		this.quantidade(".moduloQuantidade");
-		this.botaoDeCompra(".moduloBotaoDeCompra");
-		this.aviseme(".moduloAviseMe");
 		this.imagensCompreJunto();
-
-		this.selecaoSkus(".moduloSkus", window.skuJson);
 
 		this.shortDescription();
 		this.zoomImagemPrincipal();
@@ -31,75 +23,6 @@ export default class Produto {
 	 */
 	itempropImage() {
 		$(".apresentacao #image #image-main").attr("itemprop", "image");
-	}
-
-	preco(elemento) {
-		var moduloPreco = new Components.ModuloPreco(elemento).configurar({
-			precoDe: {
-				ativo: true
-			},
-			precoPor: {
-				ativo: true
-			},
-			parcelado: {
-				ativo: true,
-				auto: true
-			},
-			boleto: {
-				ativo: false
-			}
-		});
-		moduloPreco.desenhar();
-	}
-
-	selecaoSkus(elemento, skuJsonAdultered) {
-
-		var ModuloSkus = new Components.ModuloSkusPorEspecificacoes(skuJsonAdultered, elemento);
-		// ModuloSkus.elemento();
-		ModuloSkus.opcoes({
-			especificacaoComImagem: "Cores"
-		});
-		ModuloSkus.desenhar().configurar();
-		return ModuloSkus.setDefauls(true);
-		// this.opcaoSkuIndisponivel();
-	}
-
-	quantidade(elemento) {
-		var moduloBtnQtd = new Components.ModuloBtnQtd();
-		moduloBtnQtd.configurar({
-			max: 50
-		});
-
-		var moduloQuantidade = new Components.ModuloQuantidade(elemento);
-		moduloQuantidade.configurar({
-			maxEstoque: 50
-		});
-		moduloQuantidade.moduloExibicao(moduloBtnQtd);
-		moduloQuantidade.desenhar();
-	}
-
-	botaoDeCompra(elemento) {
-		var moduloBotaoDeCompra = new Components.ModuloBotaoDeCompra(elemento);
-		moduloBotaoDeCompra.configurar({
-			botaoCompra: "Comprar",
-			botaoSkuIndisponivel: "Indisponível",
-			msgAddCarrinhoSucesso: "Adicionado à <strong>Sacola</strong> "
-		});
-		moduloBotaoDeCompra.desenhar();
-	}
-
-	aviseme(elemento) {
-		var opcoes = {
-			titulo:
-				"<span>Que pena, esse tamanho está indisponível, mas nós te avisamos quando chegar!</span>",
-			placeholderNome: "Digite seu nome",
-			placeholderEmail: "Digite seu e-mail",
-			btnSubmit: "Avise-me!"
-		};
-
-		var moduloAviseMe = new Components.ModuloAviseMe(elemento);
-		moduloAviseMe.configurar(opcoes);
-		moduloAviseMe.desenhar();
 	}
 
 	exibirVariacaoDeCores() {
@@ -233,12 +156,6 @@ export default class Produto {
 		}
 	}
 
-	mapearSkus() {
-		window.skuJson = mapearSkus(window.skuJson);
-	}
-
-
-
 	imagensCompreJunto() {
 		window.onload = function() {
 			setTimeout(function() {
@@ -256,33 +173,4 @@ export default class Produto {
 			}, 1500);
 		};
 	}
-}
-
-/**
- * Função para mapear skus sem especificações no skuJson
- * esse script usa o nome de cada sku como variação "cadastrada" para o funcionameto correto dos modulos de produto
- * @param {object} skuJson
- */
-function mapearSkus(skuJson) {
-	var skuJsonAdultered = skuJson;
-	if (skuJson.dimensions.length == 0) {
-		let variationName = "variacao";
-		let nameSkus = [];
-
-		for (const i in skuJsonAdultered.skus) {
-			if (skuJsonAdultered.skus.hasOwnProperty(i)) {
-				const sku = skuJsonAdultered.skus[i];
-
-				nameSkus.push(sku.skuname);
-				sku.dimensions[variationName] = sku.skuname;
-			}
-		}
-
-		skuJsonAdultered.dimensions.push(variationName);
-		skuJsonAdultered.dimensionsInputType[variationName] = "Combo";
-		skuJsonAdultered.dimensionsMap[variationName] = nameSkus;
-
-		skuJsonAdultered._scriptMapVariations = true;
-	}
-	return skuJsonAdultered;
 }

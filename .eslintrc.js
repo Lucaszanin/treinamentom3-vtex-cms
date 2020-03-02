@@ -14,7 +14,7 @@ module.exports = {
 		sourceType: "module"
 	},
 	rules: {
-		indent: ["warn", "tab"],
+		indent: ["warn", "tab", { SwitchCase: 1 }],
 		"linebreak-style": ["warn", "windows"],
 		"no-unused-vars": [
 			"warn",
