@@ -1,5 +1,5 @@
-import "../../lib/custom-newsletter-form";
-import loja from "../../config/loja";
+import "Lib/custom-newsletter-form";
+import loja from "Config/loja";
 
 export default class Newsletter {
 	constructor({ elemento, textButtom }) {

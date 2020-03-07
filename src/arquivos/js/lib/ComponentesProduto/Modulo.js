@@ -3,8 +3,9 @@
  * preenchendo com JSON
  * atualizado por eventos js
  */
-export var Modulo = function(elemento) {
+export var Modulo = function(elemento, store) {
 	this.elemento(elemento);
+	this.store(store);
 };
 /**
  * Atualiza os valores no html que foi criado
@@ -13,6 +14,12 @@ export var Modulo = function(elemento) {
 Modulo.prototype.atualizar = function() {
 	return this;
 };
+
+Modulo.prototype.store = function(store) {
+	this._store = store;
+	return this._store;
+};
+
 /**
  * Cria e insere o html com as variações dos skus
  * @return {object} this

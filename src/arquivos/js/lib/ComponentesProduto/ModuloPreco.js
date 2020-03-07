@@ -5,12 +5,13 @@ import {
 	ModuloPrecoParcelado,
 	ModuloPrecoBoleto
 } from "./SubModulos/ModulosTiposDePreco";
+import { SKU_REF, CHANGE_SKU } from "./EventType";
 /**
  * modulo preco
  * Mantem o preço de exibição atualizado
  */
-export var ModuloPreco = function(elemento = ".preco-produto") {
-	Modulo.call(this, elemento);
+export var ModuloPreco = function(elemento = ".preco-produto", componentStore) {
+	Modulo.call(this, elemento, componentStore);
 	this.opcoes({
 		precoDe: {
 			ativo: true
@@ -36,14 +37,14 @@ export var ModuloPreco = function(elemento = ".preco-produto") {
 	 */
 	this.configurar = function(opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
-		$(document).one("sku-referencial", function() {
-			var novoSku = JSON.parse(sessionStorage.getItem("sku-referencial"));
-			_this.atualizar(novoSku);
+
+		this._store.events.subscribe(SKU_REF, function(event, sku) {
+			_this.atualizar(sku);
 		});
-		$(document).on("change-sku", function() {
-			var novoSku = JSON.parse(sessionStorage.getItem("sku-selecionado"));
-			_this.atualizar(novoSku);
+		this._store.events.subscribe(CHANGE_SKU, function(event, sku) {
+			_this.atualizar(sku);
 		});
+
 		return this;
 	};
 	/**

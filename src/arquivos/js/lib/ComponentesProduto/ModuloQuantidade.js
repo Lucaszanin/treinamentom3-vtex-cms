@@ -1,12 +1,14 @@
 import { Modulo } from "./Modulo";
+import { SKU_REF, CHANGE_SKU } from "./EventType";
 /**
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
 export var ModuloQuantidade = function(
-	elemento = ".qtd-selector-content:first-child"
+	elemento = ".qtd-selector-content:first-child",
+	componentStore
 ) {
-	Modulo.call(this, elemento);
+	Modulo.call(this, elemento, componentStore);
 	this._opcoes = {
 		maxEstoque: 50
 	};
@@ -17,11 +19,12 @@ export var ModuloQuantidade = function(
 	 */
 	this.configurar = function(opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
-		$(document).one("sku-referencial", function() {
+
+		componentStore.events.subscribe(SKU_REF, function() {
 			var novoSku = JSON.parse(sessionStorage.getItem("sku-referencial"));
 			_this.atualizar(novoSku);
 		});
-		$(document).on("change-sku", function() {
+		componentStore.events.subscribe(CHANGE_SKU, function() {
 			var novoSku = JSON.parse(sessionStorage.getItem("sku-selecionado"));
 			_this.atualizar(novoSku);
 		});

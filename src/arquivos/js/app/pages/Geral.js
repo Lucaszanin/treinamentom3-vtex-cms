@@ -1,5 +1,5 @@
-import { isSmallerThen768 } from "../../helpers/mediasMatch";
-import prateleira from "../functions/prateleira";
+import { isSmallerThen768 } from "Helpers/mediasMatch";
+import prateleira from "App/functions/prateleira";
 
 // @TODO: Ratorar essa classe, dividar em classes menores para cada funcionalidade
 export default class Geral {

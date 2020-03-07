@@ -1,11 +1,15 @@
 import { Modulo } from "./Modulo";
 import { alterarTamanhoImagemSrcVtex } from "./util";
+import { CHANGE_SKU } from "./EventType";
 /**
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
-export var ModuloCompreJunto = function(elemento = ".compre-junto") {
-	Modulo.call(this, elemento);
+export var ModuloCompreJunto = function(
+	elemento = ".compre-junto",
+	componentStore
+) {
+	Modulo.call(this, elemento, componentStore);
 	this._opcoes = {
 		titulo: "Compre junto"
 	};
@@ -19,7 +23,7 @@ ModuloCompreJunto.prototype.constructor = ModuloCompreJunto;
  */
 ModuloCompreJunto.prototype.configurar = function(opcoes) {
 	this.opcoes($.extend({}, this._opcoes, opcoes));
-	$(document).on("change-sku", this.atualizar.bind(this));
+	this._store.events.subscribe(CHANGE_SKU, this.atualizar.bind(this));
 	return this;
 };
 /**

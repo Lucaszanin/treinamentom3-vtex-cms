@@ -23,11 +23,20 @@ module.exports = {
 				use: {
 					loader: "babel-loader",
 					options: {
-						presets: ["@babel/preset-env", "@babel/react"]
+						presets: ["@babel/preset-env", "@babel/react"],
+						plugins: ["@babel/plugin-transform-async-to-generator"]
 					}
 				}
 			}
 		]
+	},
+	resolve: {
+		alias: {
+			Helpers: path.resolve(__dirname, "src/arquivos/js/helpers"),
+			Lib: path.resolve(__dirname, "src/arquivos/js/lib"),
+			Config: path.resolve(__dirname, "src/arquivos/js/config"),
+			App: path.resolve(__dirname, "src/arquivos/js/app")
+		}
 	},
 	plugins: [
 		new webpack.ProvidePlugin({

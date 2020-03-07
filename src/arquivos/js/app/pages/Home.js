@@ -2,7 +2,7 @@ import {
 	bannerHome,
 	barraDeVantagens,
 	naveguePorCategorias
-} from "../functions/slide";
+} from "App/functions/slide";
 
 export default class Home {
 	constructor() {

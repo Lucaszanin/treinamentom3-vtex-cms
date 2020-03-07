@@ -1,8 +1,8 @@
 import { Modulo } from "../Modulo";
 import { getPrice } from "../util";
 
-export var ModuloPrecoBoleto = function(elemento) {
-	Modulo.call(this);
+export var ModuloPrecoBoleto = function(elemento, componentStore) {
+	Modulo.call(this, elemento, componentStore);
 	this.opcoes({
 		ativo: true
 	});
@@ -124,7 +124,7 @@ ModuloPrecoParcelado.prototype.desenhar = function() {
 		class: "value"
 	}).appendTo(valorDividido);
 	$("<span />", {
-		html: " no cartão"
+		html: " sem juros"
 	}).appendTo(valorDividido);
 	this.elemento(valorDividido);
 	return valorDividido;
