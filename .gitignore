@@ -5,7 +5,9 @@
 
 # Para arquivos de desenvolvimnto
 public/
-src\arquivos\sass\lib\_sprite.scss
+
+# Remove scss gerado pelo sprite.
+src/arquivos/sass/lib/_sprite.scss
 
 # gulp
 dist/
