@@ -1,21 +1,34 @@
 import Components from "Lib/ComponentesProduto/index";
 
 export default class ProductModules {
-	constructor() {
-		this.mapearSkus();
-		this.preco(".product__price");
-		this.quantidade(".product__qtd");
-		this.botaoDeCompra(".product__buy-btn");
-		this.aviseme(".product__alert-me");
-		this.selecaoSkus(".product__skus", window.skuJson);
+	constructor(opts) {
+		this.opts = {
+			priceSelector: opts?.priceSelector || ".product__price",
+			qtdSelector: opts?.qtdSelector || ".product__qtd",
+			buyBtnSelector: opts?.buyBtnSelector || ".product__buy-btn",
+			skuSelector: opts?.skuSelector || ".product__skus",
+			alertMeSelector: opts?.alertMeSelector || ".product__alert-me",
+			skuJson: opts?.skuJson || window.skuJson,
+			store: opts?.store || new Components.ComponentStore()
+		};
+		this.store = this.opts.store;
+		this.mapearSkus(this.opts.skuJson);
+		this.preco(this.opts.priceSelector);
+		this.quantidade(this.opts.qtdSelector);
+		this.botaoDeCompra(this.opts.buyBtnSelector);
+		this.selecaoSkus(this.opts.skuSelector, this.skuJson);
+		this.aviseme(this.opts.alertMeSelector);
 	}
 
-	mapearSkus() {
-		window.skuJson = mapearSkus(window.skuJson);
+	mapearSkus(skuJson) {
+		this.skuJson = mapearSkus(skuJson);
 	}
 
 	preco(elemento) {
-		var moduloPreco = new Components.ModuloPreco(elemento).configurar({
+		var moduloPreco = new Components.ModuloPreco(
+			elemento,
+			this.store
+		).configurar({
 			precoDe: {
 				ativo: false
 			},
@@ -36,7 +49,8 @@ export default class ProductModules {
 	selecaoSkus(elemento, skuJsonAdultered) {
 		var ModuloSkus = new Components.ModuloSkusPorEspecificacoes(
 			skuJsonAdultered,
-			elemento
+			elemento,
+			this.store
 		);
 		// ModuloSkus.elemento();
 		ModuloSkus.desenhar().configurar();
@@ -45,12 +59,15 @@ export default class ProductModules {
 	}
 
 	quantidade(elemento) {
-		var moduloBtnQtd = new Components.ModuloBtnQtd();
+		var moduloBtnQtd = new Components.ModuloBtnQtd(this.store);
 		moduloBtnQtd.configurar({
 			max: 50
 		});
 
-		var moduloQuantidade = new Components.ModuloQuantidade(elemento);
+		var moduloQuantidade = new Components.ModuloQuantidade(
+			elemento,
+			this.store
+		);
 		moduloQuantidade.configurar({
 			maxEstoque: 50
 		});
@@ -59,7 +76,10 @@ export default class ProductModules {
 	}
 
 	botaoDeCompra(elemento) {
-		var moduloBotaoDeCompra = new Components.ModuloBotaoDeCompra(elemento);
+		var moduloBotaoDeCompra = new Components.ModuloBotaoDeCompra(
+			elemento,
+			this.store
+		);
 		moduloBotaoDeCompra.configurar({
 			botaoCompra: "Comprar",
 			botaoSkuIndisponivel: "Indisponível",
@@ -70,14 +90,15 @@ export default class ProductModules {
 
 	aviseme(elemento) {
 		var opcoes = {
-			titulo:
-				"<span>Que pena, esse tamanho está indisponível, mas nós te avisamos quando chegar!</span>",
+			titulo: `
+			<p class="alert-me__title">Produto indisponível</p>
+			<p class="alert-me__text">Avise-me quando chegar</p>`,
 			placeholderNome: "Digite seu nome",
 			placeholderEmail: "Digite seu e-mail",
-			btnSubmit: "Avise-me!"
+			btnSubmit: "Enviar"
 		};
 
-		var moduloAviseMe = new Components.ModuloAviseMe(elemento);
+		var moduloAviseMe = new Components.ModuloAviseMe(elemento, this.store);
 		moduloAviseMe.configurar(opcoes);
 		moduloAviseMe.desenhar();
 	}

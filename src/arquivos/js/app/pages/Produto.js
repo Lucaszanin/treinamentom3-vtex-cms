@@ -1,9 +1,11 @@
 import "Lib/elevateZoom";
 
 import loja from "Config/loja";
+import Components from "Lib/ComponentesProduto";
 import { alterarTamanhoImagemSrcVtex } from "Helpers/vtexUtils";
 import { isSmallerThen768 } from "Helpers/mediasMatch";
 import { slideResponsivo } from "App/functions/slide";
+import ProductModules from "App/components/ProductModules";
 
 export default class Produto {
 	constructor() {
@@ -15,6 +17,19 @@ export default class Produto {
 		this.productSlides();
 		this.exibirVariacaoDeCores();
 		slideResponsivo(".prateleira-de-produtos", 4, 3, 1, 1, false, true);
+		this.initProductComponents();
+	}
+
+	async initProductComponents() {
+		const store = new Components.ComponentStore();
+		this.modules = new ProductModules({
+			store,
+			priceSelector: ".moduloPreco",
+			qtdSelector: ".moduloQuantidade",
+			buyBtnSelector: ".moduloBotaoDeCompra",
+			skuSelector: ".moduloSkus",
+			alertMeSelector: ".moduloAviseMe"
+		});
 	}
 
 	/*

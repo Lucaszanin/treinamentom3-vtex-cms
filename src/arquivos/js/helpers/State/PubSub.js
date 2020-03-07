@@ -3,7 +3,7 @@ export default class PubSub {
 	constructor() {
 		this.events = {};
 	}
-	subscribe(event, cb) {
+	subscribe(event, callback) {
 		if (!this.events.hasOwnProperty(event)) {
 			this.events[event] = [];
 		}
