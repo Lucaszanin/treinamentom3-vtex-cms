@@ -14,7 +14,15 @@ module.exports = merge(common, {
 			new TerserPlugin({
 				extractComments: true,
 				terserOptions: {
-					keep_classnames: true
+					keep_classnames: true,
+					compress: {
+						pure_funcs: [
+							"console.info",
+							"console.debug",
+							"console.warn",
+							"console.log"
+						]
+					}
 				}
 			})
 		]
