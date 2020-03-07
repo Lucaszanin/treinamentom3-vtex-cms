@@ -3,7 +3,7 @@ export default class PubSub {
 	constructor() {
 		this.events = {};
 	}
-	subscribe(event, callback) {
+	subscribe(event, cb) {
 		if (!this.events.hasOwnProperty(event)) {
 			this.events[event] = [];
 		}
@@ -14,5 +14,8 @@ export default class PubSub {
 			return [];
 		}
 		return this.events[event].map(callback => callback(event, data));
+	}
+	unsubscribe(event, cb) {
+		this.events[event].filter(fn => fn !== cb);
 	}
 }
