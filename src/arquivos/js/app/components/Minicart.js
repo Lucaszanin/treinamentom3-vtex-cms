@@ -1,4 +1,4 @@
-import { alterarTamanhoImagemSrcVtex } from "../../helpers/vtexUtils";
+import { alterarTamanhoImagemSrcVtex } from "Helpers/vtexUtils";
 
 export default class Minicart {
 	createMiniCartStructure(element) {

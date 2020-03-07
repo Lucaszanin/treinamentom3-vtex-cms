@@ -1,4 +1,4 @@
-import { navegacaoInstitucional } from "../functions/slide";
+import { navegacaoInstitucional } from "App/functions/slide";
 
 export default class Institucional {
 	constructor() {

@@ -1,4 +1,4 @@
-import isPage from "../helpers/isPage";
+import isPage from "Helpers/isPage";
 
 export default class Container {
 	constructor({ appName, components, pages }) {

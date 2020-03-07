@@ -1,5 +1,5 @@
-import lojaConf from "../../config/loja";
-import { getPrice } from "../../helpers/vtexUtils";
+import lojaConf from "Config/loja";
+import { getPrice } from "Helpers/vtexUtils";
 
 export default {
 	flagDeDesconto: function flagDeDesconto(elementos) {

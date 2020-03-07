@@ -1,9 +1,9 @@
-import "../../lib/elevateZoom";
+import "Lib/elevateZoom";
 
-import loja from "../../config/loja";
-import { alterarTamanhoImagemSrcVtex } from "../../helpers/vtexUtils";
-import { isSmallerThen768 } from "../../helpers/mediasMatch";
-import { slideResponsivo } from "../functions/slide";
+import loja from "Config/loja";
+import { alterarTamanhoImagemSrcVtex } from "Helpers/vtexUtils";
+import { isSmallerThen768 } from "Helpers/mediasMatch";
+import { slideResponsivo } from "App/functions/slide";
 
 export default class Produto {
 	constructor() {

@@ -1,6 +1,6 @@
-import "../../lib/smartResearch";
-import prateleira from "../functions/prateleira";
-import { isSmallerThen768 } from "../../helpers/mediasMatch";
+import "Lib/smartResearch";
+import prateleira from "App/functions/prateleira";
+import { isSmallerThen768 } from "Helpers/mediasMatch";
 
 /*
  * paginaDeCategoria
