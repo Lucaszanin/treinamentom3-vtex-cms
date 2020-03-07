@@ -1,4 +1,4 @@
-import Components from "../../lib/ComponentesProduto/main";
+import Components from "Lib/ComponentesProduto/index";
 
 export default class ProductModules {
 	constructor() {

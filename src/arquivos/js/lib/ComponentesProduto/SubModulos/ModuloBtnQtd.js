@@ -1,8 +1,10 @@
 import { Modulo } from "../Modulo";
+import { CHANGE_QTD } from "../EventType";
 
-export var ModuloBtnQtd = function() {
-	Modulo.call(this);
+export var ModuloBtnQtd = function(componentStore) {
+	Modulo.call(this, null, componentStore);
 	this.elemento(".qtd-selector");
+	this.store(componentStore);
 	this._opcoes = {
 		titulo: "Quantidade:",
 		opcaoIndisponivel: "Indisponível",
@@ -10,10 +12,13 @@ export var ModuloBtnQtd = function() {
 		min: "1",
 		default: "1"
 	};
+
+	this._store.commit("setQtd", this._opcoes.default);
 };
 // subclasse extende superclasse
 ModuloBtnQtd.prototype = Object.create(Modulo.prototype);
 ModuloBtnQtd.prototype.constructor = ModuloBtnQtd;
+
 /**
  * Cria html
  * @return {jQueryElement}	Elemento jquery contendo o campo para informar a quantidade
@@ -29,6 +34,7 @@ ModuloBtnQtd.prototype.desenhar = function() {
 	var campoQtd = $("<div />", {
 		class: "campo-qtd"
 	}).appendTo(divQtd);
+
 	var buttonRemove = $("<button />", {
 		class: "remove-from-cart",
 		"aria-label": "Remover item"
@@ -39,14 +45,16 @@ ModuloBtnQtd.prototype.desenhar = function() {
 	var label = $("<label />", {
 		class: "container-qtd"
 	}).appendTo(campoQtd);
+
 	var inputQtd = $("<input />", {
 		class: "qtd-value",
 		"aria-label": "Número de itens",
 		type: "number",
 		"data-min": this.opcoes().min,
 		"data-max": this.opcoes().max,
-		value: this.opcoes().default
+		value: this._store.state.qtd
 	}).appendTo(label);
+
 	var buttonAdd = $("<button />", {
 		class: "add-to-cart",
 		"aria-label": "Adicionar item"
@@ -61,9 +69,10 @@ ModuloBtnQtd.prototype.desenhar = function() {
 ModuloBtnQtd.prototype.onChange = function(input) {
 	var $inputQuantidade = input;
 	//obtem os valores de quantidade selecionada e quantidade maxima
-	var min = parseInt($inputQuantidade.data("min"));
-	var max = parseInt($inputQuantidade.data("max"));
+	var min = parseInt($inputQuantidade.attr("data-min"));
+	var max = parseInt($inputQuantidade.attr("data-max"));
 	var qtd = parseInt($inputQuantidade.val());
+
 	if (qtd < min || isNaN(qtd)) {
 		this.notificarValor("Minimo: " + min);
 		qtd = min;
@@ -71,9 +80,13 @@ ModuloBtnQtd.prototype.onChange = function(input) {
 		this.notificarValor("Maximo: " + max);
 		qtd = max;
 	}
+
 	//atualiza todos os skus
 	$(".quantidade .qtd-value").val(qtd);
-	$(document).trigger("change-quantidade", qtd);
+
+	console.log(qtd);
+	this._store.commit("setQtd", qtd);
+	this._store.events.publish(CHANGE_QTD, qtd);
 	return this;
 };
 
@@ -94,13 +107,15 @@ ModuloBtnQtd.prototype.atualizar = function(novoEstoque) {
 	return this;
 };
 ModuloBtnQtd.prototype.inputChange = function() {
-	$("input[class='qtd-value']").on("focusout", function() {
-		ModuloBtnQtd.prototype.onChange($(this));
+	$("input[class='qtd-value']").on("focusout", () => {
+		ModuloBtnQtd.prototype.onChange($(this)).bind(this);
 	});
 };
 ModuloBtnQtd.prototype.incrementBtn = function() {
 	var button = this.elemento().find(".add-to-cart");
-	var qtd = $(".quantidade .container-qtd").find(".qtd-value");
+	var qtd = this.elemento()
+		.find(".quantidade .container-qtd")
+		.find(".qtd-value");
 	if ($.isNumeric(qtd.val())) {
 		var valueQtd = parseInt(qtd.val());
 		valueQtd += 1;
@@ -108,11 +123,13 @@ ModuloBtnQtd.prototype.incrementBtn = function() {
 	} else {
 		qtd.val(1);
 	}
-	ModuloBtnQtd.prototype.onChange(qtd);
+	ModuloBtnQtd.prototype.onChange.call(this, qtd);
 };
 ModuloBtnQtd.prototype.decrementBtn = function() {
 	var button = this.elemento().find(".remove-from-cart");
-	var qtd = $(".quantidade .container-qtd").find(".qtd-value");
+	var qtd = this.elemento()
+		.find(".quantidade .container-qtd")
+		.find(".qtd-value");
 	if ($.isNumeric(qtd.val())) {
 		var valueQtd = parseInt(qtd.val());
 		if (valueQtd > 1) {
@@ -122,7 +139,8 @@ ModuloBtnQtd.prototype.decrementBtn = function() {
 	} else {
 		qtd.val(1);
 	}
-	ModuloBtnQtd.prototype.onChange(qtd);
+
+	ModuloBtnQtd.prototype.onChange.call(this, qtd);
 };
 ModuloBtnQtd.prototype.notificarValor = function(msg) {
 	var notificacao = $(".moduloQuantidade").find(".notificacao");

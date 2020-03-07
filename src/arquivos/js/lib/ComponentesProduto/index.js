@@ -23,7 +23,17 @@ import { ModuloBotaoDeCompra } from "./ModuloBotaoDeCompra";
 
 import { ModuloAviseMe } from "./ModuloAviseMe";
 
-export default {
+import { ComponentStore } from "./store";
+
+import {
+	CHANGE_QTD,
+	CHANGE_SKU,
+	ADD_SKU_TO_CART_FAIL,
+	ADD_SKU_TO_CART_SUCESS,
+	SKU_REF
+} from "./EventType";
+
+const Components = {
 	ModuloAviseMe: ModuloAviseMe,
 	ModuloBotaoDeCompra: ModuloBotaoDeCompra,
 	ModuloCompreJunto: ModuloCompreJunto,
@@ -36,5 +46,15 @@ export default {
 	ModuloPrecoDe: ModuloPrecoDe,
 	ModuloPrecoParcelado: ModuloPrecoParcelado,
 	ModuloPrecoPor: ModuloPrecoPor,
-	ModuloSelect: ModuloSelect
+	ModuloSelect: ModuloSelect,
+	ComponentStore,
+	Events: {
+		CHANGE_QTD,
+		CHANGE_SKU,
+		ADD_SKU_TO_CART_FAIL,
+		ADD_SKU_TO_CART_SUCESS,
+		SKU_REF
+	}
 };
+
+export default Components;

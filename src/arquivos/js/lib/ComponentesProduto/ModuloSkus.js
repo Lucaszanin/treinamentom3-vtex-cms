@@ -1,11 +1,16 @@
-import  { Modulo } from "./Modulo";
+import { Modulo } from "./Modulo";
+import { CHANGE_SKU, SKU_REF } from "./EventType";
 /**
  * modulo de seleção dos skus
  * Permite escolher o Sku desejado
  */
-export var ModuloSkus = function (skuJson,elemento='.skuSelection') {
-	Modulo.call(this,elemento);
-	sessionStorage.removeItem('sku-selecionado');
+export var ModuloSkus = function(
+	skuJson,
+	elemento = ".skuSelection",
+	componentStore
+) {
+	Modulo.call(this, elemento, componentStore);
+	sessionStorage.removeItem("sku-selecionado");
 	this._skuJson = skuJson;
 	var skuReferencial;
 
@@ -13,7 +18,7 @@ export var ModuloSkus = function (skuJson,elemento='.skuSelection') {
 	 * Atualiza os valores no html que foi criado
 	 * @return {object} this
 	 */
-	this.atualizar = function () {
+	this.atualizar = function() {
 		this.desenhar();
 		return this;
 	};
@@ -21,7 +26,7 @@ export var ModuloSkus = function (skuJson,elemento='.skuSelection') {
 	 * Escolhe os primeiros skus de cada variação
 	 * @return {object} this
 	 */
-	this.setDefauls = function () {
+	this.setDefauls = function() {
 		return this;
 	};
 	/**
@@ -29,49 +34,43 @@ export var ModuloSkus = function (skuJson,elemento='.skuSelection') {
 	 * @param  {Object} mapaEspecificacoes Mapa das especificações do produto
 	 * @return {object} this
 	 */
-	this.desenhar = function () {
+	this.desenhar = function() {
 		return this;
 	};
 	/**
 	 * Configura os eventos de atualizacao
 	 * @return {object} this
 	 */
-	this.configurar = function () {
+	this.configurar = function() {
 		return this;
 	};
 
-	this.escolherSku = function(sku){
+	this.escolherSku = function(sku) {
 		if (sku) {
-			/**
-			 * para capturar o evento
-			 * $(document).on( 'change-sku' , function(event, novoSku){} );
-			 */
-			sessionStorage.setItem('sku-selecionado', JSON.stringify(sku));
-			$(document).trigger('change-sku', sku);
-			// console.log(sku);
-		}
-		else {
+			componentStore.events.publish(CHANGE_SKU, sku);
+			componentStore.commit("setSelectedSku", sku);
+		} else {
 			console.warn("Não conseguimos identificar o sku correspondente");
 			// console.warn(especificacoesDoSku);
 		}
-	}
+	};
 
-	this.escolherSkuReferencia = function(sku){
-		if(typeof skuReferencial === "undefined") {
+	this.escolherSkuReferencia = function(sku) {
+		if (typeof skuReferencial === "undefined") {
 			skuReferencial = sku;
 			/**
 			 * para capturar o evento
 			 * $(document).on( 'change-sku' , function(event, novoSku){} );
 			 */
 
-			sessionStorage.setItem('sku-referencial', JSON.stringify(sku));
-			$(document).trigger('sku-referencial', sku);
-			// console.log(sku);
-		}
-	}
+			sessionStorage.setItem("sku-referencial", JSON.stringify(sku));
+			componentStore.events.publish(SKU_REF, sku);
 
+			componentStore.commit("setSelectedSku", sku);
+			componentStore.events.publish(CHANGE_SKU, sku);
+		}
+	};
 };
 // subclasse extende superclasse
 ModuloSkus.prototype = Object.create(Modulo.prototype);
 ModuloSkus.prototype.constructor = ModuloSkus;
-

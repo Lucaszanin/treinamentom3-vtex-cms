@@ -1,10 +1,14 @@
 import { Modulo } from "./Modulo";
+import { CHANGE_SKU, SKU_REF } from "./EventType";
 /**
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
-export var ModuloAviseMe = function(elemento = ".avise-me-container:first-child") {
-	Modulo.call(this, elemento);
+export var ModuloAviseMe = function(
+	elemento = ".avise-me-container:first-child",
+	componentStore
+) {
+	Modulo.call(this, elemento, componentStore);
 	var _this = this;
 
 	this._opcoes = {
@@ -24,13 +28,11 @@ export var ModuloAviseMe = function(elemento = ".avise-me-container:first-child"
 	 */
 	this.configurar = function(opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
-		$(document).one("sku-referencial", function() {
-			var novoSku = JSON.parse(sessionStorage.getItem("sku-referencial"));
-			_this.atualizar(novoSku);
+		this._store.events.subscribe(SKU_REF, function(event, sku) {
+			_this.atualizar(sku);
 		});
-		$(document).on("change-sku", function() {
-			var novoSku = JSON.parse(sessionStorage.getItem("sku-selecionado"));
-			_this.atualizar(novoSku);
+		this._store.events.subscribe(CHANGE_SKU, function(event, sku) {
+			_this.atualizar(sku);
 		});
 		return this;
 	};
@@ -54,9 +56,8 @@ export var ModuloAviseMe = function(elemento = ".avise-me-container:first-child"
 				.find("#avise-me-produto-nome")
 				.val(novoSku.skuname);
 		}
-		this.elemento().toggle(!novoSku.available);
 
-		$(document).trigger("sku-change-aviability", !!novoSku.available);
+		this.elemento().toggle(!novoSku.available);
 
 		return this;
 	};
@@ -119,6 +120,7 @@ export var ModuloAviseMe = function(elemento = ".avise-me-container:first-child"
 				class: "notifyme-skuid",
 				value: 0
 			}).appendTo(fieldset);
+
 			$("<input />", {
 				name: "notifymeButtonOK",
 				type: "button",
@@ -132,6 +134,7 @@ export var ModuloAviseMe = function(elemento = ".avise-me-container:first-child"
 				class: "status"
 			}).appendTo(fieldset);
 		}
+		this.atualizar(this._store.state.selectedSku);
 		return this;
 	};
 	/**

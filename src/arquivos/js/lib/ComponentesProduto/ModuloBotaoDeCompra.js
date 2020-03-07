@@ -1,4 +1,12 @@
 import { Modulo } from "./Modulo";
+
+import {
+	CHANGE_SKU,
+	CHANGE_QTD,
+	ADD_SKU_TO_CART_FAIL,
+	ADD_SKU_TO_CART_SUCESS
+} from "./EventType";
+
 /**
  * Modulo de compra
  * permite adicopnar produtos ao carinho
@@ -8,8 +16,11 @@ import { Modulo } from "./Modulo";
  * usa api vtex para adicionar no carrinho
  * @link https://github.com/vtex/vtex.js/tree/master/docs/checkout#addtocartitems-expectedorderformsections-saleschannel
  */
-export var ModuloBotaoDeCompra = function(elemento = ".btnBuy") {
-	Modulo.call(this, elemento);
+export var ModuloBotaoDeCompra = function(
+	elemento = ".btnBuy",
+	componentStore
+) {
+	Modulo.call(this, elemento, componentStore);
 	var _this = this;
 	_this.produtoEscolhido = {
 		sku: null,
@@ -35,16 +46,13 @@ export var ModuloBotaoDeCompra = function(elemento = ".btnBuy") {
 	 */
 	this.atualizar = function(event, value) {
 		if (event) {
-			switch (event.type) {
+			switch (event) {
 				case "change-quantidade":
 					_this.produtoEscolhido.quantidade = value;
 					break;
 				case "change-sku":
-					var sku = JSON.parse(
-						sessionStorage.getItem("sku-selecionado")
-					);
-					_this.produtoEscolhido.sku = sku;
-					this.habilitar(sku.available);
+					_this.produtoEscolhido.sku = value;
+					this.habilitar(value.available);
 					break;
 				default:
 					console.warn("Evento desconhecido");
@@ -75,13 +83,17 @@ export var ModuloBotaoDeCompra = function(elemento = ".btnBuy") {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
 		this.opcoes.cannalDeVendas = this.obterCannalDeVendas();
 
-		$(document).on("change-sku", this.atualizar.bind(this));
-		$(document).on("change-quantidade", this.atualizar.bind(this));
-		$(document).on(
-			"add-skuAddCarrinho.sucess",
+		this._store.events.subscribe(CHANGE_SKU, this.atualizar.bind(this));
+		this._store.events.subscribe(CHANGE_QTD, this.atualizar.bind(this));
+		this._store.events.subscribe(
+			ADD_SKU_TO_CART_SUCESS,
 			this.sucessoAjax.bind(this)
 		);
-		$(document).on("add-skuAddCarrinho.fail", this.erroAjax.bind(this));
+		this._store.events.subscribe(
+			ADD_SKU_TO_CART_FAIL,
+			this.erroAjax.bind(this)
+		);
+
 		return this;
 	};
 	/**
@@ -107,8 +119,8 @@ export var ModuloBotaoDeCompra = function(elemento = ".btnBuy") {
 			!_this.produtoEscolhido.sku.available &&
 			_this.produtoEscolhido.quantidade < 1
 		) {
-			this.elemento().trigger(
-				"add-skuAddCarrinho.fail",
+			this._store.events.publish(
+				ADD_SKU_TO_CART_FAIL,
 				_this.produtoEscolhido
 			);
 		} else {
@@ -127,24 +139,21 @@ export var ModuloBotaoDeCompra = function(elemento = ".btnBuy") {
 					)
 					.done(
 						function(orderForm) {
-							this.elemento().trigger(
-								"add-skuAddCarrinho.sucess",
-								{
-									simpleProducts: _this.produtoEscolhido,
-									orderForm: orderForm
-								}
-							);
+							this._store.events.publish(ADD_SKU_TO_CART_SUCESS, {
+								simpleProducts: _this.produtoEscolhido,
+								orderForm: orderForm
+							});
 						}.bind(this)
 					)
 					.fail(
 						function() {
-							this.elemento().trigger("add-skuAddCarrinho.fail", {
+							this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
 								simpleProducts: _this.produtoEscolhido
 							});
 						}.bind(this)
 					);
 			} catch (error) {
-				this.elemento().trigger("add-skuAddCarrinho.fail", {
+				this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
 					simpleProducts: _this.produtoEscolhido
 				});
 				console.warn("Erro ao adicionar sku ao carrinho de compra");

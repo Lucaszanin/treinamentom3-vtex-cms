@@ -6,8 +6,8 @@ import { textoParaNomeCss, alterarTamanhoImagemSrcVtex } from "../util";
  * modulo de seleção dos skus
  * Permite escolher o Sku desejado
  */
-export var ModuloSkusPorNome = function(skuJson, elemento) {
-	ModuloSkus.call(this, skuJson, elemento);
+export var ModuloSkusPorNome = function(skuJson, elemento, componentStore) {
+	ModuloSkus.call(this, skuJson, elemento, componentStore);
 	sessionStorage.removeItem("sku-selecionado");
 	var _this = this;
 
@@ -50,7 +50,6 @@ export var ModuloSkusPorNome = function(skuJson, elemento) {
 		if (typeof bestSku === "undefined") {
 			bestSku = this._skuJson.skus[0];
 		}
-		console.log(bestSku);
 		this.escolherSkuReferencia(bestSku);
 
 		// if(_this._skuJson.skus.length === 1){
