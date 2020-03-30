@@ -65,7 +65,14 @@ export default class Produto {
 						$.inArray(value[i].productId, produtosJaExibidos) == -1
 					) {
 						produtosJaExibidos.push(value[i].productId);
-						var li = $("<li />");
+
+						var li = $("<li />", {
+							class:
+								parseInt(value[i].productId) ===
+								parseInt(skuJson.productId)
+									? "selected"
+									: ""
+						});
 						var link = $("<a />", {
 							href: value[i].link,
 							title: value[i].productName
@@ -76,7 +83,7 @@ export default class Produto {
 							.replace(/#height#/gi, "90");
 						img = img.replace(
 							"~",
-							"//" + loja.accontuName + ".vteximg.com.br/"
+							"//" + loja.accountName + ".vteximg.com.br/"
 						);
 						$(img).appendTo(link);
 
@@ -85,11 +92,13 @@ export default class Produto {
 				}
 
 				ul.slick({
-					dots: true,
+					dots: false,
+					autoplay: true,
+					autoplaySpeed: 3000,
 					arrows: false,
 					infinite: true,
-					slidesToShow: 3,
-					slidesToScroll: 3,
+					slidesToShow: 4,
+					slidesToScroll: 4,
 					speed: 500,
 					variableWidth: true
 				});
