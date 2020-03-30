@@ -4,7 +4,11 @@ import { textoParaNomeCss, alterarTamanhoImagemSrcVtex } from "../util";
  * modulo de seleção dos skus
  * Permite escolher o Sku desejado
  */
-export var ModuloSkusPorEspecificacoes = function(skuJson, elemento, componentStore) {
+export var ModuloSkusPorEspecificacoes = function(
+	skuJson,
+	elemento,
+	componentStore
+) {
 	ModuloSkus.call(this, skuJson, elemento, componentStore);
 	sessionStorage.removeItem("sku-selecionado");
 	var _this = this;
@@ -89,6 +93,7 @@ export var ModuloSkusPorEspecificacoes = function(skuJson, elemento, componentSt
 					class: "titulo",
 					text: _this.prefixDimensionName(nomeEspecificacao)
 				}).appendTo($especificacao);
+
 				var $lista = $("<ul />", {
 					class: "skus"
 				}).appendTo($especificacao);
@@ -113,8 +118,13 @@ export var ModuloSkusPorEspecificacoes = function(skuJson, elemento, componentSt
 						name: nameCampo
 					}).appendTo(item);
 
+					let sku = getSkuPorEspecificacoes({
+						[nomeEspecificacao]: values[i]
+					});
+
 					let $label = $("<label />", {
-						for: idText
+						for: idText,
+						class: sku.available ? "disponivel" : "indisponivel"
 					}).appendTo(item);
 
 					if (
