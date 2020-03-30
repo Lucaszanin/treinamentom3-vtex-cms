@@ -236,7 +236,7 @@ export default class Minicart {
 		});
 	}
 	removeOneFromCart() {
-		$(".mini-cart-container .remove-from-cart").click(() => {
+		$(".mini-cart-container .remove-from-cart").click(e => {
 			var qtd = $(e.target).siblings(".value");
 			var productId = $(e.target)
 				.parents(".product")
@@ -254,7 +254,7 @@ export default class Minicart {
 		});
 	}
 	removeFromCart() {
-		$(".mini-cart-container .product-remove .remove").click(() => {
+		$(".mini-cart-container .product-remove .remove").click(e => {
 			var productId = $(e.target)
 				.parents(".product")
 				.attr("id");
