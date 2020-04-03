@@ -1,4 +1,4 @@
-import { isSmallerThen768 } from "Helpers/mediasMatch";
+import { isSmallerThen768 } from "Helpers/MediasMatch";
 
 export default class MenuContents {
 	constructor() {
