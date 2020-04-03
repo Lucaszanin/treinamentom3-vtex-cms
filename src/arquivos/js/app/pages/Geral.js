@@ -1,4 +1,4 @@
-import { isSmallerThen768 } from "Helpers/mediasMatch";
+import { isSmallerThen768 } from "Helpers/MediasMatch";
 import prateleira from "App/functions/prateleira";
 
 // @TODO: Ratorar essa classe, dividar em classes menores para cada funcionalidade
