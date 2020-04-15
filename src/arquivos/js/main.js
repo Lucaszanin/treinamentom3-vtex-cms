@@ -1,3 +1,4 @@
+import "regenerator-runtime/runtime.js";
 import "lazysizes";
 import "lazysizes/plugins/noscript/ls.noscript";
 import "slick-carousel";
