@@ -12,7 +12,7 @@ export default class Store {
 		self.events = new PubSub();
 
 		self.state = new Proxy(params.state || {}, {
-			set: function(state, key, value) {
+			set: function (state, key, value) {
 				state[key] = value;
 				console.log(
 					`module: ${self.module} stateChange: ${key}: ${value}`
@@ -23,7 +23,7 @@ export default class Store {
 				}
 				self.status = "resting";
 				return true;
-			}
+			},
 		});
 	}
 

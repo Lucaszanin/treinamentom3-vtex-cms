@@ -4,7 +4,7 @@ import {
 	CHANGE_SKU,
 	CHANGE_QTD,
 	ADD_SKU_TO_CART_FAIL,
-	ADD_SKU_TO_CART_SUCESS
+	ADD_SKU_TO_CART_SUCESS,
 } from "./EventType";
 
 /**
@@ -16,7 +16,7 @@ import {
  * usa api vtex para adicionar no carrinho
  * @link https://github.com/vtex/vtex.js/tree/master/docs/checkout#addtocartitems-expectedorderformsections-saleschannel
  */
-export var ModuloBotaoDeCompra = function(
+export var ModuloBotaoDeCompra = function (
 	elemento = ".btnBuy",
 	componentStore
 ) {
@@ -24,7 +24,7 @@ export var ModuloBotaoDeCompra = function(
 	var _this = this;
 	_this.produtoEscolhido = {
 		sku: null,
-		quantidade: 1
+		quantidade: 1,
 	};
 	this._opcoes = {
 		botaoCompra: "Comprar",
@@ -36,7 +36,7 @@ export var ModuloBotaoDeCompra = function(
 			"<p>Seu produto foi adicionado ao carrinho com sucesso!</p><p>O que deseja fazer agora?</p>",
 		botaoContinuarComrpando: "Continuar comprando",
 		botaoFinalizarCompra: "Finalizar compra",
-		icone: ""
+		icone: "",
 	};
 	/**
 	 * Atualiza a quantidade de acordo com o novo sku
@@ -44,7 +44,7 @@ export var ModuloBotaoDeCompra = function(
 	 * @param  {Object} value objeto do sku selecionado
 	 * @return {Object} this
 	 */
-	this.atualizar = function(event, value) {
+	this.atualizar = function (event, value) {
 		if (event) {
 			switch (event) {
 				case "change-quantidade":
@@ -63,7 +63,7 @@ export var ModuloBotaoDeCompra = function(
 		}
 		return this;
 	};
-	this.obterCannalDeVendas = function() {
+	this.obterCannalDeVendas = function () {
 		var name = "VTEXSC=sc=";
 		var ca = document.cookie.split(";");
 		for (var i = 0; i < ca.length; i++) {
@@ -79,7 +79,7 @@ export var ModuloBotaoDeCompra = function(
 	 * Configura os eventos js que serão diparados pelo html do desenhar()
 	 * @return {object} this
 	 */
-	this.configurar = function(opcoes) {
+	this.configurar = function (opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
 		this.opcoes.cannalDeVendas = this.obterCannalDeVendas();
 
@@ -100,7 +100,7 @@ export var ModuloBotaoDeCompra = function(
 	 * Cria e insere o html com as variações dos skus
 	 * @return {object} this
 	 */
-	this.desenhar = function() {
+	this.desenhar = function () {
 		const html = `
 			<a class="btn-compra" id="buy-btn">
 				${this.opcoes().botaoCompra}
@@ -108,11 +108,11 @@ export var ModuloBotaoDeCompra = function(
 		`;
 
 		this.elemento().append(html);
-		$(".btn-compra").click(this.compra.bind(this));
+		this.elemento().find(".btn-compra").click(this.compra.bind(this));
 
 		return this;
 	};
-	this.compra = function() {
+	this.compra = function () {
 		if (_this.produtoEscolhido.sku === null) {
 			mensagemErro(this.opcoes().msgVariacaoErro);
 		} else if (
@@ -131,39 +131,39 @@ export var ModuloBotaoDeCompra = function(
 							{
 								id: _this.produtoEscolhido.sku.sku,
 								quantity: _this.produtoEscolhido.quantidade,
-								seller: _this.produtoEscolhido.sku.sellerId
-							}
+								seller: _this.produtoEscolhido.sku.sellerId,
+							},
 						],
 						null,
 						this.opcoes.cannalDeVendas
 					)
 					.done(
-						function(orderForm) {
+						function (orderForm) {
 							this._store.events.publish(ADD_SKU_TO_CART_SUCESS, {
 								simpleProducts: _this.produtoEscolhido,
-								orderForm: orderForm
+								orderForm: orderForm,
 							});
 						}.bind(this)
 					)
 					.fail(
-						function() {
+						function () {
 							this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
-								simpleProducts: _this.produtoEscolhido
+								simpleProducts: _this.produtoEscolhido,
 							});
 						}.bind(this)
 					);
 			} catch (error) {
 				this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
-					simpleProducts: _this.produtoEscolhido
+					simpleProducts: _this.produtoEscolhido,
 				});
 				console.warn("Erro ao adicionar sku ao carrinho de compra");
 				console.log(error);
 			}
 		}
 	};
-	this.sucessoAjax = function(items) {
+	this.sucessoAjax = function (items) {
 		if (!this._opcoes.msgByEvent) {
-			var fechar = function(event) {
+			var fechar = function (event) {
 				event.preventDefault();
 				$popup.removeClass("show");
 				$popup.remove();
@@ -171,46 +171,46 @@ export var ModuloBotaoDeCompra = function(
 			};
 
 			var $popup = $("<div />", {
-				class: "modal-add-cart modal"
+				class: "modal-add-cart modal",
 			});
 
 			var $popupBox = $("<div />", {
-				class: "modal-add-cart__box"
+				class: "modal-add-cart__box",
 			}).appendTo($popup);
 
 			var $overlay = $("<div />", {
-				class: "modal-add-cart__overlay modal-overlay"
+				class: "modal-add-cart__overlay modal-overlay",
 			}).click(fechar);
 
 			$("<button />", {
 				html: "<i class='sprite sprite-fechar'></i>",
-				class: "close"
+				class: "close",
 			})
 				.click(fechar)
 				.appendTo($popupBox);
 
 			var $information = $("<div />", {
-				class: "information"
+				class: "information",
 			}).appendTo($popupBox);
 
 			$("<img />", {
 				src: _this.produtoEscolhido.sku.image,
-				alt: _this.produtoEscolhido.sku.skuname
+				alt: _this.produtoEscolhido.sku.skuname,
 			}).appendTo($information);
 
 			$("<div />", {
 				class: "descricao",
-				html: _this._opcoes.msgAddCarrinhoSucesso
+				html: _this._opcoes.msgAddCarrinhoSucesso,
 			}).appendTo($information);
 
 			var $acoes = $("<div />", {
-				class: "acoes"
+				class: "acoes",
 			}).appendTo($popupBox);
 
 			$("<a />", {
 				href: "#",
 				class: "continue",
-				text: _this._opcoes.botaoContinuarComprando
+				text: _this._opcoes.botaoContinuarComprando,
 			})
 				.click(fechar)
 				.appendTo($acoes);
@@ -219,78 +219,62 @@ export var ModuloBotaoDeCompra = function(
 				href: "/checkout/#/cart",
 				class: "cart",
 				target: "_top",
-				text: _this._opcoes.botaoFinalizarCompra
+				text: _this._opcoes.botaoFinalizarCompra,
 			}).appendTo($acoes);
 
-			this.elemento()
-				.find(".erro-add-cart")
-				.fadeOut("slow");
+			this.elemento().find(".erro-add-cart").fadeOut("slow");
 			// $popup.hide().appendTo(this.elemento()).fadeIn('slow');
 			$popup.appendTo(this.elemento());
 			$overlay.insertAfter($popup);
 			$popup.addClass("show");
 		}
 	};
-	this.erroAjax = function() {
+	this.erroAjax = function () {
 		mensagemErro(_this.opcoes().msgAddCarrinhoErro);
 	};
 	/**
 	 * Altera o texto do botão para produtos indisponiveis
 	 * @param {boolean} habilitar
 	 */
-	this.habilitar = function(habilitar) {
+	this.habilitar = function (habilitar) {
 		habilitar = typeof habilitar == "undefined" ? true : habilitar;
 		this.elemento().toggleClass("desativado", !habilitar);
 		var textBtn = habilitar
 			? this.opcoes().icone + this.opcoes().botaoCompra
 			: this.opcoes().botaoSkuIndisponivel;
-		this.elemento()
-			.find(".btn-compra")
-			.html(textBtn);
+		this.elemento().find(".btn-compra").html(textBtn);
 	};
 
 	function mensagemErro(mensagemDeErro) {
 		if (_this.elemento().find(".erro-add-cart").length < 1) {
 			var container = $("<div />", {
-				class: "erro-add-cart"
+				class: "erro-add-cart",
 			}).prependTo(_this.elemento());
 			// btn fechar
 			$("<span />")
 				.attr({
-					class: "close"
+					class: "close",
 				})
-				.click(function(event) {
+				.click(function (event) {
 					event.preventDefault();
 					container.fadeOut("slow");
 				})
 				.appendTo(container);
 			$("<div />", {
 				class: "info",
-				html: mensagemDeErro
+				html: mensagemDeErro,
 			}).appendTo(container);
 		} else {
-			_this
-				.elemento()
-				.find(".erro-add-cart")
-				.fadeIn("slow");
+			_this.elemento().find(".erro-add-cart").fadeIn("slow");
 		}
 		setTimeout(
-			function() {
-				_this
-					.elemento()
-					.find(".erro-add-cart")
-					.fadeOut("slow");
+			function () {
+				_this.elemento().find(".erro-add-cart").fadeOut("slow");
 			}.bind(this),
 			1000
 		);
-		_this
-			.elemento()
-			.find(".modal-add-cart")
-			.remove();
-		_this
-			.elemento()
-			.find(".modal-add-cart__overlay")
-			.remove();
+		_this.elemento().find(".modal-add-cart").remove();
+		_this.elemento().find(".modal-add-cart__overlay").remove();
 	}
 };
 // subclasse extende superclasse
