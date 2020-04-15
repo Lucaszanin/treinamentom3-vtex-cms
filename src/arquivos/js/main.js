@@ -5,7 +5,7 @@ import "slick-carousel";
 import app from "./app";
 
 window.lazySizesConfig = {
-	addClasses: true
+	addClasses: true,
 };
 
 app.start();
