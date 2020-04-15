@@ -84,7 +84,6 @@ ModuloBtnQtd.prototype.onChange = function(input) {
 	//atualiza todos os skus
 	$(".quantidade .qtd-value").val(qtd);
 
-	console.log(qtd);
 	this._store.commit("setQtd", qtd);
 	this._store.events.publish(CHANGE_QTD, qtd);
 	return this;

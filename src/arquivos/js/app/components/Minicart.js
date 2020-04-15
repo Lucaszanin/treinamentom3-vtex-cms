@@ -2,11 +2,7 @@ import { alterarTamanhoImagemSrcVtex } from "Helpers/vtexUtils";
 
 export default class Minicart {
 	createMiniCartStructure(element) {
-		$("<div />", {
-			class: "mini-cart-overlay"
-		}).appendTo(element);
-
-		let structure = `
+		const structure = `
 			<div class="mini-cart-container">
 				<div class="mini-cart-header">
 					<i class="sprite sprite-cadeado"></i>
@@ -38,13 +34,14 @@ export default class Minicart {
 					</a>
 				</div>
 			</div>
+			<div class="mini-cart-overlay"></div>
 		`;
 
-		$(element).append(structure);
+		$(element).html(structure);
 	}
 
 	listItems() {
-		let orderItems = items => {
+		let orderItems = (items) => {
 			$(".mini-cart-container .product-list").empty();
 
 			for (var i = 0; i < items.length; i++) {
@@ -160,16 +157,14 @@ export default class Minicart {
 				totalPrice = totalPrice.replace(".", ",");
 			}
 
-			$(".mini-cart-container .product-list .product").each(function() {
+			$(".mini-cart-container .product-list .product").each(function () {
 				var productId = $(this).attr("id");
 
 				for (var i = 0; i < items.length; i++) {
 					if (i + "-" + items[i].uniqueId == productId) {
 						var qtd = parseInt(items[i].quantity);
 						totalQtd += qtd;
-						$(this)
-							.find(".product-qtd .value")
-							.text(qtd);
+						$(this).find(".product-qtd .value").text(qtd);
 						break;
 					}
 				}
@@ -185,7 +180,7 @@ export default class Minicart {
 		try {
 			window.vtexjs.checkout
 				.getOrderForm()
-				.then(orderForm => {
+				.then((orderForm) => {
 					$(".mini-cart-container .wait-screen").addClass("active");
 					for (var i = 0; i < orderForm.items.length; i++) {
 						if (
@@ -198,7 +193,7 @@ export default class Minicart {
 
 					var updateItem = {
 						index: itemIndex,
-						quantity: qtd
+						quantity: qtd,
 					};
 					return window.vtexjs.checkout.updateItems(
 						[updateItem],
@@ -206,7 +201,7 @@ export default class Minicart {
 						false
 					);
 				})
-				.done(function(orderForm) {
+				.done(function (orderForm) {
 					$(".mini-cart-container .wait-screen").removeClass(
 						"active"
 					);
@@ -219,11 +214,9 @@ export default class Minicart {
 		}
 	}
 	addOneToCart() {
-		$(".mini-cart-container .add-to-cart").click(e => {
+		$(".mini-cart-container .add-to-cart").click((e) => {
 			var qtd = $(e.target).siblings(".value");
-			var productId = $(e.target)
-				.parents(".product")
-				.attr("id");
+			var productId = $(e.target).parents(".product").attr("id");
 
 			if ($.isNumeric(qtd.text())) {
 				var valueQtd = parseInt(qtd.text());
@@ -236,11 +229,9 @@ export default class Minicart {
 		});
 	}
 	removeOneFromCart() {
-		$(".mini-cart-container .remove-from-cart").click(e => {
+		$(".mini-cart-container .remove-from-cart").click((e) => {
 			var qtd = $(e.target).siblings(".value");
-			var productId = $(e.target)
-				.parents(".product")
-				.attr("id");
+			var productId = $(e.target).parents(".product").attr("id");
 
 			if ($.isNumeric(qtd.text())) {
 				var valueQtd = parseInt(qtd.text());
@@ -254,36 +245,26 @@ export default class Minicart {
 		});
 	}
 	removeFromCart() {
-		$(".mini-cart-container .product-remove .remove").click(e => {
-			var productId = $(e.target)
-				.parents(".product")
-				.attr("id");
+		$(".mini-cart-container .product-remove .remove").click((e) => {
+			var productId = $(e.target).parents(".product").attr("id");
 			this.updateOrderForm(productId, 0);
 		});
 	}
 	configureEvents(openBtn) {
 		var openMinicart = () => {
 			this.listItems();
-			$(".mini-cart-container")
-				.parent()
-				.toggleClass("show-mini-cart");
+			$(".mini-cart-container").parent().toggleClass("show-mini-cart");
 			$(".mini-cart-overlay").toggleClass("active");
-			$(".mini-cart")
-				.parents("header")
-				.toggleClass("mini-cart-open");
+			$(".mini-cart").parents("header").toggleClass("mini-cart-open");
 		};
 
-		var closeMinicart = function() {
-			$(".mini-cart-container")
-				.parent()
-				.removeClass("show-mini-cart");
+		var closeMinicart = function () {
+			$(".mini-cart-container").parent().removeClass("show-mini-cart");
 			$(".mini-cart-overlay").removeClass("active");
-			$(".mini-cart")
-				.parents("header")
-				.removeClass("mini-cart-open");
+			$(".mini-cart").parents("header").removeClass("mini-cart-open");
 		};
 
-		$(document).on("click", openBtn, function(e) {
+		$(document).on("click", openBtn, function (e) {
 			event.preventDefault();
 			$(openBtn).toggleClass("active");
 			openMinicart();
@@ -292,7 +273,7 @@ export default class Minicart {
 		$(document).on(
 			"click",
 			".mini-cart-container .btn-close, .mini-cart-container .continue-buying, .mini-cart-overlay",
-			function() {
+			function () {
 				closeMinicart();
 				$(openBtn).toggleClass("active");
 			}

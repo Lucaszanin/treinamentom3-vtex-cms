@@ -1,8 +1,6 @@
 module.exports = {
 	env: {
 		browser: true,
-		commonjs: true,
-		es6: false,
 		jquery: true
 	},
 	globals: {
@@ -26,6 +24,7 @@ module.exports = {
 		"no-console": "off",
 		"no-useless-escape": "off",
 		"no-case-declarations": "error",
-		"no-undef": "off"
+		"no-undef": "off",
+		"no-prototype-builtins": "off"
 	}
 };

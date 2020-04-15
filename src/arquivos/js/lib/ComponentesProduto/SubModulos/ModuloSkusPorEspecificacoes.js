@@ -4,7 +4,7 @@ import { textoParaNomeCss, alterarTamanhoImagemSrcVtex } from "../util";
  * modulo de seleção dos skus
  * Permite escolher o Sku desejado
  */
-export var ModuloSkusPorEspecificacoes = function(
+export var ModuloSkusPorEspecificacoes = function (
 	skuJson,
 	elemento,
 	componentStore
@@ -14,19 +14,19 @@ export var ModuloSkusPorEspecificacoes = function(
 	var _this = this;
 
 	this._opcoes = {
-		especificacaoComImagem: ""
+		especificacaoComImagem: "",
 	};
 
 	this.prefix = {
 		cor: "",
-		tamanho: ""
+		tamanho: "",
 	};
 
 	/**
 	 * Escolhe os primeiros skus de cada variação
 	 * @return {object} this
 	 */
-	this.setDefauls = function() {
+	this.setDefauls = function () {
 		let bestSku = getBestSku();
 		this.escolherSkuReferencia(bestSku);
 		componentStore.commit("setSelectedSku", bestSku);
@@ -42,6 +42,7 @@ export var ModuloSkusPorEspecificacoes = function(
 					valorEspecificacao
 				);
 				$especificacao.prop("checked", true);
+				$especificacao.trigger('change');
 			}
 		}
 		this.escolherSku(bestSku);
@@ -51,7 +52,7 @@ export var ModuloSkusPorEspecificacoes = function(
 	};
 
 	/* Prefixa o nome da especificação de acordo com a dimensão passada */
-	this.prefixDimensionName = function(dimension) {
+	this.prefixDimensionName = function (dimension) {
 		var value = dimension.toLowerCase();
 
 		if (_this.prefix[value]) {
@@ -66,7 +67,7 @@ export var ModuloSkusPorEspecificacoes = function(
 	 * @param  {Object} mapaEspecificacoes Mapa das especificações do produto
 	 * @return {object} this
 	 */
-	this.desenhar = function() {
+	this.desenhar = function () {
 		if (
 			!_this._skuJson.dimensionsMap ||
 			_this._skuJson.dimensionsMap.length === 0
@@ -86,28 +87,42 @@ export var ModuloSkusPorEspecificacoes = function(
 				var $especificacao = $("<div />", {
 					class:
 						"especificacao " + textoParaNomeCss(nomeEspecificacao),
-					"data-especificacao": textoParaNomeCss(nomeEspecificacao)
+					"data-especificacao": textoParaNomeCss(nomeEspecificacao),
 				}).appendTo(_this.elemento());
 
 				$("<div />", {
 					class: "titulo",
-					text: _this.prefixDimensionName(nomeEspecificacao)
+					text: _this.prefixDimensionName(nomeEspecificacao),
 				}).appendTo($especificacao);
 
 				var $lista = $("<ul />", {
-					class: "skus"
+					class: "skus",
 				}).appendTo($especificacao);
-				var nameCampo = textoParaNomeCss(nomeEspecificacao + "_" + i);
+
+				var nameCampo = textoParaNomeCss(
+					_this.elemento().selector +
+						"_" +
+						nomeEspecificacao +
+						"_" +
+						i
+				);
+
 				if (values.length < 2) {
 					$($especificacao).addClass("single-option");
 				}
 
 				for (var i = 0; i < values.length; i++) {
 					var item = $("<li />", {
-						class: "sku"
+						class: "sku",
 					}).appendTo($lista);
 					var idText = textoParaNomeCss(
-						nomeEspecificacao + "_" + values[i] + "_" + i
+						_this.elemento().selector +
+							"_" +
+							nomeEspecificacao +
+							"_" +
+							values[i] +
+							"_" +
+							i
 					);
 					$("<input />", {
 						"data-especificacao": values[i],
@@ -115,16 +130,16 @@ export var ModuloSkusPorEspecificacoes = function(
 						val: values[i],
 						id: idText,
 						type: "radio",
-						name: nameCampo
+						name: nameCampo,
 					}).appendTo(item);
 
 					let sku = getSkuPorEspecificacoes({
-						[nomeEspecificacao]: values[i]
+						[nomeEspecificacao]: values[i],
 					});
 
 					let $label = $("<label />", {
 						for: idText,
-						class: sku.available ? "disponivel" : "indisponivel"
+						class: sku.available ? "disponivel" : "indisponivel",
 					}).appendTo(item);
 
 					if (
@@ -139,7 +154,7 @@ export var ModuloSkusPorEspecificacoes = function(
 
 						$("<img />", {
 							src: alterarTamanhoImagemSrcVtex(src, 72, 100),
-							title: nomeEspecificacao + ": " + values[i]
+							title: nomeEspecificacao + ": " + values[i],
 						}).appendTo($label);
 					} else {
 						$label.text(values[i]);
@@ -153,12 +168,12 @@ export var ModuloSkusPorEspecificacoes = function(
 	 * Configura os eventos de atualizacao
 	 * @return {object} this
 	 */
-	this.configurar = function() {
-		$(".especificacao input").on("change", function() {
+	this.configurar = function () {
+		$(".especificacao input").on("change", function () {
 			var especificacoesDoSku = {},
 				sku;
 			var nomeEspecificacao = "";
-			$(".especificacao input:checked").each(function() {
+			$(".especificacao input:checked").each(function () {
 				nomeEspecificacao = this.getAttribute(
 					"data-especificacao-title"
 				);
@@ -172,7 +187,7 @@ export var ModuloSkusPorEspecificacoes = function(
 		return this;
 	};
 	function getSkuPorEspecificacoes(especificacoes) {
-		return _this._skuJson.skus.find(function(sku) {
+		return _this._skuJson.skus.find(function (sku) {
 			return isEquivalent(sku.dimensions, especificacoes);
 		});
 	}
@@ -230,7 +245,7 @@ export var ModuloSkusPorEspecificacoes = function(
 								var jqXHR = $.ajax({
 									url: urlSku,
 									type: "GET",
-									success: function(value) {
+									success: function (value) {
 										const images = value[0].Images;
 										const thumbsCor =
 											images[images.length - 1];
@@ -238,7 +253,7 @@ export var ModuloSkusPorEspecificacoes = function(
 											thumbsCor[thumbsCor.length - 1]
 												.Path;
 									},
-									async: false
+									async: false,
 								});
 
 								if (skuData) {

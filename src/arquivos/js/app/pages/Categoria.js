@@ -142,6 +142,9 @@ export default class Categoria {
 					} catch (error) {
 						console.log(error);
 					}
+				},
+				shelfCallback: () => {
+					prateleira.atualziar();
 				}
 			});
 		} else {
@@ -169,6 +172,9 @@ export default class Categoria {
 					} catch (error) {
 						console.log(error);
 					}
+				},
+				shelfCallback: () => {
+					prateleira.atualziar();
 				}
 			});
 		}
