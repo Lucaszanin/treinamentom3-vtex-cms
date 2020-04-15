@@ -42,6 +42,7 @@ export var ModuloSkusPorEspecificacoes = function (
 					valorEspecificacao
 				);
 				$especificacao.prop("checked", true);
+				$especificacao.trigger('change');
 			}
 		}
 		this.escolherSku(bestSku);
