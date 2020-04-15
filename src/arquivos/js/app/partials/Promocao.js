@@ -1,14 +1,14 @@
 export default function Promocao() {
 	var urlAtual = new URL(window.location.href);
 	try {
-		window.vtexjs.checkout.getOrderForm().then(function(orderForm) {
+		window.vtexjs.checkout.getOrderForm().then(function (orderForm) {
 			var marketingData = {
 				utmCampaign: urlAtual.searchParams.get("utm_campaign"),
 				utmMedium: urlAtual.searchParams.get("utm_medium"),
 				utmSource: urlAtual.searchParams.get("utm_source"),
 				utmiCampaign: urlAtual.searchParams.get("utmi_campaign"),
 				utmiPart: urlAtual.searchParams.get("utmi_part"),
-				utmipage: urlAtual.searchParams.get("utmi_page")
+				utmipage: urlAtual.searchParams.get("utmi_page"),
 			};
 			// clean data
 			for (var i in marketingData) {
@@ -39,6 +39,6 @@ export default function Promocao() {
 			);
 		});
 	} catch (error) {
-		console.info(error);
+		console.info("Vtexjs não existe nesse ambiente");
 	}
 }

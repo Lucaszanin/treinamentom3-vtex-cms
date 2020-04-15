@@ -17,7 +17,7 @@ export default class Produto {
 		this.productSlides();
 		this.exibirVariacaoDeCores();
 		slideResponsivo(".prateleira-de-produtos", 4, 3, 1, 1, false, true);
-		this.initProductComponents();
+		this.initProductComponents().catch((err) => console.log(err));
 	}
 
 	async initProductComponents() {
@@ -28,7 +28,7 @@ export default class Produto {
 			qtdSelector: ".moduloQuantidade",
 			buyBtnSelector: ".moduloBotaoDeCompra",
 			skuSelector: ".moduloSkus",
-			alertMeSelector: ".moduloAviseMe"
+			alertMeSelector: ".moduloAviseMe",
 		});
 	}
 
@@ -47,7 +47,7 @@ export default class Produto {
 
 		var jqXHR = $.ajax({
 			url: urlSimilares,
-			type: "GET"
+			type: "GET",
 		});
 
 		jqXHR.done(function sucesso(value) {
@@ -55,7 +55,7 @@ export default class Produto {
 				var variacaoSku = $(".product-info .similares");
 				var titulo = $("<div />", {
 					class: "titulo",
-					text: "Escolha a cor:"
+					text: "Escolha a cor:",
 				}).appendTo(variacaoSku);
 				var ul = $("<ul />").appendTo(variacaoSku);
 
@@ -71,11 +71,11 @@ export default class Produto {
 								parseInt(value[i].productId) ===
 								parseInt(skuJson.productId)
 									? "selected"
-									: ""
+									: "",
 						});
 						var link = $("<a />", {
 							href: value[i].link,
-							title: value[i].productName
+							title: value[i].productName,
 						}).appendTo(li);
 						var img = value[i].items[0].images[0].imageTag;
 						img = img
@@ -100,21 +100,18 @@ export default class Produto {
 					slidesToShow: 4,
 					slidesToScroll: 4,
 					speed: 500,
-					variableWidth: true
+					variableWidth: true,
 				});
 			}
 		});
 	}
 
 	shortDescription() {
-		$(".descricao-produto a").on("click", function(event) {
+		$(".descricao-produto a").on("click", function (event) {
 			event.preventDefault();
 			$("html,body").animate(
 				{
-					scrollTop:
-						$("#descricao-completa")
-							.eq(0)
-							.offset().top - 50
+					scrollTop: $("#descricao-completa").eq(0).offset().top - 50,
 				},
 				500
 			);
@@ -125,7 +122,7 @@ export default class Produto {
 		if (!isSmallerThen768) {
 			$(".product-image .apresentacao #include").on(
 				"mouseover",
-				function() {
+				function () {
 					var srcImg = $(".sku-rich-image-main").attr("src");
 
 					$(".sku-rich-image-main").attr(
@@ -135,12 +132,12 @@ export default class Produto {
 					// ativa o zoom
 					$(".sku-rich-image-main").elevateZoom({
 						zoomType: "inner",
-						cursor: "crosshair"
+						cursor: "crosshair",
 					});
 				}
 			);
 
-			$("body").on("mouseleave", ".zoomContainer", function() {
+			$("body").on("mouseleave", ".zoomContainer", function () {
 				$(".sku-rich-image-main").removeData("elevateZoom");
 				$(".zoomContainer").remove();
 			});
@@ -164,16 +161,16 @@ export default class Produto {
 					breakpoint: 992,
 					settings: {
 						slidesToShow: 3,
-						slidesToScroll: 3
-					}
-				}
-			]
+						slidesToScroll: 3,
+					},
+				},
+			],
 		});
 	}
 
 	imagensDasVariacoes() {
 		if (typeof window.FireSkuSelectionChanged !== "undefined") {
-			$(document).on("change-sku", function(event, data) {
+			$(document).on("change-sku", function (event, data) {
 				var idSku = data.sku;
 				window.FireSkuSelectionChanged(idSku);
 			});
@@ -181,8 +178,8 @@ export default class Produto {
 	}
 
 	imagensCompreJunto() {
-		window.onload = function() {
-			setTimeout(function() {
+		window.onload = function () {
+			setTimeout(function () {
 				let images = $(".compre-junto table img");
 
 				for (let i = 0; i < images.length; i++) {
