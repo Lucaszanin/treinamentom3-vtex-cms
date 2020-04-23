@@ -26,26 +26,26 @@ export var ModuloSkusPorEspecificacoes = function (
 	 * Escolhe os primeiros skus de cada variação
 	 * @return {object} this
 	 */
-	this.setDefauls = function () {
+	this.setDefauls = function (setDefauls) {
 		let bestSku = getBestSku();
 		this.escolherSkuReferencia(bestSku);
-		componentStore.commit("setSelectedSku", bestSku);
 
 		// if(_this._skuJson.skus.length === 1){
-
-		// forçar escolha do unico sku
-		for (const especificacao in bestSku.dimensions) {
-			if (bestSku.dimensions.hasOwnProperty(especificacao)) {
-				const valorEspecificacao = bestSku.dimensions[especificacao];
-				let $especificacao = producraInputNtmlParaEspecificacao(
-					especificacao,
-					valorEspecificacao
-				);
-				$especificacao.prop("checked", true);
-				$especificacao.trigger('change');
+		if (setDefauls) {
+			// forçar escolha do unico sku
+			for (const especificacao in bestSku.dimensions) {
+				if (bestSku.dimensions.hasOwnProperty(especificacao)) {
+					const valorEspecificacao =
+						bestSku.dimensions[especificacao];
+					let $especificacao = producraInputNtmlParaEspecificacao(
+						especificacao,
+						valorEspecificacao
+					);
+					$especificacao.prop("checked", true);
+				}
 			}
+			this.escolherSku(bestSku);
 		}
-		this.escolherSku(bestSku);
 		// }
 
 		return this;

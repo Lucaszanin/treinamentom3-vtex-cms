@@ -54,7 +54,7 @@ export default class ProductModules {
 		);
 		// ModuloSkus.elemento();
 		ModuloSkus.desenhar().configurar();
-		return ModuloSkus.setDefauls(true);
+		return ModuloSkus.setDefauls(false);
 		// this.opcaoSkuIndisponivel();
 	}
 
