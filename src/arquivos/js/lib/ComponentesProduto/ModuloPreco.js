@@ -102,7 +102,7 @@ export var ModuloPreco = function(elemento = ".preco-produto", componentStore) {
 			}
 			this.elemento().css("display", "block");
 		} else {
-			// this.elemento().css('display', 'none');
+			this.elemento().css('display', 'none');
 		}
 		return this;
 	};
