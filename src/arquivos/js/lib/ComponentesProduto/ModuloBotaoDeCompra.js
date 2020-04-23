@@ -108,7 +108,7 @@ export var ModuloBotaoDeCompra = function (
 		`;
 
 		this.elemento().append(html);
-		this.elemento().find(".btn-compra").click(this.compra.bind(this));
+		$(".btn-compra").click(this.compra.bind(this));
 
 		return this;
 	};
@@ -119,10 +119,7 @@ export var ModuloBotaoDeCompra = function (
 			!_this.produtoEscolhido.sku.available &&
 			_this.produtoEscolhido.quantidade < 1
 		) {
-			this._store.events.publish(
-				ADD_SKU_TO_CART_FAIL,
-				_this.produtoEscolhido
-			);
+			mensagemErro(this.opcoes().botaoSkuIndisponivel);
 		} else {
 			try {
 				window.vtexjs.checkout
@@ -149,12 +146,14 @@ export var ModuloBotaoDeCompra = function (
 						function () {
 							this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
 								simpleProducts: _this.produtoEscolhido,
+								msg: this.opcoes().msgAddCarrinhoErro,
 							});
 						}.bind(this)
 					);
 			} catch (error) {
 				this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
 					simpleProducts: _this.produtoEscolhido,
+					msg: this.opcoes().msgAddCarrinhoErro,
 				});
 				console.warn("Erro ao adicionar sku ao carrinho de compra");
 				console.log(error);
@@ -229,8 +228,10 @@ export var ModuloBotaoDeCompra = function (
 			$popup.addClass("show");
 		}
 	};
-	this.erroAjax = function () {
-		mensagemErro(_this.opcoes().msgAddCarrinhoErro);
+	this.erroAjax = function (e, { msg }) {
+		console.log(msg);
+		mensagemErro(msg);
+		// _this.opcoes().msgAddCarrinhoErro
 	};
 	/**
 	 * Altera o texto do botão para produtos indisponiveis
@@ -270,9 +271,13 @@ export var ModuloBotaoDeCompra = function (
 		setTimeout(
 			function () {
 				_this.elemento().find(".erro-add-cart").fadeOut("slow");
+				setTimeout(() => {
+					_this.elemento().find(".erro-add-cart").remove();
+				}, 400);
 			}.bind(this),
-			1000
+			2000
 		);
+
 		_this.elemento().find(".modal-add-cart").remove();
 		_this.elemento().find(".modal-add-cart__overlay").remove();
 	}

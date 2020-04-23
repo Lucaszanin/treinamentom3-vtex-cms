@@ -65,9 +65,6 @@ export var ModuloSkus = function(
 
 			sessionStorage.setItem("sku-referencial", JSON.stringify(sku));
 			componentStore.events.publish(SKU_REF, sku);
-
-			componentStore.commit("setSelectedSku", sku);
-			componentStore.events.publish(CHANGE_SKU, sku);
 		}
 	};
 };
