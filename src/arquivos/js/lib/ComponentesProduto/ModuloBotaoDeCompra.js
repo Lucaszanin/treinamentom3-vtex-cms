@@ -108,7 +108,7 @@ export var ModuloBotaoDeCompra = function (
 		`;
 
 		this.elemento().append(html);
-		$(".btn-compra").click(this.compra.bind(this));
+		this.elemento().find(".btn-compra").click(this.compra.bind(this));
 
 		return this;
 	};
