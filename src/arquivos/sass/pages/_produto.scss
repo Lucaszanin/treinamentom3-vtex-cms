@@ -2,33 +2,33 @@
 /**-- Produto ------------------------------********************/
 /*-------------------------------------------------------------*/
 
-.produto{
-	.bread-crumb{
+.produto {
+	.bread-crumb {
 		text-align: left;
 	}
 
-	.zoomContainer{
+	.zoomContainer {
 		overflow: hidden;
 	}
 
-	.product-image{
-		@include mq(lg, max){
+	.product-image {
+		@include mq(lg, max) {
 			max-width: 650px;
 			margin: auto;
 		}
 
 		.zoomPad .zoomWindow {
-			display: none!important;
+			display: none !important;
 		}
 
-		#image{
+		#image {
 			overflow: hidden;
 
-			a{
+			a {
 				display: block;
 			}
 
-			img{
+			img {
 				max-width: initial;
 				left: 50%;
 				max-width: initial;
@@ -38,52 +38,52 @@
 				transform: translateX(-50%);
 				width: 625px;
 
-				@include mq_range(lg, xl){
+				@include mq_range(lg, xl) {
 					width: 500px;
 				}
 			}
 		}
 
-		#include{
+		#include {
 			float: right;
 			max-width: 80%;
 			min-height: 290px;
 			width: 100%;
 
-			@include mq(md, max){
+			@include mq(md, max) {
 				display: none;
 			}
 		}
 
- 		#show{
+		#show {
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: flex-end;
 
-			@include mq(md,max){
+			@include mq(md, max) {
 				display: block;
 			}
 		}
-		.thumbs{
+		.thumbs {
 			margin: 0 10px 0 0;
 			max-width: 74px;
 			width: 100%;
 
-			@include mq(md, max){
+			@include mq(md, max) {
 				max-width: 100%;
 				margin-left: auto;
 				margin-right: auto;
 			}
 
 			.slick-list > .slick-track {
-				margin-left:0;
+				margin-left: 0;
 			}
 
-			.slick-slide{
+			.slick-slide {
 				border: none;
 			}
 
-			li{
+			li {
 				border: 1px solid transparent;
 				display: inline-block;
 				max-width: 70px;
@@ -91,46 +91,47 @@
 				overflow: hidden;
 				transition: all 0.15s ease-in-out;
 
-				@include mq(md, max){
+				@include mq(md, max) {
 					max-width: 100%;
 					margin-bottom: 0;
 				}
 
-				&:hover, &:active{
-					@include mq(md, min){
+				&:hover,
+				&:active {
+					@include mq(md, min) {
 						border: 1px solid $color-pink;
 					}
 				}
 
-				img{
+				img {
 					left: 50%;
 					max-width: initial;
 					position: relative;
 					transform: translateX(-50%);
 					width: 100px;
 
-					@media only screen and (max-width: 399px){
+					@media only screen and (max-width: 399px) {
 						width: 450px;
 					}
 
-					@media only screen and (min-width: 400px) and (max-width: 575px){
+					@media only screen and (min-width: 400px) and (max-width: 575px) {
 						width: 520px;
 					}
 
-					@include mq_range(sm, md){
+					@include mq_range(sm, md) {
 						width: 600px;
 					}
 				}
 			}
 
-			.slick-dots{
-				li{
+			.slick-dots {
+				li {
 					border: none;
 				}
 			}
 		}
 
-		.slick-dots{
+		.slick-dots {
 			bottom: 20px;
 			height: 17px;
 			position: absolute;
@@ -138,24 +139,25 @@
 			text-align: center;
 			width: 100%;
 
-			@include mq(md, max){
+			@include mq(md, max) {
 				margin-top: 8px;
 				margin-bottom: 16px;
 				position: initial;
 			}
 
-			&, li{
+			&,
+			li {
 				align-items: center;
-				display: flex!important;
+				display: flex !important;
 				justify-content: center;
 			}
 
-			li{
+			li {
 				display: inline-block;
 				margin: 0 4px;
 			}
 
-			button{
+			button {
 				background-color: $color-black2;
 				border: none;
 				cursor: pointer;
@@ -167,8 +169,8 @@
 				width: 10px;
 			}
 
-			.slick-active{
-				button{
+			.slick-active {
+				button {
 					background-color: $color-pink;
 					height: 16px;
 					width: 16px;
@@ -177,134 +179,132 @@
 		}
 	}
 
-
-	.product-info{
-		@include mq(lg,max){
+	.product-info {
+		@include mq(lg, max) {
 			text-align: center;
 		}
 
-		.nome-produto{
+		.nome-produto {
 			font-size: 24px;
 			font-weight: 700;
-			margin:0 0 8px;
+			margin: 0 0 8px;
 
-			@include mq(lg, min){
+			@include mq(lg, min) {
 				max-width: 370px;
 			}
 		}
 
-		.product-reference{
+		.product-reference {
 			font-size: 14px;
 			color: $color-gray2;
 
-			.productReference{
+			.productReference {
 				display: inline-block;
 			}
 		}
 
-		.moduloPreco{
+		.moduloPreco {
 			color: $color-black2;
 			margin: 30px 0;
 
-			.valor-de{
+			.valor-de {
 				color: $color-gray2;
 				font-size: 14px;
 				text-transform: uppercase;
 				text-decoration: line-through;
 
-				span{
+				span {
 					display: none;
 				}
 
-				.value{
+				.value {
 					font-weight: normal;
 				}
 			}
 
-			.valor-por{
+			.valor-por {
 				color: $color-black2;
 				font-size: 32px;
 				font-weight: 700;
 
-				span{
+				span {
 					display: none;
 				}
-
 			}
 
-			.valor-dividido{
+			.valor-dividido {
 				color: $color-gray5;
 				font-size: 14px;
 
-				.numero-de-parcelas{
+				.numero-de-parcelas {
 					font-weight: 700;
 				}
 
-				strong{
+				strong {
 					font-weight: normal;
 				}
 			}
 
-			.preco-boleto{
+			.preco-boleto {
 				font-size: 16px;
 				position: relative;
 
 				&:before,
-				&:after{
-					content: '';
+				&:after {
+					content: "";
 					display: block;
 					width: 80px;
 
-					@include mq(md, max){
+					@include mq(md, max) {
 						margin-left: auto;
 						margin-right: auto;
 					}
 				}
 
-				&:before{
+				&:before {
 					border-top: 1px solid $color-gray3;
 					margin-top: 8px;
 					padding-bottom: 10px;
 				}
 
-				&:after{
+				&:after {
 					padding-top: 10px;
 					border-bottom: 1px solid $color-gray3;
 				}
 
-				.value{
-					&:before{
-						content: 'ou';
+				.value {
+					&:before {
+						content: "ou";
 						display: inline-block;
 						font-weight: normal;
 						margin-right: 5px;
 					}
 				}
 
-				.container-percentual{
+				.container-percentual {
 					border: 1px dotted $color-green;
-					color:$color-green;
+					color: $color-green;
 					font-size: 10px;
 					padding: 4px 9px;
 				}
 			}
 		}
 
-		.moduloAviseMe{
+		.moduloAviseMe {
 			border-bottom: 1px solid $color-gray;
 			padding-bottom: 15px;
 			margin: 20px 0;
 
-			.form-avise-me{
+			.form-avise-me {
 				padding: 0;
 				position: relative;
 
-				h2{
+				h2 {
 					font-size: 16px;
 					font-weight: normal;
 				}
 
-				input{
+				input {
 					border: 1px solid $color-gray;
 					display: inline-block;
 					margin-bottom: 10px;
@@ -312,11 +312,11 @@
 					width: 100%;
 					max-width: 45%;
 
-					&#nome-avise-me{
+					&#nome-avise-me {
 						margin-right: 8px;
 					}
 
-					&#enviar-avise-me{
+					&#enviar-avise-me {
 						background-color: $color-black3;
 						border: none;
 						color: $color-white;
@@ -330,45 +330,45 @@
 						width: 100%;
 						max-width: 200px;
 
-						&:hover{
+						&:hover {
 							background-color: $color-black;
 						}
 
-						&:active{
+						&:active {
 							background-color: $color-black2;
 						}
 					}
 				}
 
-				.status{
+				.status {
 					bottom: -25px;
 					font-weight: 700;
 					position: absolute;
 
-					&.msgSucesso{
+					&.msgSucesso {
 						color: $color-green;
 					}
 
-					&.msgErro{
+					&.msgErro {
 						color: $color-pink;
 					}
 				}
 			}
 		}
 
-		.similares{
-			.titulo{
+		.similares {
+			.titulo {
 				font-size: 16px;
 			}
 
-			ul{
-				@include mq(md, max){
+			ul {
+				@include mq(md, max) {
 					max-width: 270px;
 					margin: 15px auto;
 				}
 			}
 
-			li{
+			li {
 				border: 1px solid $color-gray;
 				display: inline-block;
 				max-width: 72px;
@@ -377,15 +377,15 @@
 				overflow: hidden;
 				transition: all 0.15s ease-in-out;
 
-				&:last-child(){
+				&:last-child() {
 					margin-right: 0;
 				}
 
-				&:hover{
+				&:hover {
 					border: 2px solid $color-gray3;
 				}
 
-				img{
+				img {
 					left: 50%;
 					position: relative;
 					transform: translateX(-50%);
@@ -394,77 +394,79 @@
 			}
 
 			.slick-list > .slick-track {
-				@include mq(md, min){
-					margin-left:0;
+				@include mq(md, min) {
+					margin-left: 0;
 				}
 			}
 
-			.slick-dots{
-				li{
+			.slick-dots {
+				li {
 					border: none;
 				}
 			}
 		}
 
-		.moduloSkus{
-			.titulo{
+		.moduloSkus {
+			.titulo {
 				color: $color-gray5;
 				font-size: 16px;
 			}
 
-			.cores{
+			.cores {
 				display: none;
 
-				&.ativo{
+				&.ativo {
 					display: block;
 				}
 			}
 
-			.tamanhos{
-				.titulo{
+			.tamanhos {
+				.titulo {
 					font-size: 0;
 
-					&:before{
-						content: 'Escolha o tamanho:';
+					&:before {
+						content: "Escolha o tamanho:";
 						display: block;
 						font-size: 16px;
 					}
 				}
 
-				.sku{
+				.sku {
 					margin-top: 8px;
 				}
 			}
 
-			li{
-				display:inline-block;
+			li {
+				display: inline-block;
 				font-size: 13px;
-				margin-bottom:5px;
+				margin-bottom: 5px;
 
-				&:last-child(){
-					label{
+				&:last-child() {
+					label {
 						margin-right: 0;
 					}
 				}
 
-				&:hover label,
-				&:active label{
-					background-color: $color-gray3;
+				@include mq(lg) {
+					&:hover label,
+					&:active label {
+						background-color: $color-gray3;
+					}
 				}
 			}
 
-			input{
-				display:none;
+			input {
+				display: none;
 
-				&:checked+label{
-					background-color:#fff;
+				&:checked + label {
+					background-color: #fff;
 					border: 1px solid $color-pink;
 				}
 			}
 
-			label{
+			label {
 				align-items: center;
-				background-color:$color-gray;
+				background-color: $color-gray;
 				border-radius: 4px;
 				border: 1px solid transparent;
 				color: $color-black3;
@@ -478,42 +480,43 @@
 				transition: all 0.2s linear;
 				padding: 4px 8px;
 
-				&.image{
-					padding: 0
+				&.image {
+					padding: 0;
 				}
 			}
 		}
 
-		.moduloQuantidade{
+		.moduloQuantidade {
 			display: inline-block;
 			vertical-align: top;
 			opacity: 1;
 			visibility: visible;
 			transition: all 0.25s linear;
 
-			&.desativado{
+			&.desativado {
 				// opacity: 0;
 				// visibility: hidden;
 			}
 
-			.titulo{
+			.titulo {
 				color: $color-gray5;
 				display: block;
 				font-size: 16px;
 				margin-bottom: 8px;
 
-				&:after{
-					content:':';
+				&:after {
+					content: ":";
 					display: inline-block;
 				}
 			}
 
-			.campo-qtd{
+			.campo-qtd {
 				display: flex;
 				position: relative;
 			}
 
-			.qtd-value, button{
+			.qtd-value,
+			button {
 				background-color: transparent;
 				border: none;
 				text-align: center;
@@ -521,8 +524,8 @@
 				outline: none;
 			}
 
-			button{
-				background-color:$color-pink;
+			button {
+				background-color: $color-pink;
 				color: $color-white;
 				cursor: pointer;
 				font-size: 14px;
@@ -532,54 +535,56 @@
 				vertical-align: top;
 				transition: all 0.15s linear;
 
-				&:hover{
-					background-color:$color-pink;
+				@include mq(lg) {
+					&:hover {
+						background-color: $color-pink;
+					}
 				}
 
-				&:active{
-					background-color:$color-pink;
+				&:active {
+					background-color: $color-pink;
 				}
 			}
 
-			.qtd-value{
-				border:1px solid $color-black2;
+			.qtd-value {
+				border: 1px solid $color-black2;
 				color: $color-black3;
 				font-size: 14px;
 				position: relative;
 				width: 34px;
 				height: 32px;
-				-moz-appearance:textfield;
+				-moz-appearance: textfield;
 				&::-webkit-outer-spin-button,
-				&::-webkit-inner-spin-button{
+				&::-webkit-inner-spin-button {
 					-webkit-appearance: none;
 				}
 			}
 
-			.notificacao{
-				display: none!important;
+			.notificacao {
+				display: none !important;
 			}
 		}
 
-		.guia-de-medidas{
+		.guia-de-medidas {
 			&:before,
-			&:after{
-				content: '';
+			&:after {
+				content: "";
 				display: block;
 				width: 80px;
 			}
 
-			&:before{
+			&:before {
 				border-top: 1px solid $color-gray3;
 				margin-top: 10px;
 				padding-bottom: 6px;
 			}
 
-			&:after{
+			&:after {
 				padding-top: 6px;
 				border-bottom: 1px solid $color-gray3;
 			}
 
-			button{
+			button {
 				background-color: transparent;
 				border: none;
 				color: $color-gray2;
@@ -589,24 +594,24 @@
 				padding: 0;
 				text-transform: uppercase;
 
-				i{
+				i {
 					margin-right: 4px;
 				}
 			}
 		}
 
-		.moduloBotaoDeCompra{
+		.moduloBotaoDeCompra {
 			position: relative;
 
-			&.desativado{
+			&.desativado {
 				pointer-events: none;
 
-				.btn-compra{
+				.btn-compra {
 					background-color: $color-gray3;
 				}
 			}
 
-			.btn-compra{
+			.btn-compra {
 				background-color: $color-green;
 				color: $color-white;
 				cursor: pointer;
@@ -621,20 +626,22 @@
 				transition: all 0.15s linear;
 				width: 90%;
 
-				@include mq(lg, max){
+				@include mq(lg, max) {
 					margin: 30px auto 0;
 				}
 
-				&:hover{
-					background-color: $color-green2;
+				@include mq(lg) {
+					&:hover {
+						background-color: $color-green2;
+					}
 				}
 
-				&:active{
+				&:active {
 					background-color: $color-green3;
 				}
 			}
 
-			.erro-add-cart{
+			.erro-add-cart {
 				bottom: -55px;
 				color: $color-pink;
 				position: absolute;
@@ -642,7 +649,7 @@
 			}
 		}
 
-		.compra-segura{
+		.compra-segura {
 			color: $color-black3;
 			font-size: 10px;
 			max-width: 270px;
@@ -650,47 +657,47 @@
 			text-transform: uppercase;
 			width: 90%;
 
-			@include mq(lg, max){
+			@include mq(lg, max) {
 				margin-left: auto;
 				margin-right: auto;
 			}
 
-			p{
+			p {
 				margin: 4px 0;
 			}
 
-			i{
+			i {
 				margin-bottom: 2px;
 				transform: scale(0.5);
 				vertical-align: middle;
 			}
 		}
 
-		.descricao-produto{
+		.descricao-produto {
 			&:before,
-			&:after{
-				content: '';
+			&:after {
+				content: "";
 				display: block;
 				width: 80px;
 
-				@include mq(lg, max){
+				@include mq(lg, max) {
 					margin-left: auto;
 					margin-right: auto;
 				}
 			}
 
-			&:before{
+			&:before {
 				border-top: 1px solid $color-gray4;
 				margin-top: 25px;
 				padding-bottom: 16px;
 			}
 
-			&:after{
+			&:after {
 				padding-top: 16px;
 				border-bottom: 1px solid $color-gray4;
 			}
 
-			a{
+			a {
 				background-color: transparent;
 				border: none;
 				color: $color-black2;
@@ -700,53 +707,52 @@
 				padding: 0;
 				text-transform: uppercase;
 
-				i{
+				i {
 					margin-right: 4px;
 				}
 			}
 		}
 	}
 
-	.prateleira-de-produtos{
-
-		@include mq(md, max){
-			padding:0 15px;
+	.prateleira-de-produtos {
+		@include mq(md, max) {
+			padding: 0 15px;
 		}
 
-		>div{
+		> div {
 			margin-top: 140px;
 
-			@include mq(lg, max){
+			@include mq(lg, max) {
 				margin-top: 90px;
 			}
 		}
 	}
 
-	#descricao-completa{
+	#descricao-completa {
 		color: $color-black2;
 
-		@include mq(md, max){
-			padding:0 15px;
+		@include mq(md, max) {
+			padding: 0 15px;
 		}
 
-		>div{
+		> div {
 			border-top: 1px solid $color-gray6;
 			margin-top: 48px;
 
-			@include mq(md, max){
+			@include mq(md, max) {
 				padding-left: 0;
 				padding-right: 0;
 			}
 		}
 
-		h2{
+		h2 {
 			font-size: 24px;
 			font-weight: normal;
 			text-align: center;
 			margin: 24px 0;
 		}
 
-		.descricao{
+		.descricao {
 			color: $color-gray5;
 			font-size: 14px;
 			line-height: 18px;
@@ -757,18 +763,22 @@
 			position: relative;
 			transition: all 0.4s ease-in-out;
 
-			&.minimizado{
+			&.minimizado {
 				max-height: 140px;
 
-				.ver-mais{
+				.ver-mais {
 					opacity: 1;
 					visibility: visible;
 				}
 			}
 
-			.ver-mais{
+			.ver-mais {
 				align-items: flex-end;
-				background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%,rgba(255,255,255,1) 75%);
+				background: linear-gradient(
+					to bottom,
+					rgba(255, 255, 255, 0.3) 0%,
+					rgba(255, 255, 255, 1) 75%
+				);
 				bottom: 0;
 				display: flex;
 				justify-content: center;
@@ -780,7 +790,7 @@
 				visibility: hidden;
 				width: 100%;
 
-				button{
+				button {
 					background-color: $color-black3;
 					border: none;
 					color: $color-white;
@@ -793,11 +803,13 @@
 					transition: all 0.15s linear;
 					width: 215px;
 
-					&:hover{
-						background-color: $color-black;
+					@include mq(lg) {
+						&:hover {
+							background-color: $color-black;
+						}
 					}
 
-					&:active{
+					&:active {
 						background-color: $color-black2;
 					}
 				}
@@ -805,7 +817,7 @@
 		}
 	}
 
-	.popup-add-cart{
+	.popup-add-cart {
 		align-items: center;
 		background-color: $color-black2;
 		bottom: 5%;
@@ -824,23 +836,23 @@
 		right: 0;
 		z-index: 11;
 
-		@include mq(md, max){
+		@include mq(md, max) {
 			padding-left: 24px;
 			padding-right: 24px;
 		}
 
-		img{
+		img {
 			display: inline-block;
 			max-width: 48px;
 		}
 
-		span{
+		span {
 			display: block;
 			margin-left: 12px;
 			text-align: left;
 		}
 
-		button{
+		button {
 			background-color: transparent;
 			border: none;
 			color: $color-pink;

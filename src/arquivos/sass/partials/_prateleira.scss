@@ -234,21 +234,25 @@
 				text-transform: uppercase;
 				transition: all 0.15s linear;
 
-				&:hover {
-					background-color: $color-green2;
-				}
+				@include mq(lg) {
+					&:hover {
+						background-color: $color-green2;
+					}
 
-				&:active {
-					background-color: $color-green3;
+					&:active {
+						background-color: $color-green3;
+					}
 				}
 			}
 		}
 	}
 
-	&:hover .compra .btn-compra {
-		visibility: visible;
-		opacity: 1;
-		z-index: 1;
+	@include mq(lg) {
+		&:hover .compra .btn-compra {
+			visibility: visible;
+			opacity: 1;
+			z-index: 1;
+		}
 	}
 
 	.indisponivel {

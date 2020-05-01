@@ -169,21 +169,27 @@ export var ModuloSkusPorEspecificacoes = function (
 	 * @return {object} this
 	 */
 	this.configurar = function () {
-		$(".especificacao input").on("change", function () {
-			var especificacoesDoSku = {},
-				sku;
-			var nomeEspecificacao = "";
-			$(".especificacao input:checked").each(function () {
-				nomeEspecificacao = this.getAttribute(
-					"data-especificacao-title"
-				);
-				especificacoesDoSku[nomeEspecificacao] = this.getAttribute(
-					"data-especificacao"
-				);
+		_this
+			.elemento()
+			.find(".especificacao input")
+			.on("change", function () {
+				var especificacoesDoSku = {},
+					sku;
+				var nomeEspecificacao = "";
+				_this
+					.elemento()
+					.find(".especificacao input:checked")
+					.each(function () {
+						nomeEspecificacao = this.getAttribute(
+							"data-especificacao-title"
+						);
+						especificacoesDoSku[
+							nomeEspecificacao
+						] = this.getAttribute("data-especificacao");
+					});
+				sku = getSkuPorEspecificacoes(especificacoesDoSku);
+				_this.escolherSku(sku);
 			});
-			sku = getSkuPorEspecificacoes(especificacoesDoSku);
-			_this.escolherSku(sku);
-		});
 		return this;
 	};
 	function getSkuPorEspecificacoes(especificacoes) {

@@ -4,7 +4,7 @@ import { CHANGE_SKU, SKU_REF } from "./EventType";
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
-export var ModuloAviseMe = function(
+export var ModuloAviseMe = function (
 	elemento = ".avise-me-container:first-child",
 	componentStore
 ) {
@@ -20,18 +20,18 @@ export var ModuloAviseMe = function(
 		placeholderEmail: "Digite seu e-mail...",
 		btnSubmit: "Enviar",
 		msgSucesso: "Cadastrado com sucesso!",
-		msgErro: "Ocorreu algum erro. Tente novamente mais tarde."
+		msgErro: "Ocorreu algum erro. Tente novamente mais tarde.",
 	};
 	/**
 	 * Configura os eventos js que serão diparados pelo html do desenhar()
 	 * @return {object} this
 	 */
-	this.configurar = function(opcoes) {
+	this.configurar = function (opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
-		this._store.events.subscribe(SKU_REF, function(event, sku) {
+		this._store.events.subscribe(SKU_REF, function (event, sku) {
 			_this.atualizar(sku);
 		});
-		this._store.events.subscribe(CHANGE_SKU, function(event, sku) {
+		this._store.events.subscribe(CHANGE_SKU, function (event, sku) {
 			_this.atualizar(sku);
 		});
 		return this;
@@ -42,19 +42,21 @@ export var ModuloAviseMe = function(
 	 * @param  {Object} novoSku objeto do sku selecionado
 	 * @return {Object} this
 	 */
-	this.atualizar = function(novoSku) {
+	this.atualizar = function (novoSku) {
 		if (!novoSku) {
 			novoSku = {
-				available: false
+				available: false,
 			};
 		}
+		if ($.isEmptyObject(novoSku)) {
+			novoSku = {
+				available: true,
+			};
+		}
+
 		if (!novoSku.available) {
-			this.elemento()
-				.find("#sku-avise-me")
-				.val(novoSku.sku);
-			this.elemento()
-				.find("#avise-me-produto-nome")
-				.val(novoSku.skuname);
+			this.elemento().find("#sku-avise-me").val(novoSku.sku);
+			this.elemento().find("#avise-me-produto-nome").val(novoSku.skuname);
 		}
 
 		this.elemento().toggle(!novoSku.available);
@@ -65,7 +67,7 @@ export var ModuloAviseMe = function(
 	 * Cria e insere o html com as variações dos skus
 	 * @return {object} this
 	 */
-	this.desenhar = function() {
+	this.desenhar = function () {
 		if ($(".form-avise-me").length == 0) {
 			var container = $("<div />")
 				.addClass("avise-me-container")
@@ -76,26 +78,26 @@ export var ModuloAviseMe = function(
 			$("<a />")
 				.attr({
 					class: "close",
-					text: this.opcoes().fechar
+					text: this.opcoes().fechar,
 				})
 				.click(
-					function() {
+					function () {
 						this.elemento().hide();
 					}.bind(this)
 				)
 				.appendTo(fieldset);
 			$("<h2 />", {
-				html: this.opcoes().titulo
+				html: this.opcoes().titulo,
 			}).appendTo(fieldset);
 
 			if (this.opcoes().subtitulo) {
 				$("<h3 />", {
-					html: this.opcoes().subtitulo
+					html: this.opcoes().subtitulo,
 				}).appendTo(fieldset);
 			}
 
 			var fieldsWrapper = $("<div/>", {
-				class: "avise-me-wrapper"
+				class: "avise-me-wrapper",
 			}).appendTo(fieldset);
 
 			$("<input />", {
@@ -103,14 +105,14 @@ export var ModuloAviseMe = function(
 				type: "text",
 				id: "nome-avise-me",
 				size: "20",
-				placeholder: this.opcoes().placeholderNome
+				placeholder: this.opcoes().placeholderNome,
 			}).appendTo(fieldsWrapper);
 			$("<input />", {
 				name: "notifymeClientEmail",
 				type: "text",
 				id: "email-avise-me",
 				size: "20",
-				placeholder: this.opcoes().placeholderEmail
+				placeholder: this.opcoes().placeholderEmail,
 			}).appendTo(fieldsWrapper);
 
 			$("<input />", {
@@ -118,7 +120,7 @@ export var ModuloAviseMe = function(
 				type: "hidden",
 				id: "sku-avise-me",
 				class: "notifyme-skuid",
-				value: 0
+				value: 0,
 			}).appendTo(fieldset);
 
 			$("<input />", {
@@ -126,12 +128,12 @@ export var ModuloAviseMe = function(
 				type: "button",
 				id: "enviar-avise-me",
 				class: "btn-enviar",
-				value: this.opcoes().btnSubmit
+				value: this.opcoes().btnSubmit,
 			})
 				.click(this.enviar.bind(this))
 				.appendTo(fieldset);
 			$("<p />", {
-				class: "status"
+				class: "status",
 			}).appendTo(fieldset);
 		}
 		this.atualizar(this._store.state.selectedSku);
@@ -140,7 +142,7 @@ export var ModuloAviseMe = function(
 	/**
 	 * Funçõa que envia registra a solicitação de "avise-me"
 	 */
-	this.enviar = function() {
+	this.enviar = function () {
 		var aviseme = this.elemento().find(".form-avise-me");
 		if (!this.validar(aviseme)) {
 			return false;
@@ -149,7 +151,7 @@ export var ModuloAviseMe = function(
 			type: "POST",
 			url: "/no-cache/AviseMe.aspx",
 			data: aviseme.serialize(),
-			success: function() {
+			success: function () {
 				aviseme
 					.find("p.status")
 					.html(this.opcoes().msgSucesso)
@@ -157,12 +159,12 @@ export var ModuloAviseMe = function(
 				aviseme.find("input").hide();
 				aviseme.find("h3").hide();
 			}.bind(this),
-			error: function() {
+			error: function () {
 				aviseme
 					.find("p.status")
 					.html(this.opcoes().msgErro)
 					.addClass("msgErro");
-			}.bind(this)
+			}.bind(this),
 		});
 	};
 	/**
