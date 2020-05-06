@@ -39,8 +39,8 @@ export default class ModuloPrecoBoleto extends Modulo{
 		}
 	}
 	percentual (percentual) {
-		if (percentual) this._percentual = percentual;
-		return this._percentual || 0;
+		if (percentual) this._opcoes.percentual = percentual;
+		return this._opcoes.percentual || 0;
 	}
 
 }
