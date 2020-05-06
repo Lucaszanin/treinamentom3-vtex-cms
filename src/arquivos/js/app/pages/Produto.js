@@ -17,7 +17,7 @@ export default class Produto {
 		this.productSlides();
 		this.exibirVariacaoDeCores();
 		slideResponsivo(".prateleira-de-produtos", 4, 3, 1, 1, false, true);
-		this.initProductComponents().catch((err) => console.log(err));
+		this.initProductComponents().catch((err) => console.error(err));
 	}
 
 	async initProductComponents() {

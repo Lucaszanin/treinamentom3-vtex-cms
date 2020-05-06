@@ -40,7 +40,12 @@ export function getPrice(price) {
 	}
 	else {
 		price = price || 0;
-		return price.toFixed(2).replace('.', ',');
+		price = price.toLocaleString('pt-BR', {
+			'minimumFractionDigits': 2,
+			'maximumFractionDigits': 2
+		});
+
+		return price;
 	}
 }
 

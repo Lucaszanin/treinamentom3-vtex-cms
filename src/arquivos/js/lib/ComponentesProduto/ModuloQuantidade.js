@@ -20,13 +20,11 @@ export var ModuloQuantidade = function(
 	this.configurar = function(opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
 
-		componentStore.events.subscribe(SKU_REF, function() {
-			var novoSku = JSON.parse(sessionStorage.getItem("sku-referencial"));
-			_this.atualizar(novoSku);
+		componentStore.events.subscribe(SKU_REF, function(event, sku) {
+			_this.atualizar(sku);
 		});
-		componentStore.events.subscribe(CHANGE_SKU, function() {
-			var novoSku = JSON.parse(sessionStorage.getItem("sku-selecionado"));
-			_this.atualizar(novoSku);
+		componentStore.events.subscribe(CHANGE_SKU, function(event, sku) {
+			_this.atualizar(sku);
 		});
 		return this;
 	};
@@ -37,12 +35,7 @@ export var ModuloQuantidade = function(
 	 * @return {Object} this
 	 */
 	this.atualizar = function(novoSku) {
-		if (!novoSku) {
-			novoSku = {
-				available: false
-			};
-		}
-		if (novoSku.available) {
+		if (novoSku?.available ===  true) {
 			var estoque,
 				skuId = novoSku.sku;
 			try {
@@ -57,7 +50,9 @@ export var ModuloQuantidade = function(
 				estoque > this.opcoes().maxEstoque
 					? this.opcoes().maxEstoque
 					: estoque;
+
 			this.moduloExibicao().atualizar(estoque);
+			this.elemento().removeClass("desativado");
 		} else {
 			this.moduloExibicao().atualizar(0);
 			this.elemento().addClass("desativado");
