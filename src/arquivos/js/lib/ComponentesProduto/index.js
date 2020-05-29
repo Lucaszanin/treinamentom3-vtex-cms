@@ -1,13 +1,12 @@
-import {
-	ModuloPrecoBoleto,
-	ModuloPrecoDe,
-	ModuloPrecoParcelado,
-	ModuloPrecoPor
-} from "./SubModulos/ModulosTiposDePreco";
 
-import { ModuloBtnQtd } from "./SubModulos/ModuloBtnQtd";
+import ModuloPrecoDe from './SubModulos/ModuloPrecoDe';
+import ModuloPrecoPor from './SubModulos/ModuloPrecoPor';
+import ModuloPrecoParcelado from './SubModulos/ModuloPrecoParcelado';
+import ModuloPrecoBoleto from './SubModulos/ModuloPrecoBoleto';
 
-import { ModuloSelect } from "./SubModulos/ModuloSelect";
+import ModuloBtnQtd from "./SubModulos/ModuloBtnQtd";
+
+import ModuloSelect from "./SubModulos/ModuloSelect";
 
 import { ModuloSkusPorNome } from "./SubModulos/ModuloSkusPorNome";
 

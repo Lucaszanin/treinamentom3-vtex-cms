@@ -59,7 +59,7 @@ export default class ProductModules {
 	}
 
 	quantidade(elemento) {
-		var moduloBtnQtd = new Components.ModuloBtnQtd(this.store);
+		var moduloBtnQtd = new Components.ModuloBtnQtd(elemento,this.store);
 		moduloBtnQtd.configurar({
 			max: 50
 		});

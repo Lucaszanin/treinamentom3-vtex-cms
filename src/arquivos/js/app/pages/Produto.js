@@ -4,7 +4,7 @@ import loja from "Config/loja";
 import Components from "Lib/ComponentesProduto";
 import { alterarTamanhoImagemSrcVtex } from "Helpers/vtexUtils";
 import { isSmallerThen768 } from "Helpers/MediasMatch";
-import { slideResponsivo } from "App/functions/slide";
+import { slideResponsivo, produtoThumbs } from "App/functions/slide";
 import ProductModules from "App/components/ProductModules";
 
 export default class Produto {
@@ -17,7 +17,7 @@ export default class Produto {
 		this.productSlides();
 		this.exibirVariacaoDeCores();
 		slideResponsivo(".prateleira-de-produtos", 4, 3, 1, 1, false, true);
-		this.initProductComponents().catch((err) => console.log(err));
+		this.initProductComponents().catch((err) => console.error(err));
 	}
 
 	async initProductComponents() {
@@ -146,7 +146,7 @@ export default class Produto {
 
 	productSlides() {
 		var $thumbs = $(".product-image .thumbs");
-		// slide.produtopTumbs($thumbs);
+		produtoThumbs($thumbs);
 
 		$(".similares ul").slick({
 			dots: true,

@@ -1,10 +1,10 @@
 import { Modulo } from "./Modulo";
-import {
-	ModuloPrecoDe,
-	ModuloPrecoPor,
-	ModuloPrecoParcelado,
-	ModuloPrecoBoleto
-} from "./SubModulos/ModulosTiposDePreco";
+
+import ModuloPrecoDe from './SubModulos/ModuloPrecoDe';
+import ModuloPrecoPor from './SubModulos/ModuloPrecoPor';
+import ModuloPrecoParcelado from './SubModulos/ModuloPrecoParcelado';
+import ModuloPrecoBoleto from './SubModulos/ModuloPrecoBoleto';
+
 import { SKU_REF, CHANGE_SKU } from "./EventType";
 /**
  * modulo preco

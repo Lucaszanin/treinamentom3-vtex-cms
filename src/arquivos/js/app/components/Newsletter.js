@@ -10,7 +10,7 @@ export default class Newsletter {
 
 		$elemento.CustomNewsletter({
 			shop: loja.accontuName,
-			acronymEntity: loja.entityNewletter,
+			acronymEntity: loja.entityNewsletter,
 			textButtom: textButtom
 		});
 	}

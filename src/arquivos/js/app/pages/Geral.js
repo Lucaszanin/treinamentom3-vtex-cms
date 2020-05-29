@@ -11,7 +11,7 @@ export default class Geral {
 		}
 		this.scrollTop();
 		this.correcaoAutocomplete();
-		prateleira.atualziar();
+		prateleira.atualizar();
 	}
 
 	scrollTop() {

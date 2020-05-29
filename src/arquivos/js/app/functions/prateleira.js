@@ -8,7 +8,7 @@ export default {
 			$elementos = $(".produto-na-prateleira");
 		}
 
-		$elementos.not(".flagDeDesconto").each(function(index, el) {
+		$elementos.not(".flagDeDesconto").each(function (index, el) {
 			var percentualDeDesconto = calcularValorDeDesconto($(this));
 			if (
 				percentualDeDesconto >=
@@ -19,11 +19,11 @@ export default {
 			$(this).addClass("flagDeDesconto");
 		});
 	},
-	precoParcelado: function() {
+	precoParcelado: function () {
 		$(".produto-na-prateleira")
 			.not(".calc")
-			.each(function(i, el) {
-				var execucao = new window.Promise(function(resolve, reject) {
+			.each(function (i, el) {
+				var execucao = new window.Promise(function (resolve, reject) {
 					try {
 						let $price = $(el).find(".price"),
 							nParcelas = lojaConf.price.numeroDeParcelas;
@@ -33,9 +33,7 @@ export default {
 						let valorParcelado = valorTotal / nParcelas;
 
 						//limpa o parcelamento atual
-						$(el)
-							.find(".price .parcelado")
-							.remove();
+						$(el).find(".price .parcelado").remove();
 						let htmlPrecoParcelado = criarHtmlPrecoParcelado(
 							valorParcelado,
 							nParcelas
@@ -48,21 +46,19 @@ export default {
 					}
 				});
 				execucao
-					.then(function() {
+					.then(function () {
 						$(el).addClass("calc");
 					})
-					.catch(function() {
-						$(el)
-							.find(".price .parcelado")
-							.remove();
+					.catch(function () {
+						$(el).find(".price .parcelado").remove();
 					});
 			});
 	},
-	precoBoleto: function() {
+	precoBoleto: function () {
 		$(".produto-na-prateleira")
 			.not(".boleto")
-			.each(function(i, el) {
-				var execucao = new window.Promise(function(resolve, reject) {
+			.each(function (i, el) {
+				var execucao = new window.Promise(function (resolve, reject) {
 					try {
 						let $price = $(el).find(".price"),
 							percentualBoleto = lojaConf.price.percentualBoleto;
@@ -73,9 +69,7 @@ export default {
 							valorTotal - (valorTotal * percentualBoleto) / 100;
 
 						//limpa o parcelamento atual
-						$(el)
-							.find(".price .boleto")
-							.remove();
+						$(el).find(".price .boleto").remove();
 						let htmlPrecoBoleto = criarHtmlPrecoBoleto(valorBoleto);
 						$price.append(htmlPrecoBoleto);
 
@@ -85,21 +79,20 @@ export default {
 					}
 				});
 				execucao
-					.then(function() {
+					.then(function () {
 						$(el).addClass("boleto");
 					})
-					.catch(function() {
-						$(el)
-							.find(".price .boleto")
-							.remove();
+					.catch(function () {
+						$(el).find(".price .boleto").remove();
 					});
 			});
 	},
-	atualziar: function() {
+	//ex atualziar
+	atualizar: function () {
 		this.flagDeDesconto();
 		this.precoParcelado();
 		this.precoBoleto();
-	}
+	},
 };
 
 function criarHtmlPrecoParcelado(valor, numeroDeParcelas) {
