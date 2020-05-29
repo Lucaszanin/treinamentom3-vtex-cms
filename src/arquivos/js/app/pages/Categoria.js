@@ -144,7 +144,7 @@ export default class Categoria {
 					}
 				},
 				shelfCallback: () => {
-					prateleira.atualziar();
+					prateleira.atualizar();
 				}
 			});
 		} else {
@@ -174,18 +174,18 @@ export default class Categoria {
 					}
 				},
 				shelfCallback: () => {
-					prateleira.atualziar();
+					prateleira.atualizar();
 				}
 			});
 		}
 
 		$(document).on(
 			"vsr-request-end",
-			prateleira.atualziar.bind(prateleira)
+			prateleira.atualizar.bind(prateleira)
 		);
 		$(window).on(
 			"finished-upadte-filter",
-			prateleira.atualziar.bind(prateleira)
+			prateleira.atualizar.bind(prateleira)
 		);
 		// desabilita o scroll automático
 		history.scrollRestoration = "manual";

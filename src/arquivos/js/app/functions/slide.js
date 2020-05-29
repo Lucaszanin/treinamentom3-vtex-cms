@@ -167,7 +167,7 @@ export function barraDeVantagens(barraDeVantagens) {
 	});
 }
 
-export function produtopThumbs(thumbs) {
+export function produtoThumbs(thumbs) {
 	let $elemento =
 		typeof thumbs !== "undefined" ? $(thumbs) : $(".main-gallery");
 
