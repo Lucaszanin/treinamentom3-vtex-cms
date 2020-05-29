@@ -1,9 +1,9 @@
 import { Modulo } from "../Modulo";
 import { CHANGE_QTD } from "../EventType";
 
-export default class ModuloBtnQtd extends Modulo{
-	constructor( elemento, componentStore){
-		super( elemento, componentStore);
+export default class ModuloBtnQtd extends Modulo {
+	constructor(elemento, componentStore) {
+		super(elemento, componentStore);
 		this.elemento(".qtd-selector");
 		this.store(componentStore);
 		this._opcoes = {
@@ -11,38 +11,37 @@ export default class ModuloBtnQtd extends Modulo{
 			opcaoIndisponivel: "Indisponível",
 			max: "1",
 			min: "1",
-			default: "1"
+			default: "1",
 		};
 
 		this._store.commit("setQtd", this._opcoes.default);
 	}
 
-	desenhar () {
-		let _html =
-		`<div class="valor-por">
+	desenhar() {
+		let _html = `<div class="valor-por">
 			<strong class="value"></strong>
 		</div>`;
 
 		var divQtd = $("<div />", {
-			class: "quantidade"
+			class: "quantidade",
 		});
 		$("<span />", {
 			class: "titulo",
-			text: this.opcoes().titulo
+			text: this.opcoes().titulo,
 		}).appendTo(divQtd);
 		var campoQtd = $("<div />", {
-			class: "campo-qtd"
+			class: "campo-qtd",
 		}).appendTo(divQtd);
 
 		var buttonRemove = $("<button />", {
 			class: "remove-from-cart",
-			"aria-label": "Remover item"
+			"aria-label": "Remover item",
 		})
 			.on("click", this.decrementBtn.bind(this))
 			.text("-")
 			.appendTo(campoQtd);
 		var label = $("<label />", {
-			class: "container-qtd"
+			class: "container-qtd",
 		}).appendTo(campoQtd);
 
 		var inputQtd = $("<input />", {
@@ -51,12 +50,12 @@ export default class ModuloBtnQtd extends Modulo{
 			type: "number",
 			"data-min": this.opcoes().min,
 			"data-max": this.opcoes().max,
-			value: this._store.state.qtd
+			value: this._store.state.qtd,
 		}).appendTo(label);
 
 		var buttonAdd = $("<button />", {
 			class: "add-to-cart",
-			"aria-label": "Adicionar item"
+			"aria-label": "Adicionar item",
 		})
 			.on("click", this.incrementBtn.bind(this))
 			.text("+")
@@ -65,7 +64,6 @@ export default class ModuloBtnQtd extends Modulo{
 		this.inputChange();
 		return this;
 
-
 		var valorPor = $(_html);
 
 		this.elemento(valorPor);
@@ -73,10 +71,12 @@ export default class ModuloBtnQtd extends Modulo{
 	}
 
 	atualizar(novoEstoque) {
-		console.log('novoEstoque',novoEstoque)
+		console.log("novoEstoque", novoEstoque);
 		this.opcoes().max = novoEstoque;
 
-		var $inputQuantidade = this.elemento().find(".qtd-value").trigger('change');
+		var $inputQuantidade = this.elemento()
+			.find(".qtd-value")
+			.trigger("change");
 
 		if (novoEstoque > 0) {
 			this.habilitar(true);
@@ -86,10 +86,12 @@ export default class ModuloBtnQtd extends Modulo{
 	}
 
 	onChange(input) {
+		console.log(input);
 		var $inputQuantidade = input;
 		//obtem os valores de quantidade selecionada e quantidade maxima
 		var min = this.opcoes().min;
 		var max = this.opcoes().max;
+
 		var qtd = parseInt($inputQuantidade.val());
 
 		if (qtd < min || isNaN(qtd)) {
@@ -109,9 +111,11 @@ export default class ModuloBtnQtd extends Modulo{
 	}
 
 	inputChange() {
-		this.elemento().find("input[class='qtd-value']").on("focusout", () => {
-			this.onChange($(this)).bind(this);
-		});
+		this.elemento()
+			.find("input[class='qtd-value']")
+			.on("focusout", (e) => {
+				this.onChange.call(this, $(e.target));
+			});
 	}
 
 	incrementBtn() {
@@ -151,15 +155,12 @@ export default class ModuloBtnQtd extends Modulo{
 		var notificacao = $(".moduloQuantidade").find(".notificacao");
 		if (!notificacao.length) {
 			notificacao = $("<div />", {
-				class: "notificacao"
+				class: "notificacao",
 			}).appendTo($(".moduloQuantidade").find(".container-qtd"));
 		}
-		notificacao
-			.empty()
-			.text(msg)
-			.fadeIn("slow");
+		notificacao.empty().text(msg).fadeIn("slow");
 		var timer = setTimeout(
-			function() {
+			function () {
 				notificacao.fadeOut("slow");
 			}.bind(this),
 			4000
