@@ -161,6 +161,8 @@ export var ModuloBotaoDeCompra = function (
 		}
 	};
 	this.sucessoAjax = function (items) {
+		dataLayer.push({ event: "m3-addToCart" });
+
 		if (!this._opcoes.msgByEvent) {
 			var fechar = function (event) {
 				event.preventDefault();
