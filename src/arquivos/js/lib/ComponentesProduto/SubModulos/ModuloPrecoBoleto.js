@@ -19,6 +19,7 @@ export default class ModuloPrecoBoleto extends Modulo{
 				OFF</span>
 			</span>
 		</div>`;
+
 		var valorBoleto = $(_html);
 
 		this.elemento(valorBoleto);

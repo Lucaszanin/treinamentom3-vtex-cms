@@ -1,4 +1,5 @@
 import { alterarTamanhoImagemSrcVtex } from "Helpers/vtexUtils";
+import { removeFromCartM3GtmEvent } from "Helpers/gtmCustomEvents";
 
 export default class Minicart {
 	createMiniCartStructure(element) {
@@ -230,6 +231,7 @@ export default class Minicart {
 	}
 	removeOneFromCart() {
 		$(".mini-cart-container .remove-from-cart").click((e) => {
+			removeFromCartM3GtmEvent();
 			var qtd = $(e.target).siblings(".value");
 			var productId = $(e.target).parents(".product").attr("id");
 
