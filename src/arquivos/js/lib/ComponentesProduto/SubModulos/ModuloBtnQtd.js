@@ -63,18 +63,12 @@ export default class ModuloBtnQtd extends Modulo {
 		divQtd.appendTo(this.elemento());
 		this.inputChange();
 		return this;
-
-		var valorPor = $(_html);
-
-		this.elemento(valorPor);
-		return valorPor;
 	}
 
 	atualizar(novoEstoque) {
-		console.log("novoEstoque", novoEstoque);
 		this.opcoes().max = novoEstoque;
 
-		var $inputQuantidade = this.elemento()
+		this.elemento()
 			.find(".qtd-value")
 			.trigger("change");
 
@@ -86,7 +80,6 @@ export default class ModuloBtnQtd extends Modulo {
 	}
 
 	onChange(input) {
-		console.log(input);
 		var $inputQuantidade = input;
 		//obtem os valores de quantidade selecionada e quantidade maxima
 		var min = this.opcoes().min;
@@ -119,7 +112,6 @@ export default class ModuloBtnQtd extends Modulo {
 	}
 
 	incrementBtn() {
-		var button = this.elemento().find(".add-to-cart");
 		var qtd = this.elemento()
 			.find(".quantidade .container-qtd")
 			.find(".qtd-value");
@@ -134,7 +126,6 @@ export default class ModuloBtnQtd extends Modulo {
 	}
 
 	decrementBtn() {
-		var button = this.elemento().find(".remove-from-cart");
 		var qtd = this.elemento()
 			.find(".quantidade .container-qtd")
 			.find(".qtd-value");
@@ -159,7 +150,7 @@ export default class ModuloBtnQtd extends Modulo {
 			}).appendTo($(".moduloQuantidade").find(".container-qtd"));
 		}
 		notificacao.empty().text(msg).fadeIn("slow");
-		var timer = setTimeout(
+		setTimeout(
 			function () {
 				notificacao.fadeOut("slow");
 			}.bind(this),

@@ -23,36 +23,36 @@ const app = new Container({
 		MenuContents,
 		Login,
 		Newsletter,
-		Geral
+		Geral,
 	],
 	pages: [
 		{
 			bodyClass: "home",
-			components: [Home]
+			components: [Home],
 		},
 		{
 			bodyClass: "categoria",
-			components: [Categoria]
+			components: [Categoria],
 		},
 		{
 			bodyClass: "produto",
-			components: [Produto]
+			components: [Produto],
 		},
 		{
 			bodyClass: "erro",
-			components: [Erro]
+			components: [Erro],
 		},
 		{
 			bodyClass: "institucional",
-			components: [Institucional]
-		}
-	]
+			components: [Institucional],
+		},
+	],
 });
 
 app.bind(Minicart.name, ".carrinho .mini-cart");
 app.bind(Newsletter.name, {
 	elemento: ".news-form",
-	textButtom: "Cadastre-se"
+	textButtom: "Cadastre-se",
 });
 
 export default app;
