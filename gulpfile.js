@@ -158,6 +158,12 @@ function sprites(done) {
 }
 
 function img() {
+	let dest = paths.outputStatic;
+
+	if (!(process.env.NODE_ENV === "local")) {
+		dest = dest + "/img";
+	}
+
 	return gulp
 		.src(paths.img.src)
 		.pipe(imagemin())
