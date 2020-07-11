@@ -20,6 +20,8 @@ class InstagramGallery {
 		const posts = data.graphql.user.edge_owner_to_timeline_media.edges;
 
 		for(let i = 0; i < this.options.limit; i++) {
+			if(!posts[i]) break;
+
 			const post = posts[i].node;
 			const caption = post.edge_media_to_caption.edges[0]?.node.text;
 
