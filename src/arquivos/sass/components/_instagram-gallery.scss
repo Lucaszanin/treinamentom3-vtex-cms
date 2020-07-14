@@ -69,4 +69,18 @@
 			}
 		}
 	}
+
+	&__error {
+		justify-self: center;
+		grid-column: 1 / 7;
+		font-size: 14px;
+
+		@include mq(md, max) {
+			grid-column: 1 / 3;
+		}
+
+		@include mq_range(md, lg) {
+			grid-column: 1 / 4;
+		}
+	}
 }
