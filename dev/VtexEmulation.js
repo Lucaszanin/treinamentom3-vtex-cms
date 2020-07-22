@@ -147,7 +147,7 @@ function gerarProdutoNaPrateleira(produto, i) {
 	} catch (e) {
 		console.log("Erro para gerar prateleira");
 	}
-	return "<li >" + produto + "</li>";
+	return `<li layout="homo-loga-cao"> ${produto} </li>`;
 }
 
 function findInArray(lista, name) {
