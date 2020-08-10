@@ -8,9 +8,9 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"local": "cross-env NODE_ENV=local gulp watch",
-		"local:fast": "cross-env NODE_ENV=local-fast gulp watch",
+		"local:fast": "cross-env NODE_ENV=localfast gulp watch",
 		"dev": "cross-env NODE_ENV=development gulp watch",
-		"dev:fast": "cross-env NODE_ENV=dev-fast gulp watch",
+		"dev:fast": "cross-env NODE_ENV=devfast gulp watch",
 		"prod": "cross-env NODE_ENV=production gulp build"
 	},
 	"license": "ISC",

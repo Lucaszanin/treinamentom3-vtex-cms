@@ -1,13 +1,14 @@
 import "Lib/smartResearch";
-import prateleira from "App/functions/prateleira";
 import { isSmallerThen768 } from "Helpers/MediasMatch";
+import PrateleiraService from "App/components/Prateleira/PrateleiraService";
 
 /*
  * paginaDeCategoria
  * Página 'utilizadas': categoria, derpartamento e resultado de resultado-busca.
  */
 export default class Categoria {
-	constructor() {
+	constructor(ctx) {
+		this.prateleiraService = ctx.getService(PrateleiraService);
 		this.reposicionarSelectDeOrdenacao();
 
 		if (isSmallerThen768) {
@@ -62,15 +63,11 @@ export default class Categoria {
 		});
 
 		$(".topo-resultado .clear-filter-btn").on("click", function () {
-			$("#open-filter-button")
-				.find("span")
-				.remove();
+			$("#open-filter-button").find("span").remove();
 
 			$(".multi-search-checkbox").each(function () {
 				if ($(this).is(":checked")) {
-					$(this)
-						.attr("checked", false)
-						.trigger("change");
+					$(this).attr("checked", false).trigger("change");
 				}
 			});
 
@@ -79,14 +76,12 @@ export default class Categoria {
 	}
 
 	reposicionarSelectDeOrdenacao() {
-		$(".orderBy")
-			.eq(0)
-			.appendTo(".topo-resultado .opcoes-resultado");
+		$(".orderBy").eq(0).appendTo(".topo-resultado .opcoes-resultado");
 	}
 
 	createCategoryFilter() {
 		let departmentFilter = $("<fieldset />", {
-			"class": "refino links-departamento"
+			class: "refino links-departamento",
 		});
 		let list = $("<div />");
 		let navSingle = $(".search-single-navigator");
@@ -94,7 +89,7 @@ export default class Categoria {
 
 		subcategories.each(function (i, li) {
 			let item = $("<label />", {
-				class: "item"
+				class: "item",
 			});
 
 			if ($(li).find("a").length > 0) {
@@ -106,7 +101,7 @@ export default class Categoria {
 		});
 
 		$("<h5 />", {
-			text: "Categoria"
+			text: "Categoria",
 		}).appendTo(departmentFilter);
 
 		list.appendTo(departmentFilter);
@@ -138,14 +133,16 @@ export default class Categoria {
 					try {
 						var navMultiple = $(".search-multiple-navigator");
 						var categoryFilter = this.createCategoryFilter();
-						categoryFilter.insertBefore(navMultiple.find("fieldset:first"));
+						categoryFilter.insertBefore(
+							navMultiple.find("fieldset:first")
+						);
 					} catch (error) {
 						console.log(error);
 					}
 				},
 				shelfCallback: () => {
-					prateleira.atualizar();
-				}
+					this.prateleiraService.atualizar();
+				},
 			});
 		} else {
 			$(".navigation-tabs input[type='checkbox']").vtexSmartResearch({
@@ -168,24 +165,23 @@ export default class Categoria {
 					try {
 						var navMultiple = $(".search-multiple-navigator");
 						var categoryFilter = this.createCategoryFilter();
-						categoryFilter.insertBefore(navMultiple.find("fieldset:first"));
+						categoryFilter.insertBefore(
+							navMultiple.find("fieldset:first")
+						);
 					} catch (error) {
 						console.log(error);
 					}
 				},
 				shelfCallback: () => {
-					prateleira.atualizar();
-				}
+					this.prateleiraService.atualizar();
+				},
 			});
 		}
 
-		$(document).on(
-			"vsr-request-end",
-			prateleira.atualizar.bind(prateleira)
-		);
+		$(document).on("vsr-request-end", this.prateleiraService.atualizar);
 		$(window).on(
 			"finished-upadte-filter",
-			prateleira.atualizar.bind(prateleira)
+			this.prateleiraService.atualizar
 		);
 		// desabilita o scroll automático
 		history.scrollRestoration = "manual";

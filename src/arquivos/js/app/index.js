@@ -6,15 +6,21 @@ import Home from "./pages/Home";
 import Categoria from "./pages/Categoria";
 import Produto from "./pages/Produto";
 import Institucional from "./pages/Institucional";
-import Geral from "./pages/Geral";
 
 import Newsletter from "./components/Newsletter";
 import Minicart from "./components/Minicart";
+import BottomNav from "./components/BottomNav";
+import FixedHeader from "./components/FixedHeader";
+import AutoComplete from "./components/AutoComplete";
+import ScrollToTop from "./components/ScrollToTop";
 
 import Menu from "./partials/Menu";
 import Promocao from "./partials/Promocao";
 import MenuContents from "./partials/MenuContents";
 import Login from "./partials/Login";
+import Prateleira from "./components/Prateleira/Prateleira";
+
+import PrateleiraService from "./components/Prateleira/PrateleiraService";
 
 const app = new Container({
 	appName: "template",
@@ -26,9 +32,13 @@ const app = new Container({
 		MenuContents,
 		Login,
 		Newsletter,
-		Geral,
+		BottomNav,
+		FixedHeader,
+		ScrollToTop,
+		AutoComplete,
+		Prateleira,
 	],
-	services: [],
+	services: [PrateleiraService],
 	pages: [
 		{
 			bodyClass: "home",

@@ -16,23 +16,6 @@ module.exports = {
 		path: path.resolve(__dirname, "..", "dist/arquivos"),
 		filename: shopName + "--[name]-bundle.js",
 	},
-	module: {
-		rules: [
-			{
-				test: /\.(js|jsx)$/,
-				exclude: /(node_modules|bower_components)/,
-				include: path.resolve(__dirname, "..", "src/arquivos/js"),
-				use: {
-					loader: "babel-loader",
-					options: {
-						presets: [["@babel/preset-env"], "@babel/react"],
-						plugins: ["@babel/plugin-transform-async-to-generator"],
-						cacheDirectory: true,
-					},
-				},
-			},
-		],
-	},
 	resolve: {
 		alias: {
 			Helpers: path.resolve(__dirname, "..", "src/arquivos/js/helpers"),

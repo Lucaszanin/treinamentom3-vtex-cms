@@ -93,10 +93,10 @@ function scripts() {
 		case "local":
 			webpackConfig = require("./webpack/webpack.local.js");
 			break;
-		case "local-fast":
+		case "localfast":
 			webpackConfig = require("./webpack/webpack.localfast.js");
 			break;
-		case "dev-fast":
+		case "devfast":
 			webpackConfig = require("./webpack/webpack.devfast.js");
 			break;
 
