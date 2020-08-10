@@ -84,12 +84,25 @@ function styles() {
 }
 
 function scripts() {
-	let webpackConfig = require("./webpack.dev.js");
+	let webpackConfig;
 
-	if (process.env.NODE_ENV === "production") {
-		webpackConfig = require("./webpack.prod.js");
-	} else if (process.env.NODE_ENV === "local") {
-		webpackConfig = require("./webpack.local.js");
+	switch (process.env.NODE_ENV) {
+		case "production":
+			webpackConfig = require("./webpack/webpack.prod.js");
+			break;
+		case "local":
+			webpackConfig = require("./webpack/webpack.local.js");
+			break;
+		case "local-fast":
+			webpackConfig = require("./webpack/webpack.localfast.js");
+			break;
+		case "dev-fast":
+			webpackConfig = require("./webpack/webpack.devfast.js");
+			break;
+
+		default:
+			webpackConfig = require("./webpack/webpack.dev.js");
+			break;
 	}
 
 	return new Promise((resolve) =>

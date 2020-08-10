@@ -1,12 +1,12 @@
 const webpack = require("webpack");
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(common, {
 	externals: {
 		jquery: "jQuery",
-		vtexjs: "vtexjs"
+		vtexjs: "vtexjs",
 	},
 	mode: "production",
 	optimization: {
@@ -20,12 +20,12 @@ module.exports = merge(common, {
 							"console.info",
 							"console.debug",
 							"console.warn",
-							"console.log"
-						]
-					}
-				}
-			})
-		]
+							"console.log",
+						],
+					},
+				},
+			}),
+		],
 	},
-	plugins: [new webpack.HashedModuleIdsPlugin()]
+	plugins: [new webpack.HashedModuleIdsPlugin()],
 });
