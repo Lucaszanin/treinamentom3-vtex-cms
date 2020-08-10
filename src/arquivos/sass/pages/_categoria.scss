@@ -497,7 +497,8 @@
             display: inline-block;
             vertical-align: top;
             max-width: 33%;
-            margin-bottom: 16px;
+			margin-bottom: 16px;
+			width: 100%;
 
             @include mq(lg, max) {
                 max-width: 49%;

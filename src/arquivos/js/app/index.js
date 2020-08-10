@@ -1,3 +1,5 @@
+import config from "Config/index";
+
 import Container from "../core/Container";
 import Erro from "./pages/Erro";
 import Home from "./pages/Home";
@@ -16,6 +18,7 @@ import Login from "./partials/Login";
 
 const app = new Container({
 	appName: "template",
+	config,
 	components: [
 		Menu,
 		Promocao,
@@ -25,6 +28,7 @@ const app = new Container({
 		Newsletter,
 		Geral,
 	],
+	services: [],
 	pages: [
 		{
 			bodyClass: "home",
