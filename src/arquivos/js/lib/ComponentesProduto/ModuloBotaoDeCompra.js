@@ -5,7 +5,10 @@ import {
 	CHANGE_QTD,
 	ADD_SKU_TO_CART_FAIL,
 	ADD_SKU_TO_CART_SUCESS,
+	ADD_SKU,
+	REMOVE_SKU
 } from "./EventType";
+
 
 /**
  * Modulo de compra
@@ -16,42 +19,46 @@ import {
  * usa api vtex para adicionar no carrinho
  * @link https://github.com/vtex/vtex.js/tree/master/docs/checkout#addtocartitems-expectedorderformsections-saleschannel
  */
-export var ModuloBotaoDeCompra = function (
-	elemento = ".btnBuy",
-	componentStore
-) {
-	Modulo.call(this, elemento, componentStore);
-	var _this = this;
-	_this.produtoEscolhido = {
-		sku: null,
-		quantidade: 1,
-	};
-	this._opcoes = {
-		botaoCompra: "Comprar",
-		botaoSkuIndisponivel: "Produto indisponível",
-		msgVariacaoErro: "<p>Escolha uma variação.</p>",
-		msgByEvent: false,
-		msgAddCarrinhoErro: "<p>Não foi possivel adicionar ao carrinho!</p>",
-		msgAddCarrinhoSucesso:
-			"<p>Seu produto foi adicionado ao carrinho com sucesso!</p><p>O que deseja fazer agora?</p>",
-		botaoContinuarComrpando: "Continuar comprando",
-		botaoFinalizarCompra: "Finalizar compra",
-		icone: "",
-	};
+
+
+export default class ModuloBotaoDeCompra extends Modulo {
+	constructor(elemento= ".btnBuy", componentStore) {
+		super(elemento, componentStore);
+
+		this.produtoEscolhido = {
+			sku: null,
+			quantidade: 1,
+		};
+		this._opcoes = {
+			botaoCompra: "Comprar",
+			botaoSkuIndisponivel: "Produto indisponível",
+			msgVariacaoErro: "<p>Escolha uma variação.</p>",
+			msgByEvent: false,
+			msgAddCarrinhoErro: "<p>Não foi possivel adicionar ao carrinho!</p>",
+			msgAddCarrinhoSucesso:
+				"<p>Seu produto foi adicionado ao carrinho com sucesso!</p><p>O que deseja fazer agora?</p>",
+			botaoContinuarComrpando: "Continuar comprando",
+			botaoFinalizarCompra: "Finalizar compra",
+			icone: "",
+		};
+	}
+
+
+
 	/**
 	 * Atualiza a quantidade de acordo com o novo sku
 	 * @param  {Event} event evento que disparou atualização
 	 * @param  {Object} value objeto do sku selecionado
 	 * @return {Object} this
 	 */
-	this.atualizar = function (event, value) {
+	atualizar(event, value) {
 		if (event) {
 			switch (event) {
 				case "change-quantidade":
-					_this.produtoEscolhido.quantidade = value;
+					this.produtoEscolhido.quantidade = value;
 					break;
 				case "change-sku":
-					_this.produtoEscolhido.sku = value;
+					this.produtoEscolhido.sku = value;
 					this.habilitar(value.available);
 					break;
 				default:
@@ -62,8 +69,9 @@ export var ModuloBotaoDeCompra = function (
 			console.warn("Essa funcao só deve ser chamada por eventos js");
 		}
 		return this;
-	};
-	this.obterCannalDeVendas = function () {
+	}
+
+	obterCannalDeVendas () {
 		var name = "VTEXSC=sc=";
 		var ca = document.cookie.split(";");
 		for (var i = 0; i < ca.length; i++) {
@@ -74,12 +82,13 @@ export var ModuloBotaoDeCompra = function (
 			}
 		}
 		return 1;
-	};
+	}
+
 	/**
 	 * Configura os eventos js que serão diparados pelo html do desenhar()
 	 * @return {object} this
 	 */
-	this.configurar = function (opcoes) {
+	configurar(opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
 		this.opcoes.cannalDeVendas = this.obterCannalDeVendas();
 
@@ -96,11 +105,12 @@ export var ModuloBotaoDeCompra = function (
 
 		return this;
 	};
+
 	/**
 	 * Cria e insere o html com as variações dos skus
 	 * @return {object} this
 	 */
-	this.desenhar = function () {
+	desenhar() {
 		const html = `
 			<a class="btn-compra" id="buy-btn">
 				${this.opcoes().botaoCompra}
@@ -111,24 +121,25 @@ export var ModuloBotaoDeCompra = function (
 		this.elemento().find(".btn-compra").click(this.compra.bind(this));
 
 		return this;
-	};
-	this.compra = function () {
-		if (_this.produtoEscolhido.sku === null) {
-			mensagemErro(this.opcoes().msgVariacaoErro);
+	}
+
+	compra() {
+		if (this.produtoEscolhido.sku === null) {
+			this._mensagemErro(this.opcoes().msgVariacaoErro);
 		} else if (
-			!_this.produtoEscolhido.sku.available &&
-			_this.produtoEscolhido.quantidade < 1
+			!this.produtoEscolhido.sku.available &&
+			this.produtoEscolhido.quantidade < 1
 		) {
-			mensagemErro(this.opcoes().botaoSkuIndisponivel);
+			this._mensagemErro(this.opcoes().botaoSkuIndisponivel);
 		} else {
 			try {
 				window.vtexjs.checkout
 					.addToCart(
 						[
 							{
-								id: _this.produtoEscolhido.sku.sku,
-								quantity: _this.produtoEscolhido.quantidade,
-								seller: _this.produtoEscolhido.sku.sellerId,
+								id: this.produtoEscolhido.sku.sku,
+								quantity: this.produtoEscolhido.quantidade,
+								seller: this.produtoEscolhido.sku.sellerId,
 							},
 						],
 						null,
@@ -137,7 +148,7 @@ export var ModuloBotaoDeCompra = function (
 					.done(
 						function (orderForm) {
 							this._store.events.publish(ADD_SKU_TO_CART_SUCESS, {
-								simpleProducts: _this.produtoEscolhido,
+								simpleProducts: this.produtoEscolhido,
 								orderForm: orderForm,
 							});
 						}.bind(this)
@@ -145,145 +156,113 @@ export var ModuloBotaoDeCompra = function (
 					.fail(
 						function () {
 							this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
-								simpleProducts: _this.produtoEscolhido,
+								simpleProducts: this.produtoEscolhido,
 								msg: this.opcoes().msgAddCarrinhoErro,
 							});
 						}.bind(this)
 					);
 			} catch (error) {
 				this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
-					simpleProducts: _this.produtoEscolhido,
+					simpleProducts: this.produtoEscolhido,
 					msg: this.opcoes().msgAddCarrinhoErro,
 				});
 				console.warn("Erro ao adicionar sku ao carrinho de compra");
 				console.log(error);
 			}
 		}
-	};
-	this.sucessoAjax = function (items) {
+	}
+
+	sucessoAjax(items) {
 		dataLayer.push({ event: "m3-addToCart" });
 
 		if (!this._opcoes.msgByEvent) {
-			var fechar = function (event) {
-				event.preventDefault();
-				$popup.removeClass("show");
-				$popup.remove();
-				$overlay.remove();
-			};
 
-			var $popup = $("<div />", {
-				class: "modal-add-cart modal",
-			});
+			let _html = `<div class="modal-add-cart modal">
+				<div class="modal-add-cart__overlay"></div>
+				<div class="modal-add-cart__box">
+					<button class="close">
+						<span> fechar </span>
+						<i class="sprite sprite-fechar"></i>
+					</button>
+					<div class="information">
+						<div class="descricao">Adicionado à <strong>Sacola</strong> </div>
+						<div class="list">
+							<div class="item">
+								<img src="${this.produtoEscolhido.sku.image}"
+									alt="${this.produtoEscolhido.sku.skuname}">
+								<span class="nome">${this.produtoEscolhido.sku.skuname}</span>
+							</div>
+						</div>
+					</div>
+					<div class="acoes">
+						<a href="#" class="continue">Continuar</a>
+						<a href="/checkout/#/cart" class="cart" target="_top">Finalizar compra</a>
+					</div>
+				</div>
+			</div>`;
 
-			var $popupBox = $("<div />", {
-				class: "modal-add-cart__box",
-			}).appendTo($popup);
-
-			var $overlay = $("<div />", {
-				class: "modal-add-cart__overlay modal-overlay",
-			}).click(fechar);
-
-			$("<button />", {
-				html: "<i class='sprite sprite-fechar'></i>",
-				class: "close",
-			})
-				.click(fechar)
-				.appendTo($popupBox);
-
-			var $information = $("<div />", {
-				class: "information",
-			}).appendTo($popupBox);
-
-			$("<img />", {
-				src: _this.produtoEscolhido.sku.image,
-				alt: _this.produtoEscolhido.sku.skuname,
-			}).appendTo($information);
-
-			$("<div />", {
-				class: "descricao",
-				html: _this._opcoes.msgAddCarrinhoSucesso,
-			}).appendTo($information);
-
-			var $acoes = $("<div />", {
-				class: "acoes",
-			}).appendTo($popupBox);
-
-			$("<a />", {
-				href: "#",
-				class: "continue",
-				text: _this._opcoes.botaoContinuarComprando,
-			})
-				.click(fechar)
-				.appendTo($acoes);
-
-			$("<a />", {
-				href: "/checkout/#/cart",
-				class: "cart",
-				target: "_top",
-				text: _this._opcoes.botaoFinalizarCompra,
-			}).appendTo($acoes);
+			let $popup = $(_html)
 
 			this.elemento().find(".erro-add-cart").fadeOut("slow");
 			// $popup.hide().appendTo(this.elemento()).fadeIn('slow');
 			$popup.appendTo(this.elemento());
-			$overlay.insertAfter($popup);
 			$popup.addClass("show");
+			$popup.on('click',
+				'.modal-add-cart__overlay,.continue,.close', (event)=> {
+					event.preventDefault();
+					$popup.removeClass("show");
+					$popup.remove();
+				}
+			);
 		}
-	};
-	this.erroAjax = function (e, { msg }) {
-		console.log(msg);
-		mensagemErro(msg);
-		// _this.opcoes().msgAddCarrinhoErro
-	};
+	}
+
 	/**
 	 * Altera o texto do botão para produtos indisponiveis
 	 * @param {boolean} habilitar
 	 */
-	this.habilitar = function (habilitar) {
+	erroAjax(e, { msg }) {
+		console.log(msg);
+		this._mensagemErro(msg);
+		// this.opcoes().msgAddCarrinhoErro
+	}
+
+	habilitar(habilitar) {
 		habilitar = typeof habilitar == "undefined" ? true : habilitar;
 		this.elemento().toggleClass("desativado", !habilitar);
 		var textBtn = habilitar
 			? this.opcoes().icone + this.opcoes().botaoCompra
 			: this.opcoes().botaoSkuIndisponivel;
 		this.elemento().find(".btn-compra").html(textBtn);
-	};
+	}
 
-	function mensagemErro(mensagemDeErro) {
-		if (_this.elemento().find(".erro-add-cart").length < 1) {
-			var container = $("<div />", {
-				class: "erro-add-cart",
-			}).prependTo(_this.elemento());
-			// btn fechar
-			$("<span />")
-				.attr({
-					class: "close",
-				})
-				.click(function (event) {
-					event.preventDefault();
-					container.fadeOut("slow");
-				})
-				.appendTo(container);
-			$("<div />", {
-				class: "info",
-				html: mensagemDeErro,
-			}).appendTo(container);
+	_mensagemErro(mensagemDeErro) {
+		if (this.elemento().find(".erro-add-cart").length < 1) {
+			let _html = `<div class="erro-add-cart">
+				<span class="close"></span>
+				<div class="info">${mensagemDeErro}</div>
+			</div>`;
+
+			var container = $(_html).prependTo(this.elemento());
+			container.on('click','.close',(event)=>{
+				event.preventDefault();
+				container.fadeOut("slow");
+			});
+
 		} else {
-			_this.elemento().find(".erro-add-cart").fadeIn("slow");
+			this.elemento().find(".erro-add-cart").fadeIn("slow");
 		}
 		setTimeout(
 			function () {
-				_this.elemento().find(".erro-add-cart").fadeOut("slow");
+				this.elemento().find(".erro-add-cart").fadeOut("slow");
 				setTimeout(() => {
-					_this.elemento().find(".erro-add-cart").remove();
+					this.elemento().find(".erro-add-cart").remove();
 				}, 400);
 			}.bind(this),
-			2000
+			20000
 		);
 
-		_this.elemento().find(".modal-add-cart").remove();
-		_this.elemento().find(".modal-add-cart__overlay").remove();
+		this.elemento().find(".modal-add-cart").remove();
+		this.elemento().find(".modal-add-cart__overlay").remove();
 	}
-};
-// subclasse extende superclasse
-ModuloBotaoDeCompra.prototype = Object.create(Modulo.prototype);
-ModuloBotaoDeCompra.prototype.constructor = ModuloBotaoDeCompra;
+}
