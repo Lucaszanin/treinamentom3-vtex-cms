@@ -8,7 +8,7 @@ export default class ModuloPrecoParcelado extends Modulo{
 		this.opcoes({
 			auto: false,
 			ativo: false,
-			parcelas: 6
+			parcelas: 5
 		});
 		this.numeroParcelas(this.opcoes().parcelas);
 	}
