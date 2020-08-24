@@ -18,50 +18,26 @@ export default class ModuloBtnQtd extends Modulo {
 	}
 
 	desenhar() {
-		let _html = `<div class="valor-por">
-			<strong class="value"></strong>
+		let _html = `<div class="quantidade">
+			<span class="titulo">${this.opcoes().titulo}</span>
+			<div class="campo-qtd">
+				<button class="remove-from-cart" aria-label="Remover item">-</button>
+				<label class="container-qtd">
+					<input class="qtd-value" aria-label="Número de itens" type="number"
+						data-min="${this.opcoes().min}" data-max="${this.opcoes().max}"
+						value="${this._store.state.qtd}" />
+				</label>
+				<button class="add-to-cart" aria-label="Adicionar item">+</button>
+			</div>
 		</div>`;
 
-		var divQtd = $("<div />", {
-			class: "quantidade",
-		});
-		$("<span />", {
-			class: "titulo",
-			text: this.opcoes().titulo,
-		}).appendTo(divQtd);
-		var campoQtd = $("<div />", {
-			class: "campo-qtd",
-		}).appendTo(divQtd);
+		var $quantidade = $(_html);
+		$quantidade.on('click','.remove-from-cart',this.decrementBtn.bind(this))
+			.on('click','.add-to-cart',this.incrementBtn.bind(this));
 
-		var buttonRemove = $("<button />", {
-			class: "remove-from-cart",
-			"aria-label": "Remover item",
-		})
-			.on("click", this.decrementBtn.bind(this))
-			.text("-")
-			.appendTo(campoQtd);
-		var label = $("<label />", {
-			class: "container-qtd",
-		}).appendTo(campoQtd);
-
-		var inputQtd = $("<input />", {
-			class: "qtd-value",
-			"aria-label": "Número de itens",
-			type: "number",
-			"data-min": this.opcoes().min,
-			"data-max": this.opcoes().max,
-			value: this._store.state.qtd,
-		}).appendTo(label);
-
-		var buttonAdd = $("<button />", {
-			class: "add-to-cart",
-			"aria-label": "Adicionar item",
-		})
-			.on("click", this.incrementBtn.bind(this))
-			.text("+")
-			.appendTo(campoQtd);
-		divQtd.appendTo(this.elemento());
+		$quantidade.appendTo(this.elemento())
 		this.inputChange();
+
 		return this;
 	}
 
@@ -143,11 +119,11 @@ export default class ModuloBtnQtd extends Modulo {
 	}
 
 	notificarValor(msg) {
-		var notificacao = $(".moduloQuantidade").find(".notificacao");
+		var notificacao = this.elemento().find(".notificacao");
 		if (!notificacao.length) {
 			notificacao = $("<div />", {
 				class: "notificacao",
-			}).appendTo($(".moduloQuantidade").find(".container-qtd"));
+			}).appendTo(this.elemento().find(".container-qtd"));
 		}
 		notificacao.empty().text(msg).fadeIn("slow");
 		setTimeout(
