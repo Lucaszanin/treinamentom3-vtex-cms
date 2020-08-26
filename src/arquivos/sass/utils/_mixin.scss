@@ -13,6 +13,28 @@
 	position: $pos;
 }
 
+
+
+@mixin z-index($nome:'',$soma:0){
+	@if map_has_key($z-index, $nome) {
+		z-index: (map_get($z-index,$nome )+$soma) ;
+	}
+}
+@mixin position($top: false,$right: false, $bottom:false, $left: false){
+	@if( $top ){
+		top:$top;
+	}
+	@if( $right ){
+		right:$right;
+	}
+	@if( $left ){
+		left:$left;
+	}
+	@if( $bottom ){
+		bottom:$bottom;
+	}
+}
+
 @mixin responsive-ratio($x,$y, $pseudo: false) {
 	$padding: unquote( ( $y / $x ) * 100 + '%' );
 	@if $pseudo {
