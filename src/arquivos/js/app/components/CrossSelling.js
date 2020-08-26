@@ -105,7 +105,7 @@ export default class CrossSelling{
 			}
 		}
 		try {
-			return cleanProducts.sort((a,b)=>(a.productName-b.productName))
+			return cleanProducts.sort((a,b)=>(a.productName<=b.productName))
 		} catch (error) {
 			return cleanProducts
 		}
