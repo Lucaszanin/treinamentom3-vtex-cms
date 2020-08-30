@@ -11,7 +11,8 @@
 		"local:fast": "cross-env NODE_ENV=localfast gulp watch",
 		"dev": "cross-env NODE_ENV=development gulp watch",
 		"dev:fast": "cross-env NODE_ENV=devfast gulp watch",
-		"prod": "cross-env NODE_ENV=production gulp build"
+		"prod": "cross-env NODE_ENV=production gulp build",
+		"preinstall": "npx npm-force-resolutions"
 	},
 	"license": "ISC",
 	"devDependencies": {
@@ -66,5 +67,8 @@
 	},
 	"browserslist": [
 		"defaults"
-	]
+	],
+	"resolutions": {
+		"graceful-fs": "4.2.3"
+	}
 }

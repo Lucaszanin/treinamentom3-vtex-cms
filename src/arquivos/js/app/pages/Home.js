@@ -4,11 +4,19 @@ import {
 	naveguePorCategorias
 } from "App/functions/slide";
 
+import InstagramGallery from '../components/InstagramGallery';
+
 export default class Home {
 	constructor() {
 		bannerHome(".main-gallery");
 		barraDeVantagens(".tipbar ul");
 		naveguePorCategorias(".categorias-home .categorias");
+
+		new InstagramGallery({
+			gallery: '.instagramGallery__photos',
+			account: 'agenciam3',
+			limit: 6,
+		});
 	}
 
 	naveguePorCategorias() {

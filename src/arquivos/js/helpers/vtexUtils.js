@@ -35,18 +35,23 @@ export function getPrice(price) {
 	if (!price) {
 		return 0;
 	}
+
 	if (isNaN(price)) {
-		price = parseFloat(
-			price
-				.replace("R$", "")
-				.replace(".", "")
-				.replace(",", ".")
+		let newPrice = parseFloat(
+			price.replace('R$', '')
+				.replace('.', '')
+				.replace(',', '.')
 		);
-		return parseFloat(price);
-	} else {
-		var strPrice = price.toFixed(2);
-		strPrice = strPrice.replace(".", ",");
-		return strPrice;
+		return newPrice;
+	}
+	else {
+		price = price || 0;
+		price = price.toLocaleString('pt-BR', {
+			'minimumFractionDigits': 2,
+			'maximumFractionDigits': 2
+		});
+
+		return price;
 	}
 }
 
