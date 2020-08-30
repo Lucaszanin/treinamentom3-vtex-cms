@@ -1,6 +1,1 @@
-[core]
-    autocrlf = false
-    safecrlf = false
-    eol = lf
-
-* text=auto
+* text=lf
