@@ -34,18 +34,22 @@ export default class Container {
 	}
 
 	async instantiateComponent(Component, i) {
-		if (typeof Component === "function") {
-			if (this.componentsConfig[Component.name]) {
-				this.instances[Component.name] = new Component(
-					this.componentsConfig[Component.name],
-					this.ctx
-				);
+		try {
+			if (typeof Component === "function") {
+				if (this.componentsConfig[Component.name]) {
+					this.instances[Component.name] = new Component(
+						this.componentsConfig[Component.name],
+						this.ctx
+					);
+				} else {
+					this.instances[Component.name] = new Component(this.ctx);
+				}
+				return Component.name;
 			} else {
-				this.instances[Component.name] = new Component(this.ctx);
+				console.warn("Not an Constructor", Component);
 			}
-			return Component.name;
-		} else {
-			console.warn("Not an Constructor", Component);
+		} catch (error) {
+			console.log(error);
 		}
 	}
 
