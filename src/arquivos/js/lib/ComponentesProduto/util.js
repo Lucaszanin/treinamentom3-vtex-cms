@@ -1,26 +1,24 @@
 /** Util */
 
-
 export function textoParaNomeCss(texto) {
-
-	if (typeof texto == 'undefined') {
-		return '';
+	if (typeof texto == "undefined") {
+		return "";
 	}
 
 	texto = texto
 		.toLowerCase()
-		.replace(/\)|\(/g, '')
-		.replace(/\./g, '')
-		.replace(/,/g, '')
-		.replace(/ /g, '-')
-		.replace(/\//g, '_')
-		.replace(/[áàâã]/g, 'a')
-		.replace(/[ìíĩî]/g, 'i')
-		.replace(/[éèê]/g, 'e')
-		.replace(/[óòôõ]/g, 'o')
-		.replace(/[úùû]/g, 'u')
-		.replace(/[ç]/g, 'c')
-		.replace(/[^A-Za-z0-9_-]/g, '');
+		.replace(/\)|\(/g, "")
+		.replace(/\./g, "")
+		.replace(/,/g, "")
+		.replace(/ /g, "-")
+		.replace(/\//g, "_")
+		.replace(/[áàâã]/g, "a")
+		.replace(/[ìíĩî]/g, "i")
+		.replace(/[éèê]/g, "e")
+		.replace(/[óòôõ]/g, "o")
+		.replace(/[úùû]/g, "u")
+		.replace(/[ç]/g, "c")
+		.replace(/[^A-Za-z0-9_-]/g, "");
 	return texto;
 }
 
@@ -35,14 +33,15 @@ export function textoParaNomeCss(texto) {
  */
 export function getPrice(price) {
 	if (isNaN(price)) {
-		price = parseFloat(price.replace('R$', '').replace('.', '').replace(',', '.'));
+		price = parseFloat(
+			price.replace("R$", "").replace(".", "").replace(",", ".")
+		);
 		return parseFloat(price);
-	}
-	else {
+	} else {
 		price = price || 0;
-		price = price.toLocaleString('pt-BR', {
-			'minimumFractionDigits': 2,
-			'maximumFractionDigits': 2
+		price = price.toLocaleString("pt-BR", {
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2,
 		});
 
 		return price;
@@ -64,7 +63,7 @@ function logWarn() {
 	console.warn(arguments);
 }
 if (!Array.prototype.find) {
-	Object.defineProperty(Array.prototype, 'find', {
+	Object.defineProperty(Array.prototype, "find", {
 		value: function (predicate) {
 			// 1. Let O be ? ToObject(this value).
 			if (this == null) {
@@ -74,8 +73,8 @@ if (!Array.prototype.find) {
 			// 2. Let len be ? ToLength(? Get(O, "length")).
 			var len = o.length >>> 0;
 			// 3. If IsCallable(predicate) is false, throw a TypeError exception.
-			if (typeof predicate !== 'function') {
-				throw new TypeError('predicate must be a function');
+			if (typeof predicate !== "function") {
+				throw new TypeError("predicate must be a function");
 			}
 			// 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
 			var thisArg = arguments[1];
@@ -96,11 +95,9 @@ if (!Array.prototype.find) {
 			}
 			// 7. Return undefined.
 			return undefined;
-		}
+		},
 	});
 }
-
-
 
 /**
  * Altera as dimenções especificadas na url da img
@@ -109,14 +106,17 @@ if (!Array.prototype.find) {
  * @param {int} height
  * @return {string} url da imagem com o tamanho alterado
  */
-export function alterarTamanhoImagemSrcVtex(src, width, height){
-	if( typeof src == "undefined" ) {
-		console.warn( "Parametro 'src' não recebido.");
+export function alterarTamanhoImagemSrcVtex(src, width, height) {
+	if (typeof src == "undefined") {
+		console.warn("Parametro 'src' não recebido.");
 		return;
 	}
-	width = (typeof width == "undefined" )? 1 : width;
-	height = (typeof height == "undefined" )? width:height;
+	width = typeof width == "undefined" ? 1 : width;
+	height = typeof height == "undefined" ? width : height;
 
-	src = src.replace( /\/(\d+)(-(\d+-\d+)|(_\d+))\//g, '/$1-' + width + '-' + height + '/' );
-	return  src;
+	src = src.replace(
+		/\/(\d+)(-(\d+-\d+)|(_\d+))\//g,
+		"/$1-" + width + "-" + height + "/"
+	);
+	return src;
 }

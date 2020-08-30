@@ -3,5 +3,5 @@ export default {
 	PERCENTUAL_DE_DESCONTO: 10,
 	accountName: "template",
 	entityNewsletter: "CN",
-	percentualDeDecontoMinimoParaFlag: 5
+	percentualDeDecontoMinimoParaFlag: 5,
 };

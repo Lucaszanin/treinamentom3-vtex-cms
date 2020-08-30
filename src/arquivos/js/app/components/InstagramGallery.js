@@ -17,21 +17,21 @@ class InstagramGallery {
 
 		try {
 			data = await (await fetch(url)).json();
-			status = 'success';
-		} catch(error) {
-			data = { message: 'Ocorreu um erro ao carregar as imagens.' };
-			status = 'error';
+			status = "success";
+		} catch (error) {
+			data = { message: "Ocorreu um erro ao carregar as imagens." };
+			status = "error";
 		}
 
 		this.buildGallery({ data, status });
 	}
 
 	buildGallery({ data, status }) {
-		if(status === 'success') {
+		if (status === "success") {
 			const posts = data.graphql.user.edge_owner_to_timeline_media.edges;
 
-			for(let i = 0; i < this.options.limit; i++) {
-				if(!posts[i]) break;
+			for (let i = 0; i < this.options.limit; i++) {
+				if (!posts[i]) break;
 
 				const post = posts[i].node;
 				const caption = post.edge_media_to_caption.edges[0]?.node.text;
@@ -40,7 +40,7 @@ class InstagramGallery {
 					<a
 						class="instagramGallery__photo"
 						href="https://www.instagram.com/p/${post.shortcode}"
-						title="${caption || ''}"
+						title="${caption || ""}"
 						target="_blank"
 						style="background-image: url(${post.thumbnail_src})"
 					>
@@ -49,7 +49,9 @@ class InstagramGallery {
 				this.options.gallery.append(galleryItem);
 			}
 		} else {
-			this.options.gallery.append(`<p class="instagramGallery__error">${data.message}</p>`);
+			this.options.gallery.append(
+				`<p class="instagramGallery__error">${data.message}</p>`
+			);
 		}
 	}
 }

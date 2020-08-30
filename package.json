@@ -12,6 +12,7 @@
 		"dev": "cross-env NODE_ENV=development gulp watch",
 		"dev:fast": "cross-env NODE_ENV=devfast gulp watch",
 		"prod": "cross-env NODE_ENV=production gulp build",
+		"format": "prettier --write \"src/arquivos/js/**/*.{js,jsx}\"",
 		"preinstall": "npx npm-force-resolutions"
 	},
 	"license": "ISC",

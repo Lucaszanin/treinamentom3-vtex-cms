@@ -12,9 +12,7 @@ export default class OverLay {
 
 	build(zIndex) {
 		const element = document.createElement("div");
-		const randomId = Math.random()
-			.toString(36)
-			.substr(2, 9);
+		const randomId = Math.random().toString(36).substr(2, 9);
 
 		element.setAttribute("id", `overlay_${randomId}`);
 

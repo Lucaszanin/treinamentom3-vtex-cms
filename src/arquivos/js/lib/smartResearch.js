@@ -1,4 +1,4 @@
-(function(document, window, $) {
+(function (document, window, $) {
 	/**
 	 *	Pesquisa Inteligente
 	 *	@description Execurar buscas sem recarregar a página
@@ -9,7 +9,7 @@
 	 *	@date 2018-09-12
 	 */
 	"function" !== typeof String.prototype.replaceSpecialChars &&
-		(String.prototype.replaceSpecialChars = function() {
+		(String.prototype.replaceSpecialChars = function () {
 			var b = {
 				ç: "c",
 				æ: "ae",
@@ -51,21 +51,21 @@
 				Ã: "A",
 				Õ: "O",
 				À: "A",
-				Ç: "C"
+				Ç: "C",
 			};
-			return this.replace(/[\u00e0-\u00fa]/g, function(a) {
+			return this.replace(/[\u00e0-\u00fa]/g, function (a) {
 				return "undefined" != typeof b[a] ? b[a] : a;
 			});
 		});
 	"function" !== typeof String.prototype.trim &&
-		(String.prototype.trim = function() {
+		(String.prototype.trim = function () {
 			return this.replace(/^\s+|\s+$/g, "");
 		});
 
-	jQuery.fn.vtexSmartResearch = function(opts) {
+	jQuery.fn.vtexSmartResearch = function (opts) {
 		var $this = jQuery(this);
 
-		var log = function(msg, type) {
+		var log = function (msg, type) {
 			if (typeof console == "object")
 				console.log(
 					"[Smart Research - " + (type || "Erro") + "] " + msg
@@ -99,34 +99,34 @@
 			infinitScroll: true, // Permite que o filtro seja aplicado assim que a opção é marcada
 			loadMoreText: "Carregar mais", // Permite que o filtro seja aplicado assim que a opção é marcada
 			// Função que retorna o valor p/ onde a página deve rolar quando o usuário marca ou desmarca um filtro
-			filterScrollTop: function(shelfOffset) {
+			filterScrollTop: function (shelfOffset) {
 				return shelfOffset.top - 20;
 			},
-			callback: function() {},
+			callback: function () {},
 			// Cálculo do tamanho do conteúdo/vitrine para que uma nova página seja chamada antes do usuário chegar ao "final" do site
-			getShelfHeight: function(container) {
+			getShelfHeight: function (container) {
 				return container.scrollTop() + container.height();
 			},
 			// Callback após inserir a prateleira na página
-			shelfCallback: function() {},
+			shelfCallback: function () {},
 			// Callback em cada requisição Ajax (Para requisições feitas com sucesso)
 			// Recebe como parâmetro um objeto contendo a quantidade total de requisições feitas e a quantidade de filtros selecionados
-			ajaxCallback: function() {},
+			ajaxCallback: function () {},
 			// Função que é executada quando a seleção de filtros não retorna nenhum resultado
 			// Recebe como parâmetro um objeto contendo a quantidade total de requisições feitas e a quantidade de filtros selecionados
-			emptySearchCallback: function() {},
+			emptySearchCallback: function () {},
 			// Função para permitir ou não que a rolagem infinita execute na página esta deve retornar "true" ou "false"
 			// Recebe como parâmetro um objeto contendo a quantidade total de requisições feitas e a quantidade de filtros selecionados
-			authorizeScroll: function() {
+			authorizeScroll: function () {
 				return true;
 			},
 			// Função para permitir ou não que o conteúdo de "loadContent" seja atualizado. Esta deve retornar "true" ou "false"
 			// Recebe como parâmetro um objeto contendo a quantidade total de requisições feitas e a quantidade de filtros selecionados
-			authorizeUpdate: function() {
+			authorizeUpdate: function () {
 				return true;
 			},
 			// Callback de cada laço percorrendo os fildsets e os labels. Retorna um objeto com algumas informações
-			labelCallback: function(data) {}
+			labelCallback: function (data) {},
 		};
 
 		var options = jQuery.extend(defaults, opts),
@@ -149,7 +149,7 @@
 			labelCallbackData = {};
 
 		var fn = {
-			getUrl: function(scroll) {
+			getUrl: function (scroll) {
 				var s = scroll || false;
 				if (s)
 					return currentSearchUrl.replace(
@@ -162,9 +162,9 @@
 						"PageNumber=" + pageNumber
 					);
 			},
-			getSearchUrl: function() {
+			getSearchUrl: function () {
 				var url, content, preg;
-				jQuery("script:not([src])").each(function() {
+				jQuery("script:not([src])").each(function () {
 					content = jQuery(this)[0].innerHTML;
 					preg = /\/buscapagina\?.+&PageNumber=/i;
 					if (content.search(/\/buscapagina\?/i) > -1) {
@@ -182,7 +182,7 @@
 					return "";
 				}
 			},
-			scrollToTop: function() {
+			scrollToTop: function () {
 				var elem = body.find("#returnToTop");
 
 				if (elem.length < 1) {
@@ -195,26 +195,26 @@
 				}
 
 				var windowH = _window.height();
-				_window.bind("resize", function() {
+				_window.bind("resize", function () {
 					windowH = _window.height();
 				});
-				_window.bind("scroll", function() {
+				_window.bind("scroll", function () {
 					if (_window.scrollTop() > windowH)
-						elem.stop(true).fadeTo(300, 1, function() {
+						elem.stop(true).fadeTo(300, 1, function () {
 							elem.show();
 						});
 					else
-						elem.stop(true).fadeTo(300, 0, function() {
+						elem.stop(true).fadeTo(300, 0, function () {
 							elem.hide();
 						});
 				});
-				elem.bind("click", function() {
+				elem.bind("click", function () {
 					_html.animate({ scrollTop: 0 }, "slow");
 					return false;
 				});
 			},
-			infinitScroll: function(paginador) {
-				_window.on("scroll", function() {
+			infinitScroll: function (paginador) {
+				_window.on("scroll", function () {
 					var _this = jQuery(this);
 
 					if (
@@ -230,16 +230,16 @@
 					} else return false;
 				});
 			},
-			loadMore: function(paginador) {
+			loadMore: function (paginador) {
 				var $loadMore = $("<div />", {
-					class: "load-more"
+					class: "load-more",
 				}).insertAfter(loadContentE);
 				var btn = $("<button />", {
 					class: "btn",
-					text: options.loadMoreText
+					text: options.loadMoreText,
 				}).appendTo($loadMore);
 
-				btn.click(function() {
+				btn.click(function () {
 					if (paginador.isDisponivelParaNovaBusca()) {
 						paginador.proxima();
 					}
@@ -251,7 +251,7 @@
 					btn.show();
 				}
 
-				$(window).on("vsr-request-init", function() {
+				$(window).on("vsr-request-init", function () {
 					btn.prop("disabled", true).addClass("loading");
 
 					if (!btn.is(":visible") && moreResults) {
@@ -259,7 +259,7 @@
 					}
 				});
 
-				$(window).on("vsr-contagem-produtos", function(event, data) {
+				$(window).on("vsr-contagem-produtos", function (event, data) {
 					var contagemTotal = parseInt(data);
 					var totalDeItensNaPagina = loadContentE.find("li[layout]")
 						.length;
@@ -268,22 +268,22 @@
 						btn.fadeOut();
 					}
 				});
-				$(window).on("vsr-no-more-results", function() {
+				$(window).on("vsr-no-more-results", function () {
 					btn.fadeOut();
 				});
-				$(window).on("vsr-more-results", function() {
+				$(window).on("vsr-more-results", function () {
 					btn.fadeIn();
 				});
-				$(window).on("vsr-request-init", function() {
+				$(window).on("vsr-request-init", function () {
 					btn.prop("disabled", false).removeClass("loading");
 				});
 			},
-			triggerEvent: function(nameEvent, elemento, data) {
+			triggerEvent: function (nameEvent, elemento, data) {
 				if (undefined == nameEvent) return;
 
 				elemento = elemento || filtersMenuE;
 				$(elemento).trigger(nameEvent, data);
-			}
+			},
 		};
 
 		function getParameterByName(name, url) {
@@ -296,22 +296,22 @@
 			return decodeURIComponent(results[2].replace(/\+/g, " "));
 		}
 
-		var paginas = function() {
+		var paginas = function () {
 			var currentStatus = true;
 			var numeroEsperadoItens;
 			numeroEsperadoItens = parseInt(
 				getParameterByName("cc", fn.getSearchUrl())
 			);
 
-			$(window).on("vsr-no-more-results", function() {
+			$(window).on("vsr-no-more-results", function () {
 				moreResults = false;
 			});
-			$(window).on("vsr-more-results", function() {
+			$(window).on("vsr-more-results", function () {
 				moreResults = true;
 			});
 
 			var paginador = {
-				isDisponivelParaNovaBusca: function() {
+				isDisponivelParaNovaBusca: function () {
 					var disponivel =
 						!animatingFilter &&
 						currentPage <= paginador.getTotalPaginas() &&
@@ -319,7 +319,7 @@
 
 					return disponivel;
 				},
-				getTotalPaginas: function() {
+				getTotalPaginas: function () {
 					var idElementoPaginacao, idPaginacao;
 
 					if (null !== options.pageLimit) {
@@ -335,7 +335,7 @@
 
 					return totalPaginas;
 				},
-				proxima: function() {
+				proxima: function () {
 					if (!currentStatus) return null;
 
 					var currentItems = loadContentE
@@ -348,7 +348,7 @@
 
 					pageJqxhr = jQuery.ajax({
 						url: fn.getUrl(true),
-						success: function(data) {
+						success: function (data) {
 							var contagemItens = $(data).find("li[layout]")
 								.length;
 
@@ -369,13 +369,13 @@
 
 							fn.triggerEvent("vsr-ajax-sucess");
 						},
-						complete: function() {
+						complete: function () {
 							fn.triggerEvent("vsr-request-end", loadContentE);
-						}
+						},
 					});
 
 					currentPage++;
-				}
+				},
 			};
 			return paginador;
 		};
@@ -399,9 +399,7 @@
 		if ($this.length < 1) {
 			log("Nenhuma opção de filtro encontrada", "Aviso");
 			if (options.showLinks)
-				jQuery(options.linksMenu)
-					.css("visibility", "visible")
-					.show();
+				jQuery(options.linksMenu).css("visibility", "visible").show();
 			if (options.infinitScroll) {
 				fn.infinitScroll(paginador);
 			} else {
@@ -441,10 +439,10 @@
 		loadContentE.before(prodOverlay);
 
 		var fns = {
-			exec: function() {
+			exec: function () {
 				fns.setFilterMenu();
 				fns.fieldsetFormat();
-				$this.each(function() {
+				$this.each(function () {
 					var _this = jQuery(this),
 						label = _this.parent();
 
@@ -460,7 +458,7 @@
 						'<span class="sr_box"></span><span class="sr_box2"></span>'
 					);
 
-					_this.bind("change", function() {
+					_this.bind("change", function () {
 						fns.inputAction();
 						if (_this.is(":checked")) {
 							fns.addFilter(_this);
@@ -474,11 +472,11 @@
 						}
 					});
 				});
-				jQuery(options.filterButtonClass).on("click", function() {
+				jQuery(options.filterButtonClass).on("click", function () {
 					fns.applyFilter();
 				});
 
-				jQuery(options.clearButtonClass).on("click", function(e) {
+				jQuery(options.clearButtonClass).on("click", function (e) {
 					fns.removeAllFilters(e, this);
 				});
 
@@ -488,36 +486,33 @@
 				fns.atualizarPaginador();
 				fn.triggerEvent("vsr-complete");
 			},
-			mergeMenu: function() {
+			mergeMenu: function () {
 				if (!options.mergeMenu) return false;
 
 				var elem = departamentE;
 				elem.insertAfter(options.insertMenuAfter);
 				fns.departamentMenuFormat(elem);
 			},
-			mergeMenuList: function() {
+			mergeMenuList: function () {
 				var i = 0;
-				filtersMenuE.find("h3,h4").each(function() {
-					var ul = linksMenuE
-						.find("h3,h4")
-						.eq(i)
-						.next("ul");
+				filtersMenuE.find("h3,h4").each(function () {
+					var ul = linksMenuE.find("h3,h4").eq(i).next("ul");
 					ul.insertAfter(jQuery(this));
 					fns.departamentMenuFormat(ul);
 					i++;
 				});
 			},
-			departamentMenuFormat: function(elem) {
-				elem.find("a").each(function() {
+			departamentMenuFormat: function (elem) {
+				elem.find("a").each(function () {
 					var a = jQuery(this);
 					a.text(fns.removeCounter(a.text()));
 				});
 			},
-			fieldsetFormat: function() {
+			fieldsetFormat: function () {
 				labelCallbackData.fieldsetCount = 0;
 				labelCallbackData.tmpCurrentLabel = {};
 
-				filtersMenuE.find("fieldset").each(function() {
+				filtersMenuE.find("fieldset").each(function () {
 					var $t = jQuery(this),
 						label = $t.find("label"),
 						fieldsetClass =
@@ -539,7 +534,7 @@
 					$t.addClass(fieldsetClass);
 
 					// Adicionando classe e título ao label
-					label.each(function(ndx) {
+					label.each(function (ndx) {
 						var t = jQuery(this),
 							v = t.find("input").val() || "",
 							labelClass =
@@ -551,12 +546,12 @@
 
 						labelCallbackData.tmpCurrentLabel = {
 							fieldsetParent: [$t, fieldsetClass],
-							elem: t
+							elem: t,
 						};
 
 						labelCallbackData[fieldsetClass][ndx.toString()] = {
 							className: labelClass,
-							title: v
+							title: v,
 						};
 
 						t.addClass(labelClass).attr({ title: v, index: ndx });
@@ -567,13 +562,13 @@
 					labelCallbackData.fieldsetCount++;
 				});
 			},
-			inputAction: function() {
+			inputAction: function () {
 				if (null !== pageJqxhr) pageJqxhr.abort();
 				if (null !== shelfJqxhr) shelfJqxhr.abort();
 				currentPage = 2;
 				moreResults = true;
 			},
-			applyFilter: function() {
+			applyFilter: function () {
 				currentSearchUrl = fn.getUrl();
 
 				fn.triggerEvent(
@@ -585,12 +580,12 @@
 					url: currentSearchUrl,
 					success: fns.filterAjaxSuccess,
 					error: fns.filterAjaxError,
-					complete: function() {
+					complete: function () {
 						fn.triggerEvent("vsr-request-end", loadContentE);
-					}
+					},
 				});
 			},
-			addFilter: function(input) {
+			addFilter: function (input) {
 				urlFilters += "&" + (input.attr("rel") || "");
 				currentSearchUrl = fn.getUrl();
 				if (options.filterOnChange) {
@@ -601,7 +596,7 @@
 				// Adicionando classe ao label
 				input.parent().addClass("sr_selected");
 			},
-			removeAllFilters: function(evt, obj) {
+			removeAllFilters: function (evt, obj) {
 				urlFilters = "";
 				$("input:checked")
 					.prop("checked", false)
@@ -611,7 +606,7 @@
 				fns.applyFilter();
 				fn.triggerEvent("vsr-clean-all-filter");
 			},
-			removeFilter: function(input) {
+			removeFilter: function (input) {
 				var url = input.attr("rel") || "";
 				if (url !== "") urlFilters = urlFilters.replace("&" + url, "");
 				if (options.filterOnChange) {
@@ -622,9 +617,9 @@
 				// Removendo classe do label
 				input.parent().removeClass("sr_selected");
 			},
-			filterAjaxSuccess: function(data) {
+			filterAjaxSuccess: function (data) {
 				var $data = jQuery(data);
-				prodOverlay.fadeTo(300, 0, function() {
+				prodOverlay.fadeTo(300, 0, function () {
 					jQuery(this).hide();
 				});
 				fns.updateContent($data);
@@ -635,15 +630,15 @@
 					{
 						scrollTop: options.filterScrollTop(
 							loadContentOffset || { top: 0, left: 0 }
-						)
+						),
 					},
 					600
 				);
 
 				fn.triggerEvent("vsr-ajax-sucess");
 			},
-			filterAjaxError: function() {
-				prodOverlay.fadeTo(300, 0, function() {
+			filterAjaxError: function () {
+				prodOverlay.fadeTo(300, 0, function () {
 					jQuery(this).hide();
 				});
 				if (options.alertFilterErro) {
@@ -655,7 +650,7 @@
 
 				fn.triggerEvent("vsr-ajax-fail");
 			},
-			updateContent: function($data) {
+			updateContent: function ($data) {
 				animatingFilter = true;
 				if (!options.authorizeUpdate(ajaxCallbackObj)) return false;
 
@@ -665,7 +660,7 @@
 				(shelfPage.length > 0
 					? shelfPage
 					: options.emptySearchElem
-				).slideUp(600, function() {
+				).slideUp(600, function () {
 					jQuery(this).remove();
 
 					// Removendo a mensagem de busca vazia, esta remoção "forçada" foi feita para
@@ -677,7 +672,7 @@
 						shelf.hide();
 						loadContentE.append(shelf);
 						options.shelfCallback();
-						shelf.slideDown(600, function() {
+						shelf.slideDown(600, function () {
 							animatingFilter = false;
 						});
 						ajaxCallbackObj.isEmpty = false;
@@ -698,7 +693,7 @@
 							options.emptySearchElem
 								.show()
 								.css("height", "auto")
-								.fadeTo(300, 0.2, function() {
+								.fadeTo(300, 0.2, function () {
 									options.emptySearchElem.fadeTo(300, 1);
 								});
 						}
@@ -707,7 +702,7 @@
 					}
 				});
 			},
-			adjustText: function(input) {
+			adjustText: function (input) {
 				var label = input.parent(),
 					text = label.text();
 
@@ -715,19 +710,19 @@
 
 				label.text(text).prepend(input);
 			},
-			removeCounter: function(text) {
-				return text.replace(/\([0-9]+\)/gi, function(a) {
+			removeCounter: function (text) {
+				return text.replace(/\([0-9]+\)/gi, function (a) {
 					return "";
 				});
 			},
-			setFilterMenu: function() {
+			setFilterMenu: function () {
 				if (filtersMenuE.length > 0) {
 					linksMenuE.hide();
 					filtersMenuE.show();
 				}
 			},
-			atualizarPaginador: function() {
-				$(window).on("vsr-contagem-produtos", function(event, data) {
+			atualizarPaginador: function () {
+				$(window).on("vsr-contagem-produtos", function (event, data) {
 					var contagemTotal = parseInt(data);
 					var totalDeItensNaPagina = loadContentE.find("li[layout]")
 						.length;
@@ -739,9 +734,9 @@
 					}
 				});
 			},
-			contadorDeProdutos: function() {
-				$(window).on("vsr-request-init", function(event, data) {
-					$(window).one("vsr-request-end", function(event, data) {
+			contadorDeProdutos: function () {
+				$(window).on("vsr-request-init", function (event, data) {
+					$(window).one("vsr-request-end", function (event, data) {
 						var urlFiltro = currentSearchUrl.replace(
 							"/buscapagina",
 							""
@@ -758,7 +753,7 @@
 						}
 
 						$.get(urlAtual)
-							.done(function(data, status, jqXHR) {
+							.done(function (data, status, jqXHR) {
 								var numeroDeRecursos = jqXHR.getResponseHeader(
 									"resources"
 								);
@@ -768,7 +763,7 @@
 								if (aux.length > 1) {
 									totalDeItens = aux[1];
 								}
-								setTimeout(function() {
+								setTimeout(function () {
 									fn.triggerEvent(
 										"vsr-contagem-produtos",
 										loadContentE,
@@ -779,7 +774,7 @@
 							.fail();
 					});
 				});
-			}
+			},
 		};
 
 		if (body.hasClass("departamento")) fns.mergeMenu();

@@ -68,7 +68,7 @@ export default class Login {
 	}
 
 	getUSerData() {
-		$.getJSON("/no-cache/profileSystem/getProfile").done(function(data) {
+		$.getJSON("/no-cache/profileSystem/getProfile").done(function (data) {
 			$(document).trigger("vtex-user-identification", data);
 		});
 	}

@@ -1,33 +1,36 @@
 import { Modulo } from "./Modulo";
 
-import ModuloPrecoDe from './SubModulos/ModuloPrecoDe';
-import ModuloPrecoPor from './SubModulos/ModuloPrecoPor';
-import ModuloPrecoParcelado from './SubModulos/ModuloPrecoParcelado';
-import ModuloPrecoBoleto from './SubModulos/ModuloPrecoBoleto';
+import ModuloPrecoDe from "./SubModulos/ModuloPrecoDe";
+import ModuloPrecoPor from "./SubModulos/ModuloPrecoPor";
+import ModuloPrecoParcelado from "./SubModulos/ModuloPrecoParcelado";
+import ModuloPrecoBoleto from "./SubModulos/ModuloPrecoBoleto";
 
 import { SKU_REF, CHANGE_SKU } from "./EventType";
 /**
  * modulo preco
  * Mantem o preço de exibição atualizado
  */
-export var ModuloPreco = function(elemento = ".preco-produto", componentStore) {
+export var ModuloPreco = function (
+	elemento = ".preco-produto",
+	componentStore
+) {
 	Modulo.call(this, elemento, componentStore);
 	this.opcoes({
 		precoDe: {
-			ativo: true
+			ativo: true,
 		},
 		precoPor: {
-			ativo: true
+			ativo: true,
 		},
 		parcelado: {
 			auto: false,
 			ativo: false,
-			parcelas: 6
+			parcelas: 6,
 		},
 		boleto: {
 			ativo: true,
-			percentual: 5
-		}
+			percentual: 5,
+		},
 	});
 	this.precos = [];
 	var _this = this;
@@ -35,13 +38,13 @@ export var ModuloPreco = function(elemento = ".preco-produto", componentStore) {
 	 * Configura os eventos js que serão diparados pelo html do desenhar()
 	 * @return {object} this
 	 */
-	this.configurar = function(opcoes) {
+	this.configurar = function (opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
 
-		this._store.events.subscribe(SKU_REF, function(event, sku) {
+		this._store.events.subscribe(SKU_REF, function (event, sku) {
 			_this.atualizar(sku);
 		});
-		this._store.events.subscribe(CHANGE_SKU, function(event, sku) {
+		this._store.events.subscribe(CHANGE_SKU, function (event, sku) {
 			_this.atualizar(sku);
 		});
 
@@ -51,10 +54,10 @@ export var ModuloPreco = function(elemento = ".preco-produto", componentStore) {
 	 * Cria e insere o html com as formas de pagamento
 	 * @return {object} this
 	 */
-	this.desenhar = function() {
+	this.desenhar = function () {
 		var container = $("<div />", {
 			class: "container-precos",
-			css: "display:none"
+			css: "display:none",
 		}).appendTo(this.elemento());
 		if (this.opcoes().precoDe.ativo) {
 			var moduloPrecoDe = new ModuloPrecoDe();
@@ -88,10 +91,10 @@ export var ModuloPreco = function(elemento = ".preco-produto", componentStore) {
 	 * @param  {Object} novoSku objeto do sku selecionado
 	 * @return {Object} this
 	 */
-	this.atualizar = function(novoSku) {
+	this.atualizar = function (novoSku) {
 		if (!novoSku) {
 			novoSku = {
-				available: false
+				available: false,
 			};
 		}
 		if (novoSku.available) {
@@ -102,7 +105,7 @@ export var ModuloPreco = function(elemento = ".preco-produto", componentStore) {
 			}
 			this.elemento().css("display", "block");
 		} else {
-			this.elemento().css('display', 'none');
+			this.elemento().css("display", "none");
 		}
 		return this;
 	};
@@ -111,7 +114,7 @@ export var ModuloPreco = function(elemento = ".preco-produto", componentStore) {
 	 * @param  {Object} tipo um objeto contendo informações das formas de pagamento
 	 * @return {Object} 	objeto de configuracao
 	 */
-	this.tiposPreco = function(tipo) {
+	this.tiposPreco = function (tipo) {
 		if (tipo) {
 			this._tiposPreco = $.extend({}, this._tiposPreco, tipo);
 		}

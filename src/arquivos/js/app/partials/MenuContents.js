@@ -10,16 +10,19 @@ export default class MenuContents {
 	getContent() {
 		let url = "/Sistema/elementosmenu";
 
-		$.get(url, function(data) {
-			let $conteudo = $(data);
+		$.get(
+			url,
+			function (data) {
+				let $conteudo = $(data);
 
-			$("<div/>", { class: "elementos-menu" }).appendTo(
-				".menu-principal .itens >li .container"
-			);
+				$("<div/>", { class: "elementos-menu" }).appendTo(
+					".menu-principal .itens >li .container"
+				);
 
-			// this.insertProduct($conteudo);
-			this.insertBanners($conteudo);
-		}.bind(this));
+				// this.insertProduct($conteudo);
+				this.insertBanners($conteudo);
+			}.bind(this)
+		);
 	}
 
 	insertProduct($conteudo) {
@@ -39,9 +42,7 @@ export default class MenuContents {
 					.find(".elementos-menu");
 
 				if (productMenuContainer.length) {
-					$(categories[i])
-						.next("ul")
-						.appendTo(productMenuContainer);
+					$(categories[i]).next("ul").appendTo(productMenuContainer);
 					$(productMenuContainer).addClass("have-product");
 				}
 			}

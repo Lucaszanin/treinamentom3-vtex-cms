@@ -6,21 +6,21 @@ import { textoParaNomeCss, alterarTamanhoImagemSrcVtex } from "../util";
  * modulo de seleção dos skus
  * Permite escolher o Sku desejado
  */
-export var ModuloSkusPorNome = function(skuJson, elemento, componentStore) {
+export var ModuloSkusPorNome = function (skuJson, elemento, componentStore) {
 	ModuloSkus.call(this, skuJson, elemento, componentStore);
 	sessionStorage.removeItem("sku-selecionado");
 	var _this = this;
 
 	this.dimensions = {
-		Único: "U"
+		Único: "U",
 	};
 
 	this.dimensionToDisplay = {
 		name: "Tamanhos",
-		label: "Escolha o tamanho:"
+		label: "Escolha o tamanho:",
 	};
 
-	this.changeDimension = function(dimension) {
+	this.changeDimension = function (dimension) {
 		for (const key in _this.dimensions) {
 			if (key == dimension) {
 				return _this.dimensions[key];
@@ -34,7 +34,7 @@ export var ModuloSkusPorNome = function(skuJson, elemento, componentStore) {
 	 * Escolhe os primeiros skus de cada variação
 	 * @return {object} this
 	 */
-	this.setDefauls = function() {
+	this.setDefauls = function () {
 		var bestSku;
 
 		for (const i in this._skuJson.skus) {
@@ -63,14 +63,14 @@ export var ModuloSkusPorNome = function(skuJson, elemento, componentStore) {
 	 * @param  {Object} mapaEspecificacoes Mapa das especificações do produto
 	 * @return {object} this
 	 */
-	this.desenhar = function() {
+	this.desenhar = function () {
 		var $especificacao,
 			$especificacoes = $("<div />", {
-				class: "skus-selection"
+				class: "skus-selection",
 			}).appendTo(this.elemento());
 
 		$especificacao = $("<div />", {
-			class: "skus-wrapper"
+			class: "skus-wrapper",
 		}).appendTo($especificacoes);
 		$("<div />", {
 			class: "titulo",
@@ -79,10 +79,10 @@ export var ModuloSkusPorNome = function(skuJson, elemento, componentStore) {
 					_this.dimensionToDisplay.name
 				) >= 0
 					? _this.dimensionToDisplay.label
-					: "Escolha a variação:"
+					: "Escolha a variação:",
 		}).appendTo($especificacao);
 		var $lista = $("<ul />", {
-			class: "skus"
+			class: "skus",
 		}).appendTo($especificacao);
 		var nameCampo = textoParaNomeCss(_this._skuJson.name);
 
@@ -91,19 +91,19 @@ export var ModuloSkusPorNome = function(skuJson, elemento, componentStore) {
 				var sku = _this._skuJson.skus[indice];
 
 				var item = $("<li />", {
-					class: "sku"
+					class: "sku",
 				}).appendTo($lista);
 
 				$("<input />", {
 					val: sku.sku,
 					id: sku.sku,
 					type: "radio",
-					name: nameCampo
+					name: nameCampo,
 				}).appendTo(item);
 
 				var label = $("<label />", {
 					for: sku.sku,
-					class: sku.available ? "" : "disable"
+					class: sku.available ? "" : "disable",
 				}).appendTo(item);
 
 				//gambiarra para cadastro errado da averara
@@ -125,7 +125,7 @@ export var ModuloSkusPorNome = function(skuJson, elemento, componentStore) {
 					label.addClass("image");
 					$("<img />", {
 						src: alterarTamanhoImagemSrcVtex(sku.image, 45, 65),
-						title: sku.skuname
+						title: sku.skuname,
 					}).appendTo(label);
 				}
 			}
@@ -137,8 +137,8 @@ export var ModuloSkusPorNome = function(skuJson, elemento, componentStore) {
 	 * Configura os eventos de atualizacao
 	 * @return {object} this
 	 */
-	this.configurar = function() {
-		$(".skus-selection input").on("change", function() {
+	this.configurar = function () {
+		$(".skus-selection input").on("change", function () {
 			let id = $(".skus-selection input:checked").val();
 
 			var sku = getSkuPorId(id);
@@ -148,7 +148,7 @@ export var ModuloSkusPorNome = function(skuJson, elemento, componentStore) {
 	};
 
 	function getSkuPorId(id) {
-		return _this._skuJson.skus.find(function(sku) {
+		return _this._skuJson.skus.find(function (sku) {
 			return sku.sku == id;
 		});
 	}
