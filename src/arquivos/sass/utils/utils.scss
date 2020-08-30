@@ -1,31 +1,31 @@
-.sprite{
-    display: inline-block;
-    vertical-align: middle;
+.sprite {
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .no-buttom {
 	border: none;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    overflow: visible;
+	margin: 0;
+	padding: 0;
+	width: auto;
+	overflow: visible;
 
-    background: transparent;
+	background: transparent;
 	outline: none;
 	text-align: inherit;
 
-    /* inherit font & color from ancestor */
-    color: inherit;
-    font: inherit;
+	/* inherit font & color from ancestor */
+	color: inherit;
+	font: inherit;
 
-    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-    line-height: normal;
+	/* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+	line-height: normal;
 
-    /* Corrects font smoothing for webkit */
-    -webkit-font-smoothing: inherit;
-    -moz-osx-font-smoothing: inherit;
+	/* Corrects font smoothing for webkit */
+	-webkit-font-smoothing: inherit;
+	-moz-osx-font-smoothing: inherit;
 
-    /* Corrects inability to style clickable `input` types in iOS */
+	/* Corrects inability to style clickable `input` types in iOS */
 	appearance: none;
 
 	&::-moz-focus-inner {
@@ -34,14 +34,14 @@
 	}
 }
 
-
-.itens-inline{
-	>*{ display: inline-block;}
+.itens-inline {
+	> * {
+		display: inline-block;
+	}
 }
 
-%notificacao{
-
-	padding: 7.5px 10px ;
+%notificacao {
+	padding: 7.5px 10px;
 	min-height: 1em;
 	border-radius: 3px;
 	border-right: solid 5px;

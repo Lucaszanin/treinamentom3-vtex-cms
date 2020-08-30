@@ -99,23 +99,23 @@
 .slick-arrow.slick-hidden {
 	display: none;
 }
-.slick-dots{
-	li{
+.slick-dots {
+	li {
 		margin: 0.5em;
-		button{
+		button {
 			overflow: hidden;
 			text-indent: 999999999px;
 			height: 1em;
 			width: 1em;
 			border-radius: 1em;
 			background-color: #fff;
-			:focus{
+			:focus {
 				outline: none;
 			}
 		}
-		&.slick-active button{
-			&:focus{
-				outline:none;
+		&.slick-active button {
+			&:focus {
+				outline: none;
 			}
 		}
 	}

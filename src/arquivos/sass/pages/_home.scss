@@ -2,50 +2,50 @@
 /**-- Home ---------------------------------********************/
 /*-------------------------------------------------------------*/
 
-.home{
-
-	.main-gallery{
-		>div{
-			&:not(.slick-initialized){
-				.box-banner{
-					&:not(:first-child){
+.home {
+	.main-gallery {
+		> div {
+			&:not(.slick-initialized) {
+				.box-banner {
+					&:not(:first-child) {
 						display: none;
 					}
 				}
 			}
 
-			&.desktop{
-				@include mq(md, max){
+			&.desktop {
+				@include mq(md, max) {
 					display: none;
 				}
 			}
 
-			&.mobile{
-				@include mq(md, min){
+			&.mobile {
+				@include mq(md, min) {
 					display: none;
 				}
 			}
 		}
 
-		img{
+		img {
 			width: 100%;
 		}
 
-		.slick-next,.slick-prev{
+		.slick-next,
+		.slick-prev {
 			@extend .sprite;
 			background-color: transparent;
 			border: none;
 			cursor: pointer;
 			font-size: 0;
 			outline: none;
-			padding:0;
+			padding: 0;
 			position: absolute;
 			top: 40%;
 			transform: scale(0.7);
 			z-index: 1;
 		}
 
-		.slick-next{
+		.slick-next {
 			@extend .sprite;
 			@extend .sprite-circled-arrow-right;
 			left: auto;
@@ -59,25 +59,26 @@
 			left: 8px;
 		}
 
-		.slick-dots{
+		.slick-dots {
 			bottom: 20px;
 			position: absolute;
 			pointer-events: none;
 			text-align: center;
 			width: 100%;
 
-			&, li{
+			&,
+			li {
 				align-items: center;
-				display: flex!important;
+				display: flex !important;
 				justify-content: center;
 			}
 
-			li{
+			li {
 				display: inline-block;
 				margin: 0 4px;
 			}
 
-			button{
+			button {
 				background-color: $color-black2;
 				border: none;
 				cursor: pointer;
@@ -89,8 +90,8 @@
 				width: 10px;
 			}
 
-			.slick-active{
-				button{
+			.slick-active {
+				button {
 					background-color: $color-pink;
 					height: 16px;
 					width: 16px;
@@ -99,74 +100,75 @@
 		}
 	}
 
-	.banner{
-		&.desktop{
-			@include mq(md, max){
+	.banner {
+		&.desktop {
+			@include mq(md, max) {
 				display: none;
 			}
 		}
 
-		&.mobile{
-			@include mq(md, min){
+		&.mobile {
+			@include mq(md, min) {
 				display: none;
 			}
 		}
 
-		img{
+		img {
 			width: 100%;
 		}
 	}
 
-	.mosaico-home, .mosaico-home-footer{
-		@include mq(md, max){
+	.mosaico-home,
+	.mosaico-home-footer {
+		@include mq(md, max) {
 			padding: 0;
 		}
 
-		@include mq_range(md, xl){
+		@include mq_range(md, xl) {
 			max-width: 100%;
 		}
 
-		.row{
-			@include mq(md, max){
+		.row {
+			@include mq(md, max) {
 				margin: 0;
 			}
 		}
 	}
 
-	.mosaico-home{
-		>.row{
-			@include mq(md, min){
+	.mosaico-home {
+		> .row {
+			@include mq(md, min) {
 				margin-left: 0;
 			}
 		}
 
-		.banner{
+		.banner {
 			padding: 0 0 40px;
 
-			@include mq(md, min){
+			@include mq(md, min) {
 				padding: 0 10px;
 			}
 
-			img{
+			img {
 				width: 100%;
 			}
 		}
 
-		.banners-left{
-			@include mq(md, min){
+		.banners-left {
+			@include mq(md, min) {
 				padding-left: 0px;
 				padding-right: 12px;
 			}
 		}
 
-		.banners-right{
+		.banners-right {
 			padding: 0;
 
-			.banner{
+			.banner {
 				padding-right: 0;
 
-				&:nth-child(2){
-					@include mq(md, min){
+				&:nth-child(2) {
+					@include mq(md, min) {
 						padding-left: 8px;
 					}
 				}

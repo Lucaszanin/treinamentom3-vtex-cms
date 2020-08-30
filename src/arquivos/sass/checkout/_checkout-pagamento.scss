@@ -1,100 +1,103 @@
-.body-order-form{
-    font-family: $font-family;
+.body-order-form {
+	font-family: $font-family;
 
-    .container{
-        padding-left: 15px!important;
-        padding-right: 15px!important;
-    }
+	.container {
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
 }
 
-.orderform-active{
-    .step, .cart, .totalizers{
-        border-radius: 0;
-        border-width: 1px;
-    }
+.orderform-active {
+	.step,
+	.cart,
+	.totalizers {
+		border-radius: 0;
+		border-width: 1px;
+	}
 
-    .accordion-group{
+	.accordion-group {
+		.accordion-toggle .link-box-edit {
+			color: $color-pink;
+		}
 
-        .accordion-toggle .link-box-edit{
-            color: $color-pink;
-        }
+		.text input,
+		.text select {
+			padding: 10px;
+			border-radius: 0;
+			height: 36px;
+			max-width: 100%;
+			width: 100%;
+		}
 
-        .text input, .text select{
-            padding: 10px;
-            border-radius: 0;
-            height: 36px;
-            max-width: 100%;
-            width: 100%;
-        }
+		.pull-left {
+			display: inline-block;
+			max-width: 47%;
+			float: none;
+			vertical-align: top;
 
-        .pull-left{
-            display: inline-block;
-            max-width: 47%;
-            float: none;
-            vertical-align: top;
+			@include mq(md, max) {
+				max-width: 100%;
+			}
 
-            @include mq(md, max){
-                max-width: 100%;
-            }
+			&.hide {
+				display: none;
+			}
+		}
 
-            &.hide{
-                display: none;
-            }
-        }
+		p.input {
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
 
-        p.input{
-            display: inline-block;
-            vertical-align: top;
-            width: 100%;
+			&.hide {
+				display: none;
+			}
+		}
 
-            &.hide{
-                display: none;
-            }
-        }
+		.vtex-omnishipping-1-x-summaryChange {
+			border-color: $color-pink;
+			color: $color-pink;
+		}
+	}
 
-        .vtex-omnishipping-1-x-summaryChange{
-            border-color: $color-pink;
-            color: $color-pink;
-        }
-    }
+	.accordion-group button.submit,
+	.payment-confirmation-wrap button.submit {
+		background-image: none;
+		background-color: $color-green;
+		border: none;
+		border-radius: 0;
+		font-size: 14px;
+		font-weight: 700;
+		text-shadow: none;
+		text-transform: uppercase;
+		transition: all 0.15s ease-in-out;
 
-    .accordion-group button.submit, .payment-confirmation-wrap button.submit{
-        background-image: none;
-        background-color: $color-green;
-        border: none;
-        border-radius: 0;
-        font-size: 14px;
-        font-weight: 700;
-        text-shadow: none;
-        text-transform: uppercase;
-        transition: all 0.15s ease-in-out;
+		&:hover {
+			background-color: lighten($color-green, 5);
+		}
 
-        &:hover{
-            background-color: lighten($color-green, 5);
-        }
+		&:active {
+			background-color: darken($color-green, 5);
+		}
+	}
 
-        &:active{
-            background-color: darken($color-green, 5);
-        }
-    }
+	.cart-fixed {
+		#orderform-minicart-to-cart {
+			color: $color-black4;
+			display: block;
+			font-size: 12px;
+			text-decoration: underline;
+		}
 
-    .cart-fixed{
-        #orderform-minicart-to-cart{
-            color: $color-black4;
-            display: block;
-            font-size: 12px;
-            text-decoration: underline;
-        }
+		.table {
+			.totalizers-list {
+				font-size: 14px;
+			}
 
-        .table{
-            .totalizers-list{
-                font-size: 14px;
-            }
-
-            tfoot td{
-                color: $color-black3;
-                text-transform: uppercase;
-            }
-        }
-    }
+			tfoot td {
+				color: $color-black3;
+				text-transform: uppercase;
+			}
+		}
+	}
 }
