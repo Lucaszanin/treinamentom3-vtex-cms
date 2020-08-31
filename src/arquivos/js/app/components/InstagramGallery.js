@@ -6,7 +6,9 @@ class InstagramGallery {
 			limit,
 		};
 
-		this.getPosts();
+		this.getPosts().then((data) => {
+			this.buildGallery(data);
+		});
 	}
 
 	async getPosts() {
@@ -23,7 +25,7 @@ class InstagramGallery {
 			status = "error";
 		}
 
-		this.buildGallery({ data, status });
+		return { data, status };
 	}
 
 	buildGallery({ data, status }) {
