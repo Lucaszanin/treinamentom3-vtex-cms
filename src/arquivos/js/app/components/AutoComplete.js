@@ -1,12 +1,12 @@
 export default class AutoComplete {
 	constructor() {
-		this.correcaoAutocomplete();
+		this.fixAutoComplete();
 	}
-	correcaoAutocomplete() {
-		$(".fulltext-search-box").on("autocompleteopen", function (event, ui) {
+	fixAutoComplete() {
+		$(".fulltext-search-box").on("autocompleteopen", () => {
 			$(".ui-autocomplete.ui-menu").addClass("autocompleteopen");
 		});
-		$(".selector").on("autocompleteclose", function (event, ui) {
+		$(".selector").on("autocompleteclose", () => {
 			$(".ui-autocomplete.ui-menu").removeClass("autocompleteopen");
 		});
 	}
