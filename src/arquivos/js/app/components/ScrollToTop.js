@@ -8,6 +8,7 @@ export default class ScrollToTop {
 		this.offset = 200;
 		this.duration = 500;
 		this.scrollTopEl = $(".scroll-to-top");
+		this.window = $(window);
 	}
 
 	scrollToTop(event) {
@@ -23,12 +24,14 @@ export default class ScrollToTop {
 
 	events() {
 		this.scrollTopEl.click(this.scrollToTop.bind(this));
-		$(window).scroll((e) => {
-			if ($(window).scrollTop() > this.offset) {
-				$(".scroll-to-top").fadeIn(this.duration);
-			} else {
-				$(".scroll-to-top").fadeOut(this.duration);
-			}
-		});
+		this.window.scroll(this.handleScroll.bind(this));
+	}
+
+	handleScroll() {
+		if (this.window.scrollTop() > this.offset) {
+			this.scrollTopEl.fadeIn(this.duration);
+		} else {
+			this.scrollTopEl.fadeOut(this.duration);
+		}
 	}
 }

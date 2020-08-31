@@ -3,33 +3,44 @@ import { isSmallerThen768 } from "Helpers/MediasMatch";
 export default class BottomNav {
 	constructor() {
 		if (isSmallerThen768) {
-			this.bottomOptions();
+			this.selectors();
+			this.events();
 		}
 	}
 
-	bottomOptions() {
-		var offset = 200;
+	selectors() {
+		this.mobileOptions = $(".mobile-bottom-options");
+		this.window = $(window);
+	}
 
-		$(window).scroll(function () {
-			if ($(this).scrollTop() > offset) {
-				$(".mobile-bottom-options").addClass("active");
-			} else {
-				$(".mobile-bottom-options").removeClass("active");
-			}
+	events() {
+		this.window.scroll(this.handleScroll.bind(this));
+
+		$(".mobile-bottom-options .show-search button").on("click", () => {
+			this.moveToTop();
+			this.focusOnSearch();
 		});
+	}
 
-		$(".mobile-bottom-options .show-search button").on(
-			"click",
-			function () {
-				$("html, body").animate(
-					{
-						scrollTop: 0,
-					},
-					500
-				);
+	handleScroll() {
+		const offset = 200;
+		if (this.window.scrollTop() > offset) {
+			this.mobileOptions.addClass("active");
+		} else {
+			this.mobileOptions.removeClass("active");
+		}
+	}
 
-				$(".busca-mobile .fulltext-search-box").focus();
-			}
+	moveToTop() {
+		$("html, body").animate(
+			{
+				scrollTop: 0,
+			},
+			500
 		);
+	}
+
+	focusOnSearch() {
+		$(".busca-mobile .fulltext-search-box").focus();
 	}
 }
