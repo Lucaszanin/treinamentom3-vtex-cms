@@ -113,6 +113,7 @@ export var ModuloBotaoDeCompra = function (
 		return this;
 	};
 	this.compra = function () {
+
 		if (_this.produtoEscolhido.sku === null) {
 			mensagemErro(this.opcoes().msgVariacaoErro);
 		} else if (
@@ -164,8 +165,7 @@ export var ModuloBotaoDeCompra = function (
 		dataLayer.push({ event: "m3-addToCart" });
 
 		if (!this._opcoes.msgByEvent) {
-			var fechar = function (event) {
-				event.preventDefault();
+			var fechar = function () {
 				$popup.removeClass("show");
 				$popup.remove();
 				$overlay.remove();
@@ -199,14 +199,14 @@ export var ModuloBotaoDeCompra = function (
 				alt: _this.produtoEscolhido.sku.skuname,
 			}).appendTo($information);
 
-			$("<div />", {
+			var $description = $("<div />", {
 				class: "descricao",
 				html: _this._opcoes.msgAddCarrinhoSucesso,
 			}).appendTo($information);
 
 			var $acoes = $("<div />", {
 				class: "acoes",
-			}).appendTo($popupBox);
+			}).appendTo($description);
 
 			$("<a />", {
 				href: "#",
@@ -228,6 +228,10 @@ export var ModuloBotaoDeCompra = function (
 			$popup.appendTo(this.elemento());
 			$overlay.insertAfter($popup);
 			$popup.addClass("show");
+
+			setTimeout(() => {
+				fechar();
+			}, 4000);
 		}
 	};
 	this.erroAjax = function (e, { msg }) {
