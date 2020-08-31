@@ -113,7 +113,6 @@ export var ModuloBotaoDeCompra = function (
 		return this;
 	};
 	this.compra = function () {
-
 		if (_this.produtoEscolhido.sku === null) {
 			mensagemErro(this.opcoes().msgVariacaoErro);
 		} else if (
