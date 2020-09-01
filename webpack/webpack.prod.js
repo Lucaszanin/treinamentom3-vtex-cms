@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 const TerserPlugin = require("terser-webpack-plugin");
+const path = require("path");
 
 module.exports = merge(common, {
 	externals: {
@@ -25,7 +26,7 @@ module.exports = merge(common, {
 				},
 			},
 		],
-	},s
+	},
 	optimization: {
 		minimizer: [
 			new TerserPlugin({

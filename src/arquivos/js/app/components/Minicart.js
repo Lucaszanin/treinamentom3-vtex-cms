@@ -282,7 +282,7 @@ export default class Minicart {
 		);
 	}
 
-	constructor(element, ctx) {
+	constructor(ctx, element) {
 		try {
 			window.window.vtexjs.checkout.getOrderForm();
 		} catch (error) {

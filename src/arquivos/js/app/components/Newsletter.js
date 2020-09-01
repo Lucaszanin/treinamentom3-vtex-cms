@@ -1,7 +1,7 @@
 import "Lib/custom-newsletter-form";
 
 export default class Newsletter {
-	constructor({ elemento, textButtom }, ctx) {
+	constructor(ctx, { elemento, textButtom }) {
 		let $elemento =
 			typeof elemento !== "undefined" ? $(elemento) : $(".news-form");
 		textButtom =

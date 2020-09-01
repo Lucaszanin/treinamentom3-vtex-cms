@@ -35,7 +35,7 @@ const paths = {
 		src: "src/arquivos/sprite/**/*.{png,jpg}",
 	},
 	img: {
-		src: "src/arquivos/img/*.{png,gif,jpg}",
+		src: "src/arquivos/img/**/*.{png,gif,jpg}",
 		watch: "src/arquivos/img/**/*.{png,gif,jpg}",
 	},
 	fonts: {
@@ -179,7 +179,7 @@ function img() {
 
 	return gulp
 		.src(paths.img.src)
-		.pipe(imagemin())
+		.pipe(gulpif(isProduction, imagemin()))
 		.pipe(gulp.dest(paths.outputStatic))
 		.pipe(connect.reload());
 }

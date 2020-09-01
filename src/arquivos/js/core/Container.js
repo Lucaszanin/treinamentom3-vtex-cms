@@ -13,6 +13,7 @@ export default class Container {
 
 		this.instances = {};
 		this.componentsConfig = {};
+		//Futuramente a ser recebido
 		this.page = new Page();
 	}
 
@@ -37,9 +38,13 @@ export default class Container {
 		try {
 			if (typeof Component === "function") {
 				if (this.componentsConfig[Component.name]) {
+					console.log(
+						this.ctx,
+						this.componentsConfig[Component.name]
+					);
 					this.instances[Component.name] = new Component(
-						this.componentsConfig[Component.name],
-						this.ctx
+						this.ctx,
+						this.componentsConfig[Component.name]
 					);
 				} else {
 					this.instances[Component.name] = new Component(this.ctx);
