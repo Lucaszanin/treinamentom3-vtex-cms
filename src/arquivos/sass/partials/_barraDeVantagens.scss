@@ -1,63 +1,62 @@
 /***************************************************************/
 /**-- Barra de vantagem --------------------********************/
 /*-------------------------------------------------------------*/
-%link{
-
+%link {
 	display: block;
 	padding: 10px 20px;
 	text-align: center;
 
-	span{
+	span {
 		white-space: nowrap;
 		display: inline-block;
 	}
 }
-.tipbar{
+.tipbar {
 	font-size: 14px;
 	line-height: 16px;
 	padding: 76px 15px 80px;
 
-	@include mq(md, max){
+	@include mq(md, max) {
 		max-width: 100%;
 		overflow: hidden;
 		padding: 56px 15px 48px;
 	}
 
-	.slick-list{
-		@include mq(md, max){
+	.slick-list {
+		@include mq(md, max) {
 			overflow: visible;
 		}
 	}
 
-	ul{
+	ul {
 		text-align: center;
 		margin: auto;
 		max-width: 600px;
 		width: 100%;
 
-		@include mq(md, max){
+		@include mq(md, max) {
 			max-width: 300px;
 			padding: 7px 0;
 			text-align: center;
 			width: 90%;
 		}
 
-		li{
+		li {
 			display: inline-block;
 			padding-right: 20px;
 
-			i{
+			i {
 				display: inline-block;
 				margin-right: 2px;
 				vertical-align: top;
 			}
 
-			p{
+			p {
 				display: inline-block;
 				margin: 0;
 				text-align: left;
 
-				span{
+				span {
 					display: block;
 					font-size: 16px;
 				}

@@ -4,26 +4,26 @@ import { SKU_REF, CHANGE_SKU } from "./EventType";
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
-export var ModuloQuantidade = function(
+export var ModuloQuantidade = function (
 	elemento = ".qtd-selector-content:first-child",
 	componentStore
 ) {
 	Modulo.call(this, elemento, componentStore);
 	this._opcoes = {
-		maxEstoque: 50
+		maxEstoque: 50,
 	};
 	var _this = this;
 	/**
 	 * Configura os eventos js que serão diparados pelo html do desenhar()
 	 * @return {object} this
 	 */
-	this.configurar = function(opcoes) {
+	this.configurar = function (opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
 
-		componentStore.events.subscribe(SKU_REF, function(event, sku) {
+		componentStore.events.subscribe(SKU_REF, function (event, sku) {
 			_this.atualizar(sku);
 		});
-		componentStore.events.subscribe(CHANGE_SKU, function(event, sku) {
+		componentStore.events.subscribe(CHANGE_SKU, function (event, sku) {
 			_this.atualizar(sku);
 		});
 		return this;
@@ -34,8 +34,8 @@ export var ModuloQuantidade = function(
 	 * @param  {Object} novoSku objeto do sku selecionado
 	 * @return {Object} this
 	 */
-	this.atualizar = function(novoSku) {
-		if (novoSku?.available ===  true) {
+	this.atualizar = function (novoSku) {
+		if (novoSku?.available === true) {
 			var estoque,
 				skuId = novoSku.sku;
 			try {
@@ -63,7 +63,7 @@ export var ModuloQuantidade = function(
 	 * Cria e insere o html com as variações dos skus
 	 * @return {object} this
 	 */
-	this.desenhar = function() {
+	this.desenhar = function () {
 		if (this.moduloExibicao()) {
 			this.moduloExibicao().elemento(this.elemento());
 			this.moduloExibicao().desenhar();
@@ -77,7 +77,7 @@ export var ModuloQuantidade = function(
 	 * @param  {JSON} moduloExibicao seletor em formato cssopções do modulo
 	 * @return {JSON}
 	 */
-	this.moduloExibicao = function(moduloExibicao) {
+	this.moduloExibicao = function (moduloExibicao) {
 		if (moduloExibicao) this._moduloExibicao = moduloExibicao;
 		return this._moduloExibicao;
 	};

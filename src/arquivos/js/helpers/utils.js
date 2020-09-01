@@ -1,5 +1,3 @@
-
-
 /**
  * Realiza o cálculo do preço parcelado, insere o resultado e  o número de parcelas nos devidos elementos
  *
@@ -46,4 +44,3 @@ export function calcularEInserirPrecoBoleto(
 		$containerPercentual.text(percentualDeDesconto + "%");
 	}
 }
-

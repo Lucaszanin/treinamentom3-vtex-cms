@@ -5,13 +5,13 @@ import { CHANGE_SKU } from "./EventType";
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
-export var ModuloCompreJunto = function(
+export var ModuloCompreJunto = function (
 	elemento = ".compre-junto",
 	componentStore
 ) {
 	Modulo.call(this, elemento, componentStore);
 	this._opcoes = {
-		titulo: "Compre junto"
+		titulo: "Compre junto",
 	};
 };
 // subclasse extende superclasse
@@ -21,7 +21,7 @@ ModuloCompreJunto.prototype.constructor = ModuloCompreJunto;
  * Configura os eventos js que serão diparados pelo html do desenhar()
  * @return {object} this
  */
-ModuloCompreJunto.prototype.configurar = function(opcoes) {
+ModuloCompreJunto.prototype.configurar = function (opcoes) {
 	this.opcoes($.extend({}, this._opcoes, opcoes));
 	this._store.events.subscribe(CHANGE_SKU, this.atualizar.bind(this));
 	return this;
@@ -32,11 +32,11 @@ ModuloCompreJunto.prototype.configurar = function(opcoes) {
  * @param  {Object} novoSku objeto do sku selecionado
  * @return {Object} this
  */
-ModuloCompreJunto.prototype.atualizar = function(event) {
+ModuloCompreJunto.prototype.atualizar = function (event) {
 	var novoSku = JSON.parse(sessionStorage.getItem("sku-selecionado"));
 	if (!novoSku) {
 		novoSku = {
-			available: false
+			available: false,
 		};
 	}
 	if (novoSku.available) {
@@ -47,7 +47,7 @@ ModuloCompreJunto.prototype.atualizar = function(event) {
 				.find(".produtos>div")
 				.slideUp(
 					600,
-					function() {
+					function () {
 						tabelaAtual.slideDown(600);
 						this.elemento().trigger(
 							"change-compre-junto",
@@ -66,14 +66,14 @@ ModuloCompreJunto.prototype.atualizar = function(event) {
  * Cria e insere o html com as variações dos skus
  * @return {object} this
  */
-ModuloCompreJunto.prototype.desenhar = function() {
+ModuloCompreJunto.prototype.desenhar = function () {
 	this.elemento().addClass("desativado");
 	$("<h2 />", {
 		class: "special-title",
-		text: this.opcoes().titulo
+		text: this.opcoes().titulo,
 	}).appendTo(this.elemento());
 	$("<div />", {
-		class: "produtos"
+		class: "produtos",
 	}).appendTo(this.elemento());
 	return this;
 };
@@ -83,13 +83,13 @@ ModuloCompreJunto.prototype.desenhar = function() {
  * comprar junto com o produto = skuid
  * @param  skuId
  */
-ModuloCompreJunto.prototype.buscarCompreJunto = function(skuId) {
+ModuloCompreJunto.prototype.buscarCompreJunto = function (skuId) {
 	function sucesso(htmlCJVtex, textStatus, jqXHR) {
 		if (htmlCJVtex.trim().length > 1) {
 			var containerCompreJunto, imagens, $produtos;
 			containerCompreJunto = $("<div />", {
 				class: "produto-" + skuId,
-				html: htmlCJVtex
+				html: htmlCJVtex,
 			});
 			$produtos = this.elemento().find(".produtos");
 			$produtos.children().slideUp(600);

@@ -68,9 +68,7 @@ export default class ModuloBtnQtd extends Modulo {
 	atualizar(novoEstoque) {
 		this.opcoes().max = novoEstoque;
 
-		this.elemento()
-			.find(".qtd-value")
-			.trigger("change");
+		this.elemento().find(".qtd-value").trigger("change");
 
 		if (novoEstoque > 0) {
 			this.habilitar(true);

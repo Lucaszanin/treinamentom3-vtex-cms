@@ -1,12 +1,12 @@
 import Store from "Helpers/State/Store";
 
-export const ComponentStore = function(storeOpts = {}) {
+export const ComponentStore = function (storeOpts = {}) {
 	return new Store({
 		moduleName: storeOpts.moduleName || "ProductComponens",
 		state: {
 			selectedSku: {},
 			qtd: 1,
-			...storeOpts.state
+			...storeOpts.state,
 		},
 		mutations: {
 			setSelectedSku(state, selectedSku) {
@@ -15,8 +15,8 @@ export const ComponentStore = function(storeOpts = {}) {
 			setQtd(state, qtd) {
 				state.qtd = qtd;
 			},
-			...storeOpts.mutations
+			...storeOpts.mutations,
 		},
-		actions: { ...storeOpts.actions }
+		actions: { ...storeOpts.actions },
 	});
 };

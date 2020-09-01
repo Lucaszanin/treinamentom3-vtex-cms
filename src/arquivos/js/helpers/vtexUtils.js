@@ -38,17 +38,14 @@ export function getPrice(price) {
 
 	if (isNaN(price)) {
 		let newPrice = parseFloat(
-			price.replace('R$', '')
-				.replace('.', '')
-				.replace(',', '.')
+			price.replace("R$", "").replace(".", "").replace(",", ".")
 		);
 		return newPrice;
-	}
-	else {
+	} else {
 		price = price || 0;
-		price = price.toLocaleString('pt-BR', {
-			'minimumFractionDigits': 2,
-			'maximumFractionDigits': 2
+		price = price.toLocaleString("pt-BR", {
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2,
 		});
 
 		return price;
@@ -58,6 +55,6 @@ export function getPrice(price) {
 export function formatCurrency() {
 	return Number(value).toLocaleString("pt-BR", {
 		style: "currency",
-		currency: "BRL"
+		currency: "BRL",
 	});
 }

@@ -4,7 +4,7 @@ import { CHANGE_SKU, SKU_REF } from "./EventType";
  * modulo de seleção dos skus
  * Permite escolher o Sku desejado
  */
-export var ModuloSkus = function(
+export var ModuloSkus = function (
 	skuJson,
 	elemento = ".skuSelection",
 	componentStore
@@ -18,7 +18,7 @@ export var ModuloSkus = function(
 	 * Atualiza os valores no html que foi criado
 	 * @return {object} this
 	 */
-	this.atualizar = function() {
+	this.atualizar = function () {
 		this.desenhar();
 		return this;
 	};
@@ -26,7 +26,7 @@ export var ModuloSkus = function(
 	 * Escolhe os primeiros skus de cada variação
 	 * @return {object} this
 	 */
-	this.setDefauls = function() {
+	this.setDefauls = function () {
 		return this;
 	};
 	/**
@@ -34,18 +34,18 @@ export var ModuloSkus = function(
 	 * @param  {Object} mapaEspecificacoes Mapa das especificações do produto
 	 * @return {object} this
 	 */
-	this.desenhar = function() {
+	this.desenhar = function () {
 		return this;
 	};
 	/**
 	 * Configura os eventos de atualizacao
 	 * @return {object} this
 	 */
-	this.configurar = function() {
+	this.configurar = function () {
 		return this;
 	};
 
-	this.escolherSku = function(sku) {
+	this.escolherSku = function (sku) {
 		if (sku) {
 			componentStore.events.publish(CHANGE_SKU, sku);
 			componentStore.commit("setSelectedSku", sku);
@@ -55,7 +55,7 @@ export var ModuloSkus = function(
 		}
 	};
 
-	this.escolherSkuReferencia = function(sku) {
+	this.escolherSkuReferencia = function (sku) {
 		if (typeof skuReferencial === "undefined") {
 			skuReferencial = sku;
 			/**

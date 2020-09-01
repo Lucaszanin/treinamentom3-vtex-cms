@@ -13,7 +13,7 @@ export default class HashRouter {
 		const from = new URL(e.oldURL).hash || "/";
 		const to = new URL(e.newURL).hash || "/";
 
-		this.routes.forEach(route => {
+		this.routes.forEach((route) => {
 			if (route.path === to) {
 				route.onEnter && route.onEnter();
 			} else if (route.path === from) {
@@ -25,7 +25,7 @@ export default class HashRouter {
 	init() {
 		const actualHash = window.location.hash || "/";
 
-		this.routes.forEach(route => {
+		this.routes.forEach((route) => {
 			if (route.path === actualHash) {
 				route.onEnter && route.onEnter();
 			}

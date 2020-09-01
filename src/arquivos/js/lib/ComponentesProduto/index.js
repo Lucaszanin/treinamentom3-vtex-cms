@@ -1,8 +1,7 @@
-
-import ModuloPrecoDe from './SubModulos/ModuloPrecoDe';
-import ModuloPrecoPor from './SubModulos/ModuloPrecoPor';
-import ModuloPrecoParcelado from './SubModulos/ModuloPrecoParcelado';
-import ModuloPrecoBoleto from './SubModulos/ModuloPrecoBoleto';
+import ModuloPrecoDe from "./SubModulos/ModuloPrecoDe";
+import ModuloPrecoPor from "./SubModulos/ModuloPrecoPor";
+import ModuloPrecoParcelado from "./SubModulos/ModuloPrecoParcelado";
+import ModuloPrecoBoleto from "./SubModulos/ModuloPrecoBoleto";
 
 import ModuloBtnQtd from "./SubModulos/ModuloBtnQtd";
 
@@ -29,7 +28,7 @@ import {
 	CHANGE_SKU,
 	ADD_SKU_TO_CART_FAIL,
 	ADD_SKU_TO_CART_SUCESS,
-	SKU_REF
+	SKU_REF,
 } from "./EventType";
 
 const Components = {
@@ -52,8 +51,8 @@ const Components = {
 		CHANGE_SKU,
 		ADD_SKU_TO_CART_FAIL,
 		ADD_SKU_TO_CART_SUCESS,
-		SKU_REF
-	}
+		SKU_REF,
+	},
 };
 
 export default Components;

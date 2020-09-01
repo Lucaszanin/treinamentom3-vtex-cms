@@ -3,7 +3,7 @@
  * preenchendo com JSON
  * atualizado por eventos js
  */
-export var Modulo = function(elemento, store) {
+export var Modulo = function (elemento, store) {
 	this.elemento(elemento);
 	this.store(store);
 };
@@ -11,11 +11,11 @@ export var Modulo = function(elemento, store) {
  * Atualiza os valores no html que foi criado
  * @return {object} this
  */
-Modulo.prototype.atualizar = function() {
+Modulo.prototype.atualizar = function () {
 	return this;
 };
 
-Modulo.prototype.store = function(store) {
+Modulo.prototype.store = function (store) {
 	this._store = store;
 	return this._store;
 };
@@ -24,14 +24,14 @@ Modulo.prototype.store = function(store) {
  * Cria e insere o html com as variações dos skus
  * @return {object} this
  */
-Modulo.prototype.desenhar = function() {
+Modulo.prototype.desenhar = function () {
 	return this;
 };
 /**
  * Configura os eventos de atualizacao
  * @return {object} this
  */
-Modulo.prototype.configurar = function(opcoes) {
+Modulo.prototype.configurar = function (opcoes) {
 	this.opcoes($.extend({}, this._opcoes, opcoes));
 	return this;
 };
@@ -40,7 +40,7 @@ Modulo.prototype.configurar = function(opcoes) {
  * @param  {String} seletor seletor em formato css
  * @return {JqueryElement}
  */
-Modulo.prototype.elemento = function(seletor) {
+Modulo.prototype.elemento = function (seletor) {
 	if (seletor)
 		this._elemento = typeof seletor === "string" ? $(seletor) : seletor;
 	return this._elemento;
@@ -50,7 +50,7 @@ Modulo.prototype.elemento = function(seletor) {
  * @param  {JSON} opcoes seletor em formato cssopções do modulo
  * @return {JSON}
  */
-Modulo.prototype.opcoes = function(opcoes) {
+Modulo.prototype.opcoes = function (opcoes) {
 	if (opcoes) this._opcoes = opcoes;
 	return this._opcoes;
 };
@@ -58,7 +58,7 @@ Modulo.prototype.opcoes = function(opcoes) {
  * Função para ativar/exibir um modulo
  * @param {boolean} habilitar
  */
-Modulo.prototype.habilitar = function(habilitar) {
+Modulo.prototype.habilitar = function (habilitar) {
 	habilitar = typeof habilitar == "undefined" ? true : habilitar;
 	if (habilitar == true) {
 		this.elemento().removeClass("desativado");

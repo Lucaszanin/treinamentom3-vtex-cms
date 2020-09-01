@@ -1,17 +1,16 @@
 import { Modulo } from "../Modulo";
 import { getPrice } from "../util";
 
-export default class ModuloPrecoBoleto extends Modulo{
-	constructor( elemento, componentStore){
-		super( elemento, componentStore);
+export default class ModuloPrecoBoleto extends Modulo {
+	constructor(elemento, componentStore) {
+		super(elemento, componentStore);
 		this.opcoes({
-			ativo: true
+			ativo: true,
 		});
 	}
 
-	desenhar (){
-		let _html =
-		`<div class="preco-boleto">
+	desenhar() {
+		let _html = `<div class="preco-boleto">
 			<strong class="value"></strong>
 			<span> no boleto
 				<span class="container-percentual">
@@ -39,9 +38,8 @@ export default class ModuloPrecoBoleto extends Modulo{
 			valorBoleto.css("display", "none");
 		}
 	}
-	percentual (percentual) {
+	percentual(percentual) {
 		if (percentual) this._opcoes.percentual = percentual;
 		return this._opcoes.percentual || 0;
 	}
-
 }
