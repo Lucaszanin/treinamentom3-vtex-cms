@@ -1,3 +1,4 @@
 import loja from "./loja";
+import slick from "./slcik";
 
-export default { loja };
+export default { loja, slick };
