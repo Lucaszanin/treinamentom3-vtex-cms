@@ -38,10 +38,6 @@ export default class Container {
 		try {
 			if (typeof Component === "function") {
 				if (this.componentsConfig[Component.name]) {
-					console.log(
-						this.ctx,
-						this.componentsConfig[Component.name]
-					);
 					this.instances[Component.name] = new Component(
 						this.ctx,
 						this.componentsConfig[Component.name]

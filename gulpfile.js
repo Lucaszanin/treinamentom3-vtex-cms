@@ -8,7 +8,6 @@ const gulp = require("gulp"),
 	imagemin = require("gulp-imagemin"),
 	rename = require("gulp-rename"),
 	replace = require("gulp-replace"),
-	htmlReplace = require("gulp-html-replace"),
 	apiMocker = require("connect-api-mocker"),
 	sprity = require("sprity"),
 	crypto = require("crypto"),
@@ -212,20 +211,6 @@ function html() {
 				VtexEmulation.regex().placeholder,
 				VtexEmulation.placeHolder
 			)
-		)
-		.pipe(
-			htmlReplace({
-				js: [
-					"/arquivos/plugins-shop.min.js",
-					"/arquivos/scripts-shop.min.js",
-				],
-				css: [
-					"/arquivos/bootstrap-grid.css",
-					"/arquivos/style-shop.css",
-				],
-				keepUnassigned: false,
-				keepBlockTags: false,
-			})
 		)
 		.pipe(
 			inlinesource({

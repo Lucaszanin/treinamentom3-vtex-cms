@@ -6,10 +6,10 @@ var numeroDeProdutos = 12;
 var files = {
 	subtemplates: [],
 	controles: [],
-	prateleiras: []
+	prateleiras: [],
 };
 
-var VtexEmulation = function() {
+var VtexEmulation = function () {
 	this._folders = {};
 	this._regex = {};
 
@@ -18,42 +18,42 @@ var VtexEmulation = function() {
 		subTemplate: "./src/sub-templates/",
 		controle: "./dev/controles-vtex/",
 		controleCustomizado: "./src/controle-customizado/",
-		prateleira: "./src/template-prateleira/"
+		prateleira: "./src/template-prateleira/",
 	});
 	this.regex({
 		subtemplate: /<vtex:template id="(.*)" ?\/>/g,
 		controle: /<vtex\.cmc:([^ \>]*)[^\>]* ?\/>/g,
-		placeholder: /<vtex:contentPlaceHolder id="(.*)" type="(.*)" ?\/>/g
+		placeholder: /<vtex:contentPlaceHolder id="(.*)" type="(.*)" ?\/>/g,
 	});
 };
 
 // get/set
-VtexEmulation.prototype.regex = function(regex) {
+VtexEmulation.prototype.regex = function (regex) {
 	if (undefined != typeof regex) {
 		this._regex = Object.assign(this._regex, regex);
 	}
 	return this._regex;
 };
 
-VtexEmulation.prototype.folders = function(folders) {
+VtexEmulation.prototype.folders = function (folders) {
 	if (undefined != typeof folders) {
 		this._folders = Object.assign(this._folders, folders);
 	}
 	return this._folders;
 };
-VtexEmulation.prototype.loadSubTemplates = function() {
+VtexEmulation.prototype.loadSubTemplates = function () {
 	files.subtemplates = makeListFileContent(this.folders().subTemplate);
 };
-VtexEmulation.prototype.loadPrateleira = function() {
+VtexEmulation.prototype.loadPrateleira = function () {
 	files.prateleiras = makeListFileContent(this.folders().prateleira);
 };
-VtexEmulation.prototype.loadControles = function() {
+VtexEmulation.prototype.loadControles = function () {
 	var controles = makeListFileContent(this.folders().controle);
 	var customizados = makeListFileContent(this.folders().controleCustomizado);
 	files.controles = controles.concat(customizados);
 };
 // funções para trocar conteudo
-VtexEmulation.prototype.subtemplate = function(match, grupo1) {
+VtexEmulation.prototype.subtemplate = function (match, grupo1) {
 	var conteudo;
 	var file = findInArray(files.subtemplates, grupo1);
 
@@ -65,7 +65,7 @@ VtexEmulation.prototype.subtemplate = function(match, grupo1) {
 	return conteudo;
 };
 
-VtexEmulation.prototype.controle = function(match, grupo1) {
+VtexEmulation.prototype.controle = function (match, grupo1) {
 	var conteudo;
 	var file = findInArray(files.controles, grupo1);
 
@@ -77,8 +77,9 @@ VtexEmulation.prototype.controle = function(match, grupo1) {
 	return conteudo;
 };
 
-VtexEmulation.prototype.placeHolder = function(match, id_placeholder, type) {
+VtexEmulation.prototype.placeHolder = (match, id_placeholder, type) => {
 	var conteudo;
+
 	if (type == "colecao") {
 		var produtoPrateleira = findInArray(files.prateleiras, id_placeholder);
 		if (produtoPrateleira) {
@@ -106,7 +107,7 @@ VtexEmulation.prototype.placeHolder = function(match, id_placeholder, type) {
 			paragraphLowerBound: 10, // Minimum sentences per paragraph.
 			paragraphUpperBound: 7, // Maximum sentences per paragraph.
 			format: "plain", // Plain text or html
-			random: Math.random // A PRNG function. Uses Math.random by default
+			random: Math.random, // A PRNG function. Uses Math.random by default
 		});
 	}
 
@@ -160,11 +161,11 @@ function findInArray(lista, name) {
 	return null;
 }
 
-var makeListFileContent = function(folder) {
+var makeListFileContent = function (folder) {
 	var fs = require("fs");
 	var files = [];
 
-	fs.readdirSync(folder).forEach(name => {
+	fs.readdirSync(folder).forEach((name) => {
 		var file = {};
 		file.name = name
 			.substring(0, name.lastIndexOf("."))
@@ -181,7 +182,7 @@ if (!Object.assign) {
 		enumerable: false,
 		configurable: true,
 		writable: true,
-		value: function(target) {
+		value: function (target) {
 			"use strict";
 			if (target === undefined || target === null) {
 				throw new TypeError("Cannot convert first argument to object");
@@ -212,7 +213,7 @@ if (!Object.assign) {
 				}
 			}
 			return to;
-		}
+		},
 	});
 }
 
