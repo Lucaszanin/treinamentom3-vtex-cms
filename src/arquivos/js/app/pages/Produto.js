@@ -30,6 +30,8 @@ export default class Produto {
 			skuSelector: ".moduloSkus",
 			alertMeSelector: ".moduloAviseMe",
 		});
+
+		store.events.subscribe(CHANGE_SKU, this.imagensDasVariacoes);
 	}
 
 	/*
@@ -168,12 +170,10 @@ export default class Produto {
 		});
 	}
 
-	imagensDasVariacoes() {
+	imagensDasVariacoes(event, data) {
 		if (typeof window.FireSkuSelectionChanged !== "undefined") {
-			$(document).on("change-sku", function (event, data) {
-				var idSku = data.sku;
-				window.FireSkuSelectionChanged(idSku);
-			});
+			var idSku = data.sku;
+			window.FireSkuSelectionChanged(idSku);
 		}
 	}
 
