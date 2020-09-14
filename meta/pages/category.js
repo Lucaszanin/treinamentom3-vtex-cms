@@ -8,7 +8,13 @@ module.exports = {
 				{
 					type: "html",
 					name: "Html SEO",
-					contents: [],
+					contents: [
+						{
+							name: "metaTag",
+							active: true,
+							content: `<meta name='language' content='pt-Br'>`,
+						},
+					],
 				},
 			],
 		},

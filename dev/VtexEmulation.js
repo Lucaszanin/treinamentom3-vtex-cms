@@ -2,6 +2,11 @@ const { LoremIpsum } = require("lorem-ipsum");
 var jsdom = require("jsdom");
 var $ = require("jquery")(new jsdom.JSDOM().window);
 var numeroDeProdutos = 12;
+var Transform = require("stream").Transform;
+const path = require("path");
+const VtexEngine = require("./vtexEngine/VtexEngine");
+
+var PLUGIN_NAME = "VTEX_EMULATION";
 
 var files = {
 	subtemplates: [],
@@ -19,12 +24,47 @@ var VtexEmulation = function () {
 		controle: "./dev/controles-vtex/",
 		controleCustomizado: "./src/controle-customizado/",
 		prateleira: "./src/template-prateleira/",
+		metaData: "./meta/loja.js",
 	});
 	this.regex({
 		subtemplate: /<vtex:template id="(.*)" ?\/>/g,
 		controle: /<vtex\.cmc:([^ \>]*)[^\>]* ?\/>/g,
-		placeholder: /<vtex:contentPlaceHolder id="(.*)" type="(.*)" ?\/>/g,
+		placeholder: /<vtex:contentPlaceHolder id="(.*)" (.*) ?\/>/g,
 	});
+};
+
+VtexEmulation.prototype.startEngine = function () {
+	const metaPath = path.join(process.cwd(), this._folders.metaData);
+	const metaData = require(metaPath);
+
+	this.vtexEngine = new VtexEngine(files, metaData, this._regex);
+};
+
+VtexEmulation.prototype.process = function () {
+	const transformStream = new Transform({ objectMode: true });
+	const _this = this;
+	/**
+	 * @param {Buffer|string} file
+	 * @param {string=} encoding - ignored if file contains a Buffer
+	 * @param {function(Error, object)} callback - Call this function (optionally with an
+	 *          error argument and data) when you are done processing the supplied chunk.
+	 */
+	transformStream._transform = function (file, encoding, callback) {
+		const fileContent = file.contents.toString(encoding);
+		const fileBasename = file.basename;
+		const processedFile = _this.vtexEngine.process(
+			fileContent,
+			fileBasename
+		);
+
+		file.contents = Buffer.from(processedFile, encoding);
+
+		var error = null,
+			output = file;
+		callback(error, output);
+	};
+
+	return transformStream;
 };
 
 // get/set
@@ -152,7 +192,6 @@ function gerarProdutoNaPrateleira(produto, i) {
 }
 
 function findInArray(lista, name) {
-	var item;
 	for (let i = 0; i < lista.length; i++) {
 		if (lista[i].name == name.trim().toLowerCase()) {
 			return lista[i];

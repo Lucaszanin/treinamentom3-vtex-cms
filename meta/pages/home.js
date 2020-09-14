@@ -23,7 +23,7 @@ module.exports = {
 							name: "banner principal content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/slide-principal.png",
+							file: "slide-principal.png",
 							width: 1920,
 							height: 500,
 							//   "category": "*",
@@ -33,14 +33,14 @@ module.exports = {
 					],
 				},
 				{
-					type: "banner-2",
+					type: "banner",
 					name: "banner principal-2",
 					contents: [
 						{
 							name: "banner principal content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/slide-principal.png",
+							file: "slide-principal.png",
 							width: 1920,
 							height: 500,
 						},
@@ -59,7 +59,7 @@ module.exports = {
 							name: "banner principal mobile content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/slide-principal-mobile.png",
+							file: "slide-principal-mobile.png",
 							width: 500,
 							height: 500,
 						},
@@ -73,7 +73,7 @@ module.exports = {
 							name: "banner principal mobile 2 content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/slide-principal-mobile.png",
+							file: "slide-principal-mobile.png",
 							width: 500,
 							height: 500,
 						},
@@ -85,7 +85,7 @@ module.exports = {
 		// MOSAICO
 		//====================
 		{
-			id: "banner-1",
+			id: "banner-01",
 			objects: [
 				{
 					type: "banner",
@@ -95,7 +95,7 @@ module.exports = {
 							name: "banner 01 content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/banner-01.png",
+							file: "banner-01.png",
 							width: 500,
 							height: 500,
 						},
@@ -104,7 +104,7 @@ module.exports = {
 			],
 		},
 		{
-			id: "banner-2",
+			id: "banner-02",
 			objects: [
 				{
 					type: "banner",
@@ -114,7 +114,7 @@ module.exports = {
 							name: "banner 02 content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/banner-02.png",
+							file: "banner-02.png",
 							width: 500,
 							height: 500,
 						},
@@ -123,7 +123,7 @@ module.exports = {
 			],
 		},
 		{
-			id: "banner-3",
+			id: "banner-03",
 			objects: [
 				{
 					type: "banner",
@@ -133,7 +133,7 @@ module.exports = {
 							name: "banner 03 content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/banner-03.png",
+							file: "banner-03.png",
 							width: 500,
 							height: 500,
 						},
@@ -142,7 +142,7 @@ module.exports = {
 			],
 		},
 		{
-			id: "banner-4",
+			id: "banner-04",
 			objects: [
 				{
 					type: "banner",
@@ -152,7 +152,7 @@ module.exports = {
 							name: "banner 04 content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/banner-04.png",
+							file: "banner-04.png",
 							width: 500,
 							height: 500,
 						},
@@ -161,7 +161,7 @@ module.exports = {
 			],
 		},
 		{
-			id: "banner-5",
+			id: "banner-05",
 			objects: [
 				{
 					type: "banner",
@@ -171,7 +171,7 @@ module.exports = {
 							name: "banner 05 content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/banner-05.png",
+							file: "banner-05.png",
 							width: 500,
 							height: 500,
 						},
@@ -190,7 +190,7 @@ module.exports = {
 							name: "banner 05 mobile content",
 							active: true,
 							type: "image",
-							file: "./dist/arquivos/banner-05.png",
+							file: "banner-05.png",
 							width: 500,
 							height: 500,
 						},

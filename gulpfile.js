@@ -196,30 +196,34 @@ function html() {
 	VtexEmulation.loadSubTemplates();
 	VtexEmulation.loadPrateleira();
 	VtexEmulation.loadControles();
+	VtexEmulation.startEngine();
 
-	return gulp
-		.src(VtexEmulation.folders().template + "*.html")
-		.pipe(
-			replace(
-				VtexEmulation.regex().subtemplate,
-				VtexEmulation.subtemplate
+	return (
+		gulp
+			.src(VtexEmulation.folders().template + "*.html")
+			.pipe(VtexEmulation.process())
+			.pipe(
+				replace(
+					VtexEmulation.regex().subtemplate,
+					VtexEmulation.subtemplate
+				)
 			)
-		)
-		.pipe(replace(VtexEmulation.regex().controle, VtexEmulation.controle))
-		.pipe(
-			replace(
-				VtexEmulation.regex().placeholder,
-				VtexEmulation.placeHolder
+			.pipe(replace(VtexEmulation.regex().controle, VtexEmulation.controle))
+			// .pipe(
+			// 	replace(
+			// 		VtexEmulation.regex().placeholder,
+			// 		VtexEmulation.placeHolder
+			// 	)
+			// )
+			.pipe(
+				inlinesource({
+					compress: true,
+					rootpath: path.resolve("src/arquivos"),
+				})
 			)
-		)
-		.pipe(
-			inlinesource({
-				compress: true,
-				rootpath: path.resolve("src/arquivos"),
-			})
-		)
-		.pipe(gulp.dest(paths.output))
-		.pipe(connect.reload());
+			.pipe(gulp.dest(paths.output))
+			.pipe(connect.reload())
+	);
 }
 
 function htmlProd() {
