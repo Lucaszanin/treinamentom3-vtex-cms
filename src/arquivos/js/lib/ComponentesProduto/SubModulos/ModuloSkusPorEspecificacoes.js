@@ -100,7 +100,7 @@ export var ModuloSkusPorEspecificacoes = function (
 				}).appendTo($especificacao);
 
 				var nameCampo = textoParaNomeCss(
-					_this.elemento().selector +
+					_this.elemento().attr("class") +
 						"_" +
 						nomeEspecificacao +
 						"_" +
@@ -116,7 +116,7 @@ export var ModuloSkusPorEspecificacoes = function (
 						class: "sku",
 					}).appendTo($lista);
 					var idText = textoParaNomeCss(
-						_this.elemento().selector +
+						_this.elemento().attr("class") +
 							"_" +
 							nomeEspecificacao +
 							"_" +
