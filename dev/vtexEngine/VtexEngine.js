@@ -1,4 +1,4 @@
-const VtexPlaceHolderTransformer = require("./VtexPlaceHolderTransformer");
+const VtexPlaceHolderTransformer = require("./placeholder/VtexPlaceHolderTransformer");
 
 class VtexEngine {
 	constructor(files, metaData, regex) {
@@ -12,7 +12,7 @@ class VtexEngine {
 		);
 	}
 
-	process(fileContent, basename) {
+	process(fileContent, basename, transformCTX) {
 		fileContent = this.placeHolderTransformer.transform(
 			fileContent,
 			basename

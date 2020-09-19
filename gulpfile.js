@@ -209,12 +209,6 @@ function html() {
 				)
 			)
 			.pipe(replace(VtexEmulation.regex().controle, VtexEmulation.controle))
-			// .pipe(
-			// 	replace(
-			// 		VtexEmulation.regex().placeholder,
-			// 		VtexEmulation.placeHolder
-			// 	)
-			// )
 			.pipe(
 				inlinesource({
 					compress: true,

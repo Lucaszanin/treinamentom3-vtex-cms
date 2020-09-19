@@ -1,4 +1,5 @@
-const { regexFindAll } = require("./utils");
+const { regexFindAll } = require("../utils");
+const placeHolderTransformStrategy = require("./placeHolderTransformStrategy");
 
 class VtexPlaceHolderTransformer {
 	constructor(regex, metaData, shelfs) {
@@ -51,7 +52,6 @@ class VtexPlaceHolderTransformer {
 		return false;
 	}
 
-	// ta com erro de logica
 	_processPlaceHolder(transformedFile, data) {
 		if (data === false) return transformedFile;
 
@@ -60,8 +60,11 @@ class VtexPlaceHolderTransformer {
 		data.placeHolderData.objects.forEach((object) => {
 			const strategy = placeHolderTransformStrategy[object.type];
 			if (typeof strategy === "undefined") return transformedFile;
-			result += strategy(object);
+			// não ta legal mas passo as prateleiras como segundo paramentro
+			result += strategy(object, this.shelfs);
 		});
+
+		// console.log(result);
 
 		return transformedFile.replace(data.vtexTag, result);
 	}
@@ -79,37 +82,5 @@ class VtexPlaceHolderTransformer {
 		return this._processRegResult(fileContent, regexResult, basename);
 	}
 }
-
-const placeHolderTransformStrategy = {
-	banner(obj) {
-		let result = "";
-		obj.contents.forEach((content) => {
-			if (content.active) {
-				result += `
-				<div class="box-banner">
-					<a href="/"> <img  alt="Promoções" src="/arquivos/${content.file}" /> <a/>
-				</div>`;
-			}
-		});
-
-		return result;
-	},
-
-	colecao(obj) {
-		let result = "";
-		console.log(obj);
-
-		return result;
-	},
-
-	html(obj) {
-		//faz nada retorna a
-		return "aaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-	},
-
-	"Produtos Relacionados": (obj) => {
-		return placeHolderTransformStrategy.colecao(obj);
-	},
-};
 
 module.exports = VtexPlaceHolderTransformer;

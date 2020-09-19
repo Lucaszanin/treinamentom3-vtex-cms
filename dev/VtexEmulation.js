@@ -52,9 +52,11 @@ VtexEmulation.prototype.process = function () {
 	transformStream._transform = function (file, encoding, callback) {
 		const fileContent = file.contents.toString(encoding);
 		const fileBasename = file.basename;
+
 		const processedFile = _this.vtexEngine.process(
 			fileContent,
-			fileBasename
+			fileBasename,
+			this
 		);
 
 		file.contents = Buffer.from(processedFile, encoding);
