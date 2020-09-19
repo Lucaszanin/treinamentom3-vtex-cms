@@ -11,6 +11,7 @@ class VtexEngine {
 			this.files.prateleiras
 		);
 		this.validateMetaData();
+		this.validateSubTemplates();
 	}
 
 	validateMetaData() {
@@ -28,6 +29,22 @@ class VtexEngine {
 			if (dups.length > 0) {
 				console.log(
 					`\n\n   \x1b[31m O ID: "${dups[0].id}" foi encontrado multiplas vezes no template: "${pageData.template}" \n\n`
+				);
+				throw null;
+			}
+		});
+	}
+
+	validateSubTemplates() {
+		this.files.subtemplates.forEach((template) => {
+			const regex = new RegExp(this.regex.placeholder);
+			const regexResult = regex.test(template.content);
+			if (regexResult) {
+				console.log(
+					` \n\n\x1b[31m  Subtemplates não podem ter contentplaceholder `
+				);
+				console.log(
+					` \x1b[31m O Subtemplate "${template.name}" possui um contentPlaceholder \n\n`
 				);
 				throw null;
 			}
