@@ -15,12 +15,12 @@ export default class Prateleira {
 		}
 
 		$elementos.not(".flagDeDesconto").each((index, el) => {
-			var percentualDeDesconto = this.calcularValorDeDesconto($(this));
+			var percentualDeDesconto = this.calcularValorDeDesconto($(el));
 			if (
 				percentualDeDesconto >=
 				lojaConf.percentualDeDecontoMinimoParaFlag
 			) {
-				this.createFlagDesconto($(this), percentualDeDesconto);
+				this.createFlagDesconto($(el), percentualDeDesconto);
 			}
 			$(this).addClass("flagDeDesconto");
 		});

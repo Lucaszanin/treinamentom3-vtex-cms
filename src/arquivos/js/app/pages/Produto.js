@@ -6,6 +6,7 @@ import { alterarTamanhoImagemSrcVtex } from "Helpers/vtexUtils";
 import { isSmallerThen768 } from "Helpers/MediasMatch";
 import { slideResponsivo, produtoThumbs } from "App/functions/slide";
 import ProductModules from "App/components/ProductModules";
+import { CHANGE_SKU } from "Lib/ComponentesProduto/EventType";
 
 export default class Produto {
 	constructor() {
