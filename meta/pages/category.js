@@ -19,4 +19,8 @@ module.exports = {
 			],
 		},
 	],
+
+	// Ainda não implementado
+	//Trocar pelo que for cadastrado na vtex
+	searchResultLayoutID: "46b0e7f2-15ee-4789-a75e-280e389d2b8f",
 };

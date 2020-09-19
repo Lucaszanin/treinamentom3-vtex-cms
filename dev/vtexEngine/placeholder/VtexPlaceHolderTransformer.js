@@ -64,8 +64,6 @@ class VtexPlaceHolderTransformer {
 			result += strategy(object, this.shelfs);
 		});
 
-		// console.log(result);
-
 		return transformedFile.replace(data.vtexTag, result);
 	}
 

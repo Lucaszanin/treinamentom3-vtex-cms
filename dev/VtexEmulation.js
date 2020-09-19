@@ -1,10 +1,14 @@
+var Transform = require("stream").Transform;
+const path = require("path");
 const { LoremIpsum } = require("lorem-ipsum");
 var jsdom = require("jsdom");
 var $ = require("jquery")(new jsdom.JSDOM().window);
 var numeroDeProdutos = 12;
-var Transform = require("stream").Transform;
-const path = require("path");
 const VtexEngine = require("./vtexEngine/VtexEngine");
+const {
+	validateMetaData,
+	validateSubTemplates,
+} = require("./vtexEngine/validation");
 
 var PLUGIN_NAME = "VTEX_EMULATION";
 
@@ -36,6 +40,8 @@ var VtexEmulation = function () {
 VtexEmulation.prototype.startEngine = function () {
 	const metaPath = path.join(process.cwd(), this._folders.metaData);
 	const metaData = require(metaPath);
+	files = validateMetaData(metaData, files);
+	files = validateSubTemplates(files, this._regex);
 
 	this.vtexEngine = new VtexEngine(files, metaData, this._regex);
 };
