@@ -1,11 +1,30 @@
-const { regexFindAll } = require("../utils");
+const { regexFindAll } = require("../../utils");
 const placeHolderTransformStrategy = require("./placeHolderTransformStrategy");
 
 class VtexPlaceHolderTransformer {
-	constructor(regex, metaData, shelfs) {
+	constructor(regex, metaData, shelfs, validator) {
 		this.regex = regex;
 		this.metaData = metaData;
 		this.shelfs = shelfs;
+		this.validator = validator;
+	}
+
+	transform(fileContent, { basename }) {
+		const regex = new RegExp(this.regex.placeholder);
+		const regexResult = regexFindAll(regex, fileContent);
+
+		fileContent = this.validator.placeHolderRepeated(
+			fileContent,
+			regexResult,
+			basename
+		);
+
+		fileContent = this.validator.metaDataPlaceHolderRepeated(
+			fileContent,
+			this.metaData
+		);
+
+		return this._processRegResult(fileContent, regexResult, basename);
 	}
 
 	_processRegResult(file, regexResult, basename) {
@@ -24,6 +43,21 @@ class VtexPlaceHolderTransformer {
 		});
 
 		return transformedFile;
+	}
+
+	_processPlaceHolder(transformedFile, data) {
+		if (data === false) return transformedFile;
+
+		let result = "";
+
+		data.placeHolderData.objects.forEach((object) => {
+			const strategy = placeHolderTransformStrategy[object.type];
+			if (typeof strategy === "undefined") return transformedFile;
+			// não ta legal mas passo as prateleiras como segundo paramentro
+			result += strategy(object, this.shelfs);
+		});
+
+		return transformedFile.replace(data.vtexTag, result);
 	}
 
 	_getPagePlaceholderData(pageData, reResult) {
@@ -52,32 +86,10 @@ class VtexPlaceHolderTransformer {
 		return false;
 	}
 
-	_processPlaceHolder(transformedFile, data) {
-		if (data === false) return transformedFile;
-
-		let result = "";
-
-		data.placeHolderData.objects.forEach((object) => {
-			const strategy = placeHolderTransformStrategy[object.type];
-			if (typeof strategy === "undefined") return transformedFile;
-			// não ta legal mas passo as prateleiras como segundo paramentro
-			result += strategy(object, this.shelfs);
-		});
-
-		return transformedFile.replace(data.vtexTag, result);
-	}
-
 	_getPageData(basename) {
 		return this.metaData.pages.find((data) => {
 			return data.template === basename;
 		});
-	}
-
-	transform(fileContent, basename) {
-		const regex = new RegExp(this.regex);
-		const regexResult = regexFindAll(regex, fileContent);
-
-		return this._processRegResult(fileContent, regexResult, basename);
 	}
 }
 

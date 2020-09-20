@@ -5,10 +5,6 @@ var jsdom = require("jsdom");
 var $ = require("jquery")(new jsdom.JSDOM().window);
 var numeroDeProdutos = 12;
 const VtexEngine = require("./vtexEngine/VtexEngine");
-const {
-	validateMetaData,
-	validateSubTemplates,
-} = require("./vtexEngine/validation");
 
 var PLUGIN_NAME = "VTEX_EMULATION";
 
@@ -38,11 +34,11 @@ var VtexEmulation = function () {
 };
 
 VtexEmulation.prototype.startEngine = function () {
+	this.loadSubTemplates();
+	this.loadPrateleira();
+	this.loadControles();
 	const metaPath = path.join(process.cwd(), this._folders.metaData);
 	const metaData = require(metaPath);
-	files = validateMetaData(metaData, files);
-	files = validateSubTemplates(files, this._regex);
-
 	this.vtexEngine = new VtexEngine(files, metaData, this._regex);
 };
 
@@ -57,11 +53,17 @@ VtexEmulation.prototype.process = function () {
 	 */
 	transformStream._transform = function (file, encoding, callback) {
 		const fileContent = file.contents.toString(encoding);
-		const fileBasename = file.basename;
+		//Meta dado associado pelo gulp https://gulpjs.com/docs/en/api/vinyl/
+		const fileMeta = {
+			basename: file.basename,
+			relative: file.relative,
+			dirname: file.dirname,
+			path: file.path,
+		};
 
 		const processedFile = _this.vtexEngine.process(
 			fileContent,
-			fileBasename,
+			fileMeta,
 			this
 		);
 

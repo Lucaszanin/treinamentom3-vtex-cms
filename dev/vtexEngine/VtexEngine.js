@@ -1,22 +1,42 @@
-const VtexPlaceHolderTransformer = require("./placeholder/VtexPlaceHolderTransformer");
+const VtexPlaceHolderTransformer = require("./Transformers/placeholder/VtexPlaceHolderTransformer");
+const VtexControlsTransformer = require("./Transformers/VtexControlsTransformer");
+const VtexSubTemplateTransformer = require("./Transformers/VtexSubTemplateTransformer");
+const VtexEngineValidator = require("./VtexEngineValidator");
 
 class VtexEngine {
 	constructor(files, metaData, regex) {
-		this.metaData = metaData;
-		this.files = files;
-		this.regex = regex;
+		this.validator = new VtexEngineValidator();
+		this.subTemplateTransformer = new VtexSubTemplateTransformer(
+			regex,
+			files.subtemplates,
+			this.validator
+		);
+		this.controlsTransformer = new VtexControlsTransformer(
+			regex,
+			files.controles,
+			this.validator
+		);
 		this.placeHolderTransformer = new VtexPlaceHolderTransformer(
-			this.regex.placeholder,
-			this.metaData,
-			this.files.prateleiras
+			regex,
+			metaData,
+			files.prateleiras,
+			this.validator
 		);
 	}
 
-	process(fileContent, basename, transformCTX) {
+	process(fileContent, fileMeta, transformCTX) {
 		fileContent = this.placeHolderTransformer.transform(
 			fileContent,
-			basename
+			fileMeta
 		);
+
+		fileContent = this.subTemplateTransformer.transform(
+			fileContent,
+			fileMeta
+		);
+
+		fileContent = this.controlsTransformer.transform(fileContent, fileMeta);
+
 		return fileContent;
 	}
 }

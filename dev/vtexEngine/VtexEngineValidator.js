@@ -1,5 +1,5 @@
-module.exports = {
-	validateMetaData(metaData, files) {
+module.exports = class VtexEngineValidator {
+	metaDataPlaceHolderRepeated(file, metaData) {
 		metaData.pages.forEach((pageData) => {
 			let ids = {};
 			let dups = [];
@@ -14,22 +14,40 @@ module.exports = {
 				console.log(
 					`\n\n   \x1b[31m O ID: "${dups[0].id}" foi encontrado multiplas vezes no template: "${pageData.template}" \n\n`
 				);
-				files.subtemplates[0] = files.subtemplates[
-					files.subtemplates.length - 1
-				].content += memeContent("https://i.imgflip.com/4fkkcz.jpg");
+				file += this._memeContent("https://i.imgflip.com/4fkkcz.jpg");
 			}
 		});
 
-		return files;
-	},
+		return file;
+	}
 
-	validateSubTemplates(files, regex) {
-		files.subtemplates = files.subtemplates.map((template) => {
+	placeHolderRepeated(file, regResult, basename) {
+		let ids = {};
+		let dups = [];
+		regResult.forEach((regexec) => {
+			if (ids[regexec[1]]) {
+				dups.push(regexec[1]);
+			} else {
+				ids[regexec[1]] = true;
+			}
+		});
+		if (dups.length > 0) {
+			console.log(
+				`\n\n   \x1b[31m O ID: "${dups[0]}" foi encontrado multiplas vezes no template: "${basename}" \n\n`
+			);
+			file += this._memeContent("https://i.imgflip.com/4fkkcz.jpg");
+		}
+
+		return file;
+	}
+
+	subTemplatesWithContentPlaceholder(fileContent, subtemplates, regex) {
+		subtemplates.forEach((template) => {
 			const placeholderRegex = new RegExp(regex.placeholder);
 			const regexResult = placeholderRegex.exec(template.content);
 
 			if (regexResult) {
-				template.content += memeContent(
+				fileContent += this._memeContent(
 					"https://i.imgflip.com/4fkgnr.jpg"
 				);
 				console.log(
@@ -41,14 +59,12 @@ module.exports = {
 					`O Subtemplate "${template.name}" possui um contentPlaceholder \n\n`
 				);
 			}
-			return template;
 		});
-		return files;
-	},
-};
+		return fileContent;
+	}
 
-function memeContent(memeUrl) {
-	return `
+	_memeContent(memeUrl) {
+		return `
 		<div style="position: fixed;
 		top: 0;
 		left: 0;
@@ -67,4 +83,5 @@ function memeContent(memeUrl) {
 			" />
 		</div>
 	`;
-}
+	}
+};

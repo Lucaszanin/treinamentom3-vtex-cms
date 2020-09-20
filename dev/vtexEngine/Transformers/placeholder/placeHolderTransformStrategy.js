@@ -53,6 +53,10 @@ function html(obj) {
 	return base(obj, createHtmlContent);
 }
 
+function text(obj) {
+	return html(obj);
+}
+
 function productRelational(obj, shelfs) {
 	return colecao(obj, shelfs);
 }
@@ -61,5 +65,6 @@ module.exports = {
 	banner,
 	colecao,
 	html,
+	text,
 	"Produtos Relacionados": productRelational,
 };
