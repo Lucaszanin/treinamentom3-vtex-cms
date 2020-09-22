@@ -1,12 +1,12 @@
 import { getPrice } from "Helpers/vtexUtils";
 import lojaConf from "Config/loja";
-import PrateleiraService from "./PrateleiraService";
+import PrateleiraService, { UPDATE_SHELF } from "./PrateleiraService";
 
 export default class Prateleira {
 	constructor(ctx) {
 		this.service = ctx.getService(PrateleiraService.name);
 		this.atualizar();
-		this.service.atualizar = this.atualizar.bind(this);
+		this.service.events.subscribe(UPDATE_SHELF, this.atualizar.bind(this));
 	}
 	flagDeDesconto(elementos) {
 		var $elementos = $(elementos);
