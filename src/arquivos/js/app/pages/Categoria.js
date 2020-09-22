@@ -1,6 +1,8 @@
 import "Lib/smartResearch";
 import { isSmallerThen768 } from "Helpers/MediasMatch";
-import PrateleiraService from "App/components/Prateleira/PrateleiraService";
+import PrateleiraService, {
+	UPDATE_SHELF,
+} from "App/components/Prateleira/PrateleiraService";
 
 /*
  * paginaDeCategoria
@@ -141,7 +143,7 @@ export default class Categoria {
 					}
 				},
 				shelfCallback: () => {
-					this.prateleiraService.atualizar();
+					this.prateleiraService.events.publish(UPDATE_SHELF);
 				},
 			});
 		} else {
@@ -173,16 +175,17 @@ export default class Categoria {
 					}
 				},
 				shelfCallback: () => {
-					this.prateleiraService.atualizar();
+					this.prateleiraService.events.publish(UPDATE_SHELF);
 				},
 			});
 		}
 
-		$(document).on("vsr-request-end", this.prateleiraService.atualizar);
-		$(window).on(
-			"finished-upadte-filter",
-			this.prateleiraService.atualizar
-		);
+		$(document).on("vsr-request-end", () => {
+			this.prateleiraService.events.publish(UPDATE_SHELF);
+		});
+		$(window).on("finished-upadte-filter", () => {
+			this.prateleiraService.events.publish(UPDATE_SHELF);
+		});
 		// desabilita o scroll automático
 		history.scrollRestoration = "manual";
 	}
