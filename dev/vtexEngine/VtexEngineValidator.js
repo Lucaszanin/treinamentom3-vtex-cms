@@ -1,3 +1,5 @@
+const chalk = require("chalk");
+
 module.exports = class VtexEngineValidator {
 	metaDataPlaceHolderRepeated(file, metaData) {
 		metaData.pages.forEach((pageData) => {
@@ -12,7 +14,9 @@ module.exports = class VtexEngineValidator {
 			});
 			if (dups.length > 0) {
 				console.log(
-					`\n\n   \x1b[31m O ID: "${dups[0].id}" foi encontrado multiplas vezes no template: "${pageData.template}" \n\n`
+					chalk.red(
+						`\n\n O ID: "${dups[0].id}" foi encontrado multiplas vezes no template: "${pageData.template}" \n\n`
+					)
 				);
 				file += this._memeContent("https://i.imgflip.com/4fkkcz.jpg");
 			}
@@ -33,7 +37,9 @@ module.exports = class VtexEngineValidator {
 		});
 		if (dups.length > 0) {
 			console.log(
-				`\n\n   \x1b[31m O ID: "${dups[0]}" foi encontrado multiplas vezes no template: "${basename}" \n\n`
+				chalk.red(
+					`\n\n  O ID: "${dups[0]}" foi encontrado multiplas vezes no template: "${basename}" \n\n`
+				)
 			);
 			file += this._memeContent("https://i.imgflip.com/4fkkcz.jpg");
 		}
@@ -51,15 +57,40 @@ module.exports = class VtexEngineValidator {
 					"https://i.imgflip.com/4fkgnr.jpg"
 				);
 				console.log(
-					"\x1b[31m",
-					`  \n\n Subtemplates não podem ter contentplaceholder `
+					chalk.red(
+						`  \n\n Subtemplates não podem ter contentplaceholder `
+					)
 				);
 				console.log(
-					"\x1b[31m",
-					`O Subtemplate "${template.name}" possui um contentPlaceholder \n\n`
+					chalk.red(
+						`O Subtemplate "${template.name}" possui um contentPlaceholder \n\n`
+					)
 				);
 			}
 		});
+		return fileContent;
+	}
+
+	notClosedTags(fileContent) {
+		const reImgNotClosed = new RegExp(/(<img("[^"]*"|[^\/">])*)>/gi);
+		const reInputNotClosed = new RegExp(/(<input("[^"]*"|[^\/">])*)>/gi);
+
+		const imgTest = reImgNotClosed.exec(fileContent);
+		const inputTest = reInputNotClosed.exec(fileContent);
+
+		if (imgTest)
+			console.log(
+				chalk.red(
+					`\n\n A Tag: ${imgTest[0]} não foi fechada corretamente \n\n`
+				)
+			);
+		if (inputTest)
+			console.log(
+				chalk.red(
+					`\n\n A Tag: ${inputTest[0]} não foi fechada corretamente \n\n`
+				)
+			);
+
 		return fileContent;
 	}
 

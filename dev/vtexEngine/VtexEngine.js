@@ -37,6 +37,8 @@ class VtexEngine {
 
 		fileContent = this.controlsTransformer.transform(fileContent, fileMeta);
 
+		fileContent = this.validator.notClosedTags(fileContent);
+
 		return fileContent;
 	}
 }
