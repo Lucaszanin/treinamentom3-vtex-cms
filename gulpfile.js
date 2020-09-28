@@ -8,7 +8,6 @@ const gulp = require("gulp"),
 	imagemin = require("gulp-imagemin"),
 	rename = require("gulp-rename"),
 	replace = require("gulp-replace"),
-	htmlReplace = require("gulp-html-replace"),
 	apiMocker = require("connect-api-mocker"),
 	sprity = require("sprity"),
 	crypto = require("crypto"),
@@ -26,20 +25,20 @@ const paths = {
 	styles: {
 		src: "src/arquivos/sass/*.{scss,css,sass}",
 		lib: "src/arquivos/sass/lib",
-		watch: "src/arquivos/sass/**/*.scss"
+		watch: "src/arquivos/sass/**/*.scss",
 	},
 	scripts: {
-		watch: "src/arquivos/js/**/*.js"
+		watch: "src/arquivos/js/**/*.js",
 	},
 	sprites: {
-		src: "src/arquivos/sprite/**/*.{png,jpg}"
+		src: "src/arquivos/sprite/**/*.{png,jpg}",
 	},
 	img: {
-		src: "src/arquivos/img/*.{png,gif,jpg}",
-		watch: "src/arquivos/img/**/*.{png,gif,jpg}"
+		src: "src/arquivos/img/**/*.{png,gif,jpg}",
+		watch: "src/arquivos/img/**/*.{png,gif,jpg}",
 	},
 	fonts: {
-		src: "src/arquivos/fonts/**.*"
+		src: "src/arquivos/fonts/**.*",
 	},
 	html: {
 		watch: "src/**/*.html",
@@ -47,11 +46,11 @@ const paths = {
 		subTemplate: "src/template-pagina/sub-templates/",
 		controlesVtex: "dev/controles-vtex/",
 		controlesCustomizados: "src/controles-customizados/",
-		prateleiras: "src/template-prateleira/"
+		prateleiras: "src/template-prateleira/",
 	},
 	output: "dist",
 	outputStatic: "dist/arquivos",
-	tmp: ".temp"
+	tmp: ".temp",
 };
 
 function clean() {
@@ -64,18 +63,18 @@ function styles() {
 		.pipe(gulpif(!isProduction, sourcemaps.init()))
 		.pipe(
 			sass({
-				outputStyle: "compressed"
+				outputStyle: "compressed",
 			}).on("error", sass.logError)
 		)
 		.pipe(
 			autoprefixer({
-				cascade: false
+				cascade: false,
 			})
 		)
 		.pipe(
 			rename({
 				prefix: pacote.shopName + "--",
-				extname: ".css"
+				extname: ".css",
 			})
 		)
 		.pipe(gulpif(!isProduction, sourcemaps.write()))
@@ -84,15 +83,28 @@ function styles() {
 }
 
 function scripts() {
-	let webpackConfig = require("./webpack.dev.js");
+	let webpackConfig;
 
-	if (process.env.NODE_ENV === "production") {
-		webpackConfig = require("./webpack.prod.js");
-	} else if (process.env.NODE_ENV === "local") {
-		webpackConfig = require("./webpack.local.js");
+	switch (process.env.NODE_ENV) {
+		case "production":
+			webpackConfig = require("./webpack/webpack.prod.js");
+			break;
+		case "local":
+			webpackConfig = require("./webpack/webpack.local.js");
+			break;
+		case "localfast":
+			webpackConfig = require("./webpack/webpack.localfast.js");
+			break;
+		case "devfast":
+			webpackConfig = require("./webpack/webpack.devfast.js");
+			break;
+
+		default:
+			webpackConfig = require("./webpack/webpack.dev.js");
+			break;
 	}
 
-	return new Promise(resolve =>
+	return new Promise((resolve) =>
 		webpack(webpackConfig, (err, stats) => {
 			if (err) console.log("Webpack", err);
 
@@ -107,7 +119,7 @@ function scripts() {
 					moduleTrace: true,
 					errorDetails: true,
 					colors: true,
-					chunks: true
+					chunks: true,
 				})
 			);
 
@@ -118,7 +130,7 @@ function scripts() {
 }
 
 function sprites(done) {
-	glob(paths.sprites.src, function(er, files) {
+	glob(paths.sprites.src, function (er, files) {
 		const hash = crypto
 			.createHash("md5")
 			.update(files.join(""))
@@ -137,9 +149,9 @@ function sprites(done) {
 				name: pacote.shopName + "-sprite-" + hash,
 				dimension: [
 					{ ratio: 1, dpi: 72 },
-					{ ratio: 2, dpi: 192 }
+					{ ratio: 2, dpi: 192 },
 				],
-				cachebuster: false
+				cachebuster: false,
 			},
 			() => {
 				gulp.src(".temp/*")
@@ -158,9 +170,15 @@ function sprites(done) {
 }
 
 function img() {
+	let dest = paths.outputStatic;
+
+	if (!(process.env.NODE_ENV === "local")) {
+		dest = dest + "/img";
+	}
+
 	return gulp
 		.src(paths.img.src)
-		.pipe(imagemin())
+		.pipe(gulpif(isProduction, imagemin()))
 		.pipe(gulp.dest(paths.outputStatic))
 		.pipe(connect.reload());
 }
@@ -172,46 +190,18 @@ function html() {
 		subTemplate: paths.html.subTemplate,
 		controlesVtex: paths.html.controlesVtex,
 		controleCustomizado: paths.html.controlesCustomizados,
-		prateleira: paths.html.prateleiras
+		prateleira: paths.html.prateleiras,
 	});
 
-	VtexEmulation.loadSubTemplates();
-	VtexEmulation.loadPrateleira();
-	VtexEmulation.loadControles();
+	VtexEmulation.startEngine();
 
 	return gulp
 		.src(VtexEmulation.folders().template + "*.html")
-		.pipe(
-			replace(
-				VtexEmulation.regex().subtemplate,
-				VtexEmulation.subtemplate
-			)
-		)
-		.pipe(replace(VtexEmulation.regex().controle, VtexEmulation.controle))
-		.pipe(
-			replace(
-				VtexEmulation.regex().placeholder,
-				VtexEmulation.placeHolder
-			)
-		)
-		.pipe(
-			htmlReplace({
-				js: [
-					"/arquivos/plugins-shop.min.js",
-					"/arquivos/scripts-shop.min.js"
-				],
-				css: [
-					"/arquivos/bootstrap-grid.css",
-					"/arquivos/style-shop.css"
-				],
-				keepUnassigned: false,
-				keepBlockTags: false
-			})
-		)
+		.pipe(VtexEmulation.process())
 		.pipe(
 			inlinesource({
 				compress: true,
-				rootpath: path.resolve("src/arquivos")
+				rootpath: path.resolve("src/arquivos"),
 			})
 		)
 		.pipe(gulp.dest(paths.output))
@@ -222,12 +212,12 @@ function htmlProd() {
 	return gulp
 		.src([
 			paths.html.prateleiras + "**/*.html",
-			paths.html.template + "**/*.html"
+			paths.html.template + "**/*.html",
 		])
 		.pipe(
 			inlinesource({
 				compress: true,
-				rootpath: path.resolve("src/arquivos")
+				rootpath: path.resolve("src/arquivos"),
 			})
 		)
 		.pipe(gulp.dest(paths.output));
@@ -237,10 +227,10 @@ function customFonts() {
 	return gulp
 		.src(paths.fonts.src)
 		.pipe(
-			rename(path => ({
+			rename((path) => ({
 				dirname: "",
 				basename: path.basename,
-				extname: path.extname + ".css"
+				extname: path.extname + ".css",
 			}))
 		)
 		.pipe(gulp.dest(paths.outputStatic))
@@ -262,7 +252,7 @@ function devServer() {
 		root: paths.output,
 		livereload: true,
 		port: 3000,
-		middleware: function(_connect, options) {
+		middleware: function (_connect, options) {
 			console.log(_connect);
 			var middlewares = [];
 
@@ -291,14 +281,18 @@ function devServer() {
 			);
 
 			return middlewares;
-		}
+		},
 	});
 }
 
 const build = gulp.series(
 	clean,
-	sprites,
-	gulp.parallel(htmlProd, scripts, styles, img, customFonts)
+	gulp.parallel(
+		htmlProd,
+		gulp.series(sprites, customFonts, styles),
+		scripts,
+		img
+	)
 );
 
 exports.build = build;

@@ -3,7 +3,7 @@ import "proxy-polyfill/proxy.min.js";
 import "lazysizes";
 import "lazysizes/plugins/noscript/ls.noscript";
 import "slick-carousel";
-import app from "./app";
+import app from "./app/app";
 
 window.lazySizesConfig = {
 	addClasses: true,

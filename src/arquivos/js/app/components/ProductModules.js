@@ -9,7 +9,7 @@ export default class ProductModules {
 			skuSelector: opts?.skuSelector || ".product__skus",
 			alertMeSelector: opts?.alertMeSelector || ".product__alert-me",
 			skuJson: opts?.skuJson || window.skuJson,
-			store: opts?.store || new Components.ComponentStore()
+			store: opts?.store || new Components.ComponentStore(),
 		};
 		this.store = this.opts.store;
 		this.mapearSkus(this.opts.skuJson);
@@ -30,18 +30,18 @@ export default class ProductModules {
 			this.store
 		).configurar({
 			precoDe: {
-				ativo: false
+				ativo: false,
 			},
 			precoPor: {
-				ativo: true
+				ativo: true,
 			},
 			parcelado: {
 				ativo: true,
-				auto: false
+				auto: false,
 			},
 			boleto: {
-				ativo: false
-			}
+				ativo: false,
+			},
 		});
 		moduloPreco.desenhar();
 	}
@@ -59,9 +59,9 @@ export default class ProductModules {
 	}
 
 	quantidade(elemento) {
-		var moduloBtnQtd = new Components.ModuloBtnQtd(elemento,this.store);
+		var moduloBtnQtd = new Components.ModuloBtnQtd(elemento, this.store);
 		moduloBtnQtd.configurar({
-			max: 50
+			max: 50,
 		});
 
 		var moduloQuantidade = new Components.ModuloQuantidade(
@@ -69,7 +69,7 @@ export default class ProductModules {
 			this.store
 		);
 		moduloQuantidade.configurar({
-			maxEstoque: 50
+			maxEstoque: 50,
 		});
 		moduloQuantidade.moduloExibicao(moduloBtnQtd);
 		moduloQuantidade.desenhar();
@@ -83,7 +83,7 @@ export default class ProductModules {
 		moduloBotaoDeCompra.configurar({
 			botaoCompra: "Comprar",
 			botaoSkuIndisponivel: "Indisponível",
-			msgAddCarrinhoSucesso: "Adicionado à <strong>Sacola</strong> "
+			msgAddCarrinhoSucesso: "Adicionado à <strong>Sacola</strong> ",
 		});
 		moduloBotaoDeCompra.desenhar();
 	}
@@ -95,7 +95,7 @@ export default class ProductModules {
 			<p class="alert-me__text">Avise-me quando chegar</p>`,
 			placeholderNome: "Digite seu nome",
 			placeholderEmail: "Digite seu e-mail",
-			btnSubmit: "Enviar"
+			btnSubmit: "Enviar",
 		};
 
 		var moduloAviseMe = new Components.ModuloAviseMe(elemento, this.store);

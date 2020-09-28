@@ -1,28 +1,30 @@
 import Modulo from "../Modulo";
 import { CHANGE_QTD } from "../EventType";
 
-
-export default class ModuloSelect extends Modulo{
-	constructor( elemento, componentStore){
-		super( elemento, componentStore);
+export default class ModuloSelect extends Modulo {
+	constructor(elemento, componentStore) {
+		super(elemento, componentStore);
 		this.elemento(".qtd-selector");
 		this._opcoes = {
 			titulo: "Quantidade",
 			opcaoDefault: "Selecione",
-			opcaoIndisponivel: "Indisponivel"
+			opcaoIndisponivel: "Indisponivel",
 		};
 	}
 
-	desenhar () {
-		let _html =
-		`<div class="qtd-selector">
+	desenhar() {
+		let _html = `<div class="qtd-selector">
 			<span class="titulo">${this.opcoes().titulo}:</span>
 			<span class="wrap-select">
 				<select class="quantidade"></select>
 			</span>
 		</div>`;
 		var selectQuantidade = $(_html);
-		selectQuantidade.on("change", 'select.quantidade',this.onChange.bind(this))
+		selectQuantidade.on(
+			"change",
+			"select.quantidade",
+			this.onChange.bind(this)
+		);
 		selectQuantidade.appendTo(this.elemento());
 		return this;
 	}
@@ -45,16 +47,12 @@ export default class ModuloSelect extends Modulo{
 				"</option>";
 			this.elemento().addClass("desabilitado");
 		}
-		this.elemento()
-			.find(".quantidade")
-			.html(opcoes);
+		this.elemento().find(".quantidade").html(opcoes);
 	}
 
 	onChange() {
-		var quantidade = this.elemento()
-			.find(".quantidade")
-			.val();
+		var quantidade = this.elemento().find(".quantidade").val();
 
 		this._store.events.publish(CHANGE_QTD, quantidade);
-	};
+	}
 }

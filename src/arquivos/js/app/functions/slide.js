@@ -25,7 +25,7 @@ export function slideResponsivo(
 
 	$(".helperComplement").remove();
 
-	$(elementoPaiDaListaDeProdutos).each(function(i) {
+	$(elementoPaiDaListaDeProdutos).each(function (i) {
 		$(this)
 			.find("ul")
 			.eq(0)
@@ -45,8 +45,8 @@ export function slideResponsivo(
 							lazyLoad: "ondemand",
 							slidesToShow: slidesToShow992,
 							slidesToScroll: slidesToShow992,
-							infinite: true
-						}
+							infinite: true,
+						},
 					},
 					{
 						breakpoint: 768,
@@ -54,8 +54,8 @@ export function slideResponsivo(
 							dots: true,
 							lazyLoad: "ondemand",
 							slidesToShow: slidesToShow768,
-							slidesToScroll: slidesToShow768
-						}
+							slidesToScroll: slidesToShow768,
+						},
 					},
 					{
 						breakpoint: 576,
@@ -63,10 +63,10 @@ export function slideResponsivo(
 							dots: true,
 							lazyLoad: "ondemand",
 							slidesToShow: slidesToShow576,
-							slidesToScroll: slidesToShow576
-						}
-					}
-				]
+							slidesToScroll: slidesToShow576,
+						},
+					},
+				],
 			});
 	});
 }
@@ -82,14 +82,14 @@ export function bannerHome(elementoPaiDoBanners) {
 			arrows: false,
 			pauseOnHover: false,
 			autoplay: true,
-			autoplaySpeed: 6000
+			autoplaySpeed: 6000,
 		},
 		configMobile = {
 			dots: true,
 			arrows: true,
 			pauseOnHover: false,
 			autoplay: true,
-			autoplaySpeed: 6000
+			autoplaySpeed: 6000,
 		};
 
 	$elemento.find(".desktop").slick(configDesktop);
@@ -115,8 +115,8 @@ export function naveguePorCategorias(elementoPaiDoBanners) {
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 3,
-					infinite: false
-				}
+					infinite: false,
+				},
 			},
 			{
 				breakpoint: 768,
@@ -125,10 +125,10 @@ export function naveguePorCategorias(elementoPaiDoBanners) {
 					slidesToScroll: 2,
 					infinite: false,
 					autoplay: false,
-					autoplaySpeed: 2000
-				}
-			}
-		]
+					autoplaySpeed: 2000,
+				},
+			},
+		],
 	});
 }
 
@@ -153,17 +153,17 @@ export function barraDeVantagens(barraDeVantagens) {
 				breakpoint: 992,
 				settings: {
 					slidesToShow: 3,
-					slidesToScroll: 3
-				}
+					slidesToScroll: 3,
+				},
 			},
 			{
 				breakpoint: 768,
 				settings: {
 					slidesToShow: 1,
-					slidesToScroll: 1
-				}
-			}
-		]
+					slidesToScroll: 1,
+				},
+			},
+		],
 	});
 }
 
@@ -187,8 +187,8 @@ export function produtoThumbs(thumbs) {
 				breakpoint: 992,
 				settings: {
 					slidesToShow: 4,
-					slidesToScroll: 1
-				}
+					slidesToScroll: 1,
+				},
 			},
 			{
 				breakpoint: 768,
@@ -197,10 +197,10 @@ export function produtoThumbs(thumbs) {
 					dots: true,
 					vertical: false,
 					slidesToShow: 1,
-					slidesToScroll: 1
-				}
-			}
-		]
+					slidesToScroll: 1,
+				},
+			},
+		],
 	});
 }
 export function navegacaoInstitucional(elemento) {
@@ -224,16 +224,16 @@ export function navegacaoInstitucional(elemento) {
 				breakpoint: 992,
 				settings: {
 					slidesToShow: 3,
-					slidesToScroll: 3
-				}
+					slidesToScroll: 3,
+				},
 			},
 			{
 				breakpoint: 768,
 				settings: {
 					slidesToShow: 2,
-					slidesToScroll: 2
-				}
-			}
-		]
+					slidesToScroll: 2,
+				},
+			},
+		],
 	});
 }

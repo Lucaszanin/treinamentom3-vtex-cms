@@ -4,52 +4,52 @@
 @import "./checkout-pagamento";
 
 .product-name a {
-    color: #333;
+	color: #333;
 }
 
 a:hover {
-    text-decoration: none;
-    cursor: pointer;
+	text-decoration: none;
+	cursor: pointer;
 }
 
-.header-simples{
-    .container-fluid{
-        max-width: 1300px;
-    }
+.header-simples {
+	.container-fluid {
+		max-width: 1300px;
+	}
 }
 
-.footer{
-    margin-top: 70px;
+.footer {
+	margin-top: 70px;
 
-    .selos{
-        padding-top: 36px;
-    }
+	.selos {
+		padding-top: 36px;
+	}
 }
 .product-name a {
-    color: #333;
+	color: #333;
 }
 
 a:hover {
-    text-decoration: none;
-    cursor: pointer;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .footer a:hover,
 .header a:hover {
-    color: #333;
+	color: #333;
 }
 
-.body-cart .container{
-    padding: 0 15px!important;
+.body-cart .container {
+	padding: 0 15px !important;
 }
 
-.container-cart{
-    font-family: $font-family;
+.container-cart {
+	font-family: $font-family;
 }
 
 .body-cart {
-    padding: 0;
+	padding: 0;
 }
 #cart-title {
-    display: none!important;
+	display: none !important;
 }

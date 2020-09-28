@@ -7,6 +7,7 @@ import { isSmallerThen768 } from "Helpers/MediasMatch";
 import { slideResponsivo, produtoThumbs } from "App/functions/slide";
 import ProductModules from "App/components/ProductModules";
 import CrossSelling from "../components/CrossSelling";
+import { CHANGE_SKU } from "Lib/ComponentesProduto/EventType";
 
 export default class Produto {
 	constructor() {
@@ -31,6 +32,8 @@ export default class Produto {
 			skuSelector: ".moduloSkus",
 			alertMeSelector: ".moduloAviseMe",
 		});
+
+		store.events.subscribe(CHANGE_SKU, this.imagensDasVariacoes);
 	}
 
 	/*
@@ -42,9 +45,11 @@ export default class Produto {
 	}
 
 	exibirVariacaoDeCores() {
-
 		let idProduto = window.skuJson.productId;
-		let crossSelling = new CrossSelling(idProduto,".product-info .similares");
+		let crossSelling = new CrossSelling(
+			idProduto,
+			".product-info .similares"
+		);
 		crossSelling.similars();
 	}
 
@@ -110,12 +115,10 @@ export default class Produto {
 		});
 	}
 
-	imagensDasVariacoes() {
+	imagensDasVariacoes(event, data) {
 		if (typeof window.FireSkuSelectionChanged !== "undefined") {
-			$(document).on("change-sku", function (event, data) {
-				var idSku = data.sku;
-				window.FireSkuSelectionChanged(idSku);
-			});
+			var idSku = data.sku;
+			window.FireSkuSelectionChanged(idSku);
 		}
 	}
 

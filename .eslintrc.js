@@ -1,22 +1,22 @@
 module.exports = {
 	env: {
 		browser: true,
-		jquery: true
+		jquery: true,
 	},
 	globals: {
-		Modulo: true
+		Modulo: true,
 	},
 	extends: "eslint:recommended",
 	parserOptions: {
 		ecmaVersion: 10,
-		sourceType: "module"
+		sourceType: "module",
 	},
 	rules: {
 		indent: ["warn", "tab", { SwitchCase: 1 }],
-		"linebreak-style": ["warn", "windows"],
+		"linebreak-style": ["warn", "unix"],
 		"no-unused-vars": [
 			"warn",
-			{ vars: "all", args: "after-used", ignoreRestSiblings: false }
+			{ vars: "all", args: "after-used", ignoreRestSiblings: false },
 		],
 		"valid-typeof": "warn",
 		"no-dupe-keys": "warn",
@@ -25,6 +25,6 @@ module.exports = {
 		"no-useless-escape": "off",
 		"no-case-declarations": "error",
 		"no-undef": "off",
-		"no-prototype-builtins": "off"
-	}
+		"no-prototype-builtins": "off",
+	},
 };

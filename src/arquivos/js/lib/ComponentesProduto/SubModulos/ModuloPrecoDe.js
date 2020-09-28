@@ -1,17 +1,16 @@
 import Modulo from "../Modulo";
 import { getPrice } from "../util";
 
-export default class ModuloPrecoDe extends Modulo{
-	constructor( elemento, componentStore){
-		super( elemento, componentStore);
+export default class ModuloPrecoDe extends Modulo {
+	constructor(elemento, componentStore) {
+		super(elemento, componentStore);
 		this.opcoes({
-			ativo: true
+			ativo: true,
 		});
 	}
 
-	desenhar () {
-		let _html =
-		`<div class="valor-de">
+	desenhar() {
+		let _html = `<div class="valor-de">
 			<strong class="value"></strong>
 		</div>`;
 		var valorDe = $(_html);

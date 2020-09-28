@@ -1,21 +1,20 @@
 import Modulo from "../Modulo";
 import { getPrice } from "../util";
 
-export default class ModuloPrecoParcelado extends Modulo{
-	constructor( elemento, componentStore){
-		super( elemento, componentStore);
+export default class ModuloPrecoParcelado extends Modulo {
+	constructor(elemento, componentStore) {
+		super(elemento, componentStore);
 
 		this.opcoes({
 			auto: false,
 			ativo: false,
-			parcelas: 5
+			parcelas: 5,
 		});
 		this.numeroParcelas(this.opcoes().parcelas);
 	}
 
-	desenhar () {
-		let _html =
-		`<div class="valor-dividido" >
+	desenhar() {
+		let _html = `<div class="valor-dividido" >
 			<span>ou <strong class="numero-de-parcelas"></strong> de </span>
 			<strong class="value"></strong>
 			<span> sem juros</span>
@@ -51,4 +50,3 @@ export default class ModuloPrecoParcelado extends Modulo{
 		return this.opcoes().parcelas;
 	}
 }
-

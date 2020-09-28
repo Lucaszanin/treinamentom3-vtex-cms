@@ -13,9 +13,9 @@ export default class PubSub {
 		if (!this.events.hasOwnProperty(event)) {
 			return [];
 		}
-		return this.events[event].map(callback => callback(event, data));
+		return this.events[event].map((callback) => callback(event, data));
 	}
 	unsubscribe(event, cb) {
-		this.events[event].filter(fn => fn !== cb);
+		this.events[event].filter((fn) => fn !== cb);
 	}
 }

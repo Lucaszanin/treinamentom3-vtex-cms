@@ -1,35 +1,34 @@
 import Modulo from "./Modulo";
 
-import ModuloPrecoDe from './SubModulos/ModuloPrecoDe';
-import ModuloPrecoPor from './SubModulos/ModuloPrecoPor';
-import ModuloPrecoParcelado from './SubModulos/ModuloPrecoParcelado';
-import ModuloPrecoBoleto from './SubModulos/ModuloPrecoBoleto';
+import ModuloPrecoDe from "./SubModulos/ModuloPrecoDe";
+import ModuloPrecoPor from "./SubModulos/ModuloPrecoPor";
+import ModuloPrecoParcelado from "./SubModulos/ModuloPrecoParcelado";
+import ModuloPrecoBoleto from "./SubModulos/ModuloPrecoBoleto";
 
 import { SKU_REF, CHANGE_SKU } from "./EventType";
 /**
  * modulo preco
  * Mantem o preço de exibição atualizado
  */
-export default class ModuloPreco extends Modulo{
-
-	constructor(elemento= ".preco-produto", store) {
+export default class ModuloPreco extends Modulo {
+	constructor(elemento = ".preco-produto", store) {
 		super(elemento, store);
 		this.opcoes({
 			precoDe: {
-				ativo: true
+				ativo: true,
 			},
 			precoPor: {
-				ativo: true
+				ativo: true,
 			},
 			parcelado: {
 				auto: false,
 				ativo: false,
-				parcelas: 6
+				parcelas: 6,
 			},
 			boleto: {
 				ativo: true,
-				percentual: 5
-			}
+				percentual: 5,
+			},
 		});
 		this.precos = [];
 	}
@@ -41,15 +40,15 @@ export default class ModuloPreco extends Modulo{
 	configurar(opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
 
-		this._store.events.subscribe(SKU_REF, (event, sku) =>{
+		this._store.events.subscribe(SKU_REF, (event, sku) => {
 			this.atualizar(sku);
 		});
-		this._store.events.subscribe(CHANGE_SKU, (event, sku) =>{
+		this._store.events.subscribe(CHANGE_SKU, (event, sku) => {
 			this.atualizar(sku);
 		});
 
 		return this;
-	};
+	}
 	/**
 	 * Cria e insere o html com as formas de pagamento
 	 * @return {object} this
@@ -57,7 +56,7 @@ export default class ModuloPreco extends Modulo{
 	desenhar() {
 		var container = $("<div />", {
 			class: "container-precos",
-			css: "display:none"
+			css: "display:none",
 		}).appendTo(this.elemento());
 		if (this.opcoes().precoDe.ativo) {
 			var moduloPrecoDe = new ModuloPrecoDe();
@@ -84,7 +83,7 @@ export default class ModuloPreco extends Modulo{
 			this.precos.push(moduloPrecoBoleto);
 		}
 		return this;
-	};
+	}
 	/**
 	 * Atualiza os precos de acordo com o novo sku
 	 * @param  {Event} event evento que disparou atualização
@@ -94,7 +93,7 @@ export default class ModuloPreco extends Modulo{
 	atualizar(novoSku) {
 		if (!novoSku) {
 			novoSku = {
-				available: false
+				available: false,
 			};
 		}
 		if (novoSku.available) {
@@ -105,10 +104,10 @@ export default class ModuloPreco extends Modulo{
 			}
 			this.elemento().css("display", "block");
 		} else {
-			this.elemento().css('display', 'none');
+			this.elemento().css("display", "none");
 		}
 		return this;
-	};
+	}
 	/**
 	 * Get/Set configuraçoes de tipos de precos
 	 * @param  {Object} tipo um objeto contendo informações das formas de pagamento
@@ -121,4 +120,3 @@ export default class ModuloPreco extends Modulo{
 		return this._tiposPreco;
 	}
 }
-

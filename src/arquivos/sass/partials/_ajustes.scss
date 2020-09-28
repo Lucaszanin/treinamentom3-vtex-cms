@@ -1,4 +1,3 @@
-
 /***************************************************************/
 /**-- Efeitos  ajustes  outros -------------********************/
 /*-------------------------------------------------------------*/
@@ -9,29 +8,29 @@
 	right: 0;
 	margin-right: 2em;
 	position: fixed;
-	z-index: map-get($z-index, scroll-top );
+	z-index: map-get($z-index, scroll-top);
 
-	@include mq(md, max){
+	@include mq(md, max) {
 		bottom: 6em;
 	}
 }
 
-.tabs-horizontal{
+.tabs-horizontal {
 	border-bottom: solid 1px #eee;
 	margin-bottom: 15px;
 
-	li{
+	li {
 		display: inline-block;
 	}
 
-	a{
+	a {
 		display: block;
-		padding: 15px 20px 10px ;
-		border-top-right-radius:2px;
-		border-top-left-radius:2px;
+		padding: 15px 20px 10px;
+		border-top-right-radius: 2px;
+		border-top-left-radius: 2px;
 
-		&.ativa{
-			background-color:#EEE;
+		&.ativa {
+			background-color: #eee;
 		}
 	}
 }
@@ -41,9 +40,7 @@
 /*-------------------------------------------------------------*/
 
 @media only screen and (max-width: 768px) {
-
-
-	.tabs-horizontal a{
+	.tabs-horizontal a {
 		padding: 15px 5px 10px;
 	}
 }

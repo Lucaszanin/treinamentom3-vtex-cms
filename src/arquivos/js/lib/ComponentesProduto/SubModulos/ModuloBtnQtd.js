@@ -32,10 +32,11 @@ export default class ModuloBtnQtd extends Modulo {
 		</div>`;
 
 		var $quantidade = $(_html);
-		$quantidade.on('click','.remove-from-cart',this.decrementBtn.bind(this))
-			.on('click','.add-to-cart',this.incrementBtn.bind(this));
+		$quantidade
+			.on("click", ".remove-from-cart", this.decrementBtn.bind(this))
+			.on("click", ".add-to-cart", this.incrementBtn.bind(this));
 
-		$quantidade.appendTo(this.elemento())
+		$quantidade.appendTo(this.elemento());
 		this.inputChange();
 
 		return this;
@@ -44,9 +45,7 @@ export default class ModuloBtnQtd extends Modulo {
 	atualizar(novoEstoque) {
 		this.opcoes().max = novoEstoque;
 
-		this.elemento()
-			.find(".qtd-value")
-			.trigger("change");
+		this.elemento().find(".qtd-value").trigger("change");
 
 		if (novoEstoque > 0) {
 			this.habilitar(true);
