@@ -1,4 +1,4 @@
-import { Modulo } from "./Modulo";
+import Modulo from "./Modulo";
 import { CHANGE_SKU, SKU_REF } from "./EventType";
 
 export default class ModuloSkus extends Modulo{

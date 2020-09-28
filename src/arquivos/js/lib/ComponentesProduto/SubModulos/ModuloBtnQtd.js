@@ -1,4 +1,4 @@
-import { Modulo } from "../Modulo";
+import Modulo from "../Modulo";
 import { CHANGE_QTD } from "../EventType";
 
 export default class ModuloBtnQtd extends Modulo {

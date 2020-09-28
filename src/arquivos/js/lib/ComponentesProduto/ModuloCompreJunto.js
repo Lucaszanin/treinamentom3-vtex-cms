@@ -1,4 +1,4 @@
-import { Modulo } from "./Modulo";
+import Modulo from "./Modulo";
 import { alterarTamanhoImagemSrcVtex } from "./util";
 import { CHANGE_SKU } from "./EventType";
 /**
