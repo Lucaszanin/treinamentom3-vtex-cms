@@ -1,4 +1,4 @@
-import { Modulo } from "./Modulo";
+import Modulo from "./Modulo";
 import { SKU_REF, CHANGE_SKU } from "./EventType";
 /**
  * Modulo de quantidade

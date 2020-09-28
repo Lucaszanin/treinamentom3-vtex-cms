@@ -1,4 +1,4 @@
-import { Modulo } from "./Modulo";
+import Modulo from "./Modulo";
 
 import ModuloPrecoDe from './SubModulos/ModuloPrecoDe';
 import ModuloPrecoPor from './SubModulos/ModuloPrecoPor';
