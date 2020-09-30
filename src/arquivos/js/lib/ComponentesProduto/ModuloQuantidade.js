@@ -4,15 +4,13 @@ import { SKU_REF, CHANGE_SKU } from "./EventType";
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
-export default class ModuloQuantidade extends Modulo{
-
-	constructor(elemento= ".avise-me-container:first-child", store) {
+export default class ModuloQuantidade extends Modulo {
+	constructor(elemento = ".avise-me-container:first-child", store) {
 		super(elemento, store);
 		this.opcoes({
-			maxEstoque: 50
+			maxEstoque: 50,
 		});
 	}
-
 
 	/**
 	 * Configura os eventos js que serão diparados pelo html do desenhar()
@@ -21,15 +19,14 @@ export default class ModuloQuantidade extends Modulo{
 	configurar(opcoes) {
 		super.configurar(opcoes);
 
-		this._store.events.subscribe(SKU_REF, (event, sku) =>{
+		this._store.events.subscribe(SKU_REF, (event, sku) => {
 			this.atualizar(sku);
 		});
-		this._store.events.subscribe(CHANGE_SKU, (event, sku) =>{
+		this._store.events.subscribe(CHANGE_SKU, (event, sku) => {
 			this.atualizar(sku);
 		});
 		return this;
 	}
-
 
 	/**
 	 * Atualiza a quantidade de acordo com o novo sku
@@ -38,7 +35,7 @@ export default class ModuloQuantidade extends Modulo{
 	 * @return {Object} this
 	 */
 	atualizar(novoSku) {
-		if (novoSku?.available ===  true) {
+		if (novoSku?.available === true) {
 			var estoque,
 				skuId = novoSku.sku;
 			try {
@@ -61,7 +58,7 @@ export default class ModuloQuantidade extends Modulo{
 			this.elemento().addClass("desativado");
 		}
 		return this;
-	};
+	}
 
 	/**
 	 * Cria e insere o html com as variações dos skus
@@ -75,7 +72,7 @@ export default class ModuloQuantidade extends Modulo{
 			console.warn("Modulo de exibição não definido");
 		}
 		return this;
-	};
+	}
 	/**
 	 * Get/Set moduloExibicao do modulo
 	 * @param  {JSON} moduloExibicao seletor em formato cssopções do modulo
@@ -84,5 +81,5 @@ export default class ModuloQuantidade extends Modulo{
 	moduloExibicao(moduloExibicao) {
 		if (moduloExibicao) this._moduloExibicao = moduloExibicao;
 		return this._moduloExibicao;
-	};
+	}
 }

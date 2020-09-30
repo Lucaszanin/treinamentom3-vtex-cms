@@ -1,8 +1,8 @@
 import Modulo from "./Modulo";
 import { CHANGE_SKU, SKU_REF } from "./EventType";
 
-export default class ModuloSkus extends Modulo{
-	constructor( skuJson, elemento = ".skuSelection", componentStore ) {
+export default class ModuloSkus extends Modulo {
+	constructor(skuJson, elemento = ".skuSelection", componentStore) {
 		super(elemento, componentStore);
 		sessionStorage.removeItem("sku-selecionado");
 		this._skuJson = skuJson;
@@ -15,7 +15,7 @@ export default class ModuloSkus extends Modulo{
 	atualizar() {
 		this.desenhar();
 		return this;
-	};
+	}
 
 	/**
 	 * Escolhe os primeiros skus de cada variação
@@ -23,7 +23,7 @@ export default class ModuloSkus extends Modulo{
 	 */
 	setDefauls() {
 		return this;
-	};
+	}
 
 	escolherSku(sku) {
 		if (sku) {
@@ -33,7 +33,7 @@ export default class ModuloSkus extends Modulo{
 			console.warn("Não conseguimos identificar o sku correspondente");
 			// console.warn(especificacoesDoSku);
 		}
-	};
+	}
 
 	escolherSkuReferencia(sku) {
 		if (typeof this._skuReferencial === "undefined") {
@@ -46,5 +46,5 @@ export default class ModuloSkus extends Modulo{
 			sessionStorage.setItem("sku-referencial", JSON.stringify(sku));
 			this._store.events.publish(SKU_REF, sku);
 		}
-	};
+	}
 }

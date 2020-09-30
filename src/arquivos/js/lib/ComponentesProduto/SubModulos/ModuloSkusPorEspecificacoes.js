@@ -5,21 +5,20 @@ import { textoParaNomeCss, alterarTamanhoImagemSrcVtex } from "../util";
  * modulo de seleção dos skus
  * Permite escolher o Sku desejado
  */
-export default class ModuloSkusPorEspecificacoes extends ModuloSkus{
-	constructor( skuJson, elemento, componentStore){
-		super( skuJson, elemento, componentStore);
+export default class ModuloSkusPorEspecificacoes extends ModuloSkus {
+	constructor(skuJson, elemento, componentStore) {
+		super(skuJson, elemento, componentStore);
 		sessionStorage.removeItem("sku-selecionado");
 
 		this.opcoes({
 			especificacaoComImagem: "",
-		})
+		});
 
 		this.prefix = {
 			cor: "",
 			tamanho: "",
 		};
 	}
-
 
 	/**
 	 * Escolhe os primeiros skus de cada variação
@@ -48,12 +47,10 @@ export default class ModuloSkusPorEspecificacoes extends ModuloSkus{
 		// }
 
 		return this;
-
 	}
 
-
 	/* Prefixa o nome da especificação de acordo com a dimensão passada */
-	prefixDimensionName (dimension) {
+	prefixDimensionName(dimension) {
 		var value = dimension.toLowerCase();
 
 		if (this.prefix[value]) {
@@ -69,36 +66,38 @@ export default class ModuloSkusPorEspecificacoes extends ModuloSkus{
 	 * @return {object} this
 	 */
 	desenhar() {
-
-		if ( !this._skuJson.dimensionsMap ||
-			this._skuJson.dimensionsMap.length === 0 )
-		{
+		if (
+			!this._skuJson.dimensionsMap ||
+			this._skuJson.dimensionsMap.length === 0
+		) {
 			console.warn("Erro! para de especificações não identificado.");
 			return this;
 		}
 
 		for (var indice in this._skuJson.dimensions) {
 			if (this._skuJson.dimensions.hasOwnProperty(indice)) {
-
 				let nomeEspecificacao = this._skuJson.dimensions[indice];
 				let values = this._skuJson.dimensionsMap[nomeEspecificacao];
-				let isSingleOption = (values.length < 2) ;
+				let isSingleOption = values.length < 2;
 
 				var nameCampo = textoParaNomeCss(
 					`${this.elemento().selector}_${nomeEspecificacao}_${indice}`
 				);
 
-
 				let _html = `
-				<div class="especificacao ${textoParaNomeCss(nomeEspecificacao)} ${!isSingleOption?"multi-option":"single-option"}"
+				<div class="especificacao ${textoParaNomeCss(nomeEspecificacao)} ${
+					!isSingleOption ? "multi-option" : "single-option"
+				}"
 					data-especificacao="${textoParaNomeCss(nomeEspecificacao)}">
 
 					<div class="titulo" >${this.prefixDimensionName(nomeEspecificacao)}:</div>
-					<ul class="skus">${
-						values.map((item,i)=>{
+					<ul class="skus">${values
+						.map((item, i) => {
 							let disponivilidade = "";
 							var idText = textoParaNomeCss(
-								`${this.elemento().selector}_${nomeEspecificacao}_${item}_${indice}`
+								`${
+									this.elemento().selector
+								}_${nomeEspecificacao}_${item}_${indice}`
 							);
 
 							// adiciona informação de disponibilidade
@@ -106,33 +105,44 @@ export default class ModuloSkusPorEspecificacoes extends ModuloSkus{
 								let sku = this._getSkuPorEspecificacoes({
 									[nomeEspecificacao]: item,
 								});
-								if(typeof sku !== "undefined")
-									disponivilidade =sku.available ? "disponivel" : "indisponivel";
-							} catch (error) { console.info(error) }
+								if (typeof sku !== "undefined")
+									disponivilidade = sku.available
+										? "disponivel"
+										: "indisponivel";
+							} catch (error) {
+								console.info(error);
+							}
 
 							return `<li class="sku">
 								<input data-especificacao="${item}"
 									data-especificacao-title="${nomeEspecificacao}"
 									id="${idText}"  type="radio" value="${item}"
 									name="${nameCampo}"
-									${isSingleOption?"checked":""}>
-								${(()=>{
-									if( nomeEspecificacao === this._opcoes.especificacaoComImagem ){
+									${isSingleOption ? "checked" : ""}>
+								${(() => {
+									if (
+										nomeEspecificacao ===
+										this._opcoes.especificacaoComImagem
+									) {
 										let src = _obtemImagemParaEspecificacao(
 											nomeEspecificacao,
 											item
 										);
 
 										return `<label for="${idText}" class="${disponivilidade} with-image">
-											<img src="${alterarTamanhoImagemSrcVtex(src, 72, 100)}" title="${nomeEspecificacao}: ${item}" />
-										</label>`
-									}else{
+											<img src="${alterarTamanhoImagemSrcVtex(
+												src,
+												72,
+												100
+											)}" title="${nomeEspecificacao}: ${item}" />
+										</label>`;
+									} else {
 										return `<label for="${idText}" class="${disponivilidade}">${item}</label>`;
 									}
 								})()}
 							</li>`;
-						}).join('')
-					}</ul>
+						})
+						.join("")}</ul>
 				</div>`;
 
 				$(_html).appendTo(this.elemento());
@@ -143,16 +153,14 @@ export default class ModuloSkusPorEspecificacoes extends ModuloSkus{
 		return this;
 	}
 
-	_events(){
-
+	_events() {
 		this.elemento()
 			.find(".especificacao input")
-			.on("change", ()=>{
+			.on("change", () => {
 				var especificacoesDoSku = {},
 					sku;
 				var nomeEspecificacao = "";
-				this
-					.elemento()
+				this.elemento()
 					.find(".especificacao input:checked")
 					.each(function () {
 						nomeEspecificacao = this.getAttribute(
@@ -167,15 +175,11 @@ export default class ModuloSkusPorEspecificacoes extends ModuloSkus{
 			});
 	}
 
-
-
-
 	_getSkuPorEspecificacoes(especificacoes) {
-		return this._skuJson.skus.find((sku)=> {
+		return this._skuJson.skus.find((sku) => {
 			return this._isEquivalent(sku.dimensions, especificacoes);
 		});
 	}
-
 
 	/**
 	 * @link http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html
@@ -195,8 +199,6 @@ export default class ModuloSkusPorEspecificacoes extends ModuloSkus{
 		return true;
 	}
 
-
-
 	_getBestSku() {
 		var bestSku;
 		for (const i in this._skuJson.skus) {
@@ -214,15 +216,13 @@ export default class ModuloSkusPorEspecificacoes extends ModuloSkus{
 		return bestSku;
 	}
 
-
 	_producraInputNtmlParaEspecificacao(especificacao, valor) {
 		especificacao = textoParaNomeCss(especificacao);
-		let $lista = this
-			.elemento()
-			.find('.especificacao[data-especificacao="' + especificacao + '"]');
+		let $lista = this.elemento().find(
+			'.especificacao[data-especificacao="' + especificacao + '"]'
+		);
 		return $lista.find('li input[data-especificacao="' + valor + '"]');
 	}
-
 
 	_obtemImagemParaEspecificacao(especificacao, valor) {
 		for (const i in this._skuJson.skus) {
