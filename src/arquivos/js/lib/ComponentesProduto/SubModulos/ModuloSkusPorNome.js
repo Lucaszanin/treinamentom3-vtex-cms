@@ -7,22 +7,19 @@ import { textoParaNomeCss, alterarTamanhoImagemSrcVtex } from "../util";
  * Permite escolher o Sku desejado
  */
 
-export default class ModuloSkusPorNome extends ModuloSkus{
-
-	constructor( skuJson, elemento, store){
-		super( skuJson, elemento, store);
+export default class ModuloSkusPorNome extends ModuloSkus {
+	constructor(skuJson, elemento, store) {
+		super(skuJson, elemento, store);
 
 		sessionStorage.removeItem("sku-selecionado");
 
 		this.opcoes({
 			whithImage: true,
-			title:"Escolha uma opção",
-			imageWidth:55,
-			imageHeight:65
+			title: "Escolha uma opção",
+			imageWidth: 55,
+			imageHeight: 65,
 		});
 	}
-
-
 
 	/**
 	 * Escolhe os primeiros skus de cada variação
@@ -51,9 +48,9 @@ export default class ModuloSkusPorNome extends ModuloSkus{
 		this.escolherSku(bestSku);
 		// }
 		return this;
-	};
+	}
 
-		/**
+	/**
 	 * Cria e insere o html com as variações dos skus
 	 * @param  {Object} mapaEspecificacoes Mapa das especificações do produto
 	 * @return {object} this
@@ -63,35 +60,42 @@ export default class ModuloSkusPorNome extends ModuloSkus{
 		let _html = `<div class="skus-selection">
 			<div class="skus-wrapper">
 				<div class="titulo">${this.opcoes().title}:</div>
-				<ul class="lista">${this._skuJson.skus.map((sku,i)=>(
-					`<li class="sku">
-						<input id="sku-id__${ sku.sku}" type="radio" value="${ sku.sku}" name="${nameCampo}">
-						${(()=>{
-							if(this._opcoes.whithImage){
+				<ul class="lista">${this._skuJson.skus
+					.map(
+						(sku, i) =>
+							`<li class="sku">
+						<input id="sku-id__${sku.sku}" type="radio" value="${
+								sku.sku
+							}" name="${nameCampo}">
+						${(() => {
+							if (this._opcoes.whithImage) {
 								return `
-								<label for="sku-id__${ sku.sku}" class="${sku.available ? "" : "disable"} image">
+								<label for="sku-id__${sku.sku}" class="${sku.available ? "" : "disable"} image">
 									<img src="${alterarTamanhoImagemSrcVtex(
-											sku.image,
-											this._opcoes.imageWidth,
-											this._opcoes.imageHeight
-										)}" title="${sku.skuname}">
-								</label>`
-								}else{
-									return ` <label for="sku-id__${ sku.sku}" class="${sku.available ? "" : "disable"} ">
+										sku.image,
+										this._opcoes.imageWidth,
+										this._opcoes.imageHeight
+									)}" title="${sku.skuname}">
+								</label>`;
+							} else {
+								return ` <label for="sku-id__${
+									sku.sku
+								}" class="${sku.available ? "" : "disable"} ">
 										<span>${sku.skuname}</span>
 									</label>`;
-								}
-							})()}
+							}
+						})()}
 
 					</li>`
-				)).join('')}
+					)
+					.join("")}
 				</ul>
 			</div>
 		</div>`;
 
 		$(_html).appendTo(this.elemento());
 		return this;
-	};
+	}
 
 	/**
 	 * Configura os eventos de atualizacao
@@ -99,21 +103,19 @@ export default class ModuloSkusPorNome extends ModuloSkus{
 	 */
 	configurar(opceos) {
 		super.configurar(opceos);
-		this.elemento().on("change",".skus-selection input", () =>{
+		this.elemento().on("change", ".skus-selection input", () => {
 			let id = $(".skus-selection input:checked").val();
 
 			var sku = this._getSkuPorId(id);
-			console.log(id,sku)
+			console.log(id, sku);
 			this.escolherSku(sku);
 		});
 		return this;
-	};
-
+	}
 
 	_getSkuPorId(id) {
-		return this._skuJson.skus.find((sku) =>{
+		return this._skuJson.skus.find((sku) => {
 			return sku.sku == id;
 		});
 	}
-
 }

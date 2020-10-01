@@ -5,12 +5,11 @@ import { CHANGE_SKU } from "./EventType";
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
-export default class ModuloCompreJunto extends Modulo{
-
-	constructor(elemento= ".compre-junto", store) {
+export default class ModuloCompreJunto extends Modulo {
+	constructor(elemento = ".compre-junto", store) {
 		super(elemento, store);
 		this.opcoes({
-			titulo: "Compre junto"
+			titulo: "Compre junto",
 		});
 	}
 
@@ -22,7 +21,7 @@ export default class ModuloCompreJunto extends Modulo{
 		this.opcoes($.extend({}, this._opcoes, opcoes));
 		this._store.events.subscribe(CHANGE_SKU, this.atualizar.bind(this));
 		return this;
-	};
+	}
 	/**
 	 * Atualiza a quantidade de acordo com o novo sku
 	 * @param  {Event} event evento que disparou atualização
@@ -33,7 +32,7 @@ export default class ModuloCompreJunto extends Modulo{
 		var novoSku = JSON.parse(sessionStorage.getItem("sku-selecionado"));
 		if (!novoSku) {
 			novoSku = {
-				available: false
+				available: false,
 			};
 		}
 		if (novoSku.available) {
@@ -44,7 +43,7 @@ export default class ModuloCompreJunto extends Modulo{
 					.find(".produtos>div")
 					.slideUp(
 						600,
-						function() {
+						function () {
 							tabelaAtual.slideDown(600);
 							this.elemento().trigger(
 								"change-compre-junto",
@@ -58,7 +57,7 @@ export default class ModuloCompreJunto extends Modulo{
 		} else {
 			this.habilitar(false);
 		}
-	};
+	}
 	/**
 	 * Cria e insere o html com as variações dos skus
 	 * @return {object} this
@@ -67,13 +66,13 @@ export default class ModuloCompreJunto extends Modulo{
 		this.elemento().addClass("desativado");
 		$("<h2 />", {
 			class: "special-title",
-			text: this.opcoes().titulo
+			text: this.opcoes().titulo,
 		}).appendTo(this.elemento());
 		$("<div />", {
-			class: "produtos"
+			class: "produtos",
 		}).appendTo(this.elemento());
 		return this;
-	};
+	}
 
 	/**
 	 * Cria e insere o html com as variações dos skus
@@ -87,7 +86,7 @@ export default class ModuloCompreJunto extends Modulo{
 				var containerCompreJunto, imagens, $produtos;
 				containerCompreJunto = $("<div />", {
 					class: "produto-" + skuId,
-					html: htmlCJVtex
+					html: htmlCJVtex,
 				});
 				$produtos = this.elemento().find(".produtos");
 				$produtos.children().slideUp(600);
@@ -114,5 +113,5 @@ export default class ModuloCompreJunto extends Modulo{
 		}
 		var jqXHR = $.get("/comprejuntosku/" + skuId);
 		jqXHR.done(sucesso.bind(this)).fail(erro.bind(this));
-	};
+	}
 }

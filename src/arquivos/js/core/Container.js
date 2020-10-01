@@ -34,7 +34,7 @@ export default class Container {
 		};
 	}
 
-	async instantiateComponent(Component, i) {
+	instantiateComponent(Component, i) {
 		try {
 			if (typeof Component === "function") {
 				if (this.componentsConfig[Component.name]) {

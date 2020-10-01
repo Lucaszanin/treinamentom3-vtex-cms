@@ -1,4 +1,4 @@
-export default class Modulo{
+export default class Modulo {
 	/**
 	 * Modulo de criação de html
 	 * preenchendo com JSON
@@ -15,12 +15,12 @@ export default class Modulo{
 	 */
 	atualizar() {
 		return this;
-	};
+	}
 
 	store(store) {
 		this._store = store;
 		return this._store;
-	};
+	}
 
 	/**
 	 * Cria e insere o html com as variações dos skus
@@ -28,7 +28,7 @@ export default class Modulo{
 	 */
 	desenhar() {
 		return this;
-	};
+	}
 	/**
 	 * Configura os eventos de atualizacao
 	 * @return {object} this
@@ -36,7 +36,7 @@ export default class Modulo{
 	configurar(opcoes) {
 		this.opcoes($.extend({}, this._opcoes, opcoes));
 		return this;
-	};
+	}
 	/**
 	 * Get/Set elemento onde sera inserido
 	 * @param  {String} seletor seletor em formato css
@@ -46,7 +46,7 @@ export default class Modulo{
 		if (seletor)
 			this._elemento = typeof seletor === "string" ? $(seletor) : seletor;
 		return this._elemento;
-	};
+	}
 	/**
 	 * Get/Set opcoes do modulo
 	 * @param  {JSON} opcoes seletor em formato cssopções do modulo
@@ -55,7 +55,7 @@ export default class Modulo{
 	opcoes(opcoes) {
 		if (opcoes) this._opcoes = opcoes;
 		return this._opcoes;
-	};
+	}
 	/**
 	 * Função para ativar/exibir um modulo
 	 * @param {boolean} habilitar
@@ -67,7 +67,5 @@ export default class Modulo{
 		} else {
 			this.elemento().addClass("desativado");
 		}
-	};
-
-
+	}
 }
