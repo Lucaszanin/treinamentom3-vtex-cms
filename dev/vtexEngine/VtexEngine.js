@@ -37,7 +37,15 @@ class VtexEngine {
 
 		fileContent = this.controlsTransformer.transform(fileContent, fileMeta);
 
+		fileContent = this._removeEspecialTags(fileContent, fileMeta);
+
 		fileContent = this.validator.notClosedTags(fileContent);
+
+		return fileContent;
+	}
+
+	_removeEspecialTags(fileContent) {
+		fileContent = fileContent.replace("<vtex:metaTags />", "");
 
 		return fileContent;
 	}
