@@ -16,7 +16,6 @@ class VtexControlsTransformer {
 	_processRegResult(fileContent, regexResult) {
 		regexResult.forEach((reResult) => {
 			const [tag, id] = reResult;
-
 			let conteudo;
 			const file = findInArray(this.controls, id);
 
@@ -24,7 +23,7 @@ class VtexControlsTransformer {
 				conteudo = file.content;
 			} else {
 				console.log(`Controle de ID: ${id} não foi encontrado`);
-				conteudo = tag + "<!-- no match -->";
+				conteudo = `<!-- no match for ${id} -->`;
 			}
 
 			fileContent = fileContent.replace(tag, conteudo);

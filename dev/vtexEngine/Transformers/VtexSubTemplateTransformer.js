@@ -31,7 +31,7 @@ class VtexSubTemplateTransformer {
 				conteudo = file.content;
 			} else {
 				console.log(`Subtemplate de ID: ${id} não foi encontrado`);
-				conteudo = tag + "<!-- no match -->";
+				conteudo = `<!-- no match for ${id} -->`;
 			}
 
 			fileContent = fileContent.replace(tag, conteudo);

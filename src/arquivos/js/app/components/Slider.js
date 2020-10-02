@@ -24,6 +24,7 @@ export default class Slide {
 
 	startSlider(element, options) {
 		if (group == "productShelf") {
+			$(".helperComplement").remove();
 			element = $(slider).find("ul");
 		}
 
