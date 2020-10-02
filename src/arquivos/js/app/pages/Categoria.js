@@ -121,7 +121,8 @@ export default class Categoria {
 			emptySearchMsg:
 				"<h3>Não encontramos nenhum resultado para seu filtro!</h3>",
 			clearButtonClass: ".clear-filter-btn",
-			methodPageLoad: "pagination", // valores permitidos ['load-more','pagination','infinit-scroll']
+			// valores permitidos ['load-more','pagination','infinit-scroll']
+			methodPageLoad: "load-more",
 			loadMoreText: "Ver mais",
 			callback: () => {
 				try {
