@@ -112,73 +112,41 @@ export default class Categoria {
 	}
 
 	smartResearch() {
+		let opcoesVtexSmartResearch = {
+			menuDepartament: ".menu-departamento",
+			loadContent: ".produtos-da-categoria [id^=ResultItems]",
+			shelfClass: "[class$=colunas]",
+			mergeMenu: false,
+			authorizeScroll: () => false,
+			authorizeUpdate: () => true,
+			emptySearchMsg:
+				"<h3>Não encontramos nenhum resultado para seu filtro!</h3>",
+			clearButtonClass: ".clear-filter-btn",
+			infinitScroll: false,
+			loadMoreText: "Ver mais",
+			callback: () => {
+				try {
+					var navMultiple = $(".search-multiple-navigator");
+					var categoryFilter = this.createCategoryFilter();
+					categoryFilter.insertBefore(
+						navMultiple.find("fieldset:first")
+					);
+				} catch (error) {
+					console.log(error);
+				}
+			},
+			shelfCallback: () => {
+				this.prateleiraService.events.publish(UPDATE_SHELF);
+			},
+		};
 		if (isSmallerThen768) {
-			$(".navigation-tabs input[type='checkbox']").vtexSmartResearch({
-				menuDepartament: ".menu-departamento",
-				loadContent: ".produtos-da-categoria [id^=ResultItems]",
-				shelfClass: "[class$=colunas]",
-				mergeMenu: false,
-				authorizeScroll: function () {
-					return false;
-				},
-				authorizeUpdate: function () {
-					return true;
-				},
-				emptySearchMsg:
-					"<h3>Não encontramos nenhum resultado para seu filtro!</h3>",
-				clearButtonClass: ".clear-filter-btn",
-				infinitScroll: false,
-				loadMoreText: "Ver mais",
-				filterOnChange: false,
-				filterButtonClass: ".aply-filter-btn",
-				callback: () => {
-					try {
-						var navMultiple = $(".search-multiple-navigator");
-						var categoryFilter = this.createCategoryFilter();
-						categoryFilter.insertBefore(
-							navMultiple.find("fieldset:first")
-						);
-					} catch (error) {
-						console.log(error);
-					}
-				},
-				shelfCallback: () => {
-					this.prateleiraService.events.publish(UPDATE_SHELF);
-				},
-			});
-		} else {
-			$(".navigation-tabs input[type='checkbox']").vtexSmartResearch({
-				menuDepartament: ".menu-departamento",
-				loadContent: ".produtos-da-categoria [id^=ResultItems]",
-				shelfClass: "[class$=colunas]",
-				mergeMenu: false,
-				authorizeScroll: function () {
-					return false;
-				},
-				authorizeUpdate: function () {
-					return true;
-				},
-				emptySearchMsg:
-					"<h3>Não encontramos nenhum resultado para seu filtro!</h3>",
-				clearButtonClass: ".clear-filter-btn",
-				infinitScroll: false,
-				loadMoreText: "Ver mais",
-				callback: () => {
-					try {
-						var navMultiple = $(".search-multiple-navigator");
-						var categoryFilter = this.createCategoryFilter();
-						categoryFilter.insertBefore(
-							navMultiple.find("fieldset:first")
-						);
-					} catch (error) {
-						console.log(error);
-					}
-				},
-				shelfCallback: () => {
-					this.prateleiraService.events.publish(UPDATE_SHELF);
-				},
-			});
+			opcoesVtexSmartResearch.filterOnChange = false;
+			opcoesVtexSmartResearch.filterButtonClass = ".aply-filter-btn";
 		}
+
+		$(".navigation-tabs input[type='checkbox']").vtexSmartResearch(
+			opcoesVtexSmartResearch
+		);
 
 		$(document).on("vsr-request-end", () => {
 			this.prateleiraService.events.publish(UPDATE_SHELF);
