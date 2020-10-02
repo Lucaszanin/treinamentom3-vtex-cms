@@ -1,11 +1,8 @@
 import Modulo from "./Modulo";
 import { CHANGE_SKU, SKU_REF } from "./EventType";
 
-
-
-export default class ModuloAviseMe extends Modulo{
-
-	constructor(elemento= ".avise-me-container:first-child", componentStore) {
+export default class ModuloAviseMe extends Modulo {
+	constructor(elemento = ".avise-me-container:first-child", componentStore) {
 		super(elemento, componentStore);
 		this.opcoes({
 			titulo:
@@ -24,18 +21,17 @@ export default class ModuloAviseMe extends Modulo{
 	 * Configura os eventos js que serão diparados pelo html do desenhar()
 	 * @return {object} this
 	 */
-	configurar (opcoes) {
+	configurar(opcoes) {
 		super.configurar(opcoes);
 
-		this._store.events.subscribe(SKU_REF, (event, sku) =>{
+		this._store.events.subscribe(SKU_REF, (event, sku) => {
 			this.atualizar(sku);
 		});
-		this._store.events.subscribe(CHANGE_SKU, (event, sku) =>{
+		this._store.events.subscribe(CHANGE_SKU, (event, sku) => {
 			this.atualizar(sku);
 		});
 		return this;
 	}
-
 
 	/**
 	 * Atualiza a quantidade de acordo com o novo sku
@@ -43,7 +39,7 @@ export default class ModuloAviseMe extends Modulo{
 	 * @param  {Object} novoSku objeto do sku selecionado
 	 * @return {Object} this
 	 */
-	atualizar (novoSku) {
+	atualizar(novoSku) {
 		if (!novoSku) {
 			novoSku = {
 				available: false,
@@ -65,7 +61,6 @@ export default class ModuloAviseMe extends Modulo{
 		return this;
 	}
 
-
 	/**
 	 * Cria e insere o html com as variações dos skus
 	 * @return {object} this
@@ -76,7 +71,7 @@ export default class ModuloAviseMe extends Modulo{
 				<fieldset class="form-avise-me">
 					<a class="close" >${this.opcoes().fechar}</a>
 					<h2> ${this.opcoes().titulo} </h2>
-					${(this.opcoes().subtitulo)?`<h3> ${this.opcoes().subtitulo} </h3>`:''}
+					${this.opcoes().subtitulo ? `<h3> ${this.opcoes().subtitulo} </h3>` : ""}
 					<div class="avise-me-wrapper">
 						<label >
 							<span>${this.opcoes().placeholderNome}</span>
@@ -90,17 +85,19 @@ export default class ModuloAviseMe extends Modulo{
 						</label>
 					</div>
 					<input name="notifymeIdSku" type="hidden" id="sku-avise-me" class="notifyme-skuid" value="0">
-					<input name="notifymeButtonOK" type="button" id="enviar-avise-me" class="btn-enviar" value="${this.opcoes().btnSubmit}">
+					<input name="notifymeButtonOK" type="button" id="enviar-avise-me" class="btn-enviar" value="${
+						this.opcoes().btnSubmit
+					}">
 					<p class="status"></p>
 				</fieldset>
 			</div>`;
 
-
 			var $aviseme = $(_html).appendTo(this.elemento());
 
-			$aviseme.on('click','.close',()=>{this.elemento().hide();})
-			$aviseme.on('click','#enviar-avise-me',this.enviar.bind(this))
-
+			$aviseme.on("click", ".close", () => {
+				this.elemento().hide();
+			});
+			$aviseme.on("click", "#enviar-avise-me", this.enviar.bind(this));
 		}
 		this.atualizar(this._store.state.selectedSku);
 		return this;
@@ -109,7 +106,7 @@ export default class ModuloAviseMe extends Modulo{
 	/**
 	 * Funçõa que envia registra a solicitação de "avise-me"
 	 */
-	enviar () {
+	enviar() {
 		var aviseme = this.elemento().find(".form-avise-me");
 		if (!this.validar(aviseme)) {
 			return false;
@@ -133,7 +130,7 @@ export default class ModuloAviseMe extends Modulo{
 					.addClass("msgErro");
 			}.bind(this),
 		});
-	};
+	}
 	/**
 	 * Função para validar os dados do formulário
 	 * @param {jQueryElement} aviseme
@@ -153,6 +150,5 @@ export default class ModuloAviseMe extends Modulo{
 			return false;
 		}
 		return true;
-	};
-
+	}
 }

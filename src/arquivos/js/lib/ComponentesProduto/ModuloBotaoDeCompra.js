@@ -6,9 +6,8 @@ import {
 	ADD_SKU_TO_CART_FAIL,
 	ADD_SKU_TO_CART_SUCESS,
 	ADD_SKU,
-	REMOVE_SKU
+	REMOVE_SKU,
 } from "./EventType";
-
 
 /**
  * Modulo de compra
@@ -20,9 +19,8 @@ import {
  * @link https://github.com/vtex/vtex.js/tree/master/docs/checkout#addtocartitems-expectedorderformsections-saleschannel
  */
 
-
 export default class ModuloBotaoDeCompra extends Modulo {
-	constructor(elemento= ".btnBuy", componentStore) {
+	constructor(elemento = ".btnBuy", componentStore) {
 		super(elemento, componentStore);
 
 		this.produtoEscolhido = {
@@ -34,7 +32,8 @@ export default class ModuloBotaoDeCompra extends Modulo {
 			botaoSkuIndisponivel: "Produto indisponível",
 			msgVariacaoErro: "<p>Escolha uma variação.</p>",
 			msgByEvent: false,
-			msgAddCarrinhoErro: "<p>Não foi possivel adicionar ao carrinho!</p>",
+			msgAddCarrinhoErro:
+				"<p>Não foi possivel adicionar ao carrinho!</p>",
 			msgAddCarrinhoSucesso:
 				"<p>Seu produto foi adicionado ao carrinho com sucesso!</p><p>O que deseja fazer agora?</p>",
 			botaoContinuarComrpando: "Continuar comprando",
@@ -42,8 +41,6 @@ export default class ModuloBotaoDeCompra extends Modulo {
 			icone: "",
 		};
 	}
-
-
 
 	/**
 	 * Atualiza a quantidade de acordo com o novo sku
@@ -71,7 +68,7 @@ export default class ModuloBotaoDeCompra extends Modulo {
 		return this;
 	}
 
-	obterCannalDeVendas () {
+	obterCannalDeVendas() {
 		var name = "VTEXSC=sc=";
 		var ca = document.cookie.split(";");
 		for (var i = 0; i < ca.length; i++) {
@@ -104,7 +101,7 @@ export default class ModuloBotaoDeCompra extends Modulo {
 		);
 
 		return this;
-	};
+	}
 
 	/**
 	 * Cria e insere o html com as variações dos skus
@@ -176,7 +173,6 @@ export default class ModuloBotaoDeCompra extends Modulo {
 		dataLayer.push({ event: "m3-addToCart" });
 
 		if (!this._opcoes.msgByEvent) {
-
 			let _html = `<div class="modal-add-cart modal">
 				<div class="modal-add-cart__overlay"></div>
 				<div class="modal-add-cart__box">
@@ -201,14 +197,16 @@ export default class ModuloBotaoDeCompra extends Modulo {
 				</div>
 			</div>`;
 
-			let $popup = $(_html)
+			let $popup = $(_html);
 
 			this.elemento().find(".erro-add-cart").fadeOut("slow");
 			// $popup.hide().appendTo(this.elemento()).fadeIn('slow');
 			$popup.appendTo(this.elemento());
 			$popup.addClass("show");
-			$popup.on('click',
-				'.modal-add-cart__overlay,.continue,.close', (event)=> {
+			$popup.on(
+				"click",
+				".modal-add-cart__overlay,.continue,.close",
+				(event) => {
 					event.preventDefault();
 					$popup.removeClass("show");
 					$popup.remove();
@@ -244,11 +242,10 @@ export default class ModuloBotaoDeCompra extends Modulo {
 			</div>`;
 
 			var container = $(_html).prependTo(this.elemento());
-			container.on('click','.close',(event)=>{
+			container.on("click", ".close", (event) => {
 				event.preventDefault();
 				container.fadeOut("slow");
 			});
-
 		} else {
 			this.elemento().find(".erro-add-cart").fadeIn("slow");
 		}
