@@ -10,7 +10,7 @@ import PrateleiraService, {
  */
 export default class Categoria {
 	constructor(ctx) {
-		this.prateleiraService = ctx.getService(PrateleiraService);
+		this.prateleiraService = ctx.getService(PrateleiraService.name);
 		this.reposicionarSelectDeOrdenacao();
 
 		if (isSmallerThen768) {
