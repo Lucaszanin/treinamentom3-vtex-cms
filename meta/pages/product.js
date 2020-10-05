@@ -29,29 +29,29 @@ module.exports = {
 		},
 		// EXEMPLO DE PRATELEIRA COMUM
 		// {
-		//   "id": "prateleira-padrao",
-		//   "objects": [
-		//     {
-		//       "type": "colecao",
-		//       "name": "prateleira",
-		//       "properties": {
-		//         "layout": "prateleira-padrao",
-		//         "number-of-columns": 12,
-		//         "number-of-items": 12,
-		//         "show-unavailable": false,
-		//         //sim random está escrito errado e é culpa da vtex
-		//         "ramdom": false,
-		//         "paged": false
-		//       },
-		//       "contents": [
-		//         {
-		//           "name": "praleira",
-		//           "active": true,
-		//           "clusterId": 158
-		//         }
-		//       ]
-		//     }
-		//   ]
-		// }
+		// 	id: "prateleira-padrao",
+		// 	objects: [
+		// 		{
+		// 			type: "colecao",
+		// 			name: "prateleira",
+		// 			properties: {
+		// 				layout: "prateleira-padrao",
+		// 				"number-of-columns": 12,
+		// 				"number-of-items": 12,
+		// 				"show-unavailable": false,
+		// 				//sim random está escrito errado e é culpa da vtex
+		// 				ramdom: false,
+		// 				paged: false,
+		// 			},
+		// 			contents: [
+		// 				{
+		// 					name: "praleira",
+		// 					active: true,
+		// 					clusterId: 158,
+		// 				},
+		// 			],
+		// 		},
+		// 	],
+		// },
 	],
 };
