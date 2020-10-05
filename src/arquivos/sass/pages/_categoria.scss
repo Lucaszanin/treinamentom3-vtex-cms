@@ -504,6 +504,103 @@
 		}
 	}
 
+	.paginated-container {
+		ul.list-pages {
+			margin: 40px auto 20px;
+			text-align: center;
+
+			li {
+				display: inline-block;
+				vertical-align: middle;
+				font-size: 14px;
+				max-width: none;
+
+				width: 0;
+				margin: 0 -2px;
+				opacity: 0;
+				transition: all 0.15s linear;
+				visibility: hidden;
+
+				&#first,
+				&#last {
+					display: none;
+				}
+
+				&#prev,
+				&#next,
+				&#first,
+				&#last,
+				&.ativo {
+					width: auto;
+					opacity: 1;
+					visibility: visible;
+				}
+
+				&.current {
+					a {
+						background-color: $color-black;
+						color: $color-white;
+						pointer-events: none;
+					}
+				}
+
+				&#prev,
+				&#next,
+				&#first,
+				&#last {
+					a {
+						font-size: 0;
+						text-indent: -99999px;
+						overflow: hidden;
+						color: $color-gray2;
+
+						&:before {
+							@include pseudo(block, relative, "\00BB");
+							font-size: 18px;
+							text-indent: 0;
+							line-height: 21px;
+						}
+					}
+					&.desativo a {
+						color: $color-gray3;
+						pointer-events: none;
+						width: 0;
+						opacity: 0;
+						visibility: hidden;
+					}
+				}
+				&#first a:before {
+					content: "\00AB";
+				}
+				&#prev a:before {
+					content: "\2039";
+				}
+				&#next a:before {
+					content: "\203A";
+				}
+			}
+			a {
+				background-color: $color-white;
+				color: $color-black;
+				padding: 4px 12px;
+				text-decoration: none;
+				display: block;
+				border: 1px solid $color-gray6;
+
+				@include mq(md, min) {
+					&:hover {
+						background-color: $color-gray6;
+						color: darken($color-black, 15);
+
+						&:active {
+							color: darken($color-black, 10);
+						}
+					}
+				}
+			}
+		}
+	}
+
 	.vtexsr-emptySearch {
 		text-align: center;
 	}

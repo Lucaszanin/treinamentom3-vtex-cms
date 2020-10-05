@@ -117,12 +117,12 @@ export default class Categoria {
 			loadContent: ".produtos-da-categoria [id^=ResultItems]",
 			shelfClass: "[class$=colunas]",
 			mergeMenu: false,
-			authorizeScroll: () => false,
 			authorizeUpdate: () => true,
 			emptySearchMsg:
 				"<h3>Não encontramos nenhum resultado para seu filtro!</h3>",
 			clearButtonClass: ".clear-filter-btn",
-			infinitScroll: false,
+			// valores permitidos ['load-more','pagination','infinit-scroll']
+			methodPageLoad: "load-more",
 			loadMoreText: "Ver mais",
 			callback: () => {
 				try {
