@@ -6,6 +6,7 @@ import { alterarTamanhoImagemSrcVtex } from "Helpers/vtexUtils";
 import { isSmallerThen768 } from "Helpers/MediasMatch";
 import { slideResponsivo, produtoThumbs } from "App/functions/slide";
 import ProductModules from "App/components/ProductModules";
+import CrossSelling from "../components/CrossSelling";
 import { CHANGE_SKU } from "Lib/ComponentesProduto/EventType";
 
 export default class Produto {
@@ -44,69 +45,12 @@ export default class Produto {
 	}
 
 	exibirVariacaoDeCores() {
-		var urlSimilares =
-			"/api/catalog_system/pub/products/crossselling/similars/" +
-			window.skuJson.productId;
-
-		var jqXHR = $.ajax({
-			url: urlSimilares,
-			type: "GET",
-		});
-
-		jqXHR.done(function sucesso(value) {
-			if (value.length > 0) {
-				var variacaoSku = $(".product-info .similares");
-				var titulo = $("<div />", {
-					class: "titulo",
-					text: "Escolha a cor:",
-				}).appendTo(variacaoSku);
-				var ul = $("<ul />").appendTo(variacaoSku);
-
-				var produtosJaExibidos = [];
-				for (var i = 0; i < value.length; i++) {
-					if (
-						$.inArray(value[i].productId, produtosJaExibidos) == -1
-					) {
-						produtosJaExibidos.push(value[i].productId);
-
-						var li = $("<li />", {
-							class:
-								parseInt(value[i].productId) ===
-								parseInt(skuJson.productId)
-									? "selected"
-									: "",
-						});
-						var link = $("<a />", {
-							href: value[i].link,
-							title: value[i].productName,
-						}).appendTo(li);
-						var img = value[i].items[0].images[0].imageTag;
-						img = img
-							.replace(/#width#/gi, "90")
-							.replace(/#height#/gi, "90");
-						img = img.replace(
-							"~",
-							"//" + loja.accountName + ".vteximg.com.br/"
-						);
-						$(img).appendTo(link);
-
-						li.appendTo(ul);
-					}
-				}
-
-				ul.slick({
-					dots: false,
-					autoplay: true,
-					autoplaySpeed: 3000,
-					arrows: false,
-					infinite: true,
-					slidesToShow: 4,
-					slidesToScroll: 4,
-					speed: 500,
-					variableWidth: true,
-				});
-			}
-		});
+		let idProduto = window.skuJson.productId;
+		let crossSelling = new CrossSelling(
+			idProduto,
+			".product-info .similares"
+		);
+		crossSelling.similars();
 	}
 
 	shortDescription() {

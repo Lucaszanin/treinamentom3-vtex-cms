@@ -1,51 +1,55 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
-xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
-<head>
-	<meta name="page" content="institucional" page-id="institucional" />
-	<meta charset="utf-8" />
-	<meta http-equiv="x-ua-compatible" content="ie=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<vtex:metaTags />
-	<vtex:contentPlaceHolder id="htmlSeo" />
-	<title>Template</title>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
+	xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce"
+	lang="pt-br"
+>
+	<head>
+		<meta name="page" content="institucional" page-id="institucional" />
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<vtex:metaTags />
+		<vtex:contentPlaceHolder id="htmlSeo" />
+		<title>Template</title>
 
-	<vtex:template id="template-loads-header" />
+		<vtex:template id="template-loads-header" />
+	</head>
 
-</head>
-<body  >
-	<vtex:template id="template-header" />
+	<body>
+		<vtex:template id="template-header" />
 
-	<main class="institucional container">
-		<div class="row">
-			<div class="col-12 breadcrumb">
-				<ul>
-					<li>
-						<a href="/">
-							Home
-						</a>
-					</li>
-					<li>
-						<span>
-							Institucional
-						</span>
-					</li>
-				</ul>
+		<main class="institucional container">
+			<div class="row">
+				<div class="col-12 breadcrumb">
+					<ul>
+						<li>
+							<a href="/">
+								Home
+							</a>
+						</li>
+						<li>
+							<span>
+								Institucional
+							</span>
+						</li>
+					</ul>
+				</div>
+				<div class="col-12 navegacao">
+					<vtex.cmc:navegacaoInstitucional />
+				</div>
+				<div class="col-12 conteudo">
+					<vtex:contentPlaceHolder id="texto-institucional" />
+				</div>
 			</div>
-			<div class="col-12 navegacao">
-				<vtex.cmc:lojatestenavegacaoInstitucional />
-			</div>
-			<div class="col-12 conteudo">
-				<vtex:contentPlaceHolder id="texto-seo" type="text"/>
-			</div>
-		</div>
-	</main>
+		</main>
 
-	<footer >
-		<vtex:template id="template-footer-newsletter" />
-		<vtex:template id="template-footer-links" />
-		<vtex:template id="template-footer" />
-	</footer>
-	<vtex:template id="template-loads-footer" />
-</body>
+		<footer>
+			<vtex:template id="template-footer-newsletter" />
+			<vtex:template id="template-footer-links" />
+			<vtex:template id="template-footer" />
+		</footer>
+		<vtex:template id="template-loads-footer" />
+	</body>
 </html>

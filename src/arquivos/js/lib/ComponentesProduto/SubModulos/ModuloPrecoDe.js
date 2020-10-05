@@ -1,4 +1,4 @@
-import { Modulo } from "../Modulo";
+import Modulo from "../Modulo";
 import { getPrice } from "../util";
 
 export default class ModuloPrecoDe extends Modulo {

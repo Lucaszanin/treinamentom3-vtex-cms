@@ -4,22 +4,19 @@ import ModuloPrecoParcelado from "./SubModulos/ModuloPrecoParcelado";
 import ModuloPrecoBoleto from "./SubModulos/ModuloPrecoBoleto";
 
 import ModuloBtnQtd from "./SubModulos/ModuloBtnQtd";
-
 import ModuloSelect from "./SubModulos/ModuloSelect";
 
-import { ModuloSkusPorNome } from "./SubModulos/ModuloSkusPorNome";
+import ModuloSkusPorNome from "./SubModulos/ModuloSkusPorNome";
+import ModuloSkusPorEspecificacoes from "./SubModulos/ModuloSkusPorEspecificacoes";
 
-import { ModuloSkusPorEspecificacoes } from "./SubModulos/ModuloSkusPorEspecificacoes";
+import ModuloQuantidade from "./ModuloQuantidade";
 
-import { ModuloQuantidade } from "./ModuloQuantidade";
+import ModuloPreco from "./ModuloPreco";
 
-import { ModuloPreco } from "./ModuloPreco";
+import ModuloCompreJunto from "./ModuloCompreJunto";
 
-import { ModuloCompreJunto } from "./ModuloCompreJunto";
-
-import { ModuloBotaoDeCompra } from "./ModuloBotaoDeCompra";
-
-import { ModuloAviseMe } from "./ModuloAviseMe";
+import ModuloBotaoDeCompra from "./ModuloBotaoDeCompra";
+import ModuloAviseMe from "./ModuloAviseMe";
 
 import { ComponentStore } from "./store";
 

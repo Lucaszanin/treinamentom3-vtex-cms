@@ -96,7 +96,7 @@
 			filterOnChange: true, // Permite que o filtro seja aplicado assim que a opção é marcada
 			filterButtonClass: ".filter-btn", // Classe do botão que terá a ação de filtro caso a "filterOnChange" seja false
 			clearButtonClass: ".clear-filter-btn", // Classe para o botão que limpa todos os filtros
-			infinitScroll: true, // Permite que o filtro seja aplicado assim que a opção é marcada
+			methodPageLoad: "load-more", // valores permitidos ['load-more','pagination','infinit-scroll']
 			loadMoreText: "Carregar mais", // Permite que o filtro seja aplicado assim que a opção é marcada
 			// Função que retorna o valor p/ onde a página deve rolar quando o usuário marca ou desmarca um filtro
 			filterScrollTop: function (shelfOffset) {
@@ -115,11 +115,6 @@
 			// Função que é executada quando a seleção de filtros não retorna nenhum resultado
 			// Recebe como parâmetro um objeto contendo a quantidade total de requisições feitas e a quantidade de filtros selecionados
 			emptySearchCallback: function () {},
-			// Função para permitir ou não que a rolagem infinita execute na página esta deve retornar "true" ou "false"
-			// Recebe como parâmetro um objeto contendo a quantidade total de requisições feitas e a quantidade de filtros selecionados
-			authorizeScroll: function () {
-				return true;
-			},
 			// Função para permitir ou não que o conteúdo de "loadContent" seja atualizado. Esta deve retornar "true" ou "false"
 			// Recebe como parâmetro um objeto contendo a quantidade total de requisições feitas e a quantidade de filtros selecionados
 			authorizeUpdate: function () {
@@ -145,7 +140,11 @@
 			animatingFilter = false,
 			loadContentE = jQuery(options.loadContent),
 			filtersMenuE = jQuery(options.filtersMenu),
-			ajaxCallbackObj = { requests: 0, filters: 0, isEmpty: false },
+			ajaxCallbackObj = {
+				requests: 0,
+				filters: 0,
+				isEmpty: false,
+			},
 			labelCallbackData = {};
 
 		var fn = {
@@ -209,7 +208,12 @@
 						});
 				});
 				elem.bind("click", function () {
-					_html.animate({ scrollTop: 0 }, "slow");
+					_html.animate(
+						{
+							scrollTop: 0,
+						},
+						"slow"
+					);
 					return false;
 				});
 			},
@@ -217,10 +221,7 @@
 				_window.on("scroll", function () {
 					var _this = jQuery(this);
 
-					if (
-						paginador.isDisponivelParaNovaBusca() &&
-						options.authorizeScroll(ajaxCallbackObj)
-					) {
+					if (paginador.isDisponivelParaNovaBusca()) {
 						if (
 							_this.scrollTop() + _this.height() >=
 							options.getShelfHeight(loadContentE)
@@ -244,12 +245,6 @@
 						paginador.proxima();
 					}
 				});
-
-				btn.hide();
-
-				if (moreResults) {
-					btn.show();
-				}
 
 				$(window).on("vsr-request-init", function () {
 					btn.prop("disabled", true).addClass("loading");
@@ -278,29 +273,200 @@
 					btn.prop("disabled", false).removeClass("loading");
 				});
 			},
+			paginated: function (paginador) {
+				var buildStructure = function () {
+					const paginatedHtml = `
+						<div class="paginated-container">
+							<ul class="list-pages">
+								<li id="first">
+									<a href="#1" title="Primeira página">Primeira página</a>
+								</li>
+								<li id="prev">
+									<a href="#${currentPage - 1}" title="Página anterior">Página anterior</a>
+								</li>
+								${Array(totalPages)
+									.fill()
+									.map(
+										(item, i) => `
+									<li id="page-${i + 1}">
+										<a href="#${i + 1}" title="Página ${i + 1}">${i + 1}</a>
+									</li>
+								`
+									)
+									.join("")}
+								<li id="next">
+									<a href="#${currentPage + 1}" title="Próxima página">Próxima página</a>
+								</li>
+								<li id="last">
+									<a href="#${totalPages}" title="Última página">Última página</a>
+								</li>
+							</ul>
+						</div>`;
+					const paginated = $(paginatedHtml)
+						.insertAfter(loadContentE)
+						.hide();
+
+					updateButtons();
+
+					if (totalPages > 1) {
+						paginated.fadeIn();
+					}
+				};
+
+				function updateButtons() {
+					updateVisibilityButtons();
+					updateLinkButons();
+				}
+
+				function updateLinkButons() {
+					const $pages = $(".paginated-container .list-pages");
+					let prev = currentPage <= 1 ? 1 : currentPage - 1;
+					let next =
+						currentPage >= totalPages
+							? totalPages
+							: currentPage + 1;
+
+					$pages.find("#prev a").attr("href", `#${prev}`);
+					$pages.find("#next a").attr("href", `#${next}`);
+				}
+
+				function updateVisibilityButtons() {
+					const $pages = $(".paginated-container .list-pages");
+					$pages.find("li").removeClass("ativo desativo current");
+					$pages.find("#page-" + currentPage).addClass("current");
+
+					// determina quais botões de pagina serão exibidos
+					let listPegeAtive = [
+						currentPage - 2,
+						currentPage - 1,
+						currentPage,
+						currentPage + 1,
+						currentPage + 2,
+					];
+
+					switch (currentPage) {
+						case totalPages - 1:
+							// ativa o link para a 3º pagina anteior
+							listPegeAtive.push(currentPage - 3);
+							break;
+						case totalPages:
+							// ativa o link para a 3º e a 4º pagina anteior
+							listPegeAtive.push(currentPage - 3);
+							listPegeAtive.push(currentPage - 4);
+							break;
+						case 0:
+							// ativa o link para a 3º e a 4º proxima pagina
+							listPegeAtive.push(currentPage + 3);
+							listPegeAtive.push(currentPage + 4);
+							break;
+						case 1:
+							// ativa o link para a 3º e proxima pagina
+							listPegeAtive.push(currentPage + 3);
+							break;
+						default:
+							break;
+					}
+
+					let selectorIdsButtonsAtive = listPegeAtive
+						.map((item, i) => {
+							return `#page-${item}`;
+						})
+						.join(",");
+
+					$pages.find(selectorIdsButtonsAtive).addClass("ativo");
+
+					// determeina a visibilidade dos botões de acção
+					// fitst, prev, next e last
+					if (currentPage <= 1) {
+						$pages.find("#first,#prev").addClass("desativo");
+					}
+					if (currentPage >= totalPages) {
+						$pages.find("#last,#next").addClass("desativo");
+					}
+				}
+
+				var getHash = function () {
+					var hash = window.location.hash.replace("#", "");
+					var cleanHash = parseInt(hash);
+
+					if ($.isNumeric(cleanHash)) {
+						if (cleanHash < 0) {
+							cleanHash = 1;
+						} else if (cleanHash > totalPages) {
+							cleanHash = totalPages;
+						}
+					} else {
+						cleanHash = 1;
+					}
+
+					return cleanHash;
+				};
+
+				currentPage = getHash();
+				var productsPerPage = paginador.qtdProductsPerPage();
+				var totalPages = paginador.getTotalPaginas();
+
+				buildStructure();
+
+				$(window).on("vsr-contagem-produtos", function (event, data) {
+					var newTotalPages = Math.ceil(data / productsPerPage);
+
+					if (newTotalPages != totalPages) {
+						totalPages = newTotalPages;
+
+						$(".paginated-container").remove();
+
+						buildStructure();
+					}
+				});
+
+				$(window).on("vsr-apply-filter", function () {
+					currentPage = 1;
+					window.location.hash = 1;
+				});
+
+				$(window).on("hashchange", function () {
+					paginador.getPageByNumber(getHash());
+					updateButtons();
+				});
+			},
 			triggerEvent: function (nameEvent, elemento, data) {
 				if (undefined == nameEvent) return;
 
 				elemento = elemento || filtersMenuE;
 				$(elemento).trigger(nameEvent, data);
 			},
+			activePageLoad: function () {
+				switch (options.methodPageLoad) {
+					case "infinit-scroll":
+						fn.infinitScroll(paginador);
+						break;
+					case "pagination":
+						fn.paginated(paginador);
+						break;
+					case "load-more":
+					default:
+						fn.loadMore(paginador);
+						break;
+				}
+				fn.scrollToTop();
+			},
 		};
-
-		function getParameterByName(name, url) {
-			if (!url) url = window.location.href;
-			name = name.replace(/[\[\]]/g, "\\$&");
-			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-				results = regex.exec(url);
-			if (!results) return null;
-			if (!results[2]) return "";
-			return decodeURIComponent(results[2].replace(/\+/g, " "));
-		}
-
 		var paginas = function () {
 			var currentStatus = true;
 			var numeroEsperadoItens;
+
+			function getParameterByName(name, url) {
+				if (!url) url = window.location.href;
+				name = name.replace(/[\[\]]/g, "\\$&");
+				var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+					results = regex.exec(url);
+				if (!results) return null;
+				if (!results[2]) return "";
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
 			numeroEsperadoItens = parseInt(
-				getParameterByName("cc", fn.getSearchUrl())
+				getParameterByName("PS", fn.getSearchUrl())
 			);
 
 			$(window).on("vsr-no-more-results", function () {
@@ -376,6 +542,64 @@
 
 					currentPage++;
 				},
+				getPageByNumber: function (nPagina) {
+					if (!currentStatus) return null;
+
+					if (currentPage == nPagina) return null;
+
+					currentPage = nPagina;
+
+					var currentItems = loadContentE
+						.find(options.shelfClass)
+						.filter(":last");
+					currentItems.after(elemLoading);
+					currentStatus = false;
+
+					fn.triggerEvent("vsr-request-init", loadContentE);
+
+					pageJqxhr = jQuery.ajax({
+						url: fn.getUrl(true),
+						success: function (data) {
+							var contagemItens = $(data).find("li[layout]")
+								.length;
+
+							if (contagemItens > 0) currentItems.after(data);
+							currentItems.remove();
+							if (
+								contagemItens > 0 &&
+								contagemItens == numeroEsperadoItens
+							) {
+								fn.triggerEvent("vsr-more-results", _window);
+							} else {
+								fn.triggerEvent("vsr-no-more-results", _window);
+							}
+
+							currentStatus = true;
+							elemLoading.remove();
+							ajaxCallbackObj.requests++;
+							options.ajaxCallback(ajaxCallbackObj);
+
+							$("html, body").animate(
+								{
+									scrollTop: 0,
+								},
+								500
+							);
+
+							fn.triggerEvent("vsr-ajax-sucess");
+						},
+						complete: function () {
+							fn.triggerEvent("vsr-request-end", loadContentE);
+						},
+					});
+				},
+				qtdProductsPerPage: function (url) {
+					if (!url) {
+						url = fn.getUrl();
+					}
+
+					return parseInt(getParameterByName("PS", fn.getUrl()));
+				},
 			};
 			return paginador;
 		};
@@ -385,27 +609,13 @@
 			currentSearchUrl = searchUrl = options.searchUrl;
 		else currentSearchUrl = searchUrl = fn.getSearchUrl();
 
-		var numeroEsperadoItens = parseInt(
-			getParameterByName("cc", fn.getSearchUrl())
-		);
-
-		var contagemItens = loadContentE.find("li[layout]").length;
-
-		if (!(contagemItens > 0 && contagemItens == numeroEsperadoItens)) {
-			fn.triggerEvent("vsr-no-more-results", _window);
-		}
-
 		// Reporting Errors
 		if ($this.length < 1) {
 			log("Nenhuma opção de filtro encontrada", "Aviso");
-			if (options.showLinks)
+			if (options.showLinks) {
 				jQuery(options.linksMenu).css("visibility", "visible").show();
-			if (options.infinitScroll) {
-				fn.infinitScroll(paginador);
-			} else {
-				fn.loadMore(paginador);
 			}
-			fn.scrollToTop();
+			fn.activePageLoad();
 			return $this;
 		}
 
@@ -482,7 +692,6 @@
 
 				if ("" !== urlFilters) fns.addFilter($empty);
 
-				fns.contadorDeProdutos();
 				fns.atualizarPaginador();
 				fn.triggerEvent("vsr-complete");
 			},
@@ -554,7 +763,10 @@
 							title: v,
 						};
 
-						t.addClass(labelClass).attr({ title: v, index: ndx });
+						t.addClass(labelClass).attr({
+							title: v,
+							index: ndx,
+						});
 
 						options.labelCallback(labelCallbackData);
 					});
@@ -578,7 +790,10 @@
 				);
 				shelfJqxhr = jQuery.ajax({
 					url: currentSearchUrl,
-					success: fns.filterAjaxSuccess,
+					success: function (data) {
+						fns.filterAjaxSuccess(data);
+						fn.triggerEvent("vsr-apply-filter", loadContentE);
+					},
 					error: fns.filterAjaxError,
 					complete: function () {
 						fn.triggerEvent("vsr-request-end", loadContentE);
@@ -629,7 +844,10 @@
 				_html.animate(
 					{
 						scrollTop: options.filterScrollTop(
-							loadContentOffset || { top: 0, left: 0 }
+							loadContentOffset || {
+								top: 0,
+								left: 0,
+							}
 						),
 					},
 					600
@@ -652,6 +870,7 @@
 			},
 			updateContent: function ($data) {
 				animatingFilter = true;
+
 				if (!options.authorizeUpdate(ajaxCallbackObj)) return false;
 
 				var shelf = $data.filter(options.shelfClass);
@@ -671,6 +890,7 @@
 					if (shelf.length > 0) {
 						shelf.hide();
 						loadContentE.append(shelf);
+
 						options.shelfCallback();
 						shelf.slideDown(600, function () {
 							animatingFilter = false;
@@ -782,13 +1002,9 @@
 			fns.mergeMenuList();
 
 		fns.exec();
+		fns.contadorDeProdutos();
+		fn.activePageLoad();
 
-		if (options.infinitScroll) {
-			fn.infinitScroll(paginador);
-		} else {
-			fn.loadMore(paginador);
-		}
-		fn.scrollToTop();
 		options.callback();
 
 		// Exibindo o menu

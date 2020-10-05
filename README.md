@@ -9,8 +9,16 @@ data: 10/02/2020
 ## Tarefas Gulp
 
 -   `npm run local` - Ativa um server local e assiste/atualiza mudanças nos arquivos ( html, scss, js e img ), ultilizado para desenvolvimento local.
--   `npm run dev` - Ativa um server local e assiste/atualiza mudanças nos arquivos ( scss, js e img ), ultilizado para desenvolvimento onde o template está
+-   `npm run local:fast` - Ativa um server local e assiste/atualiza mudanças nos arquivos ( html, scss, js e img ), ultilizado para desenvolvimento local. Porem utiliza o sucrase para uma build mais rapida e leve, no qual pode ser util em projetos muito grandes ou em computadores mais fracos.
+-   `npm run dev` - Ativa um server local e assiste/atualiza mudanças nos arquivos ( scss, js e img ), ultilizado para desenvolvimento onde o template está.
+-   `npm run dev:fast` - Ativa um server local e assiste/atualiza mudanças nos arquivos ( scss, js e img ), ultilizado para desenvolvimento onde o template está. Porem utiliza o sucrase para uma build mais rapida e leve, no qual pode ser util em projetos muito grandes ou em computadores mais fracos.
 -   `npm run prod` - Realiza build para implantação na vtex
+
+## Guias de desenvolvimento
+
+- html: [Video Tutorial](https://drive.google.com/file/d/1nopiHENo5VRCsOKKihv6pbDOPOo2J2HV/view?usp=sharing)
+- css:
+- js:
 
 ## Processo de implantação
 
@@ -37,99 +45,3 @@ data: 10/02/2020
     - Custum Newsletter ( https://gitlab.com/agenciam3/custom-newsletter-form )
     - Fale conosco ( https://gitlab.com/agenciam3/form-fale-conosco-vtex/ )
 
-## Estrutura de diretórios
-
-```
-thema-ecommerce-simples-m3
-├---arquivos
-|   ├---imagens
-|   |       *.png
-|   |
-|   ├---js
-|   |   |   main.js
-|   |   |
-|   |   ├---lib
-|   |   |       custom-newsletter-form.js
-|   |   |       form-fale-conosco-vtex.js
-|   |   |       infinitScroll.js
-|   |   |       jqinstapics.js
-|   |   |       jquery.validate.min.js
-|   |   |       m3Dropdown.js
-|   |   |       slick.js
-|   |   |       vtex-variation-grid.js
-|   |   |
-|   |   ├---paginas
-|   |   |       categoria.js
-|   |   |       institucional.js
-|   |   |       principal.js
-|   |   |       produto.js
-|   |   |
-|   |   └--parts
-|   |           login.js
-|   |           menu.js
-|   |           prateleira.js
-|   |           slide.js
-|   |           social.js
-|   |           utils.js
-|   |
-|   ├---sass
-|   |   |   base.scss
-|   |   |   main.scss
-|   |   |
-|   |   ├---help
-|   |   |       _animacao.scss
-|   |   |       _comum.scss
-|   |   |       _normalize.scss
-|   |   |
-|   |   ├---lib
-|   |   |       _bootstrap.scss
-|   |   |       _slick.scss
-|   |   |       _sprite.scss
-|   |   |
-|   |   ├---paginas
-|   |   |       _categoria.scss
-|   |   |       _home.scss
-|   |   |       _institucional.scss
-|   |   |       _paginaDeErro.scss
-|   |   |       _produto.scss
-|   |   |
-|   |   └--parts
-|   |           breandcrumb.scss
-|   |           _ajustes.scss
-|   |           _barraDeVantagens.scss
-|   |           _footer.scss
-|   |           _header.scss
-|   |           _menu.scss
-|   |           _newsletter.scss
-|   |           _prateleira.scss
-|   |
-|   └--sprite
-|           *.png
-|
-├---controles-customizados
-|       controle-exemplo.html
-|
-├---template-pagina
-|   |   template-404.html
-|   |   template-500.html
-|   |   template-buscavazia.html
-|   |   template-categoria.html
-|   |   template-fale-conosco.html
-|   |   template-home.html
-|   |   template-institucional.html
-|   |   template-login.html
-|   |   template-meus-pedidos.html
-|   |   template-minha-conta.html
-|   |   template-produto.html
-|   |
-|   └--sub-templates
-|           template-footer.html
-|           template-header.html
-|           template-loads-footer.html
-|           template-loads-header.html
-|           template-menu.html
-|
-└--template-prateleira
-        prateleira-padrao.html
-        prateleira-padrao.vtex.html
-```

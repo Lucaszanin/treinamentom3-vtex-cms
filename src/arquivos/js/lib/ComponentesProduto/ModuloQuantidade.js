@@ -1,40 +1,40 @@
-import { Modulo } from "./Modulo";
+import Modulo from "./Modulo";
 import { SKU_REF, CHANGE_SKU } from "./EventType";
 /**
  * Modulo de quantidade
  * Permite escolher a quantidade de um sku
  */
-export var ModuloQuantidade = function (
-	elemento = ".qtd-selector-content:first-child",
-	componentStore
-) {
-	Modulo.call(this, elemento, componentStore);
-	this._opcoes = {
-		maxEstoque: 50,
-	};
-	var _this = this;
+export default class ModuloQuantidade extends Modulo {
+	constructor(elemento = ".avise-me-container:first-child", store) {
+		super(elemento, store);
+		this.opcoes({
+			maxEstoque: 50,
+		});
+	}
+
 	/**
 	 * Configura os eventos js que serão diparados pelo html do desenhar()
 	 * @return {object} this
 	 */
-	this.configurar = function (opcoes) {
-		this.opcoes($.extend({}, this._opcoes, opcoes));
+	configurar(opcoes) {
+		super.configurar(opcoes);
 
-		componentStore.events.subscribe(SKU_REF, function (event, sku) {
-			_this.atualizar(sku);
+		this._store.events.subscribe(SKU_REF, (event, sku) => {
+			this.atualizar(sku);
 		});
-		componentStore.events.subscribe(CHANGE_SKU, function (event, sku) {
-			_this.atualizar(sku);
+		this._store.events.subscribe(CHANGE_SKU, (event, sku) => {
+			this.atualizar(sku);
 		});
 		return this;
-	};
+	}
+
 	/**
 	 * Atualiza a quantidade de acordo com o novo sku
 	 * @param  {Event} event evento que disparou atualização
 	 * @param  {Object} novoSku objeto do sku selecionado
 	 * @return {Object} this
 	 */
-	this.atualizar = function (novoSku) {
+	atualizar(novoSku) {
 		if (novoSku?.available === true) {
 			var estoque,
 				skuId = novoSku.sku;
@@ -58,12 +58,13 @@ export var ModuloQuantidade = function (
 			this.elemento().addClass("desativado");
 		}
 		return this;
-	};
+	}
+
 	/**
 	 * Cria e insere o html com as variações dos skus
 	 * @return {object} this
 	 */
-	this.desenhar = function () {
+	desenhar() {
 		if (this.moduloExibicao()) {
 			this.moduloExibicao().elemento(this.elemento());
 			this.moduloExibicao().desenhar();
@@ -71,17 +72,14 @@ export var ModuloQuantidade = function (
 			console.warn("Modulo de exibição não definido");
 		}
 		return this;
-	};
+	}
 	/**
 	 * Get/Set moduloExibicao do modulo
 	 * @param  {JSON} moduloExibicao seletor em formato cssopções do modulo
 	 * @return {JSON}
 	 */
-	this.moduloExibicao = function (moduloExibicao) {
+	moduloExibicao(moduloExibicao) {
 		if (moduloExibicao) this._moduloExibicao = moduloExibicao;
 		return this._moduloExibicao;
-	};
-};
-// subclasse extende superclasse
-ModuloQuantidade.prototype = Object.create(Modulo.prototype);
-ModuloQuantidade.prototype.constructor = ModuloQuantidade;
+	}
+}

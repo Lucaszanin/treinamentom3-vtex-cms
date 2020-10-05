@@ -7,8 +7,6 @@ const gulp = require("gulp"),
 	sass = require("gulp-sass"),
 	imagemin = require("gulp-imagemin"),
 	rename = require("gulp-rename"),
-	replace = require("gulp-replace"),
-	htmlReplace = require("gulp-html-replace"),
 	apiMocker = require("connect-api-mocker"),
 	sprity = require("sprity"),
 	crypto = require("crypto"),
@@ -194,39 +192,11 @@ function html() {
 		prateleira: paths.html.prateleiras,
 	});
 
-	VtexEmulation.loadSubTemplates();
-	VtexEmulation.loadPrateleira();
-	VtexEmulation.loadControles();
+	VtexEmulation.startEngine();
 
 	return gulp
 		.src(VtexEmulation.folders().template + "*.html")
-		.pipe(
-			replace(
-				VtexEmulation.regex().subtemplate,
-				VtexEmulation.subtemplate
-			)
-		)
-		.pipe(replace(VtexEmulation.regex().controle, VtexEmulation.controle))
-		.pipe(
-			replace(
-				VtexEmulation.regex().placeholder,
-				VtexEmulation.placeHolder
-			)
-		)
-		.pipe(
-			htmlReplace({
-				js: [
-					"/arquivos/plugins-shop.min.js",
-					"/arquivos/scripts-shop.min.js",
-				],
-				css: [
-					"/arquivos/bootstrap-grid.css",
-					"/arquivos/style-shop.css",
-				],
-				keepUnassigned: false,
-				keepBlockTags: false,
-			})
-		)
+		.pipe(VtexEmulation.process())
 		.pipe(
 			inlinesource({
 				compress: true,

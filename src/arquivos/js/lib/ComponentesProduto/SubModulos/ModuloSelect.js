@@ -1,4 +1,4 @@
-import { Modulo } from "../Modulo";
+import Modulo from "../Modulo";
 import { CHANGE_QTD } from "../EventType";
 
 export default class ModuloSelect extends Modulo {
@@ -14,7 +14,7 @@ export default class ModuloSelect extends Modulo {
 
 	desenhar() {
 		let _html = `<div class="qtd-selector">
-			<span class="titulo">${this.opcoes().titulo}</span>
+			<span class="titulo">${this.opcoes().titulo}:</span>
 			<span class="wrap-select">
 				<select class="quantidade"></select>
 			</span>
