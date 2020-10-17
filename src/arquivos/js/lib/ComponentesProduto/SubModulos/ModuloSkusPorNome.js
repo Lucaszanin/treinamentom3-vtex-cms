@@ -1,5 +1,4 @@
 import "jquery";
-import { dirname } from "path";
 import ModuloSkus from "../ModuloSkus";
 import { textoParaNomeCss, alterarTamanhoImagemSrcVtex } from "../util";
 /**
