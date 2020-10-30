@@ -28,6 +28,7 @@ module.exports = merge(common, {
 		],
 	},
 	optimization: {
+		usedExports: true,
 		minimizer: [
 			new TerserPlugin({
 				extractComments: true,

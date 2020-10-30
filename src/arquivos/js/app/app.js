@@ -1,6 +1,6 @@
 import config from "Config/index";
 
-import Container from "../core/Container";
+import { Container, IsPage } from "@agenciam3/pkg";
 import Erro from "./pages/Erro";
 import Home from "./pages/Home";
 import Categoria from "./pages/Categoria";
@@ -41,26 +41,28 @@ const app = new Container({
 	services: [PrateleiraService],
 	pages: [
 		{
-			bodyClass: "home",
+			pageRef: ["home"],
 			components: [Home],
 		},
 		{
-			bodyClass: "categoria",
+			pageRef: ["categoria"],
 			components: [Categoria],
 		},
 		{
-			bodyClass: "produto",
+			pageRef: ["produto"],
 			components: [Produto],
 		},
 		{
-			bodyClass: "erro",
+			pageRef: ["erro"],
 			components: [Erro],
 		},
 		{
-			bodyClass: "institucional",
+			pageRef: ["institucional"],
 			components: [Institucional],
 		},
 	],
+
+	ruler: new IsPage(),
 });
 
 app.bind(Minicart.name, ".carrinho .mini-cart");
