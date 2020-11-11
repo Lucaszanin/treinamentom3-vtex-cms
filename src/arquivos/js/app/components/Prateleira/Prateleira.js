@@ -22,7 +22,7 @@ export default class Prateleira {
 			) {
 				this.createFlagDesconto($(el), percentualDeDesconto);
 			}
-			$(this).addClass("flagDeDesconto");
+			$(el).addClass("flagDeDesconto");
 		});
 	}
 	precoParcelado() {
