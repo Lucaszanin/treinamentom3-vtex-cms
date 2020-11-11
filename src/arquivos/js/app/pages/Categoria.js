@@ -18,6 +18,7 @@ export default class Categoria {
 			this.filterMobileExtraInfo();
 		}
 		this.smartResearch();
+		this.renderCategoryFilter();
 	}
 
 	toggleFiltersMobile() {
@@ -111,6 +112,16 @@ export default class Categoria {
 		return departmentFilter;
 	}
 
+	renderCategoryFilter() {
+		try {
+			var navMultiple = $(".search-multiple-navigator");
+			var categoryFilter = this.createCategoryFilter();
+			categoryFilter.insertBefore(navMultiple.find("fieldset:first"));
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	smartResearch() {
 		let opcoesVtexSmartResearch = {
 			menuDepartament: ".menu-departamento",
@@ -124,17 +135,6 @@ export default class Categoria {
 			// valores permitidos ['load-more','pagination','infinit-scroll']
 			methodPageLoad: "load-more",
 			loadMoreText: "Ver mais",
-			callback: () => {
-				try {
-					var navMultiple = $(".search-multiple-navigator");
-					var categoryFilter = this.createCategoryFilter();
-					categoryFilter.insertBefore(
-						navMultiple.find("fieldset:first")
-					);
-				} catch (error) {
-					console.log(error);
-				}
-			},
 			shelfCallback: () => {
 				this.prateleiraService.events.publish(UPDATE_SHELF);
 			},

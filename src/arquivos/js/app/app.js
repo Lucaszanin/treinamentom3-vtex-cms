@@ -1,6 +1,7 @@
+import { Container } from "@agenciam3/pkg";
+
 import config from "Config/index";
 
-import Container from "../core/Container";
 import Erro from "./pages/Erro";
 import Home from "./pages/Home";
 import Categoria from "./pages/Categoria";
@@ -41,23 +42,23 @@ const app = new Container({
 	services: [PrateleiraService],
 	pages: [
 		{
-			bodyClass: "home",
+			pageRefs: ["home"],
 			components: [Home],
 		},
 		{
-			bodyClass: "categoria",
+			pageRefs: ["categoria"],
 			components: [Categoria],
 		},
 		{
-			bodyClass: "produto",
+			pageRefs: ["produto"],
 			components: [Produto],
 		},
 		{
-			bodyClass: "erro",
+			pageRefs: ["erro"],
 			components: [Erro],
 		},
 		{
-			bodyClass: "institucional",
+			pageRefs: ["institucional"],
 			components: [Institucional],
 		},
 	],

@@ -1,4 +1,4 @@
-import Store from "Helpers/State/Store";
+import { Store } from "@agenciam3/pkg";
 
 export const ComponentStore = function (storeOpts = {}) {
 	return new Store({

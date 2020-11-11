@@ -28,16 +28,18 @@ module.exports = merge(common, {
 		],
 	},
 	optimization: {
+		usedExports: true,
+		minimize: true,
 		minimizer: [
 			new TerserPlugin({
 				extractComments: true,
 				terserOptions: {
 					keep_classnames: true,
+					keep_fnames: true,
 					compress: {
 						pure_funcs: [
-							"console.info",
+							"console.table",
 							"console.debug",
-							"console.warn",
 							"console.log",
 						],
 					},
@@ -45,5 +47,4 @@ module.exports = merge(common, {
 			}),
 		],
 	},
-	plugins: [new webpack.HashedModuleIdsPlugin()],
 });

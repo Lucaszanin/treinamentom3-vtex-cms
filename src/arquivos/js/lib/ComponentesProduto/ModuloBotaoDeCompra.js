@@ -5,6 +5,7 @@ import {
 	CHANGE_QTD,
 	ADD_SKU_TO_CART_FAIL,
 	ADD_SKU_TO_CART_SUCESS,
+	ADD_TO_CART,
 	ADD_SKU,
 	REMOVE_SKU,
 } from "./EventType";
@@ -39,6 +40,7 @@ export default class ModuloBotaoDeCompra extends Modulo {
 			botaoContinuarComrpando: "Continuar comprando",
 			botaoFinalizarCompra: "Finalizar compra",
 			icone: "",
+			customBuyBtnEvent: null,
 		};
 	}
 
@@ -91,6 +93,7 @@ export default class ModuloBotaoDeCompra extends Modulo {
 
 		this._store.events.subscribe(CHANGE_SKU, this.atualizar.bind(this));
 		this._store.events.subscribe(CHANGE_QTD, this.atualizar.bind(this));
+		this._store.events.subscribe(ADD_TO_CART, this.addToCart.bind(this));
 		this._store.events.subscribe(
 			ADD_SKU_TO_CART_SUCESS,
 			this.sucessoAjax.bind(this)
@@ -128,7 +131,15 @@ export default class ModuloBotaoDeCompra extends Modulo {
 			this.produtoEscolhido.quantidade < 1
 		) {
 			this._mensagemErro(this.opcoes().botaoSkuIndisponivel);
+		} else if (this.opcoes().customBuyBtnEvent !== null) {
+			this.opcoes().customBuyBtnEvent();
 		} else {
+			this.addToCart();
+		}
+	}
+
+	addToCart() {
+		return new Promise((resolve, reject) => {
 			try {
 				window.vtexjs.checkout
 					.addToCart(
@@ -140,24 +151,23 @@ export default class ModuloBotaoDeCompra extends Modulo {
 							},
 						],
 						null,
-						this.opcoes.cannalDeVendas
+						this.opcoes().cannalDeVendas
 					)
-					.done(
-						function (orderForm) {
-							this._store.events.publish(ADD_SKU_TO_CART_SUCESS, {
-								simpleProducts: this.produtoEscolhido,
-								orderForm: orderForm,
-							});
-						}.bind(this)
-					)
-					.fail(
-						function () {
-							this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
-								simpleProducts: this.produtoEscolhido,
-								msg: this.opcoes().msgAddCarrinhoErro,
-							});
-						}.bind(this)
-					);
+					.done((orderForm) => {
+						this._store.events.publish(ADD_SKU_TO_CART_SUCESS, {
+							simpleProducts: this.produtoEscolhido,
+							orderForm: orderForm,
+						});
+
+						resolve(orderForm);
+					})
+					.fail(() => {
+						this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
+							simpleProducts: this.produtoEscolhido,
+							msg: this.opcoes().msgAddCarrinhoErro,
+						});
+						reject(this.opcoes().msgAddCarrinhoErro);
+					});
 			} catch (error) {
 				this._store.events.publish(ADD_SKU_TO_CART_FAIL, {
 					simpleProducts: this.produtoEscolhido,
@@ -166,7 +176,7 @@ export default class ModuloBotaoDeCompra extends Modulo {
 				console.warn("Erro ao adicionar sku ao carrinho de compra");
 				console.log(error);
 			}
-		}
+		});
 	}
 
 	sucessoAjax(items) {

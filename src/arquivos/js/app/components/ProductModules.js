@@ -76,16 +76,17 @@ export default class ProductModules {
 	}
 
 	botaoDeCompra(elemento) {
-		var moduloBotaoDeCompra = new Components.ModuloBotaoDeCompra(
+		this.moduloBotaoDeCompra = new Components.ModuloBotaoDeCompra(
 			elemento,
 			this.store
 		);
-		moduloBotaoDeCompra.configurar({
+		this.moduloBotaoDeCompra.configurar({
 			botaoCompra: "Comprar",
 			botaoSkuIndisponivel: "Indisponível",
 			msgAddCarrinhoSucesso: "Adicionado à <strong>Sacola</strong> ",
 		});
-		moduloBotaoDeCompra.desenhar();
+
+		this.moduloBotaoDeCompra.desenhar();
 	}
 
 	aviseme(elemento) {
