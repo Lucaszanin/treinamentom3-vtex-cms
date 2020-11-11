@@ -1,4 +1,4 @@
-import PubSub from "Helpers/State/PubSub";
+import { PubSub } from "@agenciam3/pkg";
 
 export const UPDATE_SHELF = "UPDATE_SHELF";
 
