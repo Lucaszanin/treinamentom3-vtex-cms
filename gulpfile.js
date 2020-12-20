@@ -49,6 +49,7 @@ const paths = {
 	},
 	output: "dist",
 	outputStatic: "dist/arquivos",
+	outputStaticCheckout: "dist/files",
 	tmp: ".temp",
 };
 
