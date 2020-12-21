@@ -74,3 +74,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+vtex-d.auth.json
+vtex-d.lock.json
