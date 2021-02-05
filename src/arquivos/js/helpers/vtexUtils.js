@@ -7,7 +7,7 @@
  */
 
 export function alterarTamanhoImagemSrcVtex(src, width, height) {
-	if (typeof src == "undefined") {
+	if (typeof src == "undefined" || src == null) {
 		console.warn("Parametro 'src' não recebido.");
 
 		return;

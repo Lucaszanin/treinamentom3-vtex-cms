@@ -246,6 +246,11 @@
 					}
 				});
 
+				btn.hide();
+				if (moreResults) {
+					btn.show();
+				}
+
 				$(window).on("vsr-request-init", function () {
 					btn.prop("disabled", true).addClass("loading");
 
