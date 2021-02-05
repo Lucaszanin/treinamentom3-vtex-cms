@@ -81,7 +81,7 @@ export default class MasterData {
 		});
 	}
 
-	_mergeHeaders(headers) {
+	_mergedHeaders(headers) {
 		let mergedHeaders = {};
 		Object.keys(headers).forEach((key) => {
 			mergedHeaders[key] = headers[key];
