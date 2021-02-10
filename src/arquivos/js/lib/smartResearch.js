@@ -538,7 +538,7 @@
 							ajaxCallbackObj.requests++;
 							options.ajaxCallback(ajaxCallbackObj);
 
-							fn.triggerEvent("vsr-ajax-sucess");
+							fn.triggerEvent("vsr-ajax-sucess", _window);
 						},
 						complete: function () {
 							fn.triggerEvent("vsr-request-end", loadContentE);
@@ -591,7 +591,7 @@
 								500
 							);
 
-							fn.triggerEvent("vsr-ajax-sucess");
+							fn.triggerEvent("vsr-ajax-sucess", _window);
 						},
 						complete: function () {
 							fn.triggerEvent("vsr-request-end", loadContentE);
@@ -858,7 +858,7 @@
 					600
 				);
 
-				fn.triggerEvent("vsr-ajax-sucess");
+				fn.triggerEvent("vsr-ajax-sucess", _window);
 			},
 			filterAjaxError: function () {
 				prodOverlay.fadeTo(300, 0, function () {
