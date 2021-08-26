@@ -14,8 +14,7 @@ module.exports = merge(common, {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
-				exclude: /(node_modules|bower_components)/,
-				include: path.resolve(__dirname, "..", "src/arquivos/js"),
+				exclude: /node_modules\/(?!(@agenciam3\/pkg)\/).*/,
 				use: {
 					loader: "babel-loader",
 					options: {
