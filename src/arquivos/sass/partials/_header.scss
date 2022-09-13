@@ -1,7 +1,7 @@
 .page-header {
 	background: $color-white;
 	padding: 7px 0;
-
+	position: relative;
 	@include mq(lg, max) {
 		padding: 11px 0 0;
 	}
@@ -15,8 +15,6 @@
 			grid-template-columns: repeat(3, 1fr);
 		}
 	}
-
-
 
 	&__logo {
 		margin: 0 auto;
