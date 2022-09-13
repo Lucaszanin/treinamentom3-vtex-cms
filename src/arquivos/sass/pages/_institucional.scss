@@ -3,7 +3,7 @@
 /*-------------------------------------------------------------*/
 
 .institucional {
-	color: $color-black2;
+	color: #142032;
 
 	.breadcrumb {
 		font-size: 14px;
@@ -15,8 +15,8 @@
 			display: inline-block;
 
 			a {
-				border-right: 1px solid $color-black2;
-				color: $color-black2;
+				border-right: 1px solid #142032;
+				color: #142032;
 				margin-right: 7px;
 				padding: 0px 9px 0px 0;
 			}
@@ -48,26 +48,26 @@
 			padding: 4px 2px;
 
 			a {
-				border: 1px solid $color-black2;
+				border: 1px solid #142032;
 				border-radius: 31px;
-				color: $color-pink;
+				color: #f71963;
 				display: block;
 				font-weight: 700;
 				padding: 8px 16px;
 				transition: all 0.15s ease-in-out;
 
 				&.ativo {
-					background-color: $color-black2;
+					background-color: #142032;
 					color: $color-white;
 				}
 
 				&:hover {
-					background-color: lighten($color-black2, 5);
+					background-color: lighten(#142032, 5);
 					color: $color-white;
 				}
 
 				&:active {
-					background-color: darken($color-black2, 10);
+					background-color: darken(#142032, 10);
 					color: $color-white;
 				}
 			}

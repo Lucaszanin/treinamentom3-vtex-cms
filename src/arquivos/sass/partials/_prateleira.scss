@@ -79,7 +79,7 @@
 		}
 
 		button {
-			background-color: $color-black2;
+			background-color: #142032;
 			border: none;
 			cursor: pointer;
 			height: 10px;
@@ -92,7 +92,7 @@
 
 		.slick-active {
 			button {
-				background-color: $color-pink;
+				background-color: #f71963;
 				height: 16px;
 				width: 16px;
 			}
@@ -100,7 +100,7 @@
 	}
 
 	h2 {
-		color: $color-pink;
+		color: #f71963;
 		font-size: 24px;
 		margin: 0 0 24px;
 		text-align: center;
@@ -188,7 +188,7 @@
 			line-height: 1.3;
 		}
 		.antigo {
-			color: $color-gray2;
+			color: hsla(220, 1%, 43%, 1);
 			font-size: 14px;
 			min-height: 18px;
 			text-decoration: line-through;
@@ -200,7 +200,7 @@
 		}
 
 		.parcelado {
-			color: $color-gray2;
+			color: hsla(220, 1%, 43%, 1);
 			font-size: 12px;
 
 			strong {
@@ -225,7 +225,7 @@
 			}
 
 			a {
-				background-color: $color-green;
+				background-color: #2fab61;
 				color: $color-white;
 				display: block;
 				font-size: 14px;
@@ -236,11 +236,11 @@
 
 				@include mq(lg) {
 					&:hover {
-						background-color: $color-green2;
+						background-color: hsla(138, 66%, 41%, 1);
 					}
 
 					&:active {
-						background-color: $color-green3;
+						background-color: hsla(138, 50%, 41%, 1);
 					}
 				}
 			}
@@ -256,7 +256,7 @@
 	}
 
 	.indisponivel {
-		color: $color-pink;
+		color: #f71963;
 		font-weight: bold;
 		margin: 5px 0;
 	}

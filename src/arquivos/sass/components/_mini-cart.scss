@@ -51,8 +51,8 @@
 	}
 
 	.mini-cart-header {
-		border-bottom: 1px solid $color-gray;
-		color: $color-black2;
+		border-bottom: 1px solid hsla(0, 0%, 90%, 1);
+		color: #142032;
 		font-size: 12px;
 		letter-spacing: 0.5px;
 		padding: 20px 15px 16px;
@@ -75,7 +75,7 @@
 
 			&::before,
 			&::after {
-				background-color: lighten($color-black2, 10);
+				background-color: lighten(#142032, 10);
 				content: "";
 				height: 2px;
 				left: 0.5px;
@@ -97,7 +97,7 @@
 			&:active {
 				&:before,
 				&:after {
-					background-color: $color-black2;
+					background-color: #142032;
 				}
 			}
 		}
@@ -120,17 +120,17 @@
 		}
 
 		&::-webkit-scrollbar-track {
-			background-color: $color-gray;
+			background-color: hsla(0, 0%, 90%, 1);
 			border-radius: 15px;
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background-color: $color-gray3;
+			background-color: hsl(0, 0%, 77%);
 			border-radius: 15px;
 		}
 
 		&::-webkit-scrollbar-thumb:hover {
-			background-color: darken($color-gray3, 10);
+			background-color: darken(hsl(0, 0%, 77%), 10);
 		}
 	}
 
@@ -155,7 +155,7 @@
 			right: 0;
 			font-size: 0;
 			border: 5px solid $color-white;
-			border-top-color: $color-pink;
+			border-top-color: #f71963;
 			border-radius: 50%;
 			width: 30px;
 			height: 30px;
@@ -172,7 +172,7 @@
 
 		li {
 			align-items: flex-start;
-			border-bottom: 1px solid $color-gray;
+			border-bottom: 1px solid hsla(0, 0%, 90%, 1);
 			display: flex;
 			justify-content: space-between;
 			padding: 12px 0;
@@ -215,7 +215,7 @@
 		}
 
 		.product-info {
-			color: $color-black2;
+			color: #142032;
 			font-size: 12px;
 			font-weight: 500;
 			padding-left: 8px;
@@ -250,7 +250,7 @@
 			}
 
 			button {
-				background-color: $color-pink;
+				background-color: #f71963;
 				color: $color-white;
 				font-weight: 500;
 				font-size: 16px;
@@ -261,16 +261,16 @@
 				padding: 0;
 
 				&:hover {
-					background-color: lighten($color-pink, 5);
+					background-color: lighten(#f71963, 5);
 				}
 
 				&:active {
-					background-color: darken($color-pink, 10);
+					background-color: darken(#f71963, 10);
 				}
 			}
 
 			.value {
-				border: 1px solid $color-black2;
+				border: 1px solid #142032;
 				box-shadow: none;
 				font-size: 14px;
 				margin: 0 -3px;
@@ -302,17 +302,17 @@
 
 				&:hover,
 				&:active {
-					border-color: darken($color-black2, 15);
+					border-color: darken(#142032, 15);
 
 					&:after,
 					&:before {
-						border-color: darken($color-black2, 15);
+						border-color: darken(#142032, 15);
 					}
 				}
 
 				&:after,
 				&:before {
-					border-bottom: 1.25px solid $color-black2;
+					border-bottom: 1.25px solid #142032;
 					content: "";
 					width: 16px;
 					position: absolute;
@@ -338,20 +338,20 @@
 		.totals-container {
 			display: none;
 			background-color: $color-white;
-			border-top: 1px solid $color-gray;
+			border-top: 1px solid hsla(0, 0%, 90%, 1);
 			margin: 0 16px;
 			padding: 16px 0;
 		}
 
 		.total {
-			color: $color-gray2;
+			color: hsla(220, 1%, 43%, 1);
 			font-size: 12px;
 			line-height: 15px;
 			letter-spacing: 3px;
 			text-transform: uppercase;
 
 			strong {
-				color: $color-black2;
+				color: #142032;
 				display: inline-block;
 				font-weight: 700;
 				letter-spacing: 0;
@@ -363,7 +363,7 @@
 			background-color: transparent;
 			border: none;
 			cursor: pointer;
-			color: $color-gray5;
+			color: #6d6e70;
 			display: block;
 			font-size: 14px;
 			padding: 17px 15px;
@@ -375,12 +375,12 @@
 
 			&:hover,
 			&:active {
-				color: darken($color-gray5, 15);
+				color: darken(#6d6e70, 15);
 			}
 		}
 
 		.finish-order {
-			background-color: $color-green;
+			background-color: #2fab61;
 			color: $color-white;
 			display: block;
 			font-weight: 700;
@@ -392,11 +392,11 @@
 			width: 100%;
 
 			&:hover {
-				background-color: lighten($color-green, 2.5);
+				background-color: lighten(#2fab61, 2.5);
 			}
 
 			&:active {
-				background-color: darken($color-green, 10);
+				background-color: darken(#2fab61, 10);
 			}
 		}
 	}

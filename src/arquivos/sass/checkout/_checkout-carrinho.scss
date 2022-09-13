@@ -14,8 +14,8 @@
 	}
 
 	.cart-items thead tr {
-		border-bottom: 1px solid $color-gray6;
-		color: $color-black2;
+		border-bottom: 1px solid #e5e5e5;
+		color: #142032;
 		font-size: 11px;
 
 		th {
@@ -53,7 +53,7 @@
 			}
 
 			&.product-name {
-				color: $color-black2;
+				color: #142032;
 				font-size: 12px;
 
 				@media (max-width: 490px) {
@@ -96,7 +96,7 @@
 				}
 
 				.icon-question-sign {
-					color: $color-black2;
+					color: #142032;
 				}
 			}
 
@@ -108,7 +108,7 @@
 
 				input {
 					&[id^="item-quantity"] {
-						border: 1px solid $color-black2;
+						border: 1px solid #142032;
 						box-shadow: none;
 						border-radius: 0;
 						color: #000;
@@ -127,7 +127,7 @@
 				}
 
 				.item-quantity-change {
-					background-color: $color-pink;
+					background-color: #f71963;
 					display: inline-block;
 					padding: 16px;
 					position: relative;
@@ -177,33 +177,33 @@
 
 	#shipping-preview-container {
 		.srp-main-title {
-			color: $color-black2;
+			color: #142032;
 			font-size: 24px;
 			font-weight: 700;
 		}
 
 		.srp-description {
-			color: $color-black2;
+			color: #142032;
 			font-size: 13px;
 		}
 
 		#shipping-calculate-link,
 		#cart-shipping-calculate {
-			background-color: $color-gray;
+			background-color: hsla(0, 0%, 90%, 1);
 			border-radius: 0;
 			border: none;
-			color: $color-black2;
+			color: #142032;
 			font-size: 14px;
 			outline: none;
 			padding: 8px 10px;
 			transition: all 0.15s ease-in-out;
 
 			&:hover {
-				background-color: lighten($color-gray, 5);
+				background-color: lighten(hsla(0, 0%, 90%, 1), 5);
 			}
 
 			&:active {
-				background-color: darken($color-gray, 5);
+				background-color: darken(hsla(0, 0%, 90%, 1), 5);
 			}
 		}
 
@@ -212,7 +212,7 @@
 		}
 
 		.ship-postalCode a {
-			color: $color-pink;
+			color: #f71963;
 		}
 	}
 
@@ -234,8 +234,8 @@
 			}
 
 			> div {
-				background-color: $color-white2;
-				color: $color-black2;
+				background-color: #f5f5f5;
+				color: #142032;
 				display: block !important;
 				padding: 24px 15%;
 
@@ -252,7 +252,7 @@
 				text-align: left;
 
 				label {
-					color: $color-gray5;
+					color: #6d6e70;
 					font-size: 12px;
 				}
 			}
@@ -271,7 +271,7 @@
 
 			#cart-coupon-add {
 				background-image: none;
-				background-color: $color-black2;
+				background-color: #142032;
 				border-radius: 0;
 				border: none;
 				font-size: 0;
@@ -281,11 +281,11 @@
 				transition: all 0.15s ease-in-out;
 
 				&:hover {
-					background-color: lighten($color-black2, 5);
+					background-color: lighten(#142032, 5);
 				}
 
 				&:active {
-					background-color: darken($color-black2, 5);
+					background-color: darken(#142032, 5);
 				}
 
 				&::before {
@@ -299,7 +299,7 @@
 	}
 
 	.accordion-group {
-		border: 1px solid $color-white2;
+		border: 1px solid #f5f5f5;
 		border-radius: 0;
 		color: #000;
 
@@ -312,7 +312,7 @@
 		}
 
 		tfoot {
-			background-color: $color-white2;
+			background-color: #f5f5f5;
 
 			.info {
 				text-transform: uppercase;
@@ -359,7 +359,7 @@
 
 		#cart-choose-more-products {
 			bottom: -26px;
-			color: $color-black4;
+			color: #151728;
 			font-size: 12px;
 			left: 0;
 			position: absolute;
@@ -368,7 +368,7 @@
 		}
 
 		#cart-to-orderform {
-			background-color: $color-green;
+			background-color: #2fab61;
 			font-size: 14px;
 			font-weight: 700;
 			margin-top: 0;

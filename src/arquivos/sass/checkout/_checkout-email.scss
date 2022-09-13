@@ -1,6 +1,6 @@
 .container-order-form {
 	#orderform-to-cart {
-		color: $color-pink;
+		color: #f71963;
 		text-decoration: underline;
 	}
 
@@ -10,7 +10,7 @@
 		}
 
 		#btn-client-pre-email {
-			background-color: $color-pink;
+			background-color: #f71963;
 			background-image: none;
 			border: none;
 			border-radius: 0;
@@ -24,11 +24,11 @@
 			top: 0;
 
 			&:hover {
-				background-color: lighten($color-pink, 5);
+				background-color: lighten(#f71963, 5);
 			}
 
 			&:active {
-				background-color: darken($color-pink, 5);
+				background-color: darken(#f71963, 5);
 			}
 		}
 	}

@@ -99,7 +99,7 @@
 				&:hover,
 				&:active {
 					@include mq(md, min) {
-						border: 1px solid $color-pink;
+						border: 1px solid #f71963;
 					}
 				}
 
@@ -158,7 +158,7 @@
 			}
 
 			button {
-				background-color: $color-black2;
+				background-color: #142032;
 				border: none;
 				cursor: pointer;
 				height: 10px;
@@ -171,7 +171,7 @@
 
 			.slick-active {
 				button {
-					background-color: $color-pink;
+					background-color: #f71963;
 					height: 16px;
 					width: 16px;
 				}
@@ -196,7 +196,7 @@
 
 		.product-reference {
 			font-size: 14px;
-			color: $color-gray2;
+			color: hsla(220, 1%, 43%, 1);
 
 			.productReference {
 				display: inline-block;
@@ -204,11 +204,11 @@
 		}
 
 		.moduloPreco {
-			color: $color-black2;
+			color: #142032;
 			margin: 30px 0;
 
 			.valor-de {
-				color: $color-gray2;
+				color: hsla(220, 1%, 43%, 1);
 				font-size: 14px;
 				text-transform: uppercase;
 				text-decoration: line-through;
@@ -223,7 +223,7 @@
 			}
 
 			.valor-por {
-				color: $color-black2;
+				color: #142032;
 				font-size: 32px;
 				font-weight: 700;
 
@@ -233,7 +233,7 @@
 			}
 
 			.valor-dividido {
-				color: $color-gray5;
+				color: #6d6e70;
 				font-size: 14px;
 
 				.numero-de-parcelas {
@@ -262,14 +262,14 @@
 				}
 
 				&:before {
-					border-top: 1px solid $color-gray3;
+					border-top: 1px solid hsl(0, 0%, 77%);
 					margin-top: 8px;
 					padding-bottom: 10px;
 				}
 
 				&:after {
 					padding-top: 10px;
-					border-bottom: 1px solid $color-gray3;
+					border-bottom: 1px solid hsl(0, 0%, 77%);
 				}
 
 				.value {
@@ -282,8 +282,8 @@
 				}
 
 				.container-percentual {
-					border: 1px dotted $color-green;
-					color: $color-green;
+					border: 1px dotted #2fab61;
+					color: #2fab61;
 					font-size: 10px;
 					padding: 4px 9px;
 				}
@@ -291,7 +291,7 @@
 		}
 
 		.moduloAviseMe {
-			border-bottom: 1px solid $color-gray;
+			border-bottom: 1px solid hsla(0, 0%, 90%, 1);
 			padding-bottom: 15px;
 			margin: 20px 0;
 
@@ -305,7 +305,7 @@
 				}
 
 				input {
-					border: 1px solid $color-gray;
+					border: 1px solid hsla(0, 0%, 90%, 1);
 					display: inline-block;
 					margin-bottom: 10px;
 					padding: 10px;
@@ -317,7 +317,7 @@
 					}
 
 					&#enviar-avise-me {
-						background-color: $color-black3;
+						background-color: #19273d;
 						border: none;
 						color: $color-white;
 						cursor: pointer;
@@ -335,7 +335,7 @@
 						}
 
 						&:active {
-							background-color: $color-black2;
+							background-color: #142032;
 						}
 					}
 				}
@@ -346,11 +346,11 @@
 					position: absolute;
 
 					&.msgSucesso {
-						color: $color-green;
+						color: #2fab61;
 					}
 
 					&.msgErro {
-						color: $color-pink;
+						color: #f71963;
 					}
 				}
 			}
@@ -369,7 +369,7 @@
 			}
 
 			li {
-				border: 1px solid $color-gray;
+				border: 1px solid hsla(0, 0%, 90%, 1);
 				display: inline-block;
 				max-width: 72px;
 				max-height: 96px;
@@ -382,7 +382,7 @@
 				}
 
 				&:hover {
-					border: 2px solid $color-gray3;
+					border: 2px solid hsl(0, 0%, 77%);
 				}
 
 				img {
@@ -408,7 +408,7 @@
 
 		.moduloSkus {
 			.titulo {
-				color: $color-gray5;
+				color: #6d6e70;
 				font-size: 16px;
 			}
 
@@ -450,7 +450,7 @@
 				@include mq(lg) {
 					&:hover label,
 					&:active label {
-						background-color: $color-gray3;
+						background-color: hsl(0, 0%, 77%);
 					}
 				}
 			}
@@ -460,16 +460,16 @@
 
 				&:checked + label {
 					background-color: #fff;
-					border: 1px solid $color-pink;
+					border: 1px solid #f71963;
 				}
 			}
 
 			label {
 				align-items: center;
-				background-color: $color-gray;
+				background-color: hsla(0, 0%, 90%, 1);
 				border-radius: 4px;
 				border: 1px solid transparent;
-				color: $color-black3;
+				color: #19273d;
 				cursor: pointer;
 				display: flex;
 				font-size: 14px;
@@ -499,7 +499,7 @@
 			}
 
 			.titulo {
-				color: $color-gray5;
+				color: #6d6e70;
 				display: block;
 				font-size: 16px;
 				margin-bottom: 8px;
@@ -525,7 +525,7 @@
 			}
 
 			button {
-				background-color: $color-pink;
+				background-color: #f71963;
 				color: $color-white;
 				cursor: pointer;
 				font-size: 14px;
@@ -537,18 +537,18 @@
 
 				@include mq(lg) {
 					&:hover {
-						background-color: $color-pink;
+						background-color: #f71963;
 					}
 				}
 
 				&:active {
-					background-color: $color-pink;
+					background-color: #f71963;
 				}
 			}
 
 			.qtd-value {
-				border: 1px solid $color-black2;
-				color: $color-black3;
+				border: 1px solid #142032;
+				color: #19273d;
 				font-size: 14px;
 				position: relative;
 				width: 34px;
@@ -574,20 +574,20 @@
 			}
 
 			&:before {
-				border-top: 1px solid $color-gray3;
+				border-top: 1px solid hsl(0, 0%, 77%);
 				margin-top: 10px;
 				padding-bottom: 6px;
 			}
 
 			&:after {
 				padding-top: 6px;
-				border-bottom: 1px solid $color-gray3;
+				border-bottom: 1px solid hsl(0, 0%, 77%);
 			}
 
 			button {
 				background-color: transparent;
 				border: none;
-				color: $color-gray2;
+				color: hsla(220, 1%, 43%, 1);
 				cursor: pointer;
 				font-size: 12px;
 				outline: none;
@@ -607,12 +607,12 @@
 				pointer-events: none;
 
 				.btn-compra {
-					background-color: $color-gray3;
+					background-color: hsl(0, 0%, 77%);
 				}
 			}
 
 			.btn-compra {
-				background-color: $color-green;
+				background-color: #2fab61;
 				color: $color-white;
 				cursor: pointer;
 				display: block;
@@ -632,25 +632,25 @@
 
 				@include mq(lg) {
 					&:hover {
-						background-color: $color-green2;
+						background-color: hsla(138, 66%, 41%, 1);
 					}
 				}
 
 				&:active {
-					background-color: $color-green3;
+					background-color: hsla(138, 50%, 41%, 1);
 				}
 			}
 
 			.erro-add-cart {
 				bottom: -55px;
-				color: $color-pink;
+				color: #f71963;
 				position: absolute;
 				font-weight: 700;
 			}
 		}
 
 		.compra-segura {
-			color: $color-black3;
+			color: #19273d;
 			font-size: 10px;
 			max-width: 270px;
 			text-align: center;
@@ -687,20 +687,20 @@
 			}
 
 			&:before {
-				border-top: 1px solid $color-gray4;
+				border-top: 1px solid #eee;
 				margin-top: 25px;
 				padding-bottom: 16px;
 			}
 
 			&:after {
 				padding-top: 16px;
-				border-bottom: 1px solid $color-gray4;
+				border-bottom: 1px solid #eee;
 			}
 
 			a {
 				background-color: transparent;
 				border: none;
-				color: $color-black2;
+				color: #142032;
 				cursor: pointer;
 				font-size: 14px;
 				outline: none;
@@ -729,14 +729,14 @@
 	}
 
 	#descricao-completa {
-		color: $color-black2;
+		color: #142032;
 
 		@include mq(md, max) {
 			padding: 0 15px;
 		}
 
 		> div {
-			border-top: 1px solid $color-gray6;
+			border-top: 1px solid #e5e5e5;
 			margin-top: 48px;
 
 			@include mq(md, max) {
@@ -753,7 +753,7 @@
 		}
 
 		.descricao {
-			color: $color-gray5;
+			color: #6d6e70;
 			font-size: 14px;
 			line-height: 18px;
 			max-width: 960px;
@@ -791,7 +791,7 @@
 				width: 100%;
 
 				button {
-					background-color: $color-black3;
+					background-color: #19273d;
 					border: none;
 					color: $color-white;
 					cursor: pointer;
@@ -810,7 +810,7 @@
 					}
 
 					&:active {
-						background-color: $color-black2;
+						background-color: #142032;
 					}
 				}
 			}
@@ -820,7 +820,7 @@
 	.popup-add-cart,
 	.modal-add-cart {
 		align-items: center;
-		background-color: $color-black2;
+		background-color: #142032;
 		bottom: 5%;
 		box-shadow: 0px 4px 16px rgba(125, 87, 98, 0.12);
 		border-radius: 100px;
@@ -863,7 +863,7 @@
 		button {
 			background-color: transparent;
 			border: none;
-			color: $color-pink;
+			color: #f71963;
 			cursor: pointer;
 			font-size: 16px;
 			margin-left: 12px;

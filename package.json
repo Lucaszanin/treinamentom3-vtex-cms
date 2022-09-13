@@ -1,7 +1,7 @@
 {
 	"author": "Agência M3",
 	"name": "tema-template",
-	"shopName": "template",
+	"shopName": "missb",
 	"description": "Tema Vtex para loja Vtex",
 	"version": "1.0.0",
 	"main": "index.js",

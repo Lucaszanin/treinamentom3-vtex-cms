@@ -35,7 +35,7 @@
 
 	.header-menu-mobile {
 		display: none;
-		border-bottom: 1px solid $color-gray4;
+		border-bottom: 1px solid #eee;
 		padding: 22px 15px 0;
 		margin: 0 -15px;
 
@@ -63,7 +63,7 @@
 			top: 17px;
 
 			&::before {
-				border-left: 1px solid $color-gray4;
+				border-left: 1px solid #eee;
 				content: "";
 				display: block;
 				height: 36px;
@@ -79,7 +79,7 @@
 
 				&::before,
 				&::after {
-					border: 1px solid $color-black2;
+					border: 1px solid #142032;
 					content: "";
 					display: block;
 					left: 0;
@@ -99,8 +99,8 @@
 		}
 
 		.busca {
-			background-color: $color-gray4;
-			border-top: 1px solid $color-gray6;
+			background-color: #eee;
+			border-top: 1px solid #e5e5e5;
 			border-bottom: none;
 			max-width: 100%;
 			margin-top: 22px;
@@ -127,15 +127,15 @@
 		}
 
 		&::-webkit-scrollbar-track {
-			background-color: $color-gray;
+			background-color: hsla(0, 0%, 90%, 1);
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background-color: $color-gray3;
+			background-color: hsl(0, 0%, 77%);
 		}
 
 		&::-webkit-scrollbar-thumb:hover {
-			background-color: darken($color-gray3, 10);
+			background-color: darken(hsl(0, 0%, 77%), 10);
 		}
 
 		> li {
@@ -149,7 +149,7 @@
 				display: flex;
 				justify-content: space-between;
 				padding: 0 24px;
-				border-bottom: 1px solid $color-gray4;
+				border-bottom: 1px solid #eee;
 
 				a {
 					font-size: 16px;
@@ -161,7 +161,7 @@
 			&:hover {
 				> a::after {
 					@include mq(lg, min) {
-						border-bottom-color: $color-pink;
+						border-bottom-color: #f71963;
 						border-width: 4px;
 					}
 				}
@@ -222,12 +222,12 @@
 		}
 
 		a {
-			color: $color-black2;
+			color: #142032;
 			display: inline-block;
 		}
 
 		.highlight {
-			color: $color-pink;
+			color: #f71963;
 			font-weight: 700;
 
 			&::before {
@@ -246,7 +246,7 @@
 	}
 
 	.footer-menu-mobile {
-		background-color: $color-pink;
+		background-color: #f71963;
 		bottom: 0;
 		left: 0;
 		padding: 17.5px 15px;
@@ -298,7 +298,7 @@
 			width: 100%;
 
 			@include mq(lg, max) {
-				border-bottom: 1px solid $color-gray4;
+				border-bottom: 1px solid #eee;
 				bottom: 64px;
 				margin-left: 100%;
 				max-height: initial;
@@ -309,7 +309,7 @@
 
 			@include mq(lg, min) {
 				background: rgba(255, 255, 255, 0.95);
-				border-top: 1px solid $color-gray;
+				border-top: 1px solid hsla(0, 0%, 90%, 1);
 				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02);
 				padding: 45px 0px 37px;
 				top: 70%;
@@ -335,19 +335,19 @@
 			}
 
 			&::-webkit-scrollbar-track {
-				background-color: $color-gray;
+				background-color: hsla(0, 0%, 90%, 1);
 			}
 
 			&::-webkit-scrollbar-thumb {
-				background-color: $color-gray3;
+				background-color: hsl(0, 0%, 77%);
 			}
 
 			&::-webkit-scrollbar-thumb:hover {
-				background-color: darken($color-gray3, 10);
+				background-color: darken(hsl(0, 0%, 77%), 10);
 			}
 
 			.btn-voltar {
-				border-bottom: 1px solid $color-gray4;
+				border-bottom: 1px solid #eee;
 				padding: 7px 24px;
 
 				@include mq(lg, min) {
@@ -411,7 +411,7 @@
 					}
 
 					img {
-						border-bottom: 5px solid $color-black4;
+						border-bottom: 5px solid #151728;
 					}
 				}
 			}
@@ -451,7 +451,7 @@
 						text-transform: lowercase;
 
 						a {
-							border-bottom: 4px solid $color-pink;
+							border-bottom: 4px solid #f71963;
 							font-size: 18px;
 							padding: 0;
 						}
@@ -460,7 +460,7 @@
 
 				&.ver-todos {
 					a {
-						color: $color-pink;
+						color: #f71963;
 						font-weight: 700;
 
 						@include mq(lg, max) {

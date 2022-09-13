@@ -17,7 +17,7 @@
 
 	.accordion-group {
 		.accordion-toggle .link-box-edit {
-			color: $color-pink;
+			color: #f71963;
 		}
 
 		.text input,
@@ -55,15 +55,15 @@
 		}
 
 		.vtex-omnishipping-1-x-summaryChange {
-			border-color: $color-pink;
-			color: $color-pink;
+			border-color: #f71963;
+			color: #f71963;
 		}
 	}
 
 	.accordion-group button.submit,
 	.payment-confirmation-wrap button.submit {
 		background-image: none;
-		background-color: $color-green;
+		background-color: #2fab61;
 		border: none;
 		border-radius: 0;
 		font-size: 14px;
@@ -73,17 +73,17 @@
 		transition: all 0.15s ease-in-out;
 
 		&:hover {
-			background-color: lighten($color-green, 5);
+			background-color: lighten(#2fab61, 5);
 		}
 
 		&:active {
-			background-color: darken($color-green, 5);
+			background-color: darken(#2fab61, 5);
 		}
 	}
 
 	.cart-fixed {
 		#orderform-minicart-to-cart {
-			color: $color-black4;
+			color: #151728;
 			display: block;
 			font-size: 12px;
 			text-decoration: underline;
@@ -95,7 +95,7 @@
 			}
 
 			tfoot td {
-				color: $color-black3;
+				color: #19273d;
 				text-transform: uppercase;
 			}
 		}

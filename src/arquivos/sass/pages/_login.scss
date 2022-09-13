@@ -22,9 +22,9 @@
 
 			.btn {
 				background-image: none;
-				background-color: $color-white2;
+				background-color: #f5f5f5;
 				border-radius: 0;
-				border: 1px solid $color-gray6;
+				border: 1px solid #e5e5e5;
 				box-shadow: none;
 				font-size: 14px;
 				outline: none;
@@ -33,25 +33,25 @@
 				transition: all 0.15s ease-in-out;
 
 				&:hover {
-					background-color: lighten($color-white2, 5);
+					background-color: lighten(#f5f5f5, 5);
 				}
 
 				&:active {
-					background-color: darken($color-white2, 5);
+					background-color: darken(#f5f5f5, 5);
 				}
 
 				&.btn-success {
-					background-color: $color-pink;
+					background-color: #f71963;
 					font-size: 14px;
 					height: auto;
 					padding: 14px 24px;
 
 					&:hover {
-						background-color: lighten($color-pink, 5);
+						background-color: lighten(#f71963, 5);
 					}
 
 					&:active {
-						background-color: darken($color-pink, 5);
+						background-color: darken(#f71963, 5);
 					}
 
 					i {
@@ -72,7 +72,7 @@
 			h4 {
 				&::before {
 					content: "Entrar";
-					color: $color-black2;
+					color: #142032;
 					display: block;
 					font-size: 22px;
 					font-weight: 700;

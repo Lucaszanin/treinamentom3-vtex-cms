@@ -3,7 +3,7 @@
 /*-------------------------------------------------------------*/
 
 .categoria {
-	color: $color-black2;
+	color: #142032;
 
 	.bread-crumb {
 		margin-bottom: 54px;
@@ -38,7 +38,7 @@
 		}
 
 		.topo-filtros {
-			border-bottom: 1px solid $color-gray;
+			border-bottom: 1px solid hsla(0, 0%, 90%, 1);
 
 			@include mq(md, max) {
 				display: flex;
@@ -72,7 +72,7 @@
 				}
 
 				&::before {
-					border-left: 1px solid $color-gray4;
+					border-left: 1px solid #eee;
 					content: "";
 					display: block;
 					height: 36px;
@@ -88,7 +88,7 @@
 
 					&::before,
 					&::after {
-						border: 1px solid $color-black2;
+						border: 1px solid #142032;
 						content: "";
 						display: block;
 						left: 0;
@@ -109,7 +109,7 @@
 		}
 
 		a {
-			color: $color-black2;
+			color: #142032;
 		}
 
 		.navigation-tabs {
@@ -151,11 +151,11 @@
 
 				label {
 					a {
-						color: $color-black4;
+						color: #151728;
 						transition: ease-in 0.22s all;
 
 						&:hover {
-							text-shadow: 0px 0px 0.55px $color-black4;
+							text-shadow: 0px 0px 0.55px #151728;
 						}
 					}
 				}
@@ -169,22 +169,22 @@
 					}
 
 					&::-webkit-scrollbar-track {
-						background-color: $color-gray;
+						background-color: hsla(0, 0%, 90%, 1);
 						border-radius: 15px;
 					}
 
 					&::-webkit-scrollbar-thumb {
-						background-color: $color-gray3;
+						background-color: hsl(0, 0%, 77%);
 						border-radius: 15px;
 					}
 
 					&::-webkit-scrollbar-thumb:hover {
-						background-color: darken($color-gray3, 10);
+						background-color: darken(hsl(0, 0%, 77%), 10);
 					}
 				}
 
 				label {
-					color: $color-black2;
+					color: #142032;
 					cursor: pointer;
 					display: block;
 					font-size: 14px;
@@ -208,10 +208,10 @@
 					}
 
 					& ~ .sr_box {
-						border: 1px solid $color-black2;
+						border: 1px solid #142032;
 						border-radius: 50%;
 						content: " ";
-						color: $color-gray3;
+						color: hsl(0, 0%, 77%);
 						display: inline-block;
 						font-size: 13px;
 						font-weight: bold;
@@ -247,13 +247,13 @@
 
 					&:hover ~ .sr_box {
 						&::before {
-							background-color: lighten($color-pink, 15);
+							background-color: lighten(#f71963, 15);
 						}
 					}
 
 					&:checked ~ .sr_box {
 						&::before {
-							background-color: $color-pink;
+							background-color: #f71963;
 						}
 					}
 				}
@@ -272,7 +272,7 @@
 		}
 
 		.aply-filter-btn {
-			background-color: $color-gray4;
+			background-color: #eee;
 			border: none;
 			bottom: 0;
 			font-size: 14px;
@@ -289,7 +289,7 @@
 			}
 
 			&:active {
-				background-color: darken($color-gray4, 5);
+				background-color: darken(#eee, 5);
 			}
 		}
 	}
@@ -334,7 +334,7 @@
 		.opcoes-resultado {
 			@include mq(md, max) {
 				align-items: center;
-				border: 1px solid $color-gray;
+				border: 1px solid hsla(0, 0%, 90%, 1);
 				display: flex;
 				justify-content: left;
 			}
@@ -343,7 +343,7 @@
 		#open-filter-button {
 			background-color: transparent;
 			border: none;
-			border-right: 1px solid $color-gray;
+			border-right: 1px solid hsla(0, 0%, 90%, 1);
 			color: $color-black;
 			cursor: pointer;
 			display: none;
@@ -407,7 +407,7 @@
 			select {
 				background-color: transparent;
 				cursor: pointer;
-				color: $color-gray2;
+				color: hsla(220, 1%, 43%, 1);
 				font-size: 14px;
 				margin-left: 8px;
 				outline: none;
@@ -442,7 +442,7 @@
 	}
 
 	.clear-filter-btn {
-		background-color: $color-black2;
+		background-color: #142032;
 		border: none;
 		border-radius: 5px;
 		color: $color-white;
@@ -552,7 +552,7 @@
 						font-size: 0;
 						text-indent: -99999px;
 						overflow: hidden;
-						color: $color-gray2;
+						color: hsla(220, 1%, 43%, 1);
 
 						&:before {
 							@include pseudo(block, relative, "\00BB");
@@ -562,7 +562,7 @@
 						}
 					}
 					&.desativo a {
-						color: $color-gray3;
+						color: hsl(0, 0%, 77%);
 						pointer-events: none;
 						width: 0;
 						opacity: 0;
@@ -585,11 +585,11 @@
 				padding: 4px 12px;
 				text-decoration: none;
 				display: block;
-				border: 1px solid $color-gray6;
+				border: 1px solid #e5e5e5;
 
 				@include mq(md, min) {
 					&:hover {
-						background-color: $color-gray6;
+						background-color: #e5e5e5;
 						color: darken($color-black, 15);
 
 						&:active {
@@ -613,7 +613,7 @@
 		text-align: center;
 
 		button {
-			background-color: $color-black2;
+			background-color: #142032;
 			border: none;
 			color: $color-white;
 			cursor: pointer;

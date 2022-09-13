@@ -2,7 +2,7 @@
 	text-align: center;
 
 	.empty-cart-title {
-		color: $color-black2;
+		color: #142032;
 		font-size: 24px;
 		line-height: 29px;
 	}
@@ -14,7 +14,7 @@
 	}
 
 	#cart-choose-products {
-		background-color: $color-black2;
+		background-color: #142032;
 		border-radius: 0;
 		border: none;
 		background-image: none;
@@ -26,11 +26,11 @@
 		transition: all 0.15s ease-in-out;
 
 		&:hover {
-			background-color: lighten($color-black2, 5);
+			background-color: lighten(#142032, 5);
 		}
 
 		&:active {
-			background-color: darken($color-black2, 5);
+			background-color: darken(#142032, 5);
 		}
 
 		&::before {

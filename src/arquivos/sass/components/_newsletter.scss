@@ -3,7 +3,7 @@
 /*-------------------------------------------------------------*/
 
 .captacao-emails-newsletter {
-	background-color: $color-pink;
+	background-color: #f71963;
 	background-image: url("/arquivos/template-background-newsletter.png");
 	margin-top: 104px;
 	padding: 12px 15px 24px;
@@ -91,11 +91,11 @@
 		}
 
 		&::placeholder {
-			color: $color-black2;
+			color: #142032;
 		}
 
 		&#m3-cn-button-ok {
-			background-color: $color-black2;
+			background-color: #142032;
 			color: $color-white;
 			cursor: pointer;
 			font-weight: 700;
@@ -109,11 +109,11 @@
 			}
 
 			&:hover {
-				background-color: lighten($color-black2, 5);
+				background-color: lighten(#142032, 5);
 			}
 
 			&:active {
-				background-color: darken($color-black2, 5);
+				background-color: darken(#142032, 5);
 			}
 		}
 	}
@@ -126,7 +126,7 @@
 			background-color: $color-white;
 			border-radius: 2px;
 			bottom: -28px;
-			color: $color-pink3;
+			color: hsla(348, 83%, 58%, 1);
 			display: table;
 			left: 40%;
 			margin: auto;
@@ -146,7 +146,7 @@
 		.btn-voltar {
 			background-color: $color-white;
 			border-radius: 2px;
-			color: $color-pink;
+			color: #f71963;
 			display: inline-block;
 			font-size: 14px;
 			line-height: 1;
