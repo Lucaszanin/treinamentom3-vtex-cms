@@ -2,18 +2,71 @@
 	background: $color-white;
 	padding: 7px 0;
 
+	@include mq(lg, max) {
+		padding: 11px 0 0;
+	}
+
 	&__wrapper {
 		display: grid;
 		grid-template-columns: 2fr 1fr 2fr;
 		align-items: center;
+
+		@include mq(lg, max) {
+			grid-template-columns: repeat(3, 1fr);
+		}
 	}
+
+
 
 	&__logo {
 		margin: 0 auto;
-		font-size: 60px;
+		font-size: 4rem;
 		line-height: 92px;
 		font-weight: font-weight-regular;
 		color: $color-black;
+
+		@include mq(lg, max) {
+			font-size: 38px;
+			line-height: 58px;
+		}
+	}
+
+	.busca {
+		display: flex;
+		align-items: center;
+
+		legend,
+		label,
+		select {
+			display: none;
+		}
+
+		.fulltext-search-box {
+			flex: 1;
+			height: 23px;
+			background: transparent;
+			outline: 0;
+			color: $color-black;
+			border: 0;
+			padding: 0;
+			font-size: 10px;
+			line-height: 12px;
+			font-weight: $font-weight-regular;
+			text-transform: uppercase;
+		}
+
+		.btn-buscar {
+			width: 23px;
+			height: 23px;
+			padding: 0;
+			border: 0;
+			outline: 0;
+			font-size: 0;
+			background-color: transparent;
+
+			@extend .sprite;
+			@extend .sprite-search-icon;
+		}
 	}
 
 	.user-items {
@@ -23,45 +76,17 @@
 		margin: 0;
 		padding: 0;
 
-		.busca {
-			display: flex;
-			align-items: center;
+		&__search-box {
 			flex: 1;
 			max-width: 212px;
-			border-bottom: 1px solid $color-black;
-			padding: 8px 0px;
 
-			legend,
-			label,
-			select {
+			@include mq(lg, max) {
 				display: none;
 			}
 
-			.fulltext-search-box {
-				flex: 1;
-				height: 23px;
-				background: transparent;
-				outline: 0;
-				color: $color-black;
-				border: 0;
-				padding: 0;
-				font-size: 10px;
-				line-height: 12px;
-				font-weight: $font-weight-regular;
-				text-transform: uppercase;
-			}
-
-			.btn-buscar {
-				width: 23px;
-				height: 23px;
-				padding: 0;
-				border: 0;
-				outline: 0;
-				font-size: 0;
-				background-color: transparent;
-
-				@extend .sprite;
-				@extend .sprite-search-icon;
+			.busca {
+				padding: 8px 0;
+				border-bottom: 1px solid $color-black;
 			}
 		}
 
@@ -71,12 +96,21 @@
 
 			&::before,
 			&::after {
-				content: '';
+				content: "";
 				width: 1px;
 				height: 19px;
 				background: $color-black;
-				display: block;
-				margin: 0 24px;
+				margin: 24px;
+
+				@include mq(lg, max) {
+					margin: 0 16px;
+				}
+			}
+
+			&::before {
+				@include mq(lg, max) {
+					display: none;
+				}
 			}
 		}
 
@@ -122,6 +156,14 @@
 				top: 4px;
 				right: -4px;
 			}
+		}
+	}
+
+	&__search-box {
+		border-top: 1px solid $ligth-grey;
+		padding: 13px 0;
+		@include mq(lg, min){
+			display: none;
 		}
 	}
 }

@@ -1,14 +1,25 @@
 <header class="page-header">
 	<div class="container">
 		<div class="page-header__wrapper">
-			<nav></nav>
+
+			<div class="menu">
+				<button class="menu__button">
+					<i class="sprite sprite-mobile-menu"></i>
+				</button>
+				<nav class="main-menu"></nav>
+			</div>
+
 			<a href="/">
-				<span class="page-header__logo">Miss B.</span>
+				<span class="page-header__logo">Miss</span>
 			</a>
 
 			<div class="user-items">
-				<vtex.cmc:fullTextSearchBox />
-				<a class="user-items__account-link"  href="/account">
+
+				<div class="user-items__search-box">
+					<vtex.cmc:fullTextSearchBox />
+				</div>
+
+				<a class="user-items__account-link" href="/account">
 					<i class="sprite sprite-user-icon"></i>
 				</a>
 
@@ -18,6 +29,11 @@
 				</button>
 			</div>
 		</div>
+	</div>
 
+	<div class="page-header__search-box">
+		<div class="container">
+			<vtex.cmc:fullTextSearchBox />
+		</div>
 	</div>
 </header>
