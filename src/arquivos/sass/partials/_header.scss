@@ -2,6 +2,7 @@
 	background: $color-white;
 	padding: 7px 0;
 	position: relative;
+
 	@include mq(lg, max) {
 		padding: 11px 0 0;
 	}
@@ -18,52 +19,14 @@
 
 	&__logo {
 		margin: 0 auto;
-		font-size: 4rem;
+		font-size: 3rem;
 		line-height: 92px;
 		font-weight: font-weight-regular;
 		color: $color-black;
 
 		@include mq(lg, max) {
-			font-size: 38px;
+			font-size: 2rem;
 			line-height: 58px;
-		}
-	}
-
-	.busca {
-		display: flex;
-		align-items: center;
-
-		legend,
-		label,
-		select {
-			display: none;
-		}
-
-		.fulltext-search-box {
-			flex: 1;
-			height: 23px;
-			background: transparent;
-			outline: 0;
-			color: $color-black;
-			border: 0;
-			padding: 0;
-			font-size: 10px;
-			line-height: 12px;
-			font-weight: $font-weight-regular;
-			text-transform: uppercase;
-		}
-
-		.btn-buscar {
-			width: 23px;
-			height: 23px;
-			padding: 0;
-			border: 0;
-			outline: 0;
-			font-size: 0;
-			background-color: transparent;
-
-			@extend .sprite;
-			@extend .sprite-search-icon;
 		}
 	}
 
@@ -87,6 +50,7 @@
 				border-bottom: 1px solid $color-black;
 			}
 		}
+
 
 		&__account-link {
 			display: flex;
@@ -130,7 +94,6 @@
 				.amount-kits,
 				.total-cart {
 					display: none;
-
 				}
 			}
 
@@ -155,12 +118,13 @@
 				right: -4px;
 			}
 		}
-	}
 
+	}
 	&__search-box {
 		border-top: 1px solid $ligth-grey;
 		padding: 13px 0;
-		@include mq(lg, min){
+
+		@include mq(lg, min) {
 			display: none;
 		}
 	}

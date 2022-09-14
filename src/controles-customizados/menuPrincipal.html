@@ -1,9 +1,34 @@
 <nav class="main-menu">
+
+    <div class="menu-header">
+        <div class="menu-header__top-wrapper">
+            <div class="menu-header__text">
+                <i class="sprite sprite-cadeado"></i>
+                COMPRA 100% SEGURA
+            </div>
+            <div class="menu-header__close">
+                <button class="menu-header__close-button">
+                    <i class="sprite sprite-close-menu"></i>
+                </button>
+            </div>
+        </div>
+        <div class="menu-header__search-box">
+            <vtex.cmc:fullTextSearchBox />
+        </div>
+    </div>
+
     <ul class="main-menu__departments">
         <li class="main-menu__department">
-            <a class="main-menu__department-link" href="#">roupas</a>
+            <a class="main-menu__department-link" href="#">
+                roupas
+                <i class="sprite sprite-arrow-right"></i>
+            </a>
 
             <div class="submenu">
+                <button class="submenu__return-button">
+                    <i class="sprite sprite-arrow-left"></i>
+                    VOLTAR
+                </button>
                 <div class="container">
                     <h2 class="submenu__title">Roupas</h2>
 
@@ -25,8 +50,9 @@
                                 <a class="submenu__category-link" href="#">JEANS</a>
                             </li>
                             <li class="submenu__category">
-                                <a  class="submenu__category-link" href="#">VESTIDOS</a>
+                                <a class="submenu__category-link" href="#">VESTIDOS</a>
                             </li>
+
                         </ul>
 
                         <ul class="submenu__categories">
@@ -50,11 +76,22 @@
         </li>
 
         <li class="main-menu__department">
-            <a class="main-menu__department-link" href="#">acessórios</a>
+            <a class="main-menu__department-link" href="#">
+                acessórios
+                <i class="sprite sprite-arrow-right"></i>
+            </a>
         </li>
 
         <li class="main-menu__department">
-            <a class="main-menu__department-link" href="#">liqui</a>
+            <a class="main-menu__department-link" href="#">
+                liqui
+                <i class="sprite sprite-arrow-right"></i>
+            </a>
         </li>
     </ul>
+
+    <a class="main-menu__account-link" href="/account">
+        <i class="sprite sprite-user-white"></i>
+        ENTRAR / MEUS PEDIDOS
+    </a>
 </nav>
