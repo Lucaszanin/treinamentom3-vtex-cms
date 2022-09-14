@@ -38,7 +38,7 @@ export default class Menu {
 
 		const link = $(event.target);
 
-		link.siblings(".submenu").addClass("is-open");
+		link.parents('.main-menu__department').find('.submenu').addClass("is-open");
 	}
 
 	closeSubmenu(event) {
