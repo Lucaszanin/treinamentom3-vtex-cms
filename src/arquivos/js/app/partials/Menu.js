@@ -1,38 +1,49 @@
+import { isSmallerThen991 } from 'Helpers/MediasMatch'
+
 export default class Menu {
 	constructor() {
-		this.toggleMenuMobile();
-		this.toggleSubCategories();
+		this.selectors();
+		this.events();
 	}
 
-	toggleMenuMobile() {
-		$("#open-menu-button, .show-menu .option").on("click", function () {
-			$(".menu-principal").addClass("mobile-open");
-			$("header.header").addClass("menu-mobile-open");
-		});
-
-		$("#close-menu-button").on("click", function () {
-			$(".menu-principal").removeClass("mobile-open");
-			$("header.header").removeClass("menu-mobile-open");
-		});
+	selectors() {
+		this.openMenuButton = $(".menu__button");
+		this.mainMenu = $(".main-menu");
+		this.closeMenuButton = $(".menu-header__close-button");
+		this.departmentLink = $(".main-menu__department-link");
+		this.subMenuReturnButton = $('.submenu__return-button');
 	}
 
-	toggleSubCategories() {
-		$(".m3-dropdown > button").on("click", function (event) {
-			event.preventDefault();
+	events() {
+		this.openMenuButton.click(this.openMenu.bind(this));
+		this.closeMenuButton.click(this.closeMenu.bind(this));
+		this.departmentLink.click(this.openSubmenu)
+		this.subMenuReturnButton.click(this.closeSubmenu)
 
-			if ($(this).parent().hasClass("sub-menu-open")) {
-				$(this).parent().removeClass("sub-menu-open");
-			} else {
-				$(this).parent().siblings().removeClass("sub-menu-open");
-				$(this).parent().addClass("sub-menu-open");
-			}
+		if (isSmallerThen991) {
+			this.departmentLink.click(this.openSubmenu)
+		}
+	}
 
-			$(this).parents("ul.itens").toggleClass("has-sub-menu-open");
-		});
+	openMenu() {
+		this.mainMenu.addClass("is-open");
+	}
 
-		$(".m3-dropdown .btn-voltar").on("click", function () {
-			$(this).parents(".m3-dropdown").removeClass("sub-menu-open");
-			$(this).parents("ul.itens").removeClass("has-sub-menu-open");
-		});
+	closeMenu() {
+		this.mainMenu.removeClass("is-open");
+	}
+
+	openSubmenu(event) {
+		event.preventDefault();
+
+		const link = $(event.target);
+
+		link.siblings(".submenu").addClass("is-open");
+	}
+
+	closeSubmenu(event) {
+		const button = $(event.target);
+
+		button.parents('.submenu').removeClass("is-open");
 	}
 }
