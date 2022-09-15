@@ -13,7 +13,7 @@
 
 
 	&__wrapper {
-		@include mq(lg, min) {
+		@include mq(md, min) {
 			max-width: 698px;
 			margin: 0 auto;
 		}

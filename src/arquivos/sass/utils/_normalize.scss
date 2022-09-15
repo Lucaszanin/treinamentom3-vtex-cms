@@ -395,12 +395,6 @@ body {
 	font-size: 12px;
 }
 
-body {
-	@include mq(md, max) {
-		padding-bottom: 67px;
-	}
-}
-
 html {
 	font-family: $font-family;
 	line-height: $font-height;
