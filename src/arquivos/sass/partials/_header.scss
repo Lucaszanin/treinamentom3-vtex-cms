@@ -76,50 +76,9 @@
 			}
 		}
 
-		&__minicart-button {
-			position: relative;
-			background: transparent;
-			padding: 0;
-			border: 0;
-			outline: 0;
-
-			.portal-totalizers-ref {
-
-				.title,
-				.amount-products,
-				.amount-items strong {
-					display: none;
-				}
-
-				.amount-kits,
-				.total-cart {
-					display: none;
-				}
-			}
-
-			.cart-info {
-				margin: 0;
-			}
-
-			.amount-items-em {
-				font-weight: $font-weight-heavy;
-				font-size: 9px;
-				line-height: 11px;
-				background: $ligth-blue;
-				width: 15px;
-				height: 15px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				border-radius: 50%;
-				color: $color-white;
-				position: absolute;
-				top: 4px;
-				right: -4px;
-			}
-		}
-
 	}
+
+
 	&__search-box {
 		border-top: 1px solid $ligth-grey;
 		padding: 13px 0;

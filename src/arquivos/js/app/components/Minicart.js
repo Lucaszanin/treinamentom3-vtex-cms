@@ -16,7 +16,29 @@ export default class Minicart {
 				</div>
 				<div class="mini-cart-main">
 					<div class="wait-screen"></div>
-					<ul class="product-list"></ul>
+					<ul class="product-list">
+					<li class="product">
+					<div class="product-image">
+						<a href="#" title="">
+							<img src="${alterarTamanhoImagemSrcVtex("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc0nAeVWeTM-rXAHkXUtZZx6XFbjG_8TT0ZA&usqp=CAU", 85, 107)}" alt="">
+						</a>
+					</div>
+					<div class="product-options">
+						<div class="product-info">
+							<div class="name">BLUSA VISCOSE FLORAL</div>
+							<div class="product-price">R$199,90</div>
+							<div class="product-qtd">
+								<button class="remove-from-cart" aria-label="Remover um item">-</button>
+								<span class="value">1</span>
+								<button class="add-to-cart" aria-label="Adicionar um item">+</button>
+							</div>
+						</div>
+						<div class="product-remove">
+							<button class="remove" aria-label="Remover produto">Remover</button>
+						</div>
+					</div>
+				</li>
+					</ul>
 				</div>
 				<div class="mini-cart-footer">
 					<div class="totals-container">
@@ -57,9 +79,8 @@ export default class Minicart {
 					<li id="${i + "-" + items[i].uniqueId}" class="product">
 						<div class="product-image">
 							<a href="${items[i].detailUrl}" title="${items[i].name}">
-								<img src="${alterarTamanhoImagemSrcVtex(items[i].imageUrl, 85, 100)}" alt="${
-					items[i].name
-				}">
+								<img src="${alterarTamanhoImagemSrcVtex(items[i].imageUrl, 85, 107)}" alt="${items[i].name
+					}">
 							</a>
 						</div>
 						<div class="product-options">
@@ -115,10 +136,10 @@ export default class Minicart {
 				orderItems(items);
 				$(".mini-cart-container").addClass("have-item");
 			} else {
-				emptyMessage();
+				// emptyMessage();
 			}
 		} catch (e) {
-			emptyMessage();
+			// emptyMessage();
 			console.warn("couldnt list items. " + e.message);
 		}
 	}
@@ -291,7 +312,7 @@ export default class Minicart {
 
 		this.createMiniCartStructure(element);
 		this.configureEvents(
-			"header .carrinho> a, .mobile-bottom-options .portal-totalizers-ref, .popup-add-cart .cart"
+			".minicart__button"
 		);
 	}
 }
