@@ -7,22 +7,22 @@ export default class FixedHeader {
 			this.events();
 		}
 	}
-	
-	selectors(){
+
+	selectors() {
 		this.pageHeader = $('.page-header');
 	}
 
-	events(){
-		$(document).scroll(this.fixHeader.bind(this))
+	events() {
+		$(document).scroll(this.fixHeader.bind(this));
 	}
 
-	fixHeader(){
+	fixHeader() {
 		const topScroll = $(document).scrollTop();
-		console.log(topScroll);
-		if(topScroll > 200){
-			this.pageHeader.addClass("is-fixed")
-		}else {
-			this.pageHeader.removeClass("is-fixed")
+
+		if (topScroll > 200) {
+			this.pageHeader.addClass("is-fixed");
+		} else {
+			this.pageHeader.removeClass("is-fixed");
 		}
 	}
 }
