@@ -7,6 +7,15 @@
 		padding: 11px 0 0;
 	}
 
+	@include mq(lg, min) {
+		position: sticky;
+		top: 0;
+	}
+
+	&.is-fixed {
+		background: rgba($color-white, 0.8)
+	}
+
 	&__wrapper {
 		display: grid;
 		grid-template-columns: 2fr 1fr 2fr;

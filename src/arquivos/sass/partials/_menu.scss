@@ -90,7 +90,6 @@
 		&__departments {
 			display: flex;
 			margin: 0;
-			background: $color-white;
 
 			@include mq(lg, max) {
 				flex-direction: column;

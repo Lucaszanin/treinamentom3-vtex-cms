@@ -72,6 +72,10 @@
 	max-height: 1000px;
 	opacity: 1;
 	visibility: visible;
+
+	@include mq(md, max) {
+		width: 100%;
+	}
 }
 
 .mini-cart-container {
