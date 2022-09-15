@@ -66,8 +66,8 @@ const app = new Container({
 
 app.bind(Minicart.name, ".minicart__drawer");
 app.bind(Newsletter.name, {
-	elemento: ".news-form",
-	textButtom: "Cadastre-se",
+	elemento: ".footer-newsletter__form",
+	textButtom: "CADASTRE-SE",
 });
 
 export default app;

@@ -1,196 +1,140 @@
-/***************************************************************/
-/**-- Newslettter --------------------------********************/
-/*-------------------------------------------------------------*/
+.footer-newsletter {
 
-.captacao-emails-newsletter {
-	background-color: #f71963;
-	background-image: url("/arquivos/template-background-newsletter.png");
-	margin-top: 104px;
-	padding: 12px 15px 24px;
+	background: $light-pink;
+	padding: 24px 15px;
 
-	@include mq(md, max) {
-		background-image: url("/arquivos/template-mobile-background-newsletter.png");
-		background-size: cover;
-		padding: 52px 15px 42px;
-	}
+	// @include mq(lg, max) {
+	//   padding: 24px 0;
+	// }
 
-	.row {
-		align-items: center;
-	}
 
-	> .row > div {
-		max-width: 960px;
-		margin: auto;
-		padding: 0 3.5%;
-	}
-
-	h3 {
-		color: $color-white;
-		font-size: 18px;
-		font-weight: normal;
-		line-height: 26px;
-		margin: 0 0 8px;
+	&__wrapper {
+		margin: 0 auto;
+		max-width: 698px;
 
 		@include mq(md, max) {
-			margin-bottom: 24px;
-		}
-
-		span {
-			display: block;
-			font-size: 26px;
+			margin: 0 14px;
 		}
 	}
 
-	p {
-		font-size: 15px;
-		margin: 0;
+	&__title {
+		font-size: 10px;
+		line-height: 12px;
+		letter-spacing: 0.15em;
+		color: $color-white;
+		max-width: 152px;
+		margin: 0 0 10px;
+
+		@include mq(lg, max) {
+			margin-bottom: 13px;
+			max-width: 193px;
+		}
 	}
-}
 
-.m3-custom-newsletter-form {
-	position: relative;
+	.m3-custom-newsletter-form {
+		display: flex;
+		position: relative;
 
-	label {
-		display: none;
+		@include mq(lg, max) {
+			flex-direction: column;
+		}
+
+		@include mq(lg, min) {
+			align-items: center;
+		}
+
 	}
 
 	fieldset {
-		display: inline-block;
+		flex: 1;
 		padding: 0;
-		margin-right: 16px;
-		max-width: 270px;
-		width: 36%;
+		margin: 0;
 
-		@include mq(md, max) {
+		@include mq(lg, max) {
 			margin-bottom: 8px;
-			max-width: 100%;
-			width: 100%;
+		}
+
+		@include mq(lg, min) {
+			margin-right: 16px;
+		}
+
+		label {
+			display: none;
+		}
+
+		&:last-of-type {
+			margin: 0;
 		}
 
 		&.m3-cn-button-ok-container {
-			max-width: 126px;
-			margin: 0;
-			width: 100%;
 
-			@include mq(md, max) {
-				max-width: 100%;
+			@include mq(lg, min) {
+				max-width: 126px;
 			}
-		}
-	}
-
-	input {
-		border: none;
-		font-size: 14px;
-		outline: none;
-		padding: 9px 16px;
-		width: 100%;
-
-		@include mq(md, max) {
-			font-size: 24px;
-			padding: 18.5px 24px;
-		}
-
-		&::placeholder {
-			color: #142032;
-		}
-
-		&#m3-cn-button-ok {
-			background-color: #142032;
-			color: $color-white;
-			cursor: pointer;
-			font-weight: 700;
-			font-size: 14px;
-			text-transform: lowercase;
-			transition: all 0.15s linear;
-
-			@include mq(md, max) {
-				font-size: 24px;
-				margin-top: 8px;
-			}
-
-			&:hover {
-				background-color: lighten(#142032, 5);
-			}
-
-			&:active {
-				background-color: darken(#142032, 5);
-			}
-		}
-	}
-
-	.m3-cn-msg {
-		font-weight: 700;
-		text-align: center;
-
-		.m3-cn-error {
-			background-color: $color-white;
-			border-radius: 2px;
-			bottom: -28px;
-			color: hsla(348, 83%, 58%, 1);
-			display: table;
-			left: 40%;
-			margin: auto;
-			padding: 3px 6px;
-			position: absolute;
-			right: 0;
-		}
-
-		.m3-cn-success {
-			color: $color-white;
-			display: inline-block;
-			font-size: 16px;
-			margin-right: 20px;
-			text-transform: lowercase;
-		}
-
-		.btn-voltar {
-			background-color: $color-white;
-			border-radius: 2px;
-			color: #f71963;
-			display: inline-block;
-			font-size: 14px;
-			line-height: 1;
-			padding: 4px 8px;
-			text-transform: lowercase;
-		}
-	}
-}
-
-/* pop-up-newsletter */
-
-.pop-up-newsletter {
-	display: none;
-	position: fixed;
-	z-index: 10;
-	width: 100%;
-	top: 20%;
-
-	.newsletter {
-		text-align: center;
-		background-color: #fff;
-		padding: 20px;
-		display: table;
-		margin: 0 auto;
-		position: relative;
-
-		.close-popup {
-			font-size: 35px;
-			color: #000;
-			padding: 5px;
-			cursor: pointer;
-			position: absolute;
-			top: 0;
-			right: 0;
-			line-height: 0.5;
 		}
 
 		input {
-			border-bottom: solid 1px #333;
+			width: 100%;
+			background: $color-white;
+			padding: 0 16px;
+			height: 34px;
+			outline: 0;
+			border: 0;
+			font-size: 10px;
+			line-height: 12px;
+
+			@include mq(lg, max) {
+				margin-bottom: 8px;
+				height: 54px;
+			}
+
+			&::placeholder {
+				text-transform: uppercase;
+				color: $dark-grey;
+				font-size: 10px;
+				line-height: 12px;
+			}
+
+			&.m3-cn-button-ok {
+				background: $color-black;
+				color: $color-white;
+				font-weight: $font-weight-exheavy;
+				cursor: pointer;
+				width: 100%;
+
+				@include mq(lg, max) {
+					&:active {
+						background: lighten($color-black, 10);
+					}
+				}
+
+				@include mq(lg, min) {
+					&:hover {
+						background: lighten($color-black, 10);
+					}
+
+					&:active {
+						background: $color-black;
+					}
+				}
+			}
 		}
+
+
 	}
 
-	.m3-custom-newsletter-form .btn-voltar {
-		color: #333;
-		border-color: #333;
+	.m3-cn-msg {
+		position: absolute;
+		top: calc(100% + 8px);
+		left: 50%;
+		transform: translateX(-50%);
+		line-height: 1;
+		text-transform: uppercase;
+		width: max-content;
+
+		.m3-cn-error {
+			color: $light-red;
+			font-weight: $font-weight-heavy;
+		}
 	}
 }
