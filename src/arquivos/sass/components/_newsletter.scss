@@ -1,16 +1,22 @@
 .footer-newsletter {
 
 	background: $light-pink;
-	padding: 24px 15px;
 
-	// @include mq(lg, max) {
-	//   padding: 24px 0;
-	// }
+
+	@include mq(lg, max) {
+		padding: 24px 0;
+	}
+
+	@include mq(md, min) {
+		padding: 24px 15px;
+	}
 
 
 	&__wrapper {
-		margin: 0 auto;
-		max-width: 698px;
+		@include mq(lg, min) {
+			max-width: 698px;
+			margin: 0 auto;
+		}
 
 		@include mq(md, max) {
 			margin: 0 14px;
