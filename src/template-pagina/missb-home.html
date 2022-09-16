@@ -19,7 +19,17 @@
 
 	<vtex:template id="missb-header" />
 
-	<main class="home" style="height:700px ;">
+	<main class="home">
+		<section class="main-banners">
+
+			<div class="main-banners__desktop">
+				<vtex:contentPlaceHolder id="banners-principais-desktop" />
+			</div>
+
+			<div class="main-banners__mobile">
+				<vtex:contentPlaceHolder id="banners-principais-mobile" />
+			</div>
+		</section>
 	</main>
 
 	<footer>

@@ -1,18 +1,17 @@
 export default {
 	home: {
-		bannerDesktop: {
+		desktopMainBanners: {
 			dots: true,
 			arrows: false,
-			pauseOnHover: false,
+			pauseOnHover: true,
 			autoplay: true,
-			autoplaySpeed: 6000,
+			autoplaySpeed: 5000,
 		},
-		bannerMobile: {
+		mobileMainBanners: {
 			dots: true,
-			arrows: false,
-			pauseOnHover: false,
+			arrows: true,
 			autoplay: true,
-			autoplaySpeed: 6000,
+			autoplaySpeed: 5000,
 		},
 	},
 	general: {

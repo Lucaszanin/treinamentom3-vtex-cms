@@ -1,178 +1,90 @@
-/***************************************************************/
-/**-- Home ---------------------------------********************/
-/*-------------------------------------------------------------*/
-
 .home {
-	.main-gallery {
-		> div {
-			&:not(.slick-initialized) {
-				.box-banner {
-					&:not(:first-child) {
-						display: none;
-					}
-				}
-			}
-
-			&.desktop {
-				@include mq(md, max) {
-					display: none;
-				}
-			}
-
-			&.mobile {
-				@include mq(md, min) {
-					display: none;
-				}
-			}
-		}
-
+	.main-banners {
+		margin: 0 auto;
 		img {
 			width: 100%;
 		}
+		&__desktop {
+			@include mq(md, max) {
+				display: none;
+			}
+		}
 
-		.slick-next,
-		.slick-prev {
-			@extend .sprite;
-			background-color: transparent;
-			border: none;
-			cursor: pointer;
-			font-size: 0;
-			outline: none;
-			padding: 0;
+		&__mobile {
+			@include mq(md, min) {
+				display: none;
+
+			}
+
+		}
+
+		.slick-arrow {
 			position: absolute;
-			top: 40%;
-			transform: scale(0.7);
-			z-index: 1;
+			z-index: map-get($z-index, level-1);
+			top: 47%;
+			transform: translateX(-47%);
+			padding: 0;
+			border: 0;
+			outline: 0;
+			font-size: 0;
+			background-color: transparent;
+			cursor: pointer;
+
+			@extend .sprite;
+		}
+
+		.slick-prev {
+			left: 11px;
+			@extend .sprite-slider-arrow-left;
 		}
 
 		.slick-next {
-			@extend .sprite;
-			@extend .sprite-circled-arrow-right;
-			left: auto;
-			right: 8px;
-		}
-
-		.slick-prev {
-			@extend .sprite;
-			@extend .sprite-circled-arrow-left;
-			right: auto;
-			left: 8px;
+			right: 0;
+			@extend .sprite-slider-arrow-rigth;
 		}
 
 		.slick-dots {
-			bottom: 20px;
+			display: flex !important;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
 			position: absolute;
-			pointer-events: none;
-			text-align: center;
+			z-index: map-get($z-index, level-1);
 			width: 100%;
+			left: 0;
+			bottom: 16px;
 
-			&,
-			li {
-				align-items: center;
-				display: flex !important;
-				justify-content: center;
+			@include mq(md,max){
+				bottom: 9px;
 			}
 
 			li {
-				display: inline-block;
-				margin: 0 4px;
-			}
-
-			button {
-				background-color: #142032;
-				border: none;
-				cursor: pointer;
-				height: 10px;
-				outline: none;
-				padding: 0;
-				pointer-events: all;
-				transition: all 0.15s ease-in-out;
-				width: 10px;
-			}
-
-			.slick-active {
-				button {
-					background-color: #f71963;
-					height: 16px;
-					width: 16px;
-				}
-			}
-		}
-	}
-
-	.banner {
-		&.desktop {
-			@include mq(md, max) {
-				display: none;
-			}
-		}
-
-		&.mobile {
-			@include mq(md, min) {
-				display: none;
-			}
-		}
-
-		img {
-			width: 100%;
-		}
-	}
-
-	.mosaico-home,
-	.mosaico-home-footer {
-		@include mq(md, max) {
-			padding: 0;
-		}
-
-		@include mq_range(md, xl) {
-			max-width: 100%;
-		}
-
-		.row {
-			@include mq(md, max) {
+				display: flex;
 				margin: 0;
-			}
-		}
-	}
+				margin: 0 4px;
 
-	.mosaico-home {
-		> .row {
-			@include mq(md, min) {
-				margin-left: 0;
-			}
-		}
-
-		.banner {
-			padding: 0 0 40px;
-
-			@include mq(md, min) {
-				padding: 0 10px;
-			}
-
-			img {
-				width: 100%;
-			}
-		}
-
-		.banners-left {
-			@include mq(md, min) {
-				padding-left: 0px;
-				padding-right: 12px;
-			}
-		}
-
-		.banners-right {
-			padding: 0;
-
-			.banner {
-				padding-right: 0;
-
-				&:nth-child(2) {
-					@include mq(md, min) {
-						padding-left: 8px;
+				&.slick-active {
+					button {
+						width: 16px;
+						height: 16px;
+						background: transparent;
+						border: 1px solid $color-white;
 					}
 				}
 			}
+
+			button {
+				width: 10px;
+				height: 10px;
+				padding: 0;
+				border: 0;
+				outline: 0;
+				background: $color-white;
+			}
 		}
 	}
+
+
+
+
 }

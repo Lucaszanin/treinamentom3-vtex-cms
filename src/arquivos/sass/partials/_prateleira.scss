@@ -25,7 +25,7 @@
 
 	.slick-next {
 		@extend .sprite;
-		@extend .sprite-circled-arrow-right;
+		@extend .sprite-slider-arrow-left;
 		left: auto;
 		right: -60px;
 
@@ -40,7 +40,7 @@
 
 	.slick-prev {
 		@extend .sprite;
-		@extend .sprite-circled-arrow-left;
+		@extend .sprite-slider-arrow-left;
 		right: auto;
 		left: -60px;
 

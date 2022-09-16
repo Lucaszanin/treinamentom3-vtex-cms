@@ -1,81 +1,124 @@
 module.exports = {
 	contentPlaceHolders: [
 		{
-			// Registra  o contentPlaceholder
-			id: "htmlSeo",
+			id: "banners-principais-desktop",
 			objects: [
-				//  Registra os objetos vtex
 				{
-					type: "html",
-					name: "Html SEO",
-					contents: [],
+					type: "banner",
+					name: "Banner Principal Desktop 01",
+					contents: [
+						{
+							name: "Banner Principal Desktop 01",
+							active: true,
+							type: "image",
+							file: "banner-principal.png",
+							width: 1440,
+							height: 532,
+						},
+					],
+				},
+				{
+					type: "banner",
+					name: "Banner Principal Desktop 02",
+					contents: [
+						{
+							name: "Banner Principal Desktop 02",
+							active: true,
+							type: "image",
+							file: "banner-principal.png",
+							width: 1440,
+							height: 532,
+						},
+					],
+				},
+
+				{
+					type: "banner",
+					name: "Banner Principal Desktop 03",
+					contents: [
+						{
+							name: "Banner Principal Desktop 03",
+							active: true,
+							type: "image",
+							file: "banner-principal.png",
+							width: 1440,
+							height: 532,
+						},
+					],
+				},
+				{
+					type: "banner",
+					name: "Banner Principal Desktop 04",
+					contents: [
+						{
+							name: "Banner Principal Desktop 04",
+							active: true,
+							type: "image",
+							file: "banner-principal.png",
+							width: 1440,
+							height: 532,
+						},
+					],
 				},
 			],
 		},
 		{
-			id: "slide-principal",
+			id: "banners-principais-mobile",
 			objects: [
 				{
 					type: "banner",
-					name: "banner principal",
+					name: "Banner Principal Mobile 01",
 					contents: [
 						{
-							name: "banner principal content",
+							name: "Banner Principal Mobile 01",
 							active: true,
 							type: "image",
-							file: "slide-principal.png",
-							width: 1920,
-							height: 500,
-							//   "category": "*",
-							//   "brand": "*"
-							//   "period": ""
+							file: "banner-principal-mobile.png",
+							width: 375,
+							height: 342,
 						},
 					],
 				},
 				{
 					type: "banner",
-					name: "banner principal-2",
+					name: "Banner Principal Mobile 02",
 					contents: [
 						{
-							name: "banner principal content",
+							name: "Banner Principal Mobile 02",
 							active: true,
 							type: "image",
-							file: "slide-principal.png",
-							width: 1920,
-							height: 500,
+							file: "banner-principal-mobile.png",
+							width: 375,
+							height: 342,
 						},
 					],
 				},
-			],
-		},
-		{
-			id: "slide-principal-mobile",
-			objects: [
+
 				{
 					type: "banner",
-					name: "banner principal mobile",
+					name: "Banner Principal Mobile 03",
 					contents: [
 						{
-							name: "banner principal mobile content",
+							name: "Banner Principal Mobile 03",
 							active: true,
 							type: "image",
-							file: "slide-principal-mobile.png",
-							width: 500,
-							height: 500,
+							file: "banner-principal-mobile.png",
+							width: 375,
+							height: 342,
 						},
 					],
 				},
 				{
 					type: "banner",
-					name: "banner principal mobile 2",
+					name: "Banner Principal Mobile 04",
 					contents: [
 						{
-							name: "banner principal mobile 2 content",
+							name: "Banner Principal Mobile 04",
 							active: true,
 							type: "image",
-							file: "slide-principal-mobile.png",
-							width: 500,
-							height: 500,
+							file: "banner-principal-mobile.png",
+							width: 375,
+							height: 342,
 						},
 					],
 				},
