@@ -5,30 +5,64 @@
 		font-size: 12px;
 		line-height: 14px;
 		margin: 0 0 38px;
+		text-align: center;
 	}
 
 	ul {
 		margin: 0;
 
+		@include mq(md, max) {
+			padding: 0 32px;
+		}
+	}
+
+	.slick-track {
+		display: flex;
+	}
+
+	.slick-slider {
+		height: auto;
+
+		&>div,
+		li {
+			height: 100%;
+		}
 	}
 
 	.slick-arrow {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		z-index: map-get($z-index, level-1);
+		@extend .sprite;
+
+		@include mq(md, max) {
+			transform: translateY(-50%) scale(0.7);
+		}
 	}
 
 	.slick-prev {
-		right: 100%;
+		@extend .sprite-circle-arrow-left;
+		right: 98%;
+		@include mq(md, max) {
+			left: 0;
+			right: auto;
+			transform-origin: left;
+		}
 	}
 
 	.slick-next {
-		left: 100%;
+		left: 102%;
+		@extend .sprite-circle-arrow-rigth;
+
+		@include mq(md, max) {
+			right: 0;
+			left: auto;
+			transform-origin: right;
+		}
 	}
 
 	.produto-na-prateleira {
-		border: 1px solid red;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		margin: 0 15px;
 
 		.product-image {
 			position: relative;
@@ -67,6 +101,14 @@
 			}
 		}
 
+		.disponivel,
+		.indisponivel {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+		}
+
 		.nome {
 			font-weight: $font-weight-regular-midium;
 			font-size: 10px;
@@ -77,10 +119,78 @@
 		}
 
 		.price {
+			text-align: center;
+			text-transform: uppercase;
+			margin-bottom: 17px;
+
+			.antigo {
+				margin-bottom: 4px;
+				font-size: 10px;
+				line-height: 12px;
+				color: $dark-grey;
+				text-decoration: line-through;
+			}
+
 			.principal {
+				margin-bottom: 4px;
 				font-size: 13px;
 				line-height: 16px;
 				font-weight: $font-weight-exheavy;
+			}
+
+			.parcelado {
+				font-size: 10px;
+				line-height: 12px;
+				color: $dark-grey;
+				text-transform: uppercase;
+			}
+		}
+
+		.btn-compra {
+			a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: $color-black;
+				color: $color-white;
+				height: 50px;
+				font-size: 10px;
+				line-height: 13px;
+				text-transform: uppercase;
+				font-weight: $font-weight-heavy;
+				font-family: 'Poppins', sans-serif;
+				transition: background-color .2s linear;
+
+				@include mq(lg, max) {
+					&:active {
+						background: lighten($color-black, 10);
+					}
+				}
+
+				@include mq(lg, min) {
+					&:hover {
+						background: lighten($color-black, 10);
+					}
+
+					&:active {
+						background: $color-black;
+					}
+				}
+			}
+		}
+
+		.indisponivel {
+			.erro {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 50px;
+				font-size: 10px;
+				line-height: 13px;
+				text-transform: uppercase;
+				font-weight: $font-weight-heavy;
+				color: $light-red;
+
 			}
 		}
 	}

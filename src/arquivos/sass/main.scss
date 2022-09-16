@@ -5,17 +5,8 @@
 
 @import "./utils/all";
 
-@import "./pages/home";
-@import "./pages/categoria";
-@import "./pages/produto";
-@import "./pages/institucional";
-@import "./pages/erro";
-@import "./pages/login";
 
-@import "./components/mini-cart";
-@import "./components/newsletter";
-@import "./components/instagram-gallery";
-
+@import "./partials/slider";
 @import "./partials/header";
 @import "./partials/menu";
 @import "./partials/search";
@@ -25,3 +16,15 @@
 @import "./partials/prateleira";
 @import "./partials/ajustes";
 @import "./partials/flags";
+
+
+@import "./components/mini-cart";
+@import "./components/newsletter";
+@import "./components/instagram-gallery";
+
+@import "./pages/home";
+@import "./pages/categoria";
+@import "./pages/produto";
+@import "./pages/institucional";
+@import "./pages/erro";
+@import "./pages/login";
