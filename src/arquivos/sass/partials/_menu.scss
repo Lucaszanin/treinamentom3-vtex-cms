@@ -110,6 +110,14 @@
 			display: flex;
 			align-items: center;
 
+			&:last-of-type {
+				a {
+					color: $ligth-blue;
+					font-weight: $font-weight-exheavy;
+				}
+
+			}
+
 			@include mq(lg, max) {
 				border-bottom: 1px solid $grey-midium;
 			}
@@ -152,6 +160,7 @@
 					display: none;
 				}
 			}
+
 		}
 
 		&__account-link {
@@ -177,8 +186,21 @@
 
 	.submenu {
 		position: absolute;
-
 		width: 100%;
+
+		.container {
+			position: relative;
+		}
+
+		.divider {
+			width: 2px;
+			height: 162px;
+			background: $ligth-blue;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: -19px;
+		}
 
 		@include mq(lg, max) {
 			top: 0;
@@ -188,6 +210,10 @@
 			height: 100%;
 			background: $color-white;
 			transition: left .2s ease-in-out;
+
+			.divider {
+				display: none;
+			}
 		}
 
 		@include mq(lg, min) {

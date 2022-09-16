@@ -1,8 +1,15 @@
 // fonts
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700;900&display=swap');
+
+@font-face {
+	font-family: "LaineDash";
+	src: url('/arquivos/fonts/Laine.TTF');
+}
+
 $font-family: "Lato", sans-serif;
 $font-weight-light: 300;
 $font-weight-regular: 400;
+$font-weight-regular-midium: 500;
 $font-weight-heavy: 700;
 $font-weight-exheavy: 900;
 $font-height: 1.5;

@@ -124,120 +124,19 @@ module.exports = {
 				},
 			],
 		},
-		//====================
-		// MOSAICO
-		//====================
 		{
-			id: "banner-01",
+			id: "prateleira-01",
 			objects: [
 				{
-					type: "banner",
-					name: "banner 01",
-					contents: [
-						{
-							name: "banner 01 content",
-							active: true,
-							type: "image",
-							file: "banner-01.png",
-							width: 500,
-							height: 500,
-						},
-					],
-				},
-			],
-		},
-		{
-			id: "banner-02",
-			objects: [
-				{
-					type: "banner",
-					name: "banner 02",
-					contents: [
-						{
-							name: "banner 02 content",
-							active: true,
-							type: "image",
-							file: "banner-02.png",
-							width: 500,
-							height: 500,
-						},
-					],
-				},
-			],
-		},
-		{
-			id: "banner-03",
-			objects: [
-				{
-					type: "banner",
-					name: "banner 03",
-					contents: [
-						{
-							name: "banner 03 content",
-							active: true,
-							type: "image",
-							file: "banner-03.png",
-							width: 500,
-							height: 500,
-						},
-					],
-				},
-			],
-		},
-		{
-			id: "banner-04",
-			objects: [
-				{
-					type: "banner",
-					name: "banner 04",
-					contents: [
-						{
-							name: "banner 04 content",
-							active: true,
-							type: "image",
-							file: "banner-04.png",
-							width: 500,
-							height: 500,
-						},
-					],
-				},
-			],
-		},
-		{
-			id: "banner-05",
-			objects: [
-				{
-					type: "banner",
-					name: "banner 05",
-					contents: [
-						{
-							name: "banner 05 content",
-							active: true,
-							type: "image",
-							file: "banner-05.png",
-							width: 500,
-							height: 500,
-						},
-					],
-				},
-			],
-		},
-		{
-			id: "mobile-banner-05",
-			objects: [
-				{
-					type: "banner",
-					name: "banner 05 mobile",
-					contents: [
-						{
-							name: "banner 05 mobile content",
-							active: true,
-							type: "image",
-							file: "banner-05.png",
-							width: 500,
-							height: 500,
-						},
-					],
+					type: "Produtos Relacionados",
+					name: "CONFIRA NOSSAS NOVIDADES",
+
+					properties: {
+						layout: "missb-prateleira-padrao",
+						type: "QuemViuViuTambem",
+						"number-of-columns": 12,
+						"number-of-items": 12,
+					},
 				},
 			],
 		},

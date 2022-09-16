@@ -96,7 +96,7 @@ export default class Prateleira {
 	//ex atualziar
 	atualizar() {
 		this.flagDeDesconto();
-		this.precoParcelado();
+		// this.precoParcelado();
 		this.precoBoleto();
 	}
 

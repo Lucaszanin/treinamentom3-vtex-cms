@@ -13,7 +13,7 @@ module.exports = {
 			],
 		},
 		{
-			id: "prateleira-padrao",
+			id: "prateleira",
 			objects: [
 				{
 					type: "Produtos Relacionados",

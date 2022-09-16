@@ -20,6 +20,7 @@ import Promocao from "./partials/Promocao";
 import MenuContents from "./partials/MenuContents";
 import Login from "./partials/Login";
 import Prateleira from "./components/Prateleira/Prateleira";
+import Shelf from "./partials/Shelf";
 
 import PrateleiraService from "./components/Prateleira/PrateleiraService";
 
@@ -38,6 +39,7 @@ const app = new Container({
 		ScrollToTop,
 		AutoComplete,
 		Prateleira,
+		Shelf,
 	],
 	services: [PrateleiraService],
 	pages: [

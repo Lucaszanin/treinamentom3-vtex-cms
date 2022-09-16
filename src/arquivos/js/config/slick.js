@@ -58,7 +58,7 @@ export default {
 	productShelf: {
 		defaultShelf: {
 			lazyLoad: "ondemand",
-			dots: true,
+			dots: false,
 			arrows: true,
 			infinite: true,
 			slidesToShow: 4,
