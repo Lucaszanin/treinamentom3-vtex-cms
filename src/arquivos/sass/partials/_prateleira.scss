@@ -1,4 +1,6 @@
 .shelf {
+	background-color: $white-medium;
+
 	h2 {
 		margin: 0;
 		font-weight: $font-weight-exheavy;
@@ -40,6 +42,7 @@
 	.slick-prev {
 		@extend .sprite-circle-arrow-left;
 		right: 98%;
+
 		@include mq(md, max) {
 			left: 0;
 			right: auto;
@@ -63,6 +66,7 @@
 		display: flex;
 		flex-direction: column;
 		margin: 0 15px;
+		position: relative;
 
 		.product-image {
 			position: relative;

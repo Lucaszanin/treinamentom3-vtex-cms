@@ -1,43 +1,38 @@
 .flags-product {
-	display: block;
-	pointer-events: none;
 	position: absolute;
-	width: 100%;
-	z-index: 5;
+	top: 0;
+	left: 0;
+	z-index: map-get($z-index, level-2);
+	padding: 8px;
 
-	p {
-		background-repeat: no-repeat;
-		color: $color-white;
+	.flag {
 		display: none;
-		font-size: 11px;
-		float: right;
-		font-weight: 700;
+		font-size: 10px;
+		line-height: 12px;
+		text-transform: uppercase;
+		margin: 0 0 8px;
 		min-width: 54px;
-		margin: 7px 100% 0 7px;
-		overflow: hidden;
-		padding: 2.5px 4px;
-		text-indent: -9999px;
+		max-width: max-content;
+		height: 20px;
 
+		&.novo,
 		&.produto-off {
-			background: #142032;
-			display: table;
-			float: left;
-			text-indent: 0;
-			width: 50px;
-
-			&:after {
-				content: "OFF";
-				display: inline-block;
-			}
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 
 		&.novo {
-			background-color: #f71963;
-			border-radius: 5px;
-			display: table;
-			float: left;
-			text-indent: 0;
-			text-transform: uppercase;
+			background: $ligth-blue;
+			color: $color-white;
+			font-weight: $font-weight-heavy;
 		}
+
+		&.produto-off {
+			background: $light-pink;
+			font-weight: $font-weight-exheavy;
+			color: $color-white;
+		}
+
 	}
 }

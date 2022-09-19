@@ -123,7 +123,7 @@ export default class Prateleira {
 	createFlagDesconto($elemento, percentualDeDesconto) {
 		var $flag = $("<p />")
 			.addClass("flag produto-off")
-			.text(percentualDeDesconto + "%");
+			.text(percentualDeDesconto + "%OFF");
 		$elemento.find(".flags-product .DiscountHightLight").append($flag);
 	}
 

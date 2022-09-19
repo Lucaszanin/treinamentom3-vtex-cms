@@ -25,7 +25,7 @@
 			align-items: center;
 			justify-content: space-between;
 			padding: 16px;
-			background: $color-white;
+			background: $white-medium;
 		}
 
 		&__text {
@@ -61,6 +61,7 @@
 			background: rgba($ligth-grey, 0.3);
 
 			.busca {
+				background: rgba($white-medium, 0.3);
 				padding: 16px;
 			}
 		}
@@ -185,6 +186,7 @@
 	}
 
 	.submenu {
+		background: $white-medium;
 		position: absolute;
 		width: 100%;
 
@@ -208,7 +210,6 @@
 			overflow: auto;
 			padding-bottom: 34px;
 			height: 100%;
-			background: $color-white;
 			transition: left .2s ease-in-out;
 
 			.divider {

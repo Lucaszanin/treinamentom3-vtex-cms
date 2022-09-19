@@ -1,5 +1,6 @@
 .minicart {
 	position: relative;
+	background: $white-medium;
 
 	&__button {
 		position: relative;
@@ -105,6 +106,8 @@
 
 	.mini-cart-header {
 		color: $dark-grey;
+		display: flex;
+		align-items: center;
 		font-size: 12px;
 		line-height: 14px;
 		letter-spacing: 0.5px;
@@ -114,10 +117,22 @@
 		text-transform: uppercase;
 
 		span {
+			width: 70%;
 			display: flex;
-			flex-direction: column;
+			align-items: center;
 			margin-left: 4px;
 			margin-left: 37px;
+			position: relative;
+
+			&::after {
+				content: '';
+				position: absolute;
+				height: 36px;
+				width: 1px;
+				background: $white-medium;
+				display: inline-block;
+				left: 100%;
+			}
 		}
 
 		.btn-close {
@@ -127,7 +142,8 @@
 			padding: 12px;
 			position: absolute;
 			right: 30px;
-			top: 35px;
+			top: 20px;
+			padding: 8px;
 
 			&::before,
 			&::after {
