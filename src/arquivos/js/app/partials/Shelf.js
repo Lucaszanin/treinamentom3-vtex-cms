@@ -11,6 +11,8 @@ export default class Shelf {
     }
 
     createSlider(){
+        $('.helperComplement').remove();
+        console.log("LI Adicional Removida");
         this.shelf.slick(slickConfig.productShelf.defaultShelf);
     }
 }

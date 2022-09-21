@@ -6,5 +6,5 @@ const menuElements = require("./pages/elementos-menu");
 
 module.exports = {
 	accountName: "agenciamagma",
-	pages: [{ data: home, template: "missb-home.html" }],
+	pages: [{ data: home, template: "zanin-missb-home.html" }],
 };

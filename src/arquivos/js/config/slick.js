@@ -68,7 +68,6 @@ export default {
 				{
 					breakpoint: 1200,
 					settings: {
-						lazyLoad: "ondemand",
 						slidesToShow: 3,
 						slidesToScroll: 3,
 					},
@@ -76,8 +75,6 @@ export default {
 				{
 					breakpoint: 800,
 					settings: {
-						arrows: true,
-						lazyLoad: "ondemand",
 						slidesToShow: 2,
 						slidesToScroll: 2,
 					},

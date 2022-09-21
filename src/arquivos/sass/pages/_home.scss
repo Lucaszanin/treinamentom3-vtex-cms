@@ -32,12 +32,12 @@
 		}
 
 		.slick-prev {
-			left: 11px;
+			left: 10px;
 			@extend .sprite-slider-arrow-left;
 		}
 
 		.slick-next {
-			right: 0;
+			right: 10px;
 			@extend .sprite-slider-arrow-rigth;
 		}
 
