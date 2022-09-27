@@ -1,5 +1,5 @@
 .shelf {
-	background-color: $white-medium;
+	background: $color-white;
 	position: relative;
 
 	h2 {
@@ -35,9 +35,6 @@
 	.slick-arrow {
 		@extend .sprite;
 
-		@include mq(md, max) {
-			transform: translateY(-50%)  scale(0.7);
-		}
 	}
 
 	.slick-prev {
@@ -53,6 +50,7 @@
 	.slick-next {
 		left: 99.2%;
 		@extend .sprite-circle-arrow-rigth;
+
 		@include mq(md,max){
 			right: 0;
 			left: auto;
@@ -65,6 +63,7 @@
 		display: flex;
 		flex-direction: column;
 		margin: 0 15px;
+		position: relative;
 
 		.product-image {
 			position: relative;

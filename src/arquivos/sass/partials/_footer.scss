@@ -1,15 +1,15 @@
 .footer-links {
-	background: $white-medium;
+	background: $color-white;
 
 	@include mq(md, min) {
-		padding: 29px 0 25px;
+		padding: 23px 0 30px;
 		border-bottom: 1px solid $grey;
 	}
 
 	&__wrapper {
 		display: grid;
 		grid-template-columns: repeat(3, max-content);
-		gap: 148px;
+		gap: 136px;
 		justify-content: center;
 
 		@include mq(md, max) {
@@ -31,11 +31,10 @@
 		font-weight: $font-weight-heavy;
 		color: $dark-grey;
 		margin-bottom: 7px;
+		margin-top: 0;
 	}
 
 	&__items-list {
-		margin: 0;
-
 		&--social-newtworks {
 			display: grid;
 			grid-auto-flow: column;
@@ -46,26 +45,27 @@
 	}
 
 	&__item {
-
+		padding: 0 0 10px;
 		font-size: 10px;
 		line-height: 12px;
 	}
 
 	&__link {
 		color: $color-black;
-		padding: 10px 0;
+		padding: 0;
 		transition: color .2s linear;
 
 		@include mq(lg, min) {
 			&:hover {
 				color: $ligth-blue;
+				margin-bottom: 10px;
 			}
 		}
 	}
 }
 
 .footer-infos {
-	background: $white-medium ;
+	background: $color-white;
 
 	&__labels {
 		display: flex;
@@ -103,7 +103,11 @@
 		@include mq(md, max) {
 			border-bottom: 1px solid $grey;
 			gap: 0;
+			display: flex;
+			flex: 1;
+			flex-wrap: wrap;
 		}
+
 	}
 
 	&__security {

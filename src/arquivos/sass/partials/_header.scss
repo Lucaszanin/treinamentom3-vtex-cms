@@ -1,5 +1,5 @@
 .page-header {
-	background: $white-medium;
+	background: $color-white;
 	padding: 7px 0;
 	position: relative;
 
@@ -14,7 +14,7 @@
 	}
 
 	&.is-fixed {
-		background: rgba($white-medium, 0.8)
+		background: rgba($color-white, 0.8)
 	}
 
 	&__wrapper {
@@ -88,11 +88,12 @@
 
 
 	&__search-box {
+		background: white;
 		border-top: 1px solid $ligth-grey;
 		padding: 13px 0;
 
-		@include mq(lg, min) {
-			display: none;
+		@include mq(md, max) {
+			display: block;
 		}
 	}
 }

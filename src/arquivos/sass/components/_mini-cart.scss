@@ -146,7 +146,7 @@
 
 			&::before,
 			&::after {
-				background-color: lighten(#142032, 10);
+				background-color: lighten($color-black, 10);
 				content: "";
 				height: 2px;
 				left: 0.5px;
@@ -296,21 +296,23 @@
 			width: 100%;
 
 			.name {
-				font-size: 14px;
-				line-height: 17px;
+				font-weight: 700;
+				font-size: 10px;
+				line-height: 12px;
+				margin-bottom: 8px;
 			}
 
 			.product-price {
 				color: $color-black;
 				font-size: 18px;
 				font-weight: 700;
-				margin-bottom: 8px;
+				margin-bottom: 38px;
 			}
 
 			.value,
 			button {
-				background-color: transparent;
-				border: none;
+				background-color: $color-white;
+				border: 1px solid $dark-grey;
 				border-radius: 0;
 				display: inline-block;
 				text-align: center;
@@ -323,10 +325,11 @@
 			}
 
 			button {
-				background: transparent;
+				background: $dark-grey;
+				color: $color-white;
 				font-weight: 700;
 				font-size: 16px;
-				line-height: 0;
+				line-height: 19px;
 				width: 32px;
 				vertical-align: top;
 				transition: all 0.15s linear;
@@ -439,7 +442,8 @@
 			cursor: pointer;
 			color: #6d6e70;
 			display: block;
-			font-size: 14px;
+			font-size: 10px;
+			line-height: 12px;
 			padding: 17px 15px;
 			position: relative;
 			transition: all 0.15s ease-in-out;
@@ -459,6 +463,7 @@
 			display: block;
 			font-weight: 900;
 			font-size: 12px;
+			height: 50px;
 			line-height: 14px;
 			padding: 15px;
 			text-align: center;
