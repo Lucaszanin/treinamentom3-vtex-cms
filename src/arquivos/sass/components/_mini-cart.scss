@@ -51,7 +51,7 @@
 		opacity: 0;
 		position: absolute;
 		right: 0px;
-		top: 80px;
+		top: 95px;
 		transition: all 0.3s ease-in-out;
 		visibility: hidden;
 		width: 375px;
@@ -106,8 +106,9 @@
 	.mini-cart-header {
 		color: $dark-grey;
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
 		font-size: 12px;
+		height: 52px;
 		line-height: 14px;
 		letter-spacing: 0.5px;
 		padding: 20px 15px 16px;
@@ -115,23 +116,26 @@
 		text-align: left;
 		text-transform: uppercase;
 
+		i {
+			margin: 10px 0;
+		}
+
 		span {
 			width: 70%;
 			display: flex;
 			align-items: center;
 			margin-left: 4px;
-			margin-left: 37px;
+			margin-left: 10px;
 			position: relative;
+		}
 
-			&::after {
-				content: '';
-				position: absolute;
-				height: 36px;
-				width: 1px;
-				background: $white-medium;
-				display: inline-block;
-				left: 100%;
-			}
+		.mini-cart-divider {
+			width: 1px;
+			background: $white-medium;
+			height: 36px;
+			position: absolute;
+			top: 16px;
+			right: 64px;
 		}
 
 		.btn-close {
@@ -141,7 +145,7 @@
 			padding: 12px;
 			position: absolute;
 			right: 30px;
-			top: 20px;
+			top: 24px;
 			padding: 8px;
 
 			&::before,
@@ -178,7 +182,7 @@
 	.mini-cart-main {
 		height: 100%;
 		margin-right: 5px;
-		margin-top: 5px;
+		margin-top: 42px;
 		margin-bottom: 5px;
 		overflow: auto;
 		padding: 0 13px 0 15px;

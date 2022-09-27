@@ -10,9 +10,11 @@ export default class Minicart {
 					<span>
 						COMPRA 100% SEGURA
 					</span>
-					<button class="btn-close" aria-label="fechar carrinho">
-						fechar
-					</button>
+					
+						<div class="mini-cart-divider"></div>
+						<button class="btn-close" aria-label="fechar carrinho">
+							fechar
+						</button>
 				</div>
 				<div class="mini-cart-main">
 					<div class="wait-screen"></div>

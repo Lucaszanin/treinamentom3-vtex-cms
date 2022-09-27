@@ -32,20 +32,24 @@
 		color: $dark-grey;
 		margin-bottom: 7px;
 		margin-top: 0;
+		letter-spacing: 0.2em;
 	}
 
 	&__items-list {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
 		&--social-newtworks {
 			display: grid;
 			grid-auto-flow: column;
 			grid-auto-columns: max-content;
-			gap: 16px;
+			gap: 21px;
 			align-items: center;
 		}
 	}
 
 	&__item {
-		padding: 0 0 10px;
 		font-size: 10px;
 		line-height: 12px;
 	}
@@ -53,12 +57,12 @@
 	&__link {
 		color: $color-black;
 		padding: 0;
+		margin-bottom: 10px !important;
 		transition: color .2s linear;
 
 		@include mq(lg, min) {
 			&:hover {
 				color: $ligth-blue;
-				margin-bottom: 10px;
 			}
 		}
 	}
