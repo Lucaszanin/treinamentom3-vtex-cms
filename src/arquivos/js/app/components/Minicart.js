@@ -81,7 +81,7 @@ export default class Minicart {
 					<li id="${i + "-" + items[i].uniqueId}" class="product">
 						<div class="product-image">
 							<a href="${items[i].detailUrl}" title="${items[i].name}">
-								<img src="${alterarTamanhoImagemSrcVtex(items[i].imageUrl, 85, 107)}" alt="${items[i].name
+								<img src="${alterarTamanhoImagemSrcVtex(items[i].imageUrl, 85, 100)}" alt="${items[i].name
 					}">
 							</a>
 						</div>
@@ -138,10 +138,10 @@ export default class Minicart {
 				orderItems(items);
 				$(".mini-cart-container").addClass("have-item");
 			} else {
-				// emptyMessage();
+				emptyMessage();
 			}
 		} catch (e) {
-			// emptyMessage();
+			emptyMessage();
 			console.warn("couldnt list items. " + e.message);
 		}
 	}
@@ -314,7 +314,7 @@ export default class Minicart {
 
 		this.createMiniCartStructure(element);
 		this.configureEvents(
-			".minicart__button"
+			"header .carrinho> a, .mobile-bottom-options .portal-totalizers-ref, .popup-add-cart .cart"
 		);
 	}
 }

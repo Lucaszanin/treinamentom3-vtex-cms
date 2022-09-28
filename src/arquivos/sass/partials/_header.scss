@@ -92,8 +92,8 @@
 		border-top: 1px solid $ligth-grey;
 		padding: 13px 0;
 
-		@include mq(md, max) {
-			display: block;
+		@include mq(lg, min) {
+			display: none;
 		}
 	}
 }
